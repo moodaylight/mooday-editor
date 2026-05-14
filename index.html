@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html lang="zh">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>MOODAY Editor</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MOODAY Editor V4</title>
 
 <style>
 *{
@@ -14,7 +14,7 @@ font-family:Arial,sans-serif;
 }
 
 body{
-background:#0f0f0f;
+background:#0d0d0d;
 color:white;
 min-height:100vh;
 display:flex;
@@ -23,10 +23,10 @@ flex-direction:column;
 
 header{
 padding:18px;
-border-bottom:1px solid #222;
 display:flex;
 justify-content:space-between;
 align-items:center;
+border-bottom:1px solid #222;
 background:#111;
 }
 
@@ -42,53 +42,50 @@ gap:10px;
 }
 
 button{
-background:#1e1e1e;
+background:#1c1c1c;
 border:1px solid #333;
 color:white;
 padding:10px 14px;
 border-radius:12px;
 cursor:pointer;
-font-size:14px;
 }
 
 button:hover{
-background:#2b2b2b;
+background:#2a2a2a;
 }
 
 .main{
 flex:1;
-display:flex;
-flex-direction:column;
 padding:20px;
-gap:20px;
 max-width:520px;
 width:100%;
 margin:0 auto;
+display:flex;
+flex-direction:column;
+gap:20px;
 }
 
-.product-tabs{
+.tabs{
 display:flex;
 gap:10px;
 }
 
 .tab{
 flex:1;
-text-align:center;
 padding:14px;
+text-align:center;
 border-radius:16px;
 background:#181818;
 border:1px solid #2d2d2d;
-transition:0.2s;
+cursor:pointer;
 }
 
 .active{
 background:#2d241d;
-border-color:#c28b52;
+border-color:#d4a36c;
 }
 
 .canvas-wrap{
-position:relative;
-width:100%;
 display:flex;
 justify-content:center;
 }
@@ -96,43 +93,48 @@ justify-content:center;
 .canvas{
 position:relative;
 overflow:hidden;
+background:black;
 border-radius:24px;
-background:#000;
+touch-action:none;
 }
 
-.paper-frame{
+.paper{
 width:360px;
 height:240px;
-background:#111;
 }
 
-.preview-image{
+.acrylic{
+width:240px;
+height:360px;
+background:rgba(255,255,255,0.03);
+border:2px solid rgba(255,255,255,0.1);
+}
+
+#preview{
 position:absolute;
 left:50%;
 top:50%;
 transform:translate(-50%,-50%);
-width:100%;
-height:100%;
-object-fit:cover;
-transition:0.3s;
-z-index:1;
-filter:brightness(1);
-}
-
-.real-frame{
-position:absolute;
-inset:0;
+max-width:none;
+user-select:none;
 pointer-events:none;
-z-index:10;
 }
 
-.mask-top,
-.mask-bottom,
-.mask-left,
-.mask-right{
+.visible-area{
+position:absolute;
+left:22px;
+right:22px;
+top:22px;
+bottom:22px;
+border:2px dashed rgba(255,255,255,0.8);
+border-radius:10px;
+pointer-events:none;
+}
+
+.mask{
 position:absolute;
 background:rgba(0,0,0,0.55);
-backdrop-filter:blur(2px);
+pointer-events:none;
 }
 
 .mask-top{
@@ -163,36 +165,7 @@ bottom:22px;
 width:22px;
 }
 
-.visible-window{
-position:absolute;
-left:22px;
-right:22px;
-top:22px;
-bottom:22px;
-border:2px dashed rgba(255,255,255,0.9);
-border-radius:8px;
-box-shadow:0 0 20px rgba(255,255,255,0.1);
-}
-
-.window-text{
-position:absolute;
-bottom:8px;
-left:50%;
-transform:translateX(-50%);
-font-size:11px;
-color:rgba(255,255,255,0.8);
-letter-spacing:1px;
-}
-
-.acrylic-frame{
-width:240px;
-height:360px;
-background:rgba(255,255,255,0.03);
-border:2px solid rgba(255,255,255,0.15);
-backdrop-filter:blur(2px);
-}
-
-.acrylic-safe{
+.safe-zone{
 position:absolute;
 left:10px;
 right:10px;
@@ -200,7 +173,8 @@ bottom:10px;
 height:260px;
 border:2px dashed rgba(255,200,120,0.8);
 border-radius:12px;
-z-index:10;
+display:none;
+pointer-events:none;
 }
 
 .top-zone{
@@ -209,36 +183,36 @@ top:0;
 left:0;
 right:0;
 height:80px;
-display:flex;
-align-items:center;
+display:none;
 justify-content:center;
+align-items:center;
 font-size:12px;
-color:rgba(255,255,255,0.6);
 letter-spacing:2px;
-z-index:11;
+color:rgba(255,255,255,0.6);
+pointer-events:none;
 }
 
 .base-light{
 position:absolute;
-bottom:-10px;
+bottom:-12px;
 left:50%;
 transform:translateX(-50%);
 width:140px;
 height:22px;
-border-radius:20px;
-background:#f6c28b;
-filter:blur(12px);
-opacity:0.7;
+border-radius:30px;
+background:#f7c58a;
+filter:blur(14px);
+display:none;
 }
 
 .controls{
+background:#151515;
+border:1px solid #222;
+padding:18px;
+border-radius:20px;
 display:flex;
 flex-direction:column;
 gap:16px;
-background:#151515;
-padding:18px;
-border-radius:20px;
-border:1px solid #222;
 }
 
 label{
@@ -257,8 +231,14 @@ display:flex;
 gap:10px;
 }
 
-.light-btn{
+.light-buttons button{
 flex:1;
+}
+
+.tip{
+font-size:12px;
+line-height:1.7;
+color:#777;
 }
 
 footer{
@@ -269,6 +249,7 @@ color:#666;
 }
 </style>
 </head>
+
 <body>
 
 <header>
@@ -282,36 +263,32 @@ color:#666;
 
 <div class="main">
 
-<div class="product-tabs">
-<div class="tab active" id="paperTab" onclick="showPaper()">灯光画</div>
-<div class="tab" id="acrylicTab" onclick="showAcrylic()">亚克力灯</div>
+<div class="tabs">
+<div class="tab active" id="paperTab">灯光画</div>
+<div class="tab" id="acrylicTab">亚克力灯</div>
 </div>
 
 <div class="canvas-wrap">
 
-<div class="canvas paper-frame" id="canvas">
+<div class="canvas paper" id="canvas">
 
-<img
-id="preview"
-class="preview-image"
-src="https://images.unsplash.com/photo-1524504388940-b1c1722653e1?q=80&w=1200&auto=format&fit=crop"
-/>
+<img id="preview"
+src="https://images.unsplash.com/photo-1524504388940-b1c1722653e1?q=80&w=1200&auto=format&fit=crop">
 
-<div class="real-frame" id="paperFrame">
-<div class="mask-top"></div>
-<div class="mask-bottom"></div>
-<div class="mask-left"></div>
-<div class="mask-right"></div>
-<div class="visible-window"></div>
-<div class="window-text">实际显示区域</div>
-</div>
+<div class="mask mask-top"></div>
+<div class="mask mask-bottom"></div>
+<div class="mask mask-left"></div>
+<div class="mask mask-right"></div>
 
-<div class="top-zone" id="topZone" style="display:none;">
+<div class="visible-area" id="visibleArea"></div>
+
+<div class="safe-zone" id="safeZone"></div>
+
+<div class="top-zone" id="topZone">
 装饰区域 / 名字区域
 </div>
 
-<div class="acrylic-safe" id="acrylicSafe" style="display:none;"></div>
-<div class="base-light" id="baseLight" style="display:none;"></div>
+<div class="base-light" id="baseLight"></div>
 
 </div>
 
@@ -321,29 +298,27 @@ src="https://images.unsplash.com/photo-1524504388940-b1c1722653e1?q=80&w=1200&au
 
 <div>
 <label>上传图片</label>
-<input type="file" id="upload" accept="image/*" />
+<input type="file" id="upload" accept="image/*">
 </div>
 
 <div>
 <label>缩放</label>
-<input type="range" id="scale" min="80" max="180" value="100" />
+<input type="range" id="scale" min="50" max="200" value="100">
 </div>
 
 <div>
 <label>灯光预览</label>
+
 <div class="light-buttons">
-<button class="light-btn" onclick="setWarm()">暖光</button>
-<button class="light-btn" onclick="setWhite()">白光</button>
-<button class="light-btn" onclick="setDay()">日光</button>
+<button onclick="setWarm()">暖光</button>
+<button onclick="setWhite()">白光</button>
+<button onclick="setDay()">日光</button>
 </div>
 </div>
 
-<div>
-<label>说明</label>
-<p style="font-size:12px;color:#777;line-height:1.7;">
-请将重要人物与文字放在显示区域内。
-外部区域可能被相框遮挡。
-</p>
+<div class="tip">
+请将重要人物与文字放在显示区域内。<br>
+外部区域可能被遮挡。
 </div>
 
 </div>
@@ -357,68 +332,142 @@ MOODAY • Night Light Editor
 <script>
 const upload = document.getElementById('upload');
 const preview = document.getElementById('preview');
-const scale = document.getElementById('scale');
+const scaleSlider = document.getElementById('scale');
+
 const canvas = document.getElementById('canvas');
 
 const paperTab = document.getElementById('paperTab');
 const acrylicTab = document.getElementById('acrylicTab');
 
-const paperFrame = document.getElementById('paperFrame');
-const acrylicSafe = document.getElementById('acrylicSafe');
+const safeZone = document.getElementById('safeZone');
 const topZone = document.getElementById('topZone');
 const baseLight = document.getElementById('baseLight');
+const visibleArea = document.getElementById('visibleArea');
 
-upload.addEventListener('change', function(e){
+let scale = 1;
+let posX = 0;
+let posY = 0;
+
+function updateImage(){
+preview.style.transform =
+`translate(calc(-50% + ${posX}px), calc(-50% + ${posY}px)) scale(${scale})`;
+}
+
+upload.addEventListener('change',function(e){
 const file = e.target.files[0];
+
 if(file){
 const reader = new FileReader();
-reader.onload = function(event){
+
+reader.onload=function(event){
 preview.src = event.target.result;
 }
+
 reader.readAsDataURL(file);
 }
 });
 
-scale.addEventListener('input', function(){
-preview.style.transform = `translate(-50%,-50%) scale(${scale.value/100})`;
+scaleSlider.addEventListener('input',function(){
+scale = scaleSlider.value / 100;
+updateImage();
 });
 
-function showPaper(){
-canvas.className = 'canvas paper-frame';
-paperFrame.style.display = 'block';
-acrylicSafe.style.display = 'none';
-topZone.style.display = 'none';
-baseLight.style.display = 'none';
+let dragging = false;
+let startX,startY;
+
+canvas.addEventListener('mousedown',startDrag);
+canvas.addEventListener('touchstart',startDrag);
+
+function startDrag(e){
+dragging = true;
+
+if(e.touches){
+startX = e.touches[0].clientX;
+startY = e.touches[0].clientY;
+}else{
+startX = e.clientX;
+startY = e.clientY;
+}
+}
+
+window.addEventListener('mousemove',drag);
+window.addEventListener('touchmove',drag);
+
+function drag(e){
+
+if(!dragging) return;
+
+let currentX,currentY;
+
+if(e.touches){
+currentX = e.touches[0].clientX;
+currentY = e.touches[0].clientY;
+}else{
+currentX = e.clientX;
+currentY = e.clientY;
+}
+
+posX += currentX - startX;
+posY += currentY - startY;
+
+startX = currentX;
+startY = currentY;
+
+updateImage();
+}
+
+window.addEventListener('mouseup',()=>dragging=false);
+window.addEventListener('touchend',()=>dragging=false);
+
+paperTab.addEventListener('click',()=>{
+
+canvas.className='canvas paper';
 
 paperTab.classList.add('active');
 acrylicTab.classList.remove('active');
-}
 
-function showAcrylic(){
-canvas.className = 'canvas acrylic-frame';
-paperFrame.style.display = 'none';
-acrylicSafe.style.display = 'block';
-topZone.style.display = 'flex';
-baseLight.style.display = 'block';
+visibleArea.style.display='block';
+
+safeZone.style.display='none';
+topZone.style.display='none';
+baseLight.style.display='none';
+
+});
+
+acrylicTab.addEventListener('click',()=>{
+
+canvas.className='canvas acrylic';
 
 paperTab.classList.remove('active');
 acrylicTab.classList.add('active');
-}
+
+visibleArea.style.display='none';
+
+safeZone.style.display='block';
+topZone.style.display='flex';
+baseLight.style.display='block';
+
+});
 
 function setWarm(){
-preview.style.filter = 'brightness(1.05) sepia(0.25) saturate(1.1)';
-baseLight.style.background = '#f7c58a';
+canvas.style.boxShadow='0 0 40px rgba(255,190,120,0.45)';
+baseLight.style.background='#f7c58a';
+preview.style.filter='brightness(1.05) sepia(0.25)';
 }
 
 function setWhite(){
-preview.style.filter = 'brightness(1.08) saturate(1.02)';
-baseLight.style.background = '#ffffff';
+canvas.style.boxShadow='0 0 40px rgba(255,255,255,0.45)';
+baseLight.style.background='#ffffff';
+preview.style.filter='brightness(1.1)';
 }
 
 function setDay(){
-preview.style.filter = 'brightness(1.15) contrast(1.05)';
-baseLight.style.background = '#d7ecff';
+canvas.style.boxShadow='0 0 40px rgba(180,220,255,0.45)';
+baseLight.style.background='#d7ecff';
+preview.style.filter='brightness(1.15)';
 }
+
+updateImage();
 </script>
 
 </body>
