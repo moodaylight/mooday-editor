@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mooday Editor</title>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: Arial, sans-serif;
+    }
+
+    body {
+      background: #111;
+      color: white;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    header {
+      padding: 15px;
+      background: #1f1f1f;
+      border-bottom: 1px solid #333;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    header h1 {
+      font-size: 20px;
+    }
+
+    .toolbar {
+      display: flex;
+      gap: 10px;
+    }
+
+    button {
+      background: #ff8c42;
+      border: none;
+      color: white;
+      padding: 10px 14px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 14px;
+    }
+
+    button:hover {
+      opacity: 0.9;
+    }
+
+    .editor {
+      flex: 1;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+    }
+
+    textarea {
+      width: 100%;
+      max-width: 1000px;
+      height: 80vh;
+      background: #1c1c1c;
+      color: white;
+      border: 1px solid #333;
+      border-radius: 12px;
+      padding: 20px;
+      font-size: 16px;
+      resize: none;
+      outline: none;
+    }
+
+    footer {
+      text-align: center;
+      padding: 10px;
+      font-size: 12px;
+      background: #1f1f1f;
+      color: #999;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>🌙 Mooday Editor</h1>
+
+    <div class="toolbar">
+      <button onclick="saveText()">保存</button>
+      <button onclick="clearText()">清空</button>
+    </div>
+  </header>
+
+  <div class="editor">
+    <textarea id="textArea" placeholder="在这里开始输入..."></textarea>
+  </div>
+
+  <footer>
+    Mooday Editor · Cloudflare Pages
+  </footer>
+
+  <script>
+    const textarea = document.getElementById('textArea');
+
+    window.onload = () => {
+      const saved = localStorage.getItem('mooday-text');
+      if(saved){
+        textarea.value = saved;
+      }
+    }
+
+    function saveText(){
+      localStorage.setItem('mooday-text', textarea.value);
+      alert('已保存');
+    }
+
+    function clearText(){
+      if(confirm('确定清空吗？')){
+        textarea.value = '';
+        localStorage.removeItem('mooday-text');
+      }
+    }
+  </script>
+
+</body>
+</html>
