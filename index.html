@@ -1,130 +1,326 @@
+# MOODAY 在线编辑器 V2（灯光画 + 亚克力灯）
+
+把下面代码完整复制到 GitHub 的 `index.html` 中。
+
+保存后：
+
+1. Commit changes
+2. Cloudflare 会自动重新部署
+3. 等待1~2分钟
+4. 打开你的网站即可
+
+---
+
+```html
 <!DOCTYPE html>
 <html lang="zh">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Mooday Editor</title>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>MOODAY Editor</title>
 
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: Arial, sans-serif;
-    }
+<style>
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial,sans-serif;
+}
 
-    body {
-      background: #111;
-      color: white;
-      height: 100vh;
-      display: flex;
-      flex-direction: column;
-    }
+body{
+background:#0f0f0f;
+color:white;
+min-height:100vh;
+display:flex;
+flex-direction:column;
+}
 
-    header {
-      padding: 15px;
-      background: #1f1f1f;
-      border-bottom: 1px solid #333;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
+header{
+padding:18px;
+border-bottom:1px solid #222;
+display:flex;
+justify-content:space-between;
+align-items:center;
+background:#111;
+}
 
-    header h1 {
-      font-size: 20px;
-    }
+header h1{
+font-size:22px;
+font-weight:300;
+letter-spacing:2px;
+}
 
-    .toolbar {
-      display: flex;
-      gap: 10px;
-    }
+.top-buttons{
+display:flex;
+gap:10px;
+}
 
-    button {
-      background: #ff8c42;
-      border: none;
-      color: white;
-      padding: 10px 14px;
-      border-radius: 8px;
-      cursor: pointer;
-      font-size: 14px;
-    }
+button{
+background:#1e1e1e;
+border:1px solid #333;
+color:white;
+padding:10px 14px;
+border-radius:12px;
+cursor:pointer;
+font-size:14px;
+}
 
-    button:hover {
-      opacity: 0.9;
-    }
+button:hover{
+background:#2b2b2b;
+}
 
-    .editor {
-      flex: 1;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      padding: 20px;
-    }
+.main{
+flex:1;
+display:flex;
+flex-direction:column;
+padding:20px;
+gap:20px;
+max-width:500px;
+width:100%;
+margin:0 auto;
+}
 
-    textarea {
-      width: 100%;
-      max-width: 1000px;
-      height: 80vh;
-      background: #1c1c1c;
-      color: white;
-      border: 1px solid #333;
-      border-radius: 12px;
-      padding: 20px;
-      font-size: 16px;
-      resize: none;
-      outline: none;
-    }
+.product-tabs{
+display:flex;
+gap:10px;
+}
 
-    footer {
-      text-align: center;
-      padding: 10px;
-      font-size: 12px;
-      background: #1f1f1f;
-      color: #999;
-    }
-  </style>
+.tab{
+flex:1;
+text-align:center;
+padding:14px;
+border-radius:16px;
+background:#181818;
+border:1px solid #2d2d2d;
+}
+
+.active{
+background:#2d241d;
+border-color:#c28b52;
+}
+
+.canvas-wrap{
+position:relative;
+width:100%;
+display:flex;
+justify-content:center;
+}
+
+.canvas{
+position:relative;
+background:black;
+overflow:hidden;
+border-radius:20px;
+border:1px solid #333;
+}
+
+.paper-frame{
+width:340px;
+height:230px;
+background:#1a1a1a;
+}
+
+.paper-visible{
+position:absolute;
+left:20px;
+top:20px;
+right:20px;
+bottom:20px;
+border:2px dashed rgba(255,255,255,0.4);
+pointer-events:none;
+}
+
+.acrylic-frame{
+width:240px;
+height:360px;
+background:rgba(255,255,255,0.03);
+border:2px solid rgba(255,255,255,0.15);
+backdrop-filter:blur(2px);
+}
+
+.acrylic-safe{
+position:absolute;
+left:10px;
+right:10px;
+bottom:10px;
+height:260px;
+border:2px dashed rgba(255,200,120,0.7);
+pointer-events:none;
+}
+
+.top-zone{
+position:absolute;
+top:0;
+left:0;
+right:0;
+height:80px;
+display:flex;
+align-items:center;
+justify-content:center;
+font-size:12px;
+color:rgba(255,255,255,0.5);
+pointer-events:none;
+}
+
+.preview-image{
+position:absolute;
+max-width:100%;
+max-height:100%;
+object-fit:contain;
+left:50%;
+top:50%;
+transform:translate(-50%,-50%);
+}
+
+.controls{
+display:flex;
+flex-direction:column;
+gap:16px;
+background:#151515;
+padding:18px;
+border-radius:20px;
+border:1px solid #222;
+}
+
+label{
+font-size:13px;
+color:#aaa;
+margin-bottom:6px;
+display:block;
+}
+
+input[type="range"]{
+width:100%;
+}
+
+.upload-btn{
+background:#c28b52;
+color:black;
+font-weight:bold;
+}
+
+.light-buttons{
+display:flex;
+gap:10px;
+}
+
+.light-btn{
+flex:1;
+}
+
+footer{
+padding:14px;
+text-align:center;
+font-size:12px;
+color:#666;
+}
+</style>
 </head>
 <body>
 
-  <header>
-    <h1>🌙 Mooday Editor</h1>
+<header>
+<h1>MOODAY</h1>
 
-    <div class="toolbar">
-      <button onclick="saveText()">保存</button>
-      <button onclick="clearText()">清空</button>
-    </div>
-  </header>
+<div class="top-buttons">
+<button>重新编辑</button>
+<button>提交制作</button>
+</div>
+</header>
 
-  <div class="editor">
-    <textarea id="textArea" placeholder="在这里开始输入..."></textarea>
-  </div>
+<div class="main">
 
-  <footer>
-    Mooday Editor · Cloudflare Pages
-  </footer>
+<div class="product-tabs">
+<div class="tab active">灯光画</div>
+<div class="tab">亚克力灯</div>
+</div>
 
-  <script>
-    const textarea = document.getElementById('textArea');
+<div class="canvas-wrap">
 
-    window.onload = () => {
-      const saved = localStorage.getItem('mooday-text');
-      if(saved){
-        textarea.value = saved;
-      }
-    }
+<div class="canvas paper-frame" id="canvas">
 
-    function saveText(){
-      localStorage.setItem('mooday-text', textarea.value);
-      alert('已保存');
-    }
+<div class="paper-visible"></div>
 
-    function clearText(){
-      if(confirm('确定清空吗？')){
-        textarea.value = '';
-        localStorage.removeItem('mooday-text');
-      }
-    }
-  </script>
+<img
+id="preview"
+class="preview-image"
+src="https://images.unsplash.com/photo-1524504388940-b1c1722653e1?q=80&w=1200&auto=format&fit=crop"
+/>
+
+</div>
+
+</div>
+
+<div class="controls">
+
+<div>
+<label>上传图片</label>
+<input type="file" id="upload" accept="image/*" />
+</div>
+
+<div>
+<label>缩放</label>
+<input type="range" id="scale" min="50" max="150" value="100" />
+</div>
+
+<div>
+<label>灯光预览</label>
+<div class="light-buttons">
+<button class="light-btn" onclick="setWarm()">暖光</button>
+<button class="light-btn" onclick="setWhite()">白光</button>
+<button class="light-btn" onclick="setDay()">日光</button>
+</div>
+</div>
+
+<div>
+<label>显示区域说明</label>
+<p style="font-size:12px;color:#777;line-height:1.6;">
+虚线框内为实际显示区域。
+重要人物与文字建议放在框内。
+</p>
+</div>
+
+</div>
+
+</div>
+
+<footer>
+MOODAY • Night Light Editor
+</footer>
+
+<script>
+const upload = document.getElementById('upload');
+const preview = document.getElementById('preview');
+const scale = document.getElementById('scale');
+const canvas = document.getElementById('canvas');
+
+upload.addEventListener('change', function(e){
+const file = e.target.files[0];
+if(file){
+const reader = new FileReader();
+reader.onload = function(event){
+preview.src = event.target.result;
+}
+reader.readAsDataURL(file);
+}
+});
+
+scale.addEventListener('input', function(){
+preview.style.width = scale.value + '%';
+});
+
+function setWarm(){
+canvas.style.boxShadow = '0 0 40px rgba(255,180,100,0.5)';
+}
+
+function setWhite(){
+canvas.style.boxShadow = '0 0 40px rgba(255,255,255,0.5)';
+}
+
+function setDay(){
+canvas.style.boxShadow = '0 0 40px rgba(180,220,255,0.5)';
+}
+</script>
 
 </body>
 </html>
+```
