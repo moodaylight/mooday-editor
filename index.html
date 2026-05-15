@@ -3,519 +3,376 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>MOODAY V5</title>
+<title>MOODAY Editor V2</title>
 
 <script src="https://cdn.tailwindcss.com"></script>
 
 <style>
 body{
 margin:0;
-background:#f3efe9;
+background:#f3f4f6;
 font-family:sans-serif;
+overflow:hidden;
 }
 
-.frame-glow{
-transition:0.3s;
+.tool-btn{
+transition:0.2s;
+cursor:pointer;
 }
 
-.hidden-file{
-display:none;
+.tool-btn:hover{
+background:#f3f4f6;
+}
+
+.layer-item:hover{
+background:#f5f5f5;
+}
+
+.active-tab{
+background:#111827;
+color:white;
+}
+
+.glow{
+box-shadow:0 0 25px rgba(255,220,150,0.9);
+}
+
+.panel{
+background:white;
+border-radius:20px;
+box-shadow:0 2px 10px rgba(0,0,0,0.05);
+}
+
+.template-card{
+transition:0.2s;
+cursor:pointer;
+}
+
+.template-card:hover{
+transform:scale(1.03);
 }
 </style>
 </head>
 
-<body class="flex justify-center p-4">
+<body>
 
-<div class="w-[390px] bg-white min-h-screen rounded-[40px] overflow-hidden shadow-2xl relative">
+<div class="w-full h-screen flex flex-col">
 
-<!-- HEADER -->
-<div class="h-16 border-b flex items-center justify-between px-5 bg-white">
+<!-- TOP -->
+<div class="h-[78px] bg-white border-b flex items-center justify-between px-8">
+
+<div class="flex items-center gap-4">
 <div class="text-2xl">←</div>
-
-<div class="font-bold text-xl">
+<div class="text-3xl font-bold">
 조명 액자 편집
 </div>
-
-<button class="bg-[#2f3545] text-white px-5 py-2 rounded-2xl">
-저장
-</button>
 </div>
 
-<!-- PRODUCT SWITCH -->
-<div class="p-4">
-<div class="bg-neutral-100 rounded-2xl p-1 flex gap-1">
+<div class="flex gap-3">
+<button class="px-6 py-3 rounded-2xl border text-lg">
+미리보기
+</button>
+
+<button class="px-6 py-3 rounded-2xl bg-black text-white text-lg">
+저장하기
+</button>
+</div>
+</div>
+
+<!-- BODY -->
+<div class="flex flex-1 overflow-hidden">
+
+<!-- LEFT -->
+<div class="w-[110px] bg-white border-r flex flex-col items-center py-6 gap-5">
+
+<div class="tool-btn w-[72px] h-[72px] rounded-2xl flex flex-col items-center justify-center">
+<div class="text-3xl">🖼️</div>
+<div class="text-sm mt-1">사진</div>
+</div>
+
+<div class="tool-btn w-[72px] h-[72px] rounded-2xl flex flex-col items-center justify-center">
+<div class="text-3xl">✏️</div>
+<div class="text-sm mt-1">텍스트</div>
+</div>
+
+<div class="tool-btn w-[72px] h-[72px] rounded-2xl flex flex-col items-center justify-center">
+<div class="text-3xl">✨</div>
+<div class="text-sm mt-1">스티커</div>
+</div>
+
+<div class="tool-btn w-[72px] h-[72px] rounded-2xl flex flex-col items-center justify-center">
+<div class="text-3xl">◻️</div>
+<div class="text-sm mt-1">도형</div>
+</div>
+
+<div class="tool-btn w-[72px] h-[72px] rounded-2xl flex flex-col items-center justify-center">
+<div class="text-3xl">🌅</div>
+<div class="text-sm mt-1">배경</div>
+</div>
+
+<div class="mt-auto flex flex-col gap-4 mb-6">
+
+<div class="text-3xl cursor-pointer">↩️</div>
+<div class="text-3xl cursor-pointer">↪️</div>
+<div class="text-3xl cursor-pointer">🔄</div>
+
+</div>
+
+</div>
+
+<!-- CENTER -->
+<div class="flex-1 flex flex-col p-6 overflow-auto">
+
+<!-- SWITCH -->
+<div class="flex justify-center mb-5">
+
+<div class="bg-white rounded-full p-1 flex w-[500px]">
 
 <button id="singleBtn"
-class="flex-1 bg-white py-3 rounded-2xl font-semibold">
+class="flex-1 py-4 rounded-full text-lg font-bold active-tab">
 단독 액자
 </button>
 
 <button id="deskBtn"
-class="flex-1 py-3 rounded-2xl text-neutral-500">
+class="flex-1 py-4 rounded-full text-lg font-bold">
 데스크 세트
 </button>
 
 </div>
+
 </div>
 
-<!-- PRODUCT AREA -->
-<div class="px-4">
+<!-- PREVIEW -->
+<div class="flex justify-center">
 
-<div class="h-[470px] rounded-[40px]
-bg-gradient-to-b
-from-[#eaded3]
-to-[#b38c73]
-relative overflow-hidden">
+<div class="relative w-[1000px] h-[560px] rounded-[40px] overflow-hidden bg-[#e9dccf] panel">
 
-<!-- DESK SET -->
-<div id="deskSet"
-class="absolute inset-0 flex items-center justify-center">
+<!-- BG -->
+<img
+src="https://images.unsplash.com/photo-1517841905240-472988babdf9?q=80&w=1200&auto=format&fit=crop"
+class="absolute inset-0 w-full h-full object-cover opacity-20"
+/>
 
-<div class="relative w-[355px] h-[265px]">
+<!-- PRODUCT -->
+<div class="absolute left-[120px] top-[120px]">
 
-<!-- LONG BASE -->
-<div class="absolute bottom-0 left-0
-w-full h-[68px]
-bg-[#fbfbf8]
-rounded-[20px]
-shadow-[0_18px_45px_rgba(0,0,0,0.18)]">
+<!-- FRAME -->
+<div id="frameGlow"
+class="relative w-[520px] h-[320px] bg-[#fff8ef] rounded-[40px] p-[20px] glow transition-all duration-300">
+
+<div class="w-full h-full rounded-[28px] overflow-hidden relative">
+
+<img
+src="https://images.unsplash.com/photo-1524504388940-b1c1722653e1?q=80&w=1200&auto=format&fit=crop"
+class="absolute inset-0 w-full h-full object-cover"
+/>
+
+<div class="absolute inset-0 bg-black/10"></div>
+
+<div class="absolute top-[30px] left-[40px] text-white text-[52px] font-bold drop-shadow-lg">
+우리의 추억 ♡
 </div>
 
-<!-- BASE TEXT -->
-<div class="absolute bottom-[18px]
-left-1/2 -translate-x-1/2
-text-[#9a7762]
-text-[22px]
-tracking-[2px]
-whitespace-nowrap">
+<div class="absolute bottom-[30px] left-[40px] text-white text-[44px] font-bold drop-shadow-lg">
+2024.05.20 사랑해
+</div>
+
+</div>
+</div>
+
+<!-- BASE -->
+<div class="w-[680px] h-[120px] bg-[#fffaf5] rounded-[24px] mt-[-10px] shadow-xl flex items-center justify-center text-[42px] text-[#8f6a50]">
 ♡ 나의 소중한 순간 ♡
 </div>
 
+</div>
+
 <!-- PEN HOLDER -->
-<div class="absolute
-right-[4px]
-bottom-[66px]
-w-[62px]
-h-[125px]
-bg-[#fbfbf8]
-rounded-[18px]
-shadow-xl
-flex flex-col
-items-center
-justify-center
-text-center
-text-[10px]
-text-neutral-700">
+<div id="deskSet"
+class="absolute right-[120px] top-[190px]">
 
-<div class="text-lg">🌼</div>
+<div class="w-[160px] h-[240px] bg-[#fffaf5] rounded-[28px] shadow-xl relative">
 
-<div class="leading-tight mt-1">
+<div class="absolute left-[50px] top-[-80px] w-[20px] h-[120px] bg-red-500 rounded-full rotate-[-5deg]"></div>
+
+<div class="absolute left-[85px] top-[-70px] w-[20px] h-[110px] bg-black rounded-full rotate-[5deg]"></div>
+
+<div class="absolute bottom-[40px] w-full text-center text-[#7b5b46] text-[20px]">
 우리의 추억
 </div>
 
-<div class="leading-tight">
+<div class="absolute bottom-[12px] w-full text-center text-[#7b5b46] text-[18px]">
 2024.05.20
 </div>
 
 </div>
 
-<!-- PENCIL -->
-<div class="absolute
-right-[5px]
-bottom-[165px]
-text-[42px]
-rotate-[10deg]">
-✏️
 </div>
 
-<!-- FRAME -->
-<div class="absolute
-left-0
-bottom-[50px]
-w-[270px]
-h-[188px]">
-
-<!-- SLOT -->
-<div class="absolute bottom-[-8px] left-[38px]
-w-[26px] h-[12px]
-bg-[#e7e4de]
-rounded-b-md">
 </div>
 
-<div class="absolute bottom-[-8px] left-[120px]
-w-[26px] h-[12px]
-bg-[#e7e4de]
-rounded-b-md">
 </div>
 
-<div class="absolute bottom-[-8px] left-[200px]
-w-[26px] h-[12px]
-bg-[#e7e4de]
-rounded-b-md">
+<!-- BOTTOM TOOL -->
+<div class="panel mt-6 p-5">
+
+<div class="flex gap-4 mb-5">
+
+<div class="font-bold text-blue-500 text-xl">
+텍스트
 </div>
 
-<!-- FRAME BODY -->
-<div class="w-full h-full
-bg-[#fbfbf8]
-rounded-[30px]
-p-[10px]
-shadow-[0_15px_35px_rgba(0,0,0,0.2)]">
-
-<!-- LIGHT AREA -->
-<div id="lightArea"
-class="frame-glow
-relative
-w-full
-h-full
-rounded-[22px]
-overflow-hidden
-shadow-[0_0_55px_rgba(255,220,180,0.9)]">
-
-<img id="mainImage"
-src="https://images.unsplash.com/photo-1524504388940-b1c1722653e1?q=80&w=1200&auto=format&fit=crop"
-class="w-full h-full object-cover">
-
-<!-- GLOW -->
-<div class="absolute inset-0
-bg-gradient-to-t
-from-[rgba(255,220,180,0.18)]
-to-transparent">
+<div class="font-bold text-gray-400 text-xl">
+스티커
 </div>
 
-<!-- TEXT -->
-<div class="absolute inset-0 text-white">
+<div class="font-bold text-gray-400 text-xl">
+도형
+</div>
 
-<div class="absolute top-3 left-4">✨</div>
-<div class="absolute top-3 right-4">✨</div>
-<div class="absolute bottom-5 left-4">✨</div>
-<div class="absolute bottom-5 right-4">✨</div>
+<div class="font-bold text-gray-400 text-xl">
+프레임
+</div>
 
-<div id="mainText"
-class="absolute top-4
-left-1/2 -translate-x-1/2
-text-[26px]
-drop-shadow-xl
-whitespace-nowrap">
+</div>
+
+<div class="flex gap-4 flex-wrap">
+
+<div class="template-card px-6 py-4 border rounded-2xl bg-blue-50 border-blue-400">
 우리의 추억
 </div>
 
-<div id="dateText"
-class="absolute bottom-4
-left-1/2 -translate-x-1/2
-text-[18px]
-whitespace-nowrap
-drop-shadow-lg">
-2024.05.20 ♡
+<div class="template-card px-6 py-4 border rounded-2xl">
+행복한 날들
 </div>
 
-</div>
-</div>
-</div>
-</div>
+<div class="template-card px-6 py-4 border rounded-2xl">
+Always Together
 </div>
 
+<div class="template-card px-6 py-4 border rounded-2xl">
+소중한 순간
 </div>
 
-<!-- SINGLE FRAME -->
-<div id="singleFrame"
-class="hidden absolute inset-0
-flex items-center justify-center">
-
-<div class="relative w-[300px] h-[215px]">
-
-<div class="absolute bottom-[10px] left-[45px]
-w-[26px] h-[12px]
-bg-[#e7e4de]
-rounded-b-md">
-</div>
-
-<div class="absolute bottom-[10px] left-[136px]
-w-[26px] h-[12px]
-bg-[#e7e4de]
-rounded-b-md">
-</div>
-
-<div class="absolute bottom-[10px] left-[225px]
-w-[26px] h-[12px]
-bg-[#e7e4de]
-rounded-b-md">
-</div>
-
-<div class="w-full h-full
-bg-[#fbfbf8]
-rounded-[32px]
-p-[12px]
-shadow-[0_15px_35px_rgba(0,0,0,0.18)]">
-
-<div id="singleLight"
-class="frame-glow
-w-full h-full
-rounded-[24px]
-overflow-hidden
-shadow-[0_0_50px_rgba(255,220,180,0.85)]
-relative">
-
-<img id="singleImage"
-src="https://images.unsplash.com/photo-1524504388940-b1c1722653e1?q=80&w=1200&auto=format&fit=crop"
-class="w-full h-full object-cover">
-
-</div>
-</div>
+<div class="template-card px-6 py-4 border rounded-2xl">
+직접 입력 +
 </div>
 
 </div>
 
 </div>
 
-<!-- LIGHT -->
-<div class="p-4">
-
-<div class="bg-neutral-50
-rounded-[30px]
-p-5 border">
-
-<div class="flex justify-between mb-4">
-
-<div class="font-bold">
-조명 모드
 </div>
 
-<div class="text-neutral-400 text-sm">
-짧게 눌러 변경
+<!-- RIGHT -->
+<div class="w-[320px] bg-white border-l p-5 overflow-auto">
+
+<div class="text-2xl font-bold mb-5">
+레이어
+</div>
+
+<div class="flex flex-col gap-3">
+
+<div class="layer-item border rounded-2xl p-4 flex justify-between">
+<span>텍스트</span>
+<span>👁️</span>
+</div>
+
+<div class="layer-item border rounded-2xl p-4 flex justify-between">
+<span>사진</span>
+<span>👁️</span>
+</div>
+
+<div class="layer-item border rounded-2xl p-4 flex justify-between">
+<span>스티커</span>
+<span>👁️</span>
 </div>
 
 </div>
 
-<div class="grid grid-cols-3 gap-2 mb-4">
+<div class="mt-8">
+
+<div class="text-2xl font-bold mb-4">
+조명 설정
+</div>
+
+<div class="flex gap-3 mb-5">
 
 <button onclick="setWarm()"
-class="bg-[#fff1d6]
-border border-amber-200
-py-3 rounded-2xl">
+class="px-4 py-3 rounded-2xl border bg-yellow-50">
 따뜻한 빛
 </button>
 
 <button onclick="setWhite()"
-class="bg-white border py-3 rounded-2xl">
+class="px-4 py-3 rounded-2xl border">
 화이트
 </button>
 
 <button onclick="setBlue()"
-class="bg-white border py-3 rounded-2xl">
-데이라이트
+class="px-4 py-3 rounded-2xl border">
+차가운 빛
 </button>
 
 </div>
 
-<div class="flex items-center gap-3">
-
-<div class="text-2xl">☀️</div>
-
-<input id="brightness"
+<input
 type="range"
-min="20"
+min="0"
 max="100"
 value="70"
-class="w-full">
-
-<div id="brightnessText">
-70%
-</div>
+class="w-full"
+/>
 
 </div>
 
 </div>
-</div>
-
-<!-- TEXT -->
-<div class="px-4 pb-32">
-
-<div class="bg-neutral-50
-rounded-[30px]
-p-5 border">
-
-<div class="font-bold mb-4">
-텍스트 편집
-</div>
-
-<input id="titleInput"
-value="우리의 추억"
-class="w-full border rounded-2xl px-4 py-3 mb-3">
-
-<input id="dateInput"
-value="2024.05.20 ♡"
-class="w-full border rounded-2xl px-4 py-3 mb-3">
-
-<button onclick="applyText()"
-class="w-full bg-black text-white py-4 rounded-2xl">
-텍스트 적용
-</button>
-
-</div>
-</div>
-
-<!-- BOTTOM -->
-<div class="fixed bottom-0 left-0 right-0
-flex justify-center">
-
-<div class="w-[390px]
-bg-white border-t
-h-24
-flex justify-around
-items-start
-pt-3
-rounded-t-[30px]">
-
-<label class="flex flex-col items-center text-xs gap-1 cursor-pointer">
-
-<div class="w-12 h-12
-bg-neutral-100
-rounded-2xl
-flex items-center justify-center text-xl">
-📷
-</div>
-
-사진
-
-<input id="fileInput"
-type="file"
-accept="image/*"
-class="hidden-file">
-
-</label>
-
-<div class="flex flex-col items-center text-xs gap-1">
-
-<div class="w-12 h-12
-bg-neutral-100
-rounded-2xl
-flex items-center justify-center text-xl">
-💡
-</div>
-
-조명
 
 </div>
 
-<div class="flex flex-col items-center text-xs gap-1">
-
-<div class="w-12 h-12
-bg-neutral-100
-rounded-2xl
-flex items-center justify-center text-xl">
-✍️
-</div>
-
-문자
-
-</div>
-
-<div class="flex flex-col items-center text-xs gap-1">
-
-<div class="w-12 h-12
-bg-neutral-100
-rounded-2xl
-flex items-center justify-center text-xl">
-✨
-</div>
-
-장식
-
-</div>
-
-</div>
 </div>
 
 <script>
 
-const fileInput = document.getElementById('fileInput');
-const mainImage = document.getElementById('mainImage');
-const singleImage = document.getElementById('singleImage');
-
-fileInput.addEventListener('change', function(e){
-
-const file = e.target.files[0];
-
-if(file){
-
-const reader = new FileReader();
-
-reader.onload = function(event){
-
-mainImage.src = event.target.result;
-singleImage.src = event.target.result;
-
-}
-
-reader.readAsDataURL(file);
-
-}
-
-});
-
-function applyText(){
-
-document.getElementById('mainText').innerText =
-document.getElementById('titleInput').value;
-
-document.getElementById('dateText').innerText =
-document.getElementById('dateInput').value;
-
-}
-
-function setWarm(){
-
-document.getElementById('lightArea').style.boxShadow =
-'0 0 55px rgba(255,220,180,0.95)';
-
-document.getElementById('singleLight').style.boxShadow =
-'0 0 55px rgba(255,220,180,0.95)';
-
-}
-
-function setWhite(){
-
-document.getElementById('lightArea').style.boxShadow =
-'0 0 55px rgba(255,255,255,0.95)';
-
-document.getElementById('singleLight').style.boxShadow =
-'0 0 55px rgba(255,255,255,0.95)';
-
-}
-
-function setBlue(){
-
-document.getElementById('lightArea').style.boxShadow =
-'0 0 55px rgba(180,220,255,0.95)';
-
-document.getElementById('singleLight').style.boxShadow =
-'0 0 55px rgba(180,220,255,0.95)';
-
-}
-
-const singleBtn=document.getElementById('singleBtn');
-const deskBtn=document.getElementById('deskBtn');
-
-const deskSet=document.getElementById('deskSet');
-const singleFrame=document.getElementById('singleFrame');
+const singleBtn=document.getElementById("singleBtn");
+const deskBtn=document.getElementById("deskBtn");
+const deskSet=document.getElementById("deskSet");
 
 singleBtn.onclick=function(){
 
-singleBtn.classList.add('bg-white');
-deskBtn.classList.remove('bg-white');
+singleBtn.classList.add("active-tab");
+deskBtn.classList.remove("active-tab");
 
-deskSet.classList.add('hidden');
-singleFrame.classList.remove('hidden');
+deskSet.style.display="none";
 
 }
 
 deskBtn.onclick=function(){
 
-deskBtn.classList.add('bg-white');
-singleBtn.classList.remove('bg-white');
+deskBtn.classList.add("active-tab");
+singleBtn.classList.remove("active-tab");
 
-singleFrame.classList.add('hidden');
-deskSet.classList.remove('hidden');
+deskSet.style.display="block";
+
+}
+
+function setWarm(){
+
+document.getElementById("frameGlow").style.boxShadow=
+"0 0 40px rgba(255,220,120,0.95)";
+
+}
+
+function setWhite(){
+
+document.getElementById("frameGlow").style.boxShadow=
+"0 0 40px rgba(255,255,255,0.95)";
+
+}
+
+function setBlue(){
+
+document.getElementById("frameGlow").style.boxShadow=
+"0 0 40px rgba(120,220,255,0.95)";
 
 }
 
