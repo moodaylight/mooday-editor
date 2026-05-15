@@ -4,12 +4,16 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>MOODAY Editor V2</title>
+
 <script src="https://cdn.tailwindcss.com"></script>
+
 <style>
+
 body{
 margin:0;
 background:#f3f1ec;
 font-family:sans-serif;
+overflow:hidden;
 }
 
 .editor-btn{
@@ -28,7 +32,9 @@ transition:0.2s;
 .layer-item:hover{
 background:#f5f5f5;
 }
+
 </style>
+
 </head>
 
 <body>
@@ -43,6 +49,7 @@ background:#f5f5f5;
 </div>
 
 <div class="flex gap-4">
+
 <button class="px-6 py-3 rounded-2xl border bg-white editor-btn">
 미리보기
 </button>
@@ -50,13 +57,15 @@ background:#f5f5f5;
 <button class="px-6 py-3 rounded-2xl bg-black text-white editor-btn">
 저장하기
 </button>
+
 </div>
+
 </div>
 
 
 <div class="flex flex-1">
 
-<!-- LEFT TOOLBAR -->
+<!-- LEFT -->
 <div class="w-28 bg-white border-r flex flex-col items-center py-6 gap-6">
 
 <div class="editor-btn flex flex-col items-center text-sm gap-2">
@@ -94,17 +103,21 @@ background:#f5f5f5;
 
 <!-- TOP SWITCH -->
 <div class="flex justify-center mb-6">
+
 <div class="bg-neutral-100 rounded-full p-1 flex gap-1 w-[500px]">
 
-<button id="fullBtn" class="flex-1 py-4 rounded-full bg-black text-white font-bold editor-btn">
+<button id="fullBtn"
+class="flex-1 py-4 rounded-full bg-black text-white font-bold editor-btn">
 전체 보기 (편집 영역)
 </button>
 
-<button id="realBtn" class="flex-1 py-4 rounded-full bg-white font-bold editor-btn">
+<button id="realBtn"
+class="flex-1 py-4 rounded-full bg-white font-bold editor-btn">
 실제 표시 영역
 </button>
 
 </div>
+
 </div>
 
 
@@ -147,52 +160,73 @@ class="w-full h-full object-cover"
 </div>
 
 
-<!-- BOTTOM CONTROL -->
+<!-- BOTTOM -->
 <div class="grid grid-cols-4 gap-6 mt-10">
 
 <div class="bg-neutral-50 rounded-3xl p-6">
-<div class="font-bold text-lg mb-4">조명 색상</div>
+
+<div class="font-bold text-lg mb-4">
+조명 색상
+</div>
 
 <div class="flex gap-3">
+
 <div class="w-16 h-16 rounded-2xl bg-yellow-100 border-4 border-yellow-300"></div>
+
 <div class="w-16 h-16 rounded-2xl bg-white border"></div>
+
 <div class="w-16 h-16 rounded-2xl bg-blue-100 border"></div>
+
 </div>
+
 </div>
 
 
 <div class="bg-neutral-50 rounded-3xl p-6">
-<div class="font-bold text-lg mb-4">밝기 조절</div>
+
+<div class="font-bold text-lg mb-4">
+밝기 조절
+</div>
 
 <input type="range" class="w-full">
+
 </div>
 
 
 <div class="bg-neutral-50 rounded-3xl p-6">
-<div class="font-bold text-lg mb-4">텍스트</div>
+
+<div class="font-bold text-lg mb-4">
+텍스트
+</div>
 
 <input
 class="w-full border rounded-2xl px-4 py-3"
 value="나의 소중한 순간"
 >
+
 </div>
 
 
 <div class="bg-neutral-50 rounded-3xl p-6">
-<div class="font-bold text-lg mb-4">출력 안내</div>
+
+<div class="font-bold text-lg mb-4">
+출력 안내
+</div>
 
 <div class="border-2 border-dashed rounded-2xl h-28 flex items-center justify-center text-sm text-neutral-400">
 9.5 x 15 cm
 </div>
+
+</div>
+
 </div>
 
 </div>
 
 </div>
-</div>
 
 
-<!-- RIGHT LAYER -->
+<!-- RIGHT -->
 <div class="w-[320px] bg-white border-l p-6">
 
 <div class="text-2xl font-bold mb-6">
@@ -236,21 +270,26 @@ const realBtn=document.getElementById('realBtn');
 const editArea=document.getElementById('editArea');
 
 fullBtn.onclick=function(){
+
 fullBtn.classList.add('bg-black','text-white');
 realBtn.classList.remove('bg-black','text-white');
 realBtn.classList.add('bg-white');
+
 editArea.style.display='block';
+
 }
 
 realBtn.onclick=function(){
+
 realBtn.classList.add('bg-black','text-white');
 fullBtn.classList.remove('bg-black','text-white');
 fullBtn.classList.add('bg-white');
+
 editArea.style.display='none';
+
 }
 
 </script>
 
 </body>
 </html>
-```
