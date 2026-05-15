@@ -1,263 +1,50 @@
 <!DOCTYPE html>
 <html lang="zh">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>MOODAY Editor V3</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MOODAY Editor V5</title>
 
 <style>
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
-font-family:Arial,sans-serif;
-}
-
-body{
-background:#0f0f0f;
-color:white;
-min-height:100vh;
-display:flex;
-flex-direction:column;
-overflow-x:hidden;
-}
-
-header{
-padding:18px;
-border-bottom:1px solid #222;
-display:flex;
-justify-content:space-between;
-align-items:center;
-background:#111;
-position:sticky;
-top:0;
-z-index:10;
-}
-
-header h1{
-font-size:22px;
-font-weight:300;
-letter-spacing:2px;
-}
-
-.top-buttons{
-display:flex;
-gap:10px;
-}
-
-button{
-background:#1e1e1e;
-border:1px solid #333;
-color:white;
-padding:10px 14px;
-border-radius:12px;
-cursor:pointer;
-font-size:14px;
-transition:0.25s;
-}
-
-button:hover{
-background:#2b2b2b;
-transform:translateY(-1px);
-}
-
-.main{
-flex:1;
-display:flex;
-flex-direction:column;
-padding:20px;
-gap:20px;
-max-width:520px;
-width:100%;
-margin:0 auto;
-}
-
-.product-tabs{
-display:flex;
-gap:10px;
-}
-
-.tab{
-flex:1;
-text-align:center;
-padding:14px;
-border-radius:16px;
-background:#181818;
-border:1px solid #2d2d2d;
-transition:0.3s;
-}
-
-.active{
-background:#2d241d;
-border-color:#c28b52;
-box-shadow:0 0 20px rgba(194,139,82,0.2);
-}
-
-.canvas-wrap{
-position:relative;
-width:100%;
-display:flex;
-justify-content:center;
-perspective:1200px;
-}
-
-.canvas{
-position:relative;
-background:black;
-overflow:hidden;
-border-radius:24px;
-border:1px solid #333;
-touch-action:none;
-transition:0.3s;
-}
-
-.paper-frame{
-width:340px;
-height:230px;
-background:#1a1a1a;
-}
-
-.paper-visible{
-position:absolute;
-left:20px;
-top:20px;
-right:20px;
-bottom:20px;
-border:2px dashed rgba(255,255,255,0.4);
-pointer-events:none;
-border-radius:8px;
-}
-
-.acrylic-frame{
-width:240px;
-height:360px;
-background:rgba(255,255,255,0.03);
-border:2px solid rgba(255,255,255,0.15);
-backdrop-filter:blur(2px);
-box-shadow:
-0 0 15px rgba(255,255,255,0.08),
-0 0 35px rgba(0,180,255,0.15),
-0 0 60px rgba(0,180,255,0.08);
-}
-
-.acrylic-safe{
-position:absolute;
-left:10px;
-right:10px;
-bottom:10px;
-height:260px;
-border:2px dashed rgba(255,200,120,0.7);
-pointer-events:none;
-border-radius:10px;
-}
-
-.top-zone{
-position:absolute;
-top:0;
-left:0;
-right:0;
-height:80px;
-display:flex;
-align-items:center;
-justify-content:center;
-font-size:12px;
-color:rgba(255,255,255,0.5);
-pointer-events:none;
-}
-
-.preview-image{
-position:absolute;
-left:50%;
-top:50%;
-transform:translate(-50%,-50%);
-transform-origin:center center;
-user-select:none;
-pointer-events:none;
-filter:
-brightness(1.02)
-contrast(1.03)
-drop-shadow(0 0 12px rgba(255,255,255,0.12));
-}
-
-.controls{
-display:flex;
-flex-direction:column;
-gap:16px;
-background:#151515;
-padding:18px;
-border-radius:20px;
-border:1px solid #222;
-}
-
-label{
-font-size:13px;
-color:#aaa;
-margin-bottom:6px;
-display:block;
-}
-
-input[type="range"]{
-width:100%;
-}
-
-.mode-buttons{
-display:grid;
-grid-template-columns:1fr 1fr;
-gap:10px;
-}
-
-.upload-btn{
-background:#c28b52;
-color:black;
-font-weight:bold;
-}
-
-.light-buttons{
-display:flex;
-gap:10px;
-}
-
-.light-btn{
-flex:1;
-}
-
-.info-box{
-font-size:12px;
-color:#777;
-line-height:1.7;
-background:#111;
-padding:12px;
-border-radius:14px;
-}
-
-footer{
-padding:14px;
-text-align:center;
-font-size:12px;
-color:#666;
-}
-
-.photocard-mode{
-background:rgba(255,255,255,0.05);
-backdrop-filter:blur(6px);
-border:1px solid rgba(255,255,255,0.15);
-}
-
-.wood-frame-mode{
-padding:16px;
-border-radius:28px;
-background:linear-gradient(135deg,#7a5a3a,#4a3320);
-box-shadow:
-0 15px 35px rgba(0,0,0,0.5),
-inset 0 1px 4px rgba(255,255,255,0.08);
-}
+*{margin:0;padding:0;box-sizing:border-box;font-family:Arial,sans-serif;}
+body{background:#0d0d0d;color:#fff;min-height:100vh;display:flex;flex-direction:column;}
+header{padding:18px;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid #222;background:#111;}
+header h1{font-size:22px;font-weight:300;letter-spacing:2px;}
+.top-buttons{display:flex;gap:10px;}
+button{background:#1c1c1c;border:1px solid #333;color:white;padding:10px 14px;border-radius:12px;cursor:pointer;}
+button:hover{background:#2a2a2a;}
+.main{flex:1;padding:20px;max-width:520px;width:100%;margin:0 auto;display:flex;flex-direction:column;gap:20px;}
+.tabs{display:flex;gap:10px;}
+.tab{flex:1;padding:14px;text-align:center;border-radius:16px;background:#181818;border:1px solid #2d2d2d;cursor:pointer;}
+.active{background:#2d241d;border-color:#d4a36c;}
+.canvas-wrap{display:flex;justify-content:center;transition:.3s;}
+.wood-frame{padding:16px;border-radius:28px;background:linear-gradient(135deg,#7a5a3a,#4b3422);box-shadow:0 20px 40px rgba(0,0,0,.5),inset 0 1px 4px rgba(255,255,255,.08);}
+.canvas{position:relative;overflow:hidden;background:black;border-radius:24px;touch-action:none;transition:.3s;}
+.paper{width:360px;height:240px;}
+.acrylic{width:240px;height:360px;background:rgba(255,255,255,.03);border:2px solid rgba(255,255,255,.1);box-shadow:0 0 10px rgba(255,255,255,.08),0 0 30px rgba(0,180,255,.16),0 0 60px rgba(0,180,255,.1),inset 0 0 20px rgba(255,255,255,.04);}
+.photocard{backdrop-filter:blur(6px);background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.15);}
+#preview{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);max-width:none;user-select:none;pointer-events:none;will-change:transform;}
+.visible-area{position:absolute;left:22px;right:22px;top:22px;bottom:22px;border:2px dashed rgba(255,255,255,.8);border-radius:10px;pointer-events:none;}
+.mask{position:absolute;background:rgba(0,0,0,.55);pointer-events:none;}
+.mask-top{top:0;left:0;right:0;height:22px;}
+.mask-bottom{bottom:0;left:0;right:0;height:22px;}
+.mask-left{left:0;top:22px;bottom:22px;width:22px;}
+.mask-right{right:0;top:22px;bottom:22px;width:22px;}
+.safe-zone{position:absolute;left:10px;right:10px;bottom:10px;height:260px;border:2px dashed rgba(255,200,120,.8);border-radius:12px;display:none;pointer-events:none;}
+.top-zone{position:absolute;top:0;left:0;right:0;height:80px;display:none;justify-content:center;align-items:center;font-size:12px;letter-spacing:2px;color:rgba(255,255,255,.6);pointer-events:none;}
+.base-light{position:absolute;bottom:-12px;left:50%;transform:translateX(-50%);width:140px;height:22px;border-radius:30px;background:#f7c58a;filter:blur(14px);display:none;}
+.controls{background:#151515;border:1px solid #222;padding:18px;border-radius:20px;display:flex;flex-direction:column;gap:16px;}
+label{font-size:13px;color:#aaa;margin-bottom:6px;display:block;}
+input[type='range']{width:100%;}
+.light-buttons,.mode-buttons{display:flex;gap:10px;flex-wrap:wrap;}
+.light-buttons button,.mode-buttons button{flex:1;}
+.tip{font-size:12px;line-height:1.7;color:#777;}
+footer{padding:14px;text-align:center;font-size:12px;color:#666;}
 </style>
 </head>
 <body>
-
 <header>
 <h1>MOODAY</h1>
-
 <div class="top-buttons">
 <button>重新编辑</button>
 <button>提交制作</button>
@@ -265,55 +52,43 @@ inset 0 1px 4px rgba(255,255,255,0.08);
 </header>
 
 <div class="main">
-
-<div class="product-tabs">
+<div class="tabs">
 <div class="tab active" id="paperTab">灯光画</div>
 <div class="tab" id="acrylicTab">亚克力灯</div>
 </div>
 
-<div class="canvas-wrap" id="frameWrap">
-
-<div class="canvas paper-frame" id="canvas">
-
-<div class="paper-visible"></div>
-
-<div class="acrylic-safe" id="safeArea" style="display:none"></div>
-<div class="top-zone" id="topZone" style="display:none">顶部装饰区域</div>
-
-<img
-id="preview"
-class="preview-image"
-src="https://images.unsplash.com/photo-1524504388940-b1c1722653e1?q=80&w=1200&auto=format&fit=crop"
-/>
-
+<div class="canvas-wrap" id="canvasWrap">
+<div class="canvas paper" id="canvas">
+<img id="preview" src="https://images.unsplash.com/photo-1524504388940-b1c1722653e1?q=80&w=1200&auto=format&fit=crop">
+<div class="mask mask-top"></div>
+<div class="mask mask-bottom"></div>
+<div class="mask mask-left"></div>
+<div class="mask mask-right"></div>
+<div class="visible-area" id="visibleArea"></div>
+<div class="safe-zone" id="safeZone"></div>
+<div class="top-zone" id="topZone">装饰区域 / 名字区域</div>
+<div class="base-light" id="baseLight"></div>
 </div>
-
 </div>
 
 <div class="controls">
-
 <div>
 <label>上传图片</label>
-<input type="file" id="upload" accept="image/*" />
+<input type="file" id="upload" accept="image/*">
 </div>
 
 <div>
-<label>灯光强度</label>
-<input type="range" id="glow" min="0" max="100" value="60" />
+<label>缩放</label>
+<input type="range" id="scale" min="30" max="400" value="100">
 </div>
 
 <div>
-<label>图片缩放</label>
-<input type="range" id="scale" min="50" max="250" value="100" />
+<label>旋转</label>
+<input type="range" id="rotate" min="-180" max="180" value="0">
 </div>
 
 <div>
-<label>图片旋转</label>
-<input type="range" id="rotate" min="-180" max="180" value="0" />
-</div>
-
-<div>
-<label>模式切换</label>
+<label>模式</label>
 <div class="mode-buttons">
 <button onclick="enableWoodFrame()">木框模式</button>
 <button onclick="enablePhotocard()">透卡模式</button>
@@ -325,269 +100,222 @@ src="https://images.unsplash.com/photo-1524504388940-b1c1722653e1?q=80&w=1200&au
 <div>
 <label>灯光预览</label>
 <div class="light-buttons">
-<button class="light-btn" onclick="setWarm()">暖光</button>
-<button class="light-btn" onclick="setWhite()">白光</button>
-<button class="light-btn" onclick="setDay()">日光</button>
+<button onclick="setWarm()">暖光</button>
+<button onclick="setWhite()">白光</button>
+<button onclick="setDay()">日光</button>
 </div>
 </div>
 
-<div>
-<label>操作方式</label>
-<div class="info-box">
-手机：双指缩放 / 双指旋转 / 单指拖动<br><br>
-电脑：鼠标拖动 / 滚轮缩放<br><br>
-图片会自动铺满，并且不会移出编辑区域。
+<div class="tip">
+手机：双指缩放 / 双指旋转 / 单指拖动<br>
+电脑：鼠标拖动 / 滚轮缩放<br>
+图片自动铺满，并限制移出编辑区域。
 </div>
 </div>
-
 </div>
 
-</div>
-
-<footer>
-MOODAY • Acrylic Light Editor V3
-</footer>
+<footer>MOODAY • Night Light Editor V5</footer>
 
 <script>
-const upload = document.getElementById('upload');
-const preview = document.getElementById('preview');
-const scale = document.getElementById('scale');
-const rotate = document.getElementById('rotate');
-const glow = document.getElementById('glow');
-const canvas = document.getElementById('canvas');
-const frameWrap = document.getElementById('frameWrap');
-const paperTab = document.getElementById('paperTab');
-const acrylicTab = document.getElementById('acrylicTab');
-const safeArea = document.getElementById('safeArea');
-const topZone = document.getElementById('topZone');
+const upload=document.getElementById('upload');
+const preview=document.getElementById('preview');
+const scaleSlider=document.getElementById('scale');
+const rotateSlider=document.getElementById('rotate');
+const canvas=document.getElementById('canvas');
+const canvasWrap=document.getElementById('canvasWrap');
+const paperTab=document.getElementById('paperTab');
+const acrylicTab=document.getElementById('acrylicTab');
+const safeZone=document.getElementById('safeZone');
+const topZone=document.getElementById('topZone');
+const baseLight=document.getElementById('baseLight');
+const visibleArea=document.getElementById('visibleArea');
 
-let imgScale = 1;
-let imgRotation = 0;
-let posX = 0;
-let posY = 0;
+let scale=1;
+let rotation=0;
+let posX=0;
+let posY=0;
+let dragging=false;
+let startX,startY;
+let initialDistance=0;
+let initialAngle=0;
+let startScale=1;
+let startRotation=0;
 
-let dragging = false;
-let startX = 0;
-let startY = 0;
-
-let initialDistance = 0;
-let initialAngle = 0;
-let startScale = 1;
-let startRotation = 0;
-
-let currentMode = 'paper';
-
-function updateTransform(){
-preview.style.transform = `translate(calc(-50% + ${posX}px), calc(-50% + ${posY}px)) scale(${imgScale}) rotate(${imgRotation}deg)`;
-}
-
-function fitImage(){
-preview.onload = ()=>{
-const containerW = canvas.clientWidth;
-const containerH = canvas.clientHeight;
-
-const imgW = preview.naturalWidth;
-const imgH = preview.naturalHeight;
-
-const scaleX = containerW / imgW;
-const scaleY = containerH / imgH;
-
-imgScale = Math.max(scaleX, scaleY);
-
-scale.value = Math.round(imgScale * 100);
-
-posX = 0;
-posY = 0;
-
-updateTransform();
-}
+function updateImage(){
+preview.style.transform=`translate(calc(-50% + ${posX}px),calc(-50% + ${posY}px)) scale(${scale}) rotate(${rotation}deg)`;
 }
 
 function clampPosition(){
-const maxOffset = 180;
-
-if(posX > maxOffset) posX = maxOffset;
-if(posX < -maxOffset) posX = -maxOffset;
-
-if(posY > maxOffset) posY = maxOffset;
-if(posY < -maxOffset) posY = -maxOffset;
+const limitX=180;
+const limitY=180;
+if(posX>limitX) posX=limitX;
+if(posX<-limitX) posX=-limitX;
+if(posY>limitY) posY=limitY;
+if(posY<-limitY) posY=-limitY;
 }
 
-upload.addEventListener('change', function(e){
-const file = e.target.files[0];
+function fitImage(){
+const canvasRatio=canvas.clientWidth/canvas.clientHeight;
+const imageRatio=preview.naturalWidth/preview.naturalHeight;
+if(imageRatio>canvasRatio){
+scale=canvas.clientHeight/preview.naturalHeight;
+}else{
+scale=canvas.clientWidth/preview.naturalWidth;
+}
+scaleSlider.value=Math.round(scale*100);
+posX=0;posY=0;
+updateImage();
+}
+
+upload.addEventListener('change',e=>{
+const file=e.target.files[0];
 if(file){
-const reader = new FileReader();
-reader.onload = function(event){
-preview.src = event.target.result;
-fitImage();
-}
+const reader=new FileReader();
+reader.onload=event=>{preview.src=event.target.result;};
 reader.readAsDataURL(file);
 }
 });
 
-scale.addEventListener('input', function(){
-imgScale = scale.value / 100;
-updateTransform();
+preview.onload=()=>{fitImage();};
+
+scaleSlider.addEventListener('input',()=>{
+scale=scaleSlider.value/100;
+updateImage();
 });
 
-rotate.addEventListener('input', function(){
-imgRotation = rotate.value;
-updateTransform();
+rotateSlider.addEventListener('input',()=>{
+rotation=rotateSlider.value;
+updateImage();
 });
 
-glow.addEventListener('input', ()=>{
-const g = glow.value;
-canvas.style.boxShadow = `
-0 0 ${g/2}px rgba(255,255,255,0.15),
-0 0 ${g}px rgba(0,200,255,0.18),
-0 0 ${g*1.5}px rgba(0,200,255,0.12)
-`;
+canvas.addEventListener('mousedown',e=>{
+dragging=true;
+startX=e.clientX;
+startY=e.clientY;
+});
+
+window.addEventListener('mouseup',()=>dragging=false);
+
+window.addEventListener('mousemove',e=>{
+if(!dragging) return;
+posX+=e.clientX-startX;
+posY+=e.clientY-startY;
+clampPosition();
+updateImage();
+startX=e.clientX;
+startY=e.clientY;
+});
+
+canvas.addEventListener('wheel',e=>{
+e.preventDefault();
+if(e.deltaY<0){scale+=0.05;}else{scale-=0.05;}
+if(scale<0.3) scale=0.3;
+if(scale>4) scale=4;
+scaleSlider.value=Math.round(scale*100);
+updateImage();
+});
+
+canvas.addEventListener('touchstart',e=>{
+if(e.touches.length===1){
+startX=e.touches[0].clientX;
+startY=e.touches[0].clientY;
+}
+if(e.touches.length===2){
+const dx=e.touches[1].clientX-e.touches[0].clientX;
+const dy=e.touches[1].clientY-e.touches[0].clientY;
+initialDistance=Math.sqrt(dx*dx+dy*dy);
+initialAngle=Math.atan2(dy,dx);
+startScale=scale;
+startRotation=rotation;
+}
+},{passive:false});
+
+canvas.addEventListener('touchmove',e=>{
+e.preventDefault();
+if(e.touches.length===1){
+const currentX=e.touches[0].clientX;
+const currentY=e.touches[0].clientY;
+posX+=currentX-startX;
+posY+=currentY-startY;
+clampPosition();
+updateImage();
+startX=currentX;
+startY=currentY;
+}
+if(e.touches.length===2){
+const dx=e.touches[1].clientX-e.touches[0].clientX;
+const dy=e.touches[1].clientY-e.touches[0].clientY;
+const distance=Math.sqrt(dx*dx+dy*dy);
+const angle=Math.atan2(dy,dx);
+scale=startScale*(distance/initialDistance);
+rotation=startRotation+(angle-initialAngle)*180/Math.PI;
+if(scale<0.3) scale=0.3;
+if(scale>4) scale=4;
+scaleSlider.value=Math.round(scale*100);
+rotateSlider.value=Math.round(rotation);
+updateImage();
+}
+},{passive:false});
+
+paperTab.addEventListener('click',()=>{
+canvas.className='canvas paper';
+paperTab.classList.add('active');
+acrylicTab.classList.remove('active');
+visibleArea.style.display='block';
+safeZone.style.display='none';
+topZone.style.display='none';
+baseLight.style.display='none';
+});
+
+acrylicTab.addEventListener('click',()=>{
+canvas.className='canvas acrylic';
+paperTab.classList.remove('active');
+acrylicTab.classList.add('active');
+visibleArea.style.display='none';
+safeZone.style.display='block';
+topZone.style.display='flex';
+baseLight.style.display='block';
 });
 
 function setWarm(){
-canvas.style.boxShadow = '0 0 30px rgba(255,180,100,0.35),0 0 60px rgba(255,180,100,0.15)';
+canvas.style.boxShadow='0 0 40px rgba(255,190,120,.45),0 0 80px rgba(255,190,120,.15)';
+baseLight.style.background='#f7c58a';
+preview.style.filter='brightness(1.05) sepia(.25)';
 }
 
 function setWhite(){
-canvas.style.boxShadow = '0 0 30px rgba(255,255,255,0.35),0 0 60px rgba(255,255,255,0.15)';
+canvas.style.boxShadow='0 0 40px rgba(255,255,255,.45),0 0 80px rgba(255,255,255,.15)';
+baseLight.style.background='#ffffff';
+preview.style.filter='brightness(1.1)';
 }
 
 function setDay(){
-canvas.style.boxShadow = '0 0 30px rgba(180,220,255,0.35),0 0 60px rgba(180,220,255,0.15)';
+canvas.style.boxShadow='0 0 40px rgba(180,220,255,.45),0 0 80px rgba(180,220,255,.15)';
+baseLight.style.background='#d7ecff';
+preview.style.filter='brightness(1.15)';
 }
 
-paperTab.addEventListener('click', ()=>{
-currentMode = 'paper';
-canvas.className = 'canvas paper-frame';
-paperTab.classList.add('active');
-acrylicTab.classList.remove('active');
-safeArea.style.display = 'none';
-topZone.style.display = 'none';
-});
-
-acrylicTab.addEventListener('click', ()=>{
-currentMode = 'acrylic';
-canvas.className = 'canvas acrylic-frame';
-acrylicTab.classList.add('active');
-paperTab.classList.remove('active');
-safeArea.style.display = 'block';
-topZone.style.display = 'flex';
-});
-
 function enableWoodFrame(){
-frameWrap.classList.add('wood-frame-mode');
+canvasWrap.classList.toggle('wood-frame');
 }
 
 function enablePhotocard(){
-canvas.classList.add('photocard-mode');
+canvas.classList.toggle('photocard');
 }
 
 function setPortrait(){
-canvas.style.width = '240px';
-canvas.style.height = '360px';
+canvas.style.width='240px';
+canvas.style.height='360px';
+fitImage();
 }
 
 function setLandscape(){
-canvas.style.width = '360px';
-canvas.style.height = '240px';
-}
-
-canvas.addEventListener('mousedown', e=>{
-dragging = true;
-startX = e.clientX;
-startY = e.clientY;
-});
-
-window.addEventListener('mouseup', ()=>{
-dragging = false;
-});
-
-window.addEventListener('mousemove', e=>{
-if(!dragging) return;
-
-const dx = e.clientX - startX;
-const dy = e.clientY - startY;
-
-posX += dx;
-posY += dy;
-
-clampPosition();
-updateTransform();
-
-startX = e.clientX;
-startY = e.clientY;
-});
-
-canvas.addEventListener('wheel', e=>{
-e.preventDefault();
-
-if(e.deltaY < 0){
-imgScale += 0.05;
-}else{
-imgScale -= 0.05;
-}
-
-if(imgScale < 0.2) imgScale = 0.2;
-
-scale.value = Math.round(imgScale * 100);
-
-updateTransform();
-});
-
-canvas.addEventListener('touchstart', e=>{
-if(e.touches.length === 1){
-startX = e.touches[0].clientX;
-startY = e.touches[0].clientY;
-}
-
-if(e.touches.length === 2){
-const dx = e.touches[1].clientX - e.touches[0].clientX;
-const dy = e.touches[1].clientY - e.touches[0].clientY;
-
-initialDistance = Math.sqrt(dx*dx + dy*dy);
-initialAngle = Math.atan2(dy, dx);
-
-startScale = imgScale;
-startRotation = imgRotation;
-}
-},{passive:false});
-
-canvas.addEventListener('touchmove', e=>{
-e.preventDefault();
-
-if(e.touches.length === 1){
-const dx = e.touches[0].clientX - startX;
-const dy = e.touches[0].clientY - startY;
-
-posX += dx;
-posY += dy;
-
-clampPosition();
-updateTransform();
-
-startX = e.touches[0].clientX;
-startY = e.touches[0].clientY;
-}
-
-if(e.touches.length === 2){
-const dx = e.touches[1].clientX - e.touches[0].clientX;
-const dy = e.touches[1].clientY - e.touches[0].clientY;
-
-const dist = Math.sqrt(dx*dx + dy*dy);
-const angle = Math.atan2(dy, dx);
-
-imgScale = startScale * (dist / initialDistance);
-imgRotation = startRotation + ((angle - initialAngle) * 180 / Math.PI);
-
-scale.value = Math.round(imgScale * 100);
-rotate.value = Math.round(imgRotation);
-
-updateTransform();
-}
-},{passive:false});
-
+canvas.style.width='360px';
+canvas.style.height='240px';
 fitImage();
-</script>
+}
 
+updateImage();
+</script>
 </body>
 </html>
