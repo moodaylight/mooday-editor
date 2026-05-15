@@ -1,295 +1,101 @@
-<!DOCTYPE html>
-<html lang="ko">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>MOODAY Editor V2</title>
+<!-- REAL PRODUCT PREVIEW -->
 
-<script src="https://cdn.tailwindcss.com"></script>
-
-<style>
-
-body{
-margin:0;
-background:#f3f1ec;
-font-family:sans-serif;
-overflow:hidden;
-}
-
-.editor-btn{
-transition:0.2s;
-cursor:pointer;
-}
-
-.editor-btn:hover{
-transform:translateY(-2px);
-}
-
-.layer-item{
-transition:0.2s;
-}
-
-.layer-item:hover{
-background:#f5f5f5;
-}
-
-</style>
-
-</head>
-
-<body>
-
-<div class="w-full min-h-screen bg-[#f4efe8] flex flex-col">
-
-<!-- HEADER -->
-<div class="h-20 bg-white border-b flex items-center justify-between px-10 shadow-sm">
-
-<div class="text-2xl font-bold">
-조명 액자 편집
-</div>
-
-<div class="flex gap-4">
-
-<button class="px-6 py-3 rounded-2xl border bg-white editor-btn">
-미리보기
-</button>
-
-<button class="px-6 py-3 rounded-2xl bg-black text-white editor-btn">
-저장하기
-</button>
-
-</div>
-
-</div>
-
-
-<div class="flex flex-1">
-
-<!-- LEFT -->
-<div class="w-28 bg-white border-r flex flex-col items-center py-6 gap-6">
-
-<div class="editor-btn flex flex-col items-center text-sm gap-2">
-<div class="w-14 h-14 rounded-2xl bg-neutral-100 flex items-center justify-center text-2xl">🖼️</div>
-사진
-</div>
-
-<div class="editor-btn flex flex-col items-center text-sm gap-2">
-<div class="w-14 h-14 rounded-2xl bg-neutral-100 flex items-center justify-center text-2xl">T</div>
-텍스트
-</div>
-
-<div class="editor-btn flex flex-col items-center text-sm gap-2">
-<div class="w-14 h-14 rounded-2xl bg-neutral-100 flex items-center justify-center text-2xl">😊</div>
-스티커
-</div>
-
-<div class="editor-btn flex flex-col items-center text-sm gap-2">
-<div class="w-14 h-14 rounded-2xl bg-neutral-100 flex items-center justify-center text-2xl">⬡</div>
-도형
-</div>
-
-<div class="editor-btn flex flex-col items-center text-sm gap-2">
-<div class="w-14 h-14 rounded-2xl bg-neutral-100 flex items-center justify-center text-2xl">🎨</div>
-배경
-</div>
-
-</div>
-
-
-<!-- CENTER -->
-<div class="flex-1 p-8 overflow-auto">
-
-<div class="bg-white rounded-[40px] p-8 shadow-xl">
-
-<!-- TOP SWITCH -->
-<div class="flex justify-center mb-6">
-
-<div class="bg-neutral-100 rounded-full p-1 flex gap-1 w-[500px]">
-
-<button id="fullBtn"
-class="flex-1 py-4 rounded-full bg-black text-white font-bold editor-btn">
-전체 보기 (편집 영역)
-</button>
-
-<button id="realBtn"
-class="flex-1 py-4 rounded-full bg-white font-bold editor-btn">
-실제 표시 영역
-</button>
-
-</div>
-
-</div>
-
-
-<!-- PREVIEW -->
 <div class="flex justify-center">
 
-<div class="relative w-[760px] h-[520px] rounded-[40px] overflow-hidden shadow-2xl bg-cover bg-center"
-style="background-image:url('https://images.unsplash.com/photo-1517841905240-472988babdf9?q=80&w=1400&auto=format&fit=crop');">
-
-
-<div id="editArea"
-class="absolute left-[90px] top-[70px] w-[580px] h-[340px] border-4 border-pink-400 border-dashed rounded-3xl">
-</div>
-
-
-<div class="absolute left-[100px] top-[80px] w-[560px] h-[320px] rounded-3xl overflow-hidden shadow-2xl bg-white">
-
-<img
-src="https://images.unsplash.com/photo-1524504388940-b1c1722653e1?q=80&w=1200&auto=format&fit=crop"
-class="w-full h-full object-cover"
+<div
+class="relative w-[980px] h-[620px] rounded-[40px] overflow-hidden shadow-2xl bg-cover bg-center"
+style="background-image:url('https://images.unsplash.com/photo-1513694203232-719a280e022f?q=80&w=1600&auto=format&fit=crop');"
 >
 
-<div class="absolute top-6 left-0 right-0 text-center text-white text-5xl font-bold drop-shadow-lg">
-♡ 우리의 추억 ♡
+<!-- DESK BLUR -->
+<div class="absolute inset-0 bg-[#f5eadf]/60 backdrop-blur-[1px]"></div>
+
+<!-- PEN HOLDER -->
+<div
+class="absolute right-[120px] bottom-[130px] w-[120px] h-[220px] bg-white rounded-[24px] shadow-xl z-20"
+>
+<div class="absolute left-[28px] top-[-40px] w-[18px] h-[140px] bg-red-500 rounded-full rotate-[-8deg]"></div>
+
+<div class="absolute left-[60px] top-[-20px] w-[18px] h-[120px] bg-black rounded-full rotate-[8deg]"></div>
 </div>
 
-<div class="absolute bottom-8 left-0 right-0 text-center text-white text-4xl font-bold drop-shadow-lg">
-2024.05.20 사랑해 ♡
-</div>
+<!-- BASE -->
+<div
+class="absolute left-[150px] bottom-[80px] w-[620px] h-[120px] bg-[#fffaf5] rounded-[30px] shadow-2xl z-10 border border-[#eee]"
+>
 
-</div>
-
-
-<div class="absolute bottom-8 left-[120px] w-[520px] h-[80px] rounded-3xl bg-white flex items-center justify-center text-4xl text-[#8d6a47] shadow-lg">
+<div
+class="absolute inset-0 flex items-center justify-center text-[42px] text-[#9b7b58] tracking-[6px] font-light"
+>
 ♡ 나의 소중한 순간 ♡
 </div>
 
 </div>
 
-</div>
-
-
-<!-- BOTTOM -->
-<div class="grid grid-cols-4 gap-6 mt-10">
-
-<div class="bg-neutral-50 rounded-3xl p-6">
-
-<div class="font-bold text-lg mb-4">
-조명 색상
-</div>
-
-<div class="flex gap-3">
-
-<div class="w-16 h-16 rounded-2xl bg-yellow-100 border-4 border-yellow-300"></div>
-
-<div class="w-16 h-16 rounded-2xl bg-white border"></div>
-
-<div class="w-16 h-16 rounded-2xl bg-blue-100 border"></div>
-
-</div>
-
-</div>
-
-
-<div class="bg-neutral-50 rounded-3xl p-6">
-
-<div class="font-bold text-lg mb-4">
-밝기 조절
-</div>
-
-<input type="range" class="w-full">
-
-</div>
-
-
-<div class="bg-neutral-50 rounded-3xl p-6">
-
-<div class="font-bold text-lg mb-4">
-텍스트
-</div>
-
-<input
-class="w-full border rounded-2xl px-4 py-3"
-value="나의 소중한 순간"
+<!-- FRAME -->
+<div
+class="absolute left-[170px] top-[140px] w-[540px] h-[320px] rounded-[36px] bg-[#fffdfb] shadow-[0_25px_60px_rgba(0,0,0,0.18)] border-[10px] border-[#f8f2ea] overflow-hidden z-20"
 >
 
+<!-- PHOTO -->
+<img
+src="https://images.unsplash.com/photo-1524504388940-b1c1722653e1?q=80&w=1200&auto=format&fit=crop"
+class="absolute inset-0 w-full h-full object-cover"
+>
+
+<!-- DARK OVERLAY -->
+<div class="absolute inset-0 bg-black/20"></div>
+
+<!-- EDIT BORDER -->
+<div
+id="editArea"
+class="absolute left-[18px] top-[18px] w-[494px] h-[284px] border-[4px] border-dashed border-pink-400 rounded-[26px]"
+>
 </div>
 
-
-<div class="bg-neutral-50 rounded-3xl p-6">
-
-<div class="font-bold text-lg mb-4">
-출력 안내
+<!-- TOP TEXT -->
+<div
+class="absolute top-[30px] left-0 right-0 text-center text-white text-[48px] font-bold drop-shadow-2xl"
+>
+♡ 우리의 추억 ♡
 </div>
 
-<div class="border-2 border-dashed rounded-2xl h-28 flex items-center justify-center text-sm text-neutral-400">
-9.5 x 15 cm
-</div>
-
-</div>
-
-</div>
-
-</div>
-
-</div>
-
-
-<!-- RIGHT -->
-<div class="w-[320px] bg-white border-l p-6">
-
-<div class="text-2xl font-bold mb-6">
-레이어
-</div>
-
-<div class="space-y-3">
-
-<div class="layer-item h-16 rounded-2xl border px-5 flex items-center justify-between">
-<span>텍스트 레이어</span>
-<span>👁️</span>
-</div>
-
-<div class="layer-item h-16 rounded-2xl border px-5 flex items-center justify-between">
-<span>날짜 레이어</span>
-<span>👁️</span>
-</div>
-
-<div class="layer-item h-16 rounded-2xl border px-5 flex items-center justify-between">
-<span>사진 레이어</span>
-<span>👁️</span>
-</div>
-
-<div class="layer-item h-16 rounded-2xl border px-5 flex items-center justify-between">
-<span>스티커 레이어</span>
-<span>👁️</span>
+<!-- BOTTOM TEXT -->
+<div
+class="absolute bottom-[32px] left-0 right-0 text-center text-white text-[38px] font-bold drop-shadow-2xl"
+>
+2024.05.20 사랑해 ♡
 </div>
 
 </div>
 
+<!-- MINI TAG -->
+<div
+class="absolute right-[220px] top-[230px] w-[90px] h-[190px] bg-white rounded-[28px] shadow-xl z-30 border border-[#eee]"
+>
+
+<div class="absolute top-[-18px] right-[12px] text-[42px] rotate-[18deg]">
+✏️
+</div>
+
+<div class="absolute inset-0 flex flex-col items-center justify-center">
+
+<div class="text-[24px] mb-3">
+🌼
+</div>
+
+<div class="text-[18px] text-neutral-700">
+우리의 추억
+</div>
+
+<div class="text-[16px] text-neutral-500 mt-2">
+2024.05.20
 </div>
 
 </div>
 
 </div>
 
-<script>
+</div>
 
-const fullBtn=document.getElementById('fullBtn');
-const realBtn=document.getElementById('realBtn');
-const editArea=document.getElementById('editArea');
-
-fullBtn.onclick=function(){
-
-fullBtn.classList.add('bg-black','text-white');
-realBtn.classList.remove('bg-black','text-white');
-realBtn.classList.add('bg-white');
-
-editArea.style.display='block';
-
-}
-
-realBtn.onclick=function(){
-
-realBtn.classList.add('bg-black','text-white');
-fullBtn.classList.remove('bg-black','text-white');
-fullBtn.classList.add('bg-white');
-
-editArea.style.display='none';
-
-}
-
-</script>
-
-</body>
-</html>
+</div>
