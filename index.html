@@ -1,473 +1,378 @@
 <!DOCTYPE html>
-<html lang="zh">
+<html lang="zh-CN">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>MOODAY Editor V4</title>
-
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>MOODAY Editor</title>
 <style>
 *{
-margin:0;
-padding:0;
-box-sizing:border-box;
-font-family:Arial,sans-serif;
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
 }
 
 body{
-background:#0d0d0d;
-color:white;
-min-height:100vh;
-display:flex;
-flex-direction:column;
+  background:#0f1115;
+  color:white;
+  font-family:-apple-system,BlinkMacSystemFont,sans-serif;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  padding:20px;
 }
 
-header{
-padding:18px;
-display:flex;
-justify-content:space-between;
-align-items:center;
-border-bottom:1px solid #222;
-background:#111;
+h1{
+  margin-bottom:16px;
+  font-size:28px;
 }
 
-header h1{
-font-size:22px;
-font-weight:300;
-letter-spacing:2px;
+.toolbar{
+  display:flex;
+  flex-wrap:wrap;
+  gap:10px;
+  justify-content:center;
+  margin-bottom:20px;
 }
 
-.top-buttons{
-display:flex;
-gap:10px;
+button,input{
+  padding:10px 14px;
+  border:none;
+  border-radius:12px;
+  background:#1e222b;
+  color:white;
 }
 
 button{
-background:#1c1c1c;
-border:1px solid #333;
-color:white;
-padding:10px 14px;
-border-radius:12px;
-cursor:pointer;
+  cursor:pointer;
 }
 
-button:hover{
-background:#2a2a2a;
+.editor-shell{
+  position:relative;
 }
 
-.main{
-flex:1;
-padding:20px;
-max-width:520px;
-width:100%;
-margin:0 auto;
-display:flex;
-flex-direction:column;
-gap:20px;
-}
-
-.tabs{
-display:flex;
-gap:10px;
-}
-
-.tab{
-flex:1;
-padding:14px;
-text-align:center;
-border-radius:16px;
-background:#181818;
-border:1px solid #2d2d2d;
-cursor:pointer;
-}
-
-.active{
-background:#2d241d;
-border-color:#d4a36c;
+.wood-frame{
+  padding:18px;
+  border-radius:24px;
+  background:linear-gradient(135deg,#7a5a3a,#4a3320);
+  box-shadow:
+    0 20px 40px rgba(0,0,0,0.5),
+    inset 0 2px 6px rgba(255,255,255,0.1);
 }
 
 .canvas-wrap{
-display:flex;
-justify-content:center;
+  position:relative;
+  overflow:hidden;
+  border-radius:16px;
+  background:#111;
 }
 
-.canvas{
-position:relative;
-overflow:hidden;
-background:black;
-border-radius:24px;
-touch-action:none;
+canvas{
+  display:block;
+  touch-action:none;
+  background:#000;
 }
 
-.paper{
-width:360px;
-height:240px;
+.glow{
+  position:absolute;
+  inset:0;
+  pointer-events:none;
+  border-radius:16px;
+  box-shadow:
+    inset 0 0 30px rgba(255,255,255,0.05),
+    0 0 20px rgba(0,255,255,0.2),
+    0 0 50px rgba(0,255,255,0.15);
 }
 
-.acrylic{
-width:240px;
-height:360px;
-background:rgba(255,255,255,0.03);
-border:2px solid rgba(255,255,255,0.1);
+.mode-label{
+  margin-top:14px;
+  opacity:0.7;
+  font-size:14px;
 }
 
-#preview{
-position:absolute;
-left:50%;
-top:50%;
-transform:translate(-50%,-50%);
-max-width:none;
-user-select:none;
-pointer-events:none;
-}
-
-.visible-area{
-position:absolute;
-left:22px;
-right:22px;
-top:22px;
-bottom:22px;
-border:2px dashed rgba(255,255,255,0.8);
-border-radius:10px;
-pointer-events:none;
-}
-
-.mask{
-position:absolute;
-background:rgba(0,0,0,0.55);
-pointer-events:none;
-}
-
-.mask-top{
-top:0;
-left:0;
-right:0;
-height:22px;
-}
-
-.mask-bottom{
-bottom:0;
-left:0;
-right:0;
-height:22px;
-}
-
-.mask-left{
-left:0;
-top:22px;
-bottom:22px;
-width:22px;
-}
-
-.mask-right{
-right:0;
-top:22px;
-bottom:22px;
-width:22px;
-}
-
-.safe-zone{
-position:absolute;
-left:10px;
-right:10px;
-bottom:10px;
-height:260px;
-border:2px dashed rgba(255,200,120,0.8);
-border-radius:12px;
-display:none;
-pointer-events:none;
-}
-
-.top-zone{
-position:absolute;
-top:0;
-left:0;
-right:0;
-height:80px;
-display:none;
-justify-content:center;
-align-items:center;
-font-size:12px;
-letter-spacing:2px;
-color:rgba(255,255,255,0.6);
-pointer-events:none;
-}
-
-.base-light{
-position:absolute;
-bottom:-12px;
-left:50%;
-transform:translateX(-50%);
-width:140px;
-height:22px;
-border-radius:30px;
-background:#f7c58a;
-filter:blur(14px);
-display:none;
-}
-
-.controls{
-background:#151515;
-border:1px solid #222;
-padding:18px;
-border-radius:20px;
-display:flex;
-flex-direction:column;
-gap:16px;
-}
-
-label{
-font-size:13px;
-color:#aaa;
-margin-bottom:6px;
-display:block;
+.slider-wrap{
+  display:flex;
+  align-items:center;
+  gap:8px;
 }
 
 input[type="range"]{
-width:100%;
-}
-
-.light-buttons{
-display:flex;
-gap:10px;
-}
-
-.light-buttons button{
-flex:1;
-}
-
-.tip{
-font-size:12px;
-line-height:1.7;
-color:#777;
-}
-
-footer{
-padding:14px;
-text-align:center;
-font-size:12px;
-color:#666;
+  width:120px;
 }
 </style>
 </head>
-
 <body>
 
-<header>
-<h1>MOODAY</h1>
+<h1>MOODAY Editor</h1>
 
-<div class="top-buttons">
-<button>重新编辑</button>
-<button>提交制作</button>
-</div>
-</header>
+<div class="toolbar">
+  <input type="file" id="upload" accept="image/*" />
 
-<div class="main">
+  <button onclick="setPortrait()">竖版</button>
+  <button onclick="setLandscape()">横版</button>
 
-<div class="tabs">
-<div class="tab active" id="paperTab">灯光画</div>
-<div class="tab" id="acrylicTab">亚克力灯</div>
-</div>
+  <button onclick="toggleWoodFrame()">木框模式</button>
+  <button onclick="togglePhotocard()">透卡模式</button>
 
-<div class="canvas-wrap">
-
-<div class="canvas paper" id="canvas">
-
-<img id="preview"
-src="https://images.unsplash.com/photo-1524504388940-b1c1722653e1?q=80&w=1200&auto=format&fit=crop">
-
-<div class="mask mask-top"></div>
-<div class="mask mask-bottom"></div>
-<div class="mask mask-left"></div>
-<div class="mask mask-right"></div>
-
-<div class="visible-area" id="visibleArea"></div>
-
-<div class="safe-zone" id="safeZone"></div>
-
-<div class="top-zone" id="topZone">
-装饰区域 / 名字区域
+  <div class="slider-wrap">
+    <span>灯光</span>
+    <input type="range" min="0" max="100" value="60" id="glowSlider">
+  </div>
 </div>
 
-<div class="base-light" id="baseLight"></div>
-
+<div class="editor-shell">
+  <div class="wood-frame" id="woodFrame">
+    <div class="canvas-wrap" id="canvasWrap">
+      <canvas id="canvas"></canvas>
+      <div class="glow"></div>
+    </div>
+  </div>
 </div>
 
+<div class="mode-label" id="modeLabel">
+双指缩放 / 双指旋转 / 鼠标拖拽 / 滚轮缩放
 </div>
-
-<div class="controls">
-
-<div>
-<label>上传图片</label>
-<input type="file" id="upload" accept="image/*">
-</div>
-
-<div>
-<label>缩放</label>
-<input type="range" id="scale" min="50" max="200" value="100">
-</div>
-
-<div>
-<label>灯光预览</label>
-
-<div class="light-buttons">
-<button onclick="setWarm()">暖光</button>
-<button onclick="setWhite()">白光</button>
-<button onclick="setDay()">日光</button>
-</div>
-</div>
-
-<div class="tip">
-请将重要人物与文字放在显示区域内。<br>
-外部区域可能被遮挡。
-</div>
-
-</div>
-
-</div>
-
-<footer>
-MOODAY • Night Light Editor
-</footer>
 
 <script>
-const upload = document.getElementById('upload');
-const preview = document.getElementById('preview');
-const scaleSlider = document.getElementById('scale');
-
 const canvas = document.getElementById('canvas');
+const ctx = canvas.getContext('2d');
+const glowSlider = document.getElementById('glowSlider');
+const woodFrame = document.getElementById('woodFrame');
+const canvasWrap = document.getElementById('canvasWrap');
 
-const paperTab = document.getElementById('paperTab');
-const acrylicTab = document.getElementById('acrylicTab');
+let editorWidth = 800;
+let editorHeight = 1000;
 
-const safeZone = document.getElementById('safeZone');
-const topZone = document.getElementById('topZone');
-const baseLight = document.getElementById('baseLight');
-const visibleArea = document.getElementById('visibleArea');
+canvas.width = editorWidth;
+canvas.height = editorHeight;
 
-let scale = 1;
-let posX = 0;
-let posY = 0;
+let imageObj = null;
 
-function updateImage(){
-preview.style.transform =
-`translate(calc(-50% + ${posX}px), calc(-50% + ${posY}px)) scale(${scale})`;
+let state = {
+  x:0,
+  y:0,
+  scale:1,
+  rotation:0
+};
+
+let isDragging = false;
+let lastX = 0;
+let lastY = 0;
+
+let touchStartDistance = 0;
+let touchStartAngle = 0;
+let startScale = 1;
+let startRotation = 0;
+
+function render(){
+  ctx.clearRect(0,0,canvas.width,canvas.height);
+
+  ctx.fillStyle = '#000';
+  ctx.fillRect(0,0,canvas.width,canvas.height);
+
+  if(!imageObj) return;
+
+  ctx.save();
+
+  ctx.translate(state.x, state.y);
+  ctx.rotate(state.rotation * Math.PI / 180);
+  ctx.scale(state.scale, state.scale);
+
+  ctx.drawImage(
+    imageObj,
+    -imageObj.width/2,
+    -imageObj.height/2
+  );
+
+  ctx.restore();
+
+  acrylicGlow();
 }
 
-upload.addEventListener('change',function(e){
-const file = e.target.files[0];
+function acrylicGlow(){
+  const glowValue = glowSlider.value;
 
-if(file){
-const reader = new FileReader();
-
-reader.onload=function(event){
-preview.src = event.target.result;
+  canvasWrap.style.boxShadow = `
+    0 0 ${glowValue/2}px rgba(255,255,255,0.25),
+    0 0 ${glowValue}px rgba(0,255,255,0.18),
+    0 0 ${glowValue*1.5}px rgba(0,180,255,0.1)
+  `;
 }
 
-reader.readAsDataURL(file);
+function fitImage(){
+  if(!imageObj) return;
+
+  const scaleX = editorWidth / imageObj.width;
+  const scaleY = editorHeight / imageObj.height;
+
+  state.scale = Math.max(scaleX, scaleY);
+
+  state.x = editorWidth / 2;
+  state.y = editorHeight / 2;
+
+  render();
 }
+
+function clampImage(){
+  if(!imageObj) return;
+
+  const w = imageObj.width * state.scale;
+  const h = imageObj.height * state.scale;
+
+  const minX = editorWidth - w/2;
+  const maxX = w/2;
+
+  const minY = editorHeight - h/2;
+  const maxY = h/2;
+
+  state.x = Math.min(Math.max(state.x, minX), maxX);
+  state.y = Math.min(Math.max(state.y, minY), maxY);
+}
+
+function setPortrait(){
+  editorWidth = 800;
+  editorHeight = 1000;
+
+  canvas.width = editorWidth;
+  canvas.height = editorHeight;
+
+  fitImage();
+}
+
+function setLandscape(){
+  editorWidth = 1000;
+  editorHeight = 800;
+
+  canvas.width = editorWidth;
+  canvas.height = editorHeight;
+
+  fitImage();
+}
+
+function toggleWoodFrame(){
+  woodFrame.style.display = woodFrame.style.display === 'none' ? 'block' : 'block';
+}
+
+function togglePhotocard(){
+  canvasWrap.style.backdropFilter = 'blur(6px)';
+  canvasWrap.style.background = 'rgba(255,255,255,0.05)';
+}
+
+document.getElementById('upload').addEventListener('change', e=>{
+  const file = e.target.files[0];
+  if(!file) return;
+
+  const img = new Image();
+
+  img.onload = ()=>{
+    imageObj = img;
+    fitImage();
+  }
+
+  img.src = URL.createObjectURL(file);
 });
 
-scaleSlider.addEventListener('input',function(){
-scale = scaleSlider.value / 100;
-updateImage();
+canvas.addEventListener('mousedown', e=>{
+  isDragging = true;
+  lastX = e.clientX;
+  lastY = e.clientY;
 });
 
-let dragging = false;
-let startX,startY;
-
-canvas.addEventListener('mousedown',startDrag);
-canvas.addEventListener('touchstart',startDrag);
-
-function startDrag(e){
-dragging = true;
-
-if(e.touches){
-startX = e.touches[0].clientX;
-startY = e.touches[0].clientY;
-}else{
-startX = e.clientX;
-startY = e.clientY;
-}
-}
-
-window.addEventListener('mousemove',drag);
-window.addEventListener('touchmove',drag);
-
-function drag(e){
-
-if(!dragging) return;
-
-let currentX,currentY;
-
-if(e.touches){
-currentX = e.touches[0].clientX;
-currentY = e.touches[0].clientY;
-}else{
-currentX = e.clientX;
-currentY = e.clientY;
-}
-
-posX += currentX - startX;
-posY += currentY - startY;
-
-startX = currentX;
-startY = currentY;
-
-updateImage();
-}
-
-window.addEventListener('mouseup',()=>dragging=false);
-window.addEventListener('touchend',()=>dragging=false);
-
-paperTab.addEventListener('click',()=>{
-
-canvas.className='canvas paper';
-
-paperTab.classList.add('active');
-acrylicTab.classList.remove('active');
-
-visibleArea.style.display='block';
-
-safeZone.style.display='none';
-topZone.style.display='none';
-baseLight.style.display='none';
-
+window.addEventListener('mouseup', ()=>{
+  isDragging = false;
 });
 
-acrylicTab.addEventListener('click',()=>{
+window.addEventListener('mousemove', e=>{
+  if(!isDragging || !imageObj) return;
 
-canvas.className='canvas acrylic';
+  const dx = e.clientX - lastX;
+  const dy = e.clientY - lastY;
 
-paperTab.classList.remove('active');
-acrylicTab.classList.add('active');
+  state.x += dx;
+  state.y += dy;
 
-visibleArea.style.display='none';
+  lastX = e.clientX;
+  lastY = e.clientY;
 
-safeZone.style.display='block';
-topZone.style.display='flex';
-baseLight.style.display='block';
-
+  clampImage();
+  render();
 });
 
-function setWarm(){
-canvas.style.boxShadow='0 0 40px rgba(255,190,120,0.45)';
-baseLight.style.background='#f7c58a';
-preview.style.filter='brightness(1.05) sepia(0.25)';
-}
+canvas.addEventListener('wheel', e=>{
+  e.preventDefault();
 
-function setWhite(){
-canvas.style.boxShadow='0 0 40px rgba(255,255,255,0.45)';
-baseLight.style.background='#ffffff';
-preview.style.filter='brightness(1.1)';
-}
+  if(!imageObj) return;
 
-function setDay(){
-canvas.style.boxShadow='0 0 40px rgba(180,220,255,0.45)';
-baseLight.style.background='#d7ecff';
-preview.style.filter='brightness(1.15)';
-}
+  const zoom = 0.05;
 
-updateImage();
+  if(e.deltaY < 0){
+    state.scale += zoom;
+  }else{
+    state.scale -= zoom;
+  }
+
+  state.scale = Math.max(0.1, state.scale);
+
+  clampImage();
+  render();
+});
+
+canvas.addEventListener('touchstart', e=>{
+  if(e.touches.length === 1){
+    lastX = e.touches[0].clientX;
+    lastY = e.touches[0].clientY;
+  }
+
+  if(e.touches.length === 2){
+    const dx = e.touches[1].clientX - e.touches[0].clientX;
+    const dy = e.touches[1].clientY - e.touches[0].clientY;
+
+    touchStartDistance = Math.sqrt(dx*dx + dy*dy);
+    touchStartAngle = Math.atan2(dy, dx);
+
+    startScale = state.scale;
+    startRotation = state.rotation;
+  }
+});
+
+canvas.addEventListener('touchmove', e=>{
+  e.preventDefault();
+
+  if(!imageObj) return;
+
+  if(e.touches.length === 1){
+    const dx = e.touches[0].clientX - lastX;
+    const dy = e.touches[0].clientY - lastY;
+
+    state.x += dx;
+    state.y += dy;
+
+    lastX = e.touches[0].clientX;
+    lastY = e.touches[0].clientY;
+
+    clampImage();
+    render();
+  }
+
+  if(e.touches.length === 2){
+    const dx = e.touches[1].clientX - e.touches[0].clientX;
+    const dy = e.touches[1].clientY - e.touches[0].clientY;
+
+    const dist = Math.sqrt(dx*dx + dy*dy);
+    const angle = Math.atan2(dy, dx);
+
+    state.scale = startScale * (dist / touchStartDistance);
+    state.rotation = startRotation + ((angle - touchStartAngle) * 180 / Math.PI);
+
+    clampImage();
+    render();
+  }
+},{passive:false});
+
+glowSlider.addEventListener('input', ()=>{
+  acrylicGlow();
+});
+
+render();
 </script>
 
 </body>
