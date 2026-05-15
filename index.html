@@ -1,378 +1,592 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="zh">
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>MOODAY Editor</title>
+<title>MOODAY Editor V3</title>
+
 <style>
 *{
-  margin:0;
-  padding:0;
-  box-sizing:border-box;
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial,sans-serif;
 }
 
 body{
-  background:#0f1115;
-  color:white;
-  font-family:-apple-system,BlinkMacSystemFont,sans-serif;
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-  padding:20px;
+background:#0f0f0f;
+color:white;
+min-height:100vh;
+display:flex;
+flex-direction:column;
+overflow-x:hidden;
 }
 
-h1{
-  margin-bottom:16px;
-  font-size:28px;
+header{
+padding:18px;
+border-bottom:1px solid #222;
+display:flex;
+justify-content:space-between;
+align-items:center;
+background:#111;
+position:sticky;
+top:0;
+z-index:10;
 }
 
-.toolbar{
-  display:flex;
-  flex-wrap:wrap;
-  gap:10px;
-  justify-content:center;
-  margin-bottom:20px;
+header h1{
+font-size:22px;
+font-weight:300;
+letter-spacing:2px;
 }
 
-button,input{
-  padding:10px 14px;
-  border:none;
-  border-radius:12px;
-  background:#1e222b;
-  color:white;
+.top-buttons{
+display:flex;
+gap:10px;
 }
 
 button{
-  cursor:pointer;
+background:#1e1e1e;
+border:1px solid #333;
+color:white;
+padding:10px 14px;
+border-radius:12px;
+cursor:pointer;
+font-size:14px;
+transition:0.25s;
 }
 
-.editor-shell{
-  position:relative;
+button:hover{
+background:#2b2b2b;
+transform:translateY(-1px);
 }
 
-.wood-frame{
-  padding:18px;
-  border-radius:24px;
-  background:linear-gradient(135deg,#7a5a3a,#4a3320);
-  box-shadow:
-    0 20px 40px rgba(0,0,0,0.5),
-    inset 0 2px 6px rgba(255,255,255,0.1);
+.main{
+flex:1;
+display:flex;
+flex-direction:column;
+padding:20px;
+gap:20px;
+max-width:520px;
+width:100%;
+margin:0 auto;
+}
+
+.product-tabs{
+display:flex;
+gap:10px;
+}
+
+.tab{
+flex:1;
+text-align:center;
+padding:14px;
+border-radius:16px;
+background:#181818;
+border:1px solid #2d2d2d;
+transition:0.3s;
+}
+
+.active{
+background:#2d241d;
+border-color:#c28b52;
+box-shadow:0 0 20px rgba(194,139,82,0.2);
 }
 
 .canvas-wrap{
-  position:relative;
-  overflow:hidden;
-  border-radius:16px;
-  background:#111;
+position:relative;
+width:100%;
+display:flex;
+justify-content:center;
+perspective:1200px;
 }
 
-canvas{
-  display:block;
-  touch-action:none;
-  background:#000;
+.canvas{
+position:relative;
+background:black;
+overflow:hidden;
+border-radius:24px;
+border:1px solid #333;
+touch-action:none;
+transition:0.3s;
 }
 
-.glow{
-  position:absolute;
-  inset:0;
-  pointer-events:none;
-  border-radius:16px;
-  box-shadow:
-    inset 0 0 30px rgba(255,255,255,0.05),
-    0 0 20px rgba(0,255,255,0.2),
-    0 0 50px rgba(0,255,255,0.15);
+.paper-frame{
+width:340px;
+height:230px;
+background:#1a1a1a;
 }
 
-.mode-label{
-  margin-top:14px;
-  opacity:0.7;
-  font-size:14px;
+.paper-visible{
+position:absolute;
+left:20px;
+top:20px;
+right:20px;
+bottom:20px;
+border:2px dashed rgba(255,255,255,0.4);
+pointer-events:none;
+border-radius:8px;
 }
 
-.slider-wrap{
-  display:flex;
-  align-items:center;
-  gap:8px;
+.acrylic-frame{
+width:240px;
+height:360px;
+background:rgba(255,255,255,0.03);
+border:2px solid rgba(255,255,255,0.15);
+backdrop-filter:blur(2px);
+box-shadow:
+0 0 15px rgba(255,255,255,0.08),
+0 0 35px rgba(0,180,255,0.15),
+0 0 60px rgba(0,180,255,0.08);
+}
+
+.acrylic-safe{
+position:absolute;
+left:10px;
+right:10px;
+bottom:10px;
+height:260px;
+border:2px dashed rgba(255,200,120,0.7);
+pointer-events:none;
+border-radius:10px;
+}
+
+.top-zone{
+position:absolute;
+top:0;
+left:0;
+right:0;
+height:80px;
+display:flex;
+align-items:center;
+justify-content:center;
+font-size:12px;
+color:rgba(255,255,255,0.5);
+pointer-events:none;
+}
+
+.preview-image{
+position:absolute;
+left:50%;
+top:50%;
+transform:translate(-50%,-50%);
+transform-origin:center center;
+user-select:none;
+pointer-events:none;
+filter:
+brightness(1.02)
+contrast(1.03)
+drop-shadow(0 0 12px rgba(255,255,255,0.12));
+}
+
+.controls{
+display:flex;
+flex-direction:column;
+gap:16px;
+background:#151515;
+padding:18px;
+border-radius:20px;
+border:1px solid #222;
+}
+
+label{
+font-size:13px;
+color:#aaa;
+margin-bottom:6px;
+display:block;
 }
 
 input[type="range"]{
-  width:120px;
+width:100%;
+}
+
+.mode-buttons{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:10px;
+}
+
+.upload-btn{
+background:#c28b52;
+color:black;
+font-weight:bold;
+}
+
+.light-buttons{
+display:flex;
+gap:10px;
+}
+
+.light-btn{
+flex:1;
+}
+
+.info-box{
+font-size:12px;
+color:#777;
+line-height:1.7;
+background:#111;
+padding:12px;
+border-radius:14px;
+}
+
+footer{
+padding:14px;
+text-align:center;
+font-size:12px;
+color:#666;
+}
+
+.photocard-mode{
+background:rgba(255,255,255,0.05);
+backdrop-filter:blur(6px);
+border:1px solid rgba(255,255,255,0.15);
+}
+
+.wood-frame-mode{
+padding:16px;
+border-radius:28px;
+background:linear-gradient(135deg,#7a5a3a,#4a3320);
+box-shadow:
+0 15px 35px rgba(0,0,0,0.5),
+inset 0 1px 4px rgba(255,255,255,0.08);
 }
 </style>
 </head>
 <body>
 
-<h1>MOODAY Editor</h1>
+<header>
+<h1>MOODAY</h1>
 
-<div class="toolbar">
-  <input type="file" id="upload" accept="image/*" />
+<div class="top-buttons">
+<button>重新编辑</button>
+<button>提交制作</button>
+</div>
+</header>
 
-  <button onclick="setPortrait()">竖版</button>
-  <button onclick="setLandscape()">横版</button>
+<div class="main">
 
-  <button onclick="toggleWoodFrame()">木框模式</button>
-  <button onclick="togglePhotocard()">透卡模式</button>
-
-  <div class="slider-wrap">
-    <span>灯光</span>
-    <input type="range" min="0" max="100" value="60" id="glowSlider">
-  </div>
+<div class="product-tabs">
+<div class="tab active" id="paperTab">灯光画</div>
+<div class="tab" id="acrylicTab">亚克力灯</div>
 </div>
 
-<div class="editor-shell">
-  <div class="wood-frame" id="woodFrame">
-    <div class="canvas-wrap" id="canvasWrap">
-      <canvas id="canvas"></canvas>
-      <div class="glow"></div>
-    </div>
-  </div>
+<div class="canvas-wrap" id="frameWrap">
+
+<div class="canvas paper-frame" id="canvas">
+
+<div class="paper-visible"></div>
+
+<div class="acrylic-safe" id="safeArea" style="display:none"></div>
+<div class="top-zone" id="topZone" style="display:none">顶部装饰区域</div>
+
+<img
+id="preview"
+class="preview-image"
+src="https://images.unsplash.com/photo-1524504388940-b1c1722653e1?q=80&w=1200&auto=format&fit=crop"
+/>
+
 </div>
 
-<div class="mode-label" id="modeLabel">
-双指缩放 / 双指旋转 / 鼠标拖拽 / 滚轮缩放
 </div>
+
+<div class="controls">
+
+<div>
+<label>上传图片</label>
+<input type="file" id="upload" accept="image/*" />
+</div>
+
+<div>
+<label>灯光强度</label>
+<input type="range" id="glow" min="0" max="100" value="60" />
+</div>
+
+<div>
+<label>图片缩放</label>
+<input type="range" id="scale" min="50" max="250" value="100" />
+</div>
+
+<div>
+<label>图片旋转</label>
+<input type="range" id="rotate" min="-180" max="180" value="0" />
+</div>
+
+<div>
+<label>模式切换</label>
+<div class="mode-buttons">
+<button onclick="enableWoodFrame()">木框模式</button>
+<button onclick="enablePhotocard()">透卡模式</button>
+<button onclick="setPortrait()">竖版</button>
+<button onclick="setLandscape()">横版</button>
+</div>
+</div>
+
+<div>
+<label>灯光预览</label>
+<div class="light-buttons">
+<button class="light-btn" onclick="setWarm()">暖光</button>
+<button class="light-btn" onclick="setWhite()">白光</button>
+<button class="light-btn" onclick="setDay()">日光</button>
+</div>
+</div>
+
+<div>
+<label>操作方式</label>
+<div class="info-box">
+手机：双指缩放 / 双指旋转 / 单指拖动<br><br>
+电脑：鼠标拖动 / 滚轮缩放<br><br>
+图片会自动铺满，并且不会移出编辑区域。
+</div>
+</div>
+
+</div>
+
+</div>
+
+<footer>
+MOODAY • Acrylic Light Editor V3
+</footer>
 
 <script>
+const upload = document.getElementById('upload');
+const preview = document.getElementById('preview');
+const scale = document.getElementById('scale');
+const rotate = document.getElementById('rotate');
+const glow = document.getElementById('glow');
 const canvas = document.getElementById('canvas');
-const ctx = canvas.getContext('2d');
-const glowSlider = document.getElementById('glowSlider');
-const woodFrame = document.getElementById('woodFrame');
-const canvasWrap = document.getElementById('canvasWrap');
+const frameWrap = document.getElementById('frameWrap');
+const paperTab = document.getElementById('paperTab');
+const acrylicTab = document.getElementById('acrylicTab');
+const safeArea = document.getElementById('safeArea');
+const topZone = document.getElementById('topZone');
 
-let editorWidth = 800;
-let editorHeight = 1000;
+let imgScale = 1;
+let imgRotation = 0;
+let posX = 0;
+let posY = 0;
 
-canvas.width = editorWidth;
-canvas.height = editorHeight;
+let dragging = false;
+let startX = 0;
+let startY = 0;
 
-let imageObj = null;
-
-let state = {
-  x:0,
-  y:0,
-  scale:1,
-  rotation:0
-};
-
-let isDragging = false;
-let lastX = 0;
-let lastY = 0;
-
-let touchStartDistance = 0;
-let touchStartAngle = 0;
+let initialDistance = 0;
+let initialAngle = 0;
 let startScale = 1;
 let startRotation = 0;
 
-function render(){
-  ctx.clearRect(0,0,canvas.width,canvas.height);
+let currentMode = 'paper';
 
-  ctx.fillStyle = '#000';
-  ctx.fillRect(0,0,canvas.width,canvas.height);
-
-  if(!imageObj) return;
-
-  ctx.save();
-
-  ctx.translate(state.x, state.y);
-  ctx.rotate(state.rotation * Math.PI / 180);
-  ctx.scale(state.scale, state.scale);
-
-  ctx.drawImage(
-    imageObj,
-    -imageObj.width/2,
-    -imageObj.height/2
-  );
-
-  ctx.restore();
-
-  acrylicGlow();
-}
-
-function acrylicGlow(){
-  const glowValue = glowSlider.value;
-
-  canvasWrap.style.boxShadow = `
-    0 0 ${glowValue/2}px rgba(255,255,255,0.25),
-    0 0 ${glowValue}px rgba(0,255,255,0.18),
-    0 0 ${glowValue*1.5}px rgba(0,180,255,0.1)
-  `;
+function updateTransform(){
+preview.style.transform = `translate(calc(-50% + ${posX}px), calc(-50% + ${posY}px)) scale(${imgScale}) rotate(${imgRotation}deg)`;
 }
 
 function fitImage(){
-  if(!imageObj) return;
+preview.onload = ()=>{
+const containerW = canvas.clientWidth;
+const containerH = canvas.clientHeight;
 
-  const scaleX = editorWidth / imageObj.width;
-  const scaleY = editorHeight / imageObj.height;
+const imgW = preview.naturalWidth;
+const imgH = preview.naturalHeight;
 
-  state.scale = Math.max(scaleX, scaleY);
+const scaleX = containerW / imgW;
+const scaleY = containerH / imgH;
 
-  state.x = editorWidth / 2;
-  state.y = editorHeight / 2;
+imgScale = Math.max(scaleX, scaleY);
 
-  render();
+scale.value = Math.round(imgScale * 100);
+
+posX = 0;
+posY = 0;
+
+updateTransform();
+}
 }
 
-function clampImage(){
-  if(!imageObj) return;
+function clampPosition(){
+const maxOffset = 180;
 
-  const w = imageObj.width * state.scale;
-  const h = imageObj.height * state.scale;
+if(posX > maxOffset) posX = maxOffset;
+if(posX < -maxOffset) posX = -maxOffset;
 
-  const minX = editorWidth - w/2;
-  const maxX = w/2;
+if(posY > maxOffset) posY = maxOffset;
+if(posY < -maxOffset) posY = -maxOffset;
+}
 
-  const minY = editorHeight - h/2;
-  const maxY = h/2;
+upload.addEventListener('change', function(e){
+const file = e.target.files[0];
+if(file){
+const reader = new FileReader();
+reader.onload = function(event){
+preview.src = event.target.result;
+fitImage();
+}
+reader.readAsDataURL(file);
+}
+});
 
-  state.x = Math.min(Math.max(state.x, minX), maxX);
-  state.y = Math.min(Math.max(state.y, minY), maxY);
+scale.addEventListener('input', function(){
+imgScale = scale.value / 100;
+updateTransform();
+});
+
+rotate.addEventListener('input', function(){
+imgRotation = rotate.value;
+updateTransform();
+});
+
+glow.addEventListener('input', ()=>{
+const g = glow.value;
+canvas.style.boxShadow = `
+0 0 ${g/2}px rgba(255,255,255,0.15),
+0 0 ${g}px rgba(0,200,255,0.18),
+0 0 ${g*1.5}px rgba(0,200,255,0.12)
+`;
+});
+
+function setWarm(){
+canvas.style.boxShadow = '0 0 30px rgba(255,180,100,0.35),0 0 60px rgba(255,180,100,0.15)';
+}
+
+function setWhite(){
+canvas.style.boxShadow = '0 0 30px rgba(255,255,255,0.35),0 0 60px rgba(255,255,255,0.15)';
+}
+
+function setDay(){
+canvas.style.boxShadow = '0 0 30px rgba(180,220,255,0.35),0 0 60px rgba(180,220,255,0.15)';
+}
+
+paperTab.addEventListener('click', ()=>{
+currentMode = 'paper';
+canvas.className = 'canvas paper-frame';
+paperTab.classList.add('active');
+acrylicTab.classList.remove('active');
+safeArea.style.display = 'none';
+topZone.style.display = 'none';
+});
+
+acrylicTab.addEventListener('click', ()=>{
+currentMode = 'acrylic';
+canvas.className = 'canvas acrylic-frame';
+acrylicTab.classList.add('active');
+paperTab.classList.remove('active');
+safeArea.style.display = 'block';
+topZone.style.display = 'flex';
+});
+
+function enableWoodFrame(){
+frameWrap.classList.add('wood-frame-mode');
+}
+
+function enablePhotocard(){
+canvas.classList.add('photocard-mode');
 }
 
 function setPortrait(){
-  editorWidth = 800;
-  editorHeight = 1000;
-
-  canvas.width = editorWidth;
-  canvas.height = editorHeight;
-
-  fitImage();
+canvas.style.width = '240px';
+canvas.style.height = '360px';
 }
 
 function setLandscape(){
-  editorWidth = 1000;
-  editorHeight = 800;
-
-  canvas.width = editorWidth;
-  canvas.height = editorHeight;
-
-  fitImage();
+canvas.style.width = '360px';
+canvas.style.height = '240px';
 }
-
-function toggleWoodFrame(){
-  woodFrame.style.display = woodFrame.style.display === 'none' ? 'block' : 'block';
-}
-
-function togglePhotocard(){
-  canvasWrap.style.backdropFilter = 'blur(6px)';
-  canvasWrap.style.background = 'rgba(255,255,255,0.05)';
-}
-
-document.getElementById('upload').addEventListener('change', e=>{
-  const file = e.target.files[0];
-  if(!file) return;
-
-  const img = new Image();
-
-  img.onload = ()=>{
-    imageObj = img;
-    fitImage();
-  }
-
-  img.src = URL.createObjectURL(file);
-});
 
 canvas.addEventListener('mousedown', e=>{
-  isDragging = true;
-  lastX = e.clientX;
-  lastY = e.clientY;
+dragging = true;
+startX = e.clientX;
+startY = e.clientY;
 });
 
 window.addEventListener('mouseup', ()=>{
-  isDragging = false;
+dragging = false;
 });
 
 window.addEventListener('mousemove', e=>{
-  if(!isDragging || !imageObj) return;
+if(!dragging) return;
 
-  const dx = e.clientX - lastX;
-  const dy = e.clientY - lastY;
+const dx = e.clientX - startX;
+const dy = e.clientY - startY;
 
-  state.x += dx;
-  state.y += dy;
+posX += dx;
+posY += dy;
 
-  lastX = e.clientX;
-  lastY = e.clientY;
+clampPosition();
+updateTransform();
 
-  clampImage();
-  render();
+startX = e.clientX;
+startY = e.clientY;
 });
 
 canvas.addEventListener('wheel', e=>{
-  e.preventDefault();
+e.preventDefault();
 
-  if(!imageObj) return;
+if(e.deltaY < 0){
+imgScale += 0.05;
+}else{
+imgScale -= 0.05;
+}
 
-  const zoom = 0.05;
+if(imgScale < 0.2) imgScale = 0.2;
 
-  if(e.deltaY < 0){
-    state.scale += zoom;
-  }else{
-    state.scale -= zoom;
-  }
+scale.value = Math.round(imgScale * 100);
 
-  state.scale = Math.max(0.1, state.scale);
-
-  clampImage();
-  render();
+updateTransform();
 });
 
 canvas.addEventListener('touchstart', e=>{
-  if(e.touches.length === 1){
-    lastX = e.touches[0].clientX;
-    lastY = e.touches[0].clientY;
-  }
+if(e.touches.length === 1){
+startX = e.touches[0].clientX;
+startY = e.touches[0].clientY;
+}
 
-  if(e.touches.length === 2){
-    const dx = e.touches[1].clientX - e.touches[0].clientX;
-    const dy = e.touches[1].clientY - e.touches[0].clientY;
+if(e.touches.length === 2){
+const dx = e.touches[1].clientX - e.touches[0].clientX;
+const dy = e.touches[1].clientY - e.touches[0].clientY;
 
-    touchStartDistance = Math.sqrt(dx*dx + dy*dy);
-    touchStartAngle = Math.atan2(dy, dx);
+initialDistance = Math.sqrt(dx*dx + dy*dy);
+initialAngle = Math.atan2(dy, dx);
 
-    startScale = state.scale;
-    startRotation = state.rotation;
-  }
-});
-
-canvas.addEventListener('touchmove', e=>{
-  e.preventDefault();
-
-  if(!imageObj) return;
-
-  if(e.touches.length === 1){
-    const dx = e.touches[0].clientX - lastX;
-    const dy = e.touches[0].clientY - lastY;
-
-    state.x += dx;
-    state.y += dy;
-
-    lastX = e.touches[0].clientX;
-    lastY = e.touches[0].clientY;
-
-    clampImage();
-    render();
-  }
-
-  if(e.touches.length === 2){
-    const dx = e.touches[1].clientX - e.touches[0].clientX;
-    const dy = e.touches[1].clientY - e.touches[0].clientY;
-
-    const dist = Math.sqrt(dx*dx + dy*dy);
-    const angle = Math.atan2(dy, dx);
-
-    state.scale = startScale * (dist / touchStartDistance);
-    state.rotation = startRotation + ((angle - touchStartAngle) * 180 / Math.PI);
-
-    clampImage();
-    render();
-  }
+startScale = imgScale;
+startRotation = imgRotation;
+}
 },{passive:false});
 
-glowSlider.addEventListener('input', ()=>{
-  acrylicGlow();
-});
+canvas.addEventListener('touchmove', e=>{
+e.preventDefault();
 
-render();
+if(e.touches.length === 1){
+const dx = e.touches[0].clientX - startX;
+const dy = e.touches[0].clientY - startY;
+
+posX += dx;
+posY += dy;
+
+clampPosition();
+updateTransform();
+
+startX = e.touches[0].clientX;
+startY = e.touches[0].clientY;
+}
+
+if(e.touches.length === 2){
+const dx = e.touches[1].clientX - e.touches[0].clientX;
+const dy = e.touches[1].clientY - e.touches[0].clientY;
+
+const dist = Math.sqrt(dx*dx + dy*dy);
+const angle = Math.atan2(dy, dx);
+
+imgScale = startScale * (dist / initialDistance);
+imgRotation = startRotation + ((angle - initialAngle) * 180 / Math.PI);
+
+scale.value = Math.round(imgScale * 100);
+rotate.value = Math.round(imgRotation);
+
+updateTransform();
+}
+},{passive:false});
+
+fitImage();
 </script>
 
 </body>
