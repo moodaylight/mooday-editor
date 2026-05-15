@@ -1,321 +1,177 @@
-<!DOCTYPE html>
-<html lang="zh">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>MOODAY Editor V5</title>
+export default function LedFrameEditorV5() {
+  const templates = [
+    "감성",
+    "커플",
+    "별빛",
+    "미니멀",
+    "생일",
+    "플라워",
+  ];
 
-<style>
-*{margin:0;padding:0;box-sizing:border-box;font-family:Arial,sans-serif;}
-body{background:#0d0d0d;color:#fff;min-height:100vh;display:flex;flex-direction:column;}
-header{padding:18px;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid #222;background:#111;}
-header h1{font-size:22px;font-weight:300;letter-spacing:2px;}
-.top-buttons{display:flex;gap:10px;}
-button{background:#1c1c1c;border:1px solid #333;color:white;padding:10px 14px;border-radius:12px;cursor:pointer;}
-button:hover{background:#2a2a2a;}
-.main{flex:1;padding:20px;max-width:520px;width:100%;margin:0 auto;display:flex;flex-direction:column;gap:20px;}
-.tabs{display:flex;gap:10px;}
-.tab{flex:1;padding:14px;text-align:center;border-radius:16px;background:#181818;border:1px solid #2d2d2d;cursor:pointer;}
-.active{background:#2d241d;border-color:#d4a36c;}
-.canvas-wrap{display:flex;justify-content:center;transition:.3s;}
-.wood-frame{padding:16px;border-radius:28px;background:linear-gradient(135deg,#7a5a3a,#4b3422);box-shadow:0 20px 40px rgba(0,0,0,.5),inset 0 1px 4px rgba(255,255,255,.08);}
-.canvas{position:relative;overflow:hidden;background:black;border-radius:24px;touch-action:none;transition:.3s;}
-.paper{width:360px;height:240px;}
-.acrylic{width:240px;height:360px;background:rgba(255,255,255,.03);border:2px solid rgba(255,255,255,.1);box-shadow:0 0 10px rgba(255,255,255,.08),0 0 30px rgba(0,180,255,.16),0 0 60px rgba(0,180,255,.1),inset 0 0 20px rgba(255,255,255,.04);}
-.photocard{backdrop-filter:blur(6px);background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.15);}
-#preview{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);max-width:none;user-select:none;pointer-events:none;will-change:transform;}
-.visible-area{position:absolute;left:22px;right:22px;top:22px;bottom:22px;border:2px dashed rgba(255,255,255,.8);border-radius:10px;pointer-events:none;}
-.mask{position:absolute;background:rgba(0,0,0,.55);pointer-events:none;}
-.mask-top{top:0;left:0;right:0;height:22px;}
-.mask-bottom{bottom:0;left:0;right:0;height:22px;}
-.mask-left{left:0;top:22px;bottom:22px;width:22px;}
-.mask-right{right:0;top:22px;bottom:22px;width:22px;}
-.safe-zone{position:absolute;left:10px;right:10px;bottom:10px;height:260px;border:2px dashed rgba(255,200,120,.8);border-radius:12px;display:none;pointer-events:none;}
-.top-zone{position:absolute;top:0;left:0;right:0;height:80px;display:none;justify-content:center;align-items:center;font-size:12px;letter-spacing:2px;color:rgba(255,255,255,.6);pointer-events:none;}
-.base-light{position:absolute;bottom:-12px;left:50%;transform:translateX(-50%);width:140px;height:22px;border-radius:30px;background:#f7c58a;filter:blur(14px);display:none;}
-.controls{background:#151515;border:1px solid #222;padding:18px;border-radius:20px;display:flex;flex-direction:column;gap:16px;}
-label{font-size:13px;color:#aaa;margin-bottom:6px;display:block;}
-input[type='range']{width:100%;}
-.light-buttons,.mode-buttons{display:flex;gap:10px;flex-wrap:wrap;}
-.light-buttons button,.mode-buttons button{flex:1;}
-.tip{font-size:12px;line-height:1.7;color:#777;}
-footer{padding:14px;text-align:center;font-size:12px;color:#666;}
-</style>
-</head>
-<body>
-<header>
-<h1>MOODAY</h1>
-<div class="top-buttons">
-<button>重新编辑</button>
-<button>提交制作</button>
-</div>
-</header>
+  const tools = [
+    { label: "템플릿", icon: "🖼️" },
+    { label: "사진", icon: "📷" },
+    { label: "문자", icon: "✍️" },
+    { label: "조명", icon: "💡" },
+    { label: "장식", icon: "✨" },
+  ];
 
-<div class="main">
-<div class="tabs">
-<div class="tab active" id="paperTab">灯光画</div>
-<div class="tab" id="acrylicTab">亚克力灯</div>
-</div>
+  return (
+    <div className="min-h-screen bg-[#f5f1ec] flex items-center justify-center p-4">
+      <div className="w-[390px] h-[844px] bg-white rounded-[40px] overflow-hidden shadow-2xl border border-neutral-200 relative">
 
-<div class="canvas-wrap" id="canvasWrap">
-<div class="canvas paper" id="canvas">
-<img id="preview" src="https://images.unsplash.com/photo-1524504388940-b1c1722653e1?q=80&w=1200&auto=format&fit=crop">
-<div class="mask mask-top"></div>
-<div class="mask mask-bottom"></div>
-<div class="mask mask-left"></div>
-<div class="mask mask-right"></div>
-<div class="visible-area" id="visibleArea"></div>
-<div class="safe-zone" id="safeZone"></div>
-<div class="top-zone" id="topZone">装饰区域 / 名字区域</div>
-<div class="base-light" id="baseLight"></div>
-</div>
-</div>
+        {/* Header */}
+        <div className="h-16 px-5 flex items-center justify-between border-b bg-white">
+          <button className="text-xl">←</button>
+          <div className="font-bold text-lg">조명 액자 편집</div>
+          <button className="bg-black text-white text-sm px-4 py-2 rounded-xl">
+            저장
+          </button>
+        </div>
 
-<div class="controls">
-<div>
-<label>上传图片</label>
-<input type="file" id="upload" accept="image/*">
-</div>
+        {/* Product Type */}
+        <div className="px-4 pt-4">
+          <div className="bg-neutral-100 rounded-2xl p-1 flex gap-1">
+            <button className="flex-1 bg-white rounded-xl py-2 text-sm font-medium shadow-sm">
+              단독 액자
+            </button>
+            <button className="flex-1 rounded-xl py-2 text-sm text-neutral-500">
+              데스크 세트
+            </button>
+          </div>
+        </div>
 
-<div>
-<label>缩放</label>
-<input type="range" id="scale" min="30" max="400" value="100">
-</div>
+        {/* Main Preview */}
+        <div className="px-4 pt-4">
+          <div className="rounded-[32px] bg-gradient-to-b from-[#d9c6b7] to-[#8d6c5a] h-[430px] relative overflow-hidden shadow-inner">
 
-<div>
-<label>旋转</label>
-<input type="range" id="rotate" min="-180" max="180" value="0">
-</div>
+            {/* Real Product */}
+            <div className="absolute inset-0 flex items-center justify-center">
 
-<div>
-<label>模式</label>
-<div class="mode-buttons">
-<button onclick="enableWoodFrame()">木框模式</button>
-<button onclick="enablePhotocard()">透卡模式</button>
-<button onclick="setPortrait()">竖版</button>
-<button onclick="setLandscape()">横版</button>
-</div>
-</div>
+              <div className="relative w-[300px]">
 
-<div>
-<label>灯光预览</label>
-<div class="light-buttons">
-<button onclick="setWarm()">暖光</button>
-<button onclick="setWhite()">白光</button>
-<button onclick="setDay()">日光</button>
-</div>
-</div>
+                {/* Base */}
+                <div className="absolute bottom-0 left-0 w-full h-20 bg-[#f8f8f6] rounded-2xl shadow-xl" />
 
-<div class="tip">
-手机：双指缩放 / 双指旋转 / 单指拖动<br>
-电脑：鼠标拖动 / 滚轮缩放<br>
-图片自动铺满，并限制移出编辑区域。
-</div>
-</div>
-</div>
+                {/* Pen Holder */}
+                <div className="absolute right-0 bottom-14 w-20 h-32 bg-[#f8f8f6] rounded-2xl shadow-lg flex flex-col items-center justify-center text-center text-[10px] text-neutral-700">
+                  <div className="text-lg">🌼</div>
+                  우리의 추억
+                  <br />
+                  2024.05.20
+                </div>
 
-<footer>MOODAY • Night Light Editor V5</footer>
+                {/* Pens */}
+                <div className="absolute right-5 bottom-40 text-4xl rotate-12">✏️</div>
 
-<script>
-const upload=document.getElementById('upload');
-const preview=document.getElementById('preview');
-const scaleSlider=document.getElementById('scale');
-const rotateSlider=document.getElementById('rotate');
-const canvas=document.getElementById('canvas');
-const canvasWrap=document.getElementById('canvasWrap');
-const paperTab=document.getElementById('paperTab');
-const acrylicTab=document.getElementById('acrylicTab');
-const safeZone=document.getElementById('safeZone');
-const topZone=document.getElementById('topZone');
-const baseLight=document.getElementById('baseLight');
-const visibleArea=document.getElementById('visibleArea');
+                {/* Frame */}
+                <div className="absolute left-0 bottom-16 w-[230px] h-[170px] bg-[#f7f7f5] rounded-[26px] shadow-2xl p-3">
 
-let scale=1;
-let rotation=0;
-let posX=0;
-let posY=0;
-let dragging=false;
-let startX,startY;
-let initialDistance=0;
-let initialAngle=0;
-let startScale=1;
-let startRotation=0;
+                  {/* Light Area */}
+                  <div className="w-full h-full rounded-[18px] overflow-hidden relative bg-black shadow-[0_0_30px_rgba(255,220,180,0.8)]">
 
-function updateImage(){
-preview.style.transform=`translate(calc(-50% + ${posX}px),calc(-50% + ${posY}px)) scale(${scale}) rotate(${rotation}deg)`;
+                    <img
+                      src="https://images.unsplash.com/photo-1524504388940-b1c1722653e1?q=80&w=1200&auto=format&fit=crop"
+                      className="w-full h-full object-cover"
+                    />
+
+                    {/* Decorations */}
+                    <div className="absolute inset-0 text-white">
+                      <div className="absolute top-3 left-4 text-xs">✨</div>
+                      <div className="absolute top-6 right-5 text-xs">✨</div>
+                      <div className="absolute bottom-5 left-5 text-xs">✨</div>
+                      <div className="absolute bottom-8 right-8 text-xs">✨</div>
+
+                      <div className="absolute top-5 left-1/2 -translate-x-1/2 text-lg font-light tracking-wide drop-shadow-lg">
+                        우리의 소중한 순간
+                      </div>
+
+                      <div className="absolute bottom-4 left-1/2 -translate-x-1/2 text-sm drop-shadow-lg">
+                        2024.05.20 ♡
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Lighting Controls */}
+        <div className="px-4 pt-4">
+          <div className="bg-neutral-50 rounded-3xl p-4 border border-neutral-100">
+            <div className="flex items-center justify-between mb-3">
+              <div className="text-sm font-semibold">조명 모드</div>
+              <div className="text-xs text-neutral-500">짧게 눌러 변경</div>
+            </div>
+
+            <div className="grid grid-cols-3 gap-2 mb-4">
+              <button className="bg-[#fff3df] border border-amber-200 rounded-2xl py-3 text-sm font-medium">
+                따뜻한 빛
+              </button>
+
+              <button className="bg-white border rounded-2xl py-3 text-sm">
+                중간 빛
+              </button>
+
+              <button className="bg-white border rounded-2xl py-3 text-sm">
+                차가운 빛
+              </button>
+            </div>
+
+            <div className="flex items-center gap-3">
+              <span className="text-sm">☀️</span>
+              <input type="range" className="w-full" defaultValue={70} />
+              <span className="text-sm text-neutral-500">70%</span>
+            </div>
+          </div>
+        </div>
+
+        {/* Bottom Tool Bar */}
+        <div className="absolute bottom-0 left-0 right-0 bg-white border-t h-24 px-2 flex items-start justify-around pt-3">
+          {tools.map((tool) => (
+            <button
+              key={tool.label}
+              className="flex flex-col items-center gap-1 text-neutral-700 text-xs"
+            >
+              <div className="w-12 h-12 rounded-2xl bg-neutral-100 flex items-center justify-center text-xl">
+                {tool.icon}
+              </div>
+              {tool.label}
+            </button>
+          ))}
+        </div>
+
+        {/* Template Drawer Mock */}
+        <div className="absolute bottom-24 left-0 right-0 bg-white rounded-t-[32px] shadow-2xl border-t p-4 h-[240px]">
+          <div className="w-14 h-1.5 bg-neutral-300 rounded-full mx-auto mb-4" />
+
+          <div className="flex gap-2 overflow-x-auto pb-3">
+            {templates.map((item) => (
+              <button
+                key={item}
+                className="px-4 py-2 rounded-full bg-neutral-100 text-sm whitespace-nowrap"
+              >
+                {item}
+              </button>
+            ))}
+          </div>
+
+          <div className="grid grid-cols-3 gap-3 mt-2">
+            {[1, 2, 3].map((i) => (
+              <div
+                key={i}
+                className="aspect-[3/4] rounded-2xl overflow-hidden border bg-neutral-100"
+              >
+                <img
+                  src="https://images.unsplash.com/photo-1517841905240-472988babdf9?q=80&w=800&auto=format&fit=crop"
+                  className="w-full h-full object-cover"
+                />
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </div>
+  );
 }
-
-function clampPosition(){
-const limitX=180;
-const limitY=180;
-if(posX>limitX) posX=limitX;
-if(posX<-limitX) posX=-limitX;
-if(posY>limitY) posY=limitY;
-if(posY<-limitY) posY=-limitY;
-}
-
-function fitImage(){
-const canvasRatio=canvas.clientWidth/canvas.clientHeight;
-const imageRatio=preview.naturalWidth/preview.naturalHeight;
-if(imageRatio>canvasRatio){
-scale=canvas.clientHeight/preview.naturalHeight;
-}else{
-scale=canvas.clientWidth/preview.naturalWidth;
-}
-scaleSlider.value=Math.round(scale*100);
-posX=0;posY=0;
-updateImage();
-}
-
-upload.addEventListener('change',e=>{
-const file=e.target.files[0];
-if(file){
-const reader=new FileReader();
-reader.onload=event=>{preview.src=event.target.result;};
-reader.readAsDataURL(file);
-}
-});
-
-preview.onload=()=>{fitImage();};
-
-scaleSlider.addEventListener('input',()=>{
-scale=scaleSlider.value/100;
-updateImage();
-});
-
-rotateSlider.addEventListener('input',()=>{
-rotation=rotateSlider.value;
-updateImage();
-});
-
-canvas.addEventListener('mousedown',e=>{
-dragging=true;
-startX=e.clientX;
-startY=e.clientY;
-});
-
-window.addEventListener('mouseup',()=>dragging=false);
-
-window.addEventListener('mousemove',e=>{
-if(!dragging) return;
-posX+=e.clientX-startX;
-posY+=e.clientY-startY;
-clampPosition();
-updateImage();
-startX=e.clientX;
-startY=e.clientY;
-});
-
-canvas.addEventListener('wheel',e=>{
-e.preventDefault();
-if(e.deltaY<0){scale+=0.05;}else{scale-=0.05;}
-if(scale<0.3) scale=0.3;
-if(scale>4) scale=4;
-scaleSlider.value=Math.round(scale*100);
-updateImage();
-});
-
-canvas.addEventListener('touchstart',e=>{
-if(e.touches.length===1){
-startX=e.touches[0].clientX;
-startY=e.touches[0].clientY;
-}
-if(e.touches.length===2){
-const dx=e.touches[1].clientX-e.touches[0].clientX;
-const dy=e.touches[1].clientY-e.touches[0].clientY;
-initialDistance=Math.sqrt(dx*dx+dy*dy);
-initialAngle=Math.atan2(dy,dx);
-startScale=scale;
-startRotation=rotation;
-}
-},{passive:false});
-
-canvas.addEventListener('touchmove',e=>{
-e.preventDefault();
-if(e.touches.length===1){
-const currentX=e.touches[0].clientX;
-const currentY=e.touches[0].clientY;
-posX+=currentX-startX;
-posY+=currentY-startY;
-clampPosition();
-updateImage();
-startX=currentX;
-startY=currentY;
-}
-if(e.touches.length===2){
-const dx=e.touches[1].clientX-e.touches[0].clientX;
-const dy=e.touches[1].clientY-e.touches[0].clientY;
-const distance=Math.sqrt(dx*dx+dy*dy);
-const angle=Math.atan2(dy,dx);
-scale=startScale*(distance/initialDistance);
-rotation=startRotation+(angle-initialAngle)*180/Math.PI;
-if(scale<0.3) scale=0.3;
-if(scale>4) scale=4;
-scaleSlider.value=Math.round(scale*100);
-rotateSlider.value=Math.round(rotation);
-updateImage();
-}
-},{passive:false});
-
-paperTab.addEventListener('click',()=>{
-canvas.className='canvas paper';
-paperTab.classList.add('active');
-acrylicTab.classList.remove('active');
-visibleArea.style.display='block';
-safeZone.style.display='none';
-topZone.style.display='none';
-baseLight.style.display='none';
-});
-
-acrylicTab.addEventListener('click',()=>{
-canvas.className='canvas acrylic';
-paperTab.classList.remove('active');
-acrylicTab.classList.add('active');
-visibleArea.style.display='none';
-safeZone.style.display='block';
-topZone.style.display='flex';
-baseLight.style.display='block';
-});
-
-function setWarm(){
-canvas.style.boxShadow='0 0 40px rgba(255,190,120,.45),0 0 80px rgba(255,190,120,.15)';
-baseLight.style.background='#f7c58a';
-preview.style.filter='brightness(1.05) sepia(.25)';
-}
-
-function setWhite(){
-canvas.style.boxShadow='0 0 40px rgba(255,255,255,.45),0 0 80px rgba(255,255,255,.15)';
-baseLight.style.background='#ffffff';
-preview.style.filter='brightness(1.1)';
-}
-
-function setDay(){
-canvas.style.boxShadow='0 0 40px rgba(180,220,255,.45),0 0 80px rgba(180,220,255,.15)';
-baseLight.style.background='#d7ecff';
-preview.style.filter='brightness(1.15)';
-}
-
-function enableWoodFrame(){
-canvasWrap.classList.toggle('wood-frame');
-}
-
-function enablePhotocard(){
-canvas.classList.toggle('photocard');
-}
-
-function setPortrait(){
-canvas.style.width='240px';
-canvas.style.height='360px';
-fitImage();
-}
-
-function setLandscape(){
-canvas.style.width='360px';
-canvas.style.height='240px';
-fitImage();
-}
-
-updateImage();
-</script>
-</body>
-</html>
