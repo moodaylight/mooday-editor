@@ -1,130 +1,302 @@
-export default function MoodayEditorV1() {
-  // MOODAY 魔镜灯光画 V1 手机版在线编辑器
-  return (
-    <div className="min-h-screen bg-[#f5f5f7] flex flex-col items-center">
-      {/* 顶部 */}
-      <header className="w-full bg-white border-b border-gray-200 px-4 py-3 flex items-center justify-between sticky top-0 z-50">
-        <div>
-          <h1 className="text-lg font-semibold tracking-wide">MOODAY 在线编辑器</h1>
-          <p className="text-[11px] text-gray-500">魔镜灯光画</p>
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MOODAY 在线编辑器</title>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: Arial, sans-serif;
+    }
+
+    body {
+      background: #f5f5f7;
+      color: #111;
+    }
+
+    .header {
+      background: white;
+      border-bottom: 1px solid #e5e5e5;
+      padding: 14px 18px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .title h1 {
+      font-size: 20px;
+      font-weight: 700;
+    }
+
+    .title p {
+      font-size: 11px;
+      color: #777;
+      margin-top: 2px;
+    }
+
+    .submit-btn {
+      background: black;
+      color: white;
+      border: none;
+      border-radius: 999px;
+      padding: 10px 18px;
+      font-size: 13px;
+      cursor: pointer;
+    }
+
+    .container {
+      max-width: 430px;
+      margin: auto;
+      padding: 18px;
+    }
+
+    .template-list {
+      display: flex;
+      gap: 10px;
+      overflow-x: auto;
+      margin-bottom: 18px;
+    }
+
+    .template-item {
+      background: white;
+      border: 1px solid #ddd;
+      border-radius: 999px;
+      padding: 10px 16px;
+      white-space: nowrap;
+      font-size: 13px;
+    }
+
+    .editor-box {
+      background: white;
+      border-radius: 30px;
+      padding: 24px;
+      border: 1px solid #e5e5e5;
+      display: flex;
+      justify-content: center;
+      margin-bottom: 20px;
+    }
+
+    .frame {
+      width: 238px;
+      height: 348px;
+      background: #f8f8f8;
+      border-radius: 30px;
+      padding: 28px;
+      position: relative;
+      border: 1px solid #d9d9d9;
+      box-shadow: inset 0 0 10px rgba(0,0,0,0.08);
+    }
+
+    .inner-step {
+      position: absolute;
+      top: 28px;
+      left: 28px;
+      right: 28px;
+      bottom: 28px;
+      border-radius: 18px;
+      box-shadow: inset 0 3px 8px rgba(0,0,0,0.2);
+      border: 1px solid #d5d5d5;
+    }
+
+    .photo-area {
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      border-radius: 12px;
+      position: relative;
+      background: black;
+    }
+
+    .photo-area img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .warm-light {
+      position: absolute;
+      inset: 0;
+      background: rgba(255, 180, 120, 0.22);
+      mix-blend-mode: screen;
+    }
+
+    .text-layer {
+      position: absolute;
+      bottom: 18px;
+      width: 100%;
+      text-align: center;
+      color: white;
+      font-size: 22px;
+      letter-spacing: 4px;
+      text-shadow: 0 0 10px rgba(255,255,255,0.6);
+    }
+
+    .panel {
+      background: white;
+      border-radius: 28px;
+      padding: 18px;
+      border: 1px solid #e5e5e5;
+    }
+
+    .upload-btn {
+      width: 100%;
+      border: none;
+      background: black;
+      color: white;
+      padding: 14px;
+      border-radius: 18px;
+      font-size: 14px;
+      cursor: pointer;
+      margin-bottom: 18px;
+    }
+
+    .section-title {
+      font-size: 14px;
+      font-weight: 700;
+      margin-bottom: 12px;
+    }
+
+    .tool-row {
+      display: flex;
+      gap: 8px;
+      overflow-x: auto;
+      margin-bottom: 20px;
+    }
+
+    .tool-btn {
+      background: #f1f1f1;
+      border: none;
+      border-radius: 999px;
+      padding: 10px 16px;
+      white-space: nowrap;
+      font-size: 13px;
+      cursor: pointer;
+    }
+
+    .light-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 8px;
+    }
+
+    .light-btn {
+      border: none;
+      border-radius: 18px;
+      padding: 12px 0;
+      font-size: 13px;
+      cursor: pointer;
+    }
+
+    .white-light {
+      background: #eef5ff;
+      color: #2563eb;
+    }
+
+    .warm-light-btn {
+      background: #fff2e8;
+      color: #ea580c;
+    }
+
+    .day-light {
+      background: #fff8dc;
+      color: #ca8a04;
+    }
+
+    .off-light {
+      background: #f1f1f1;
+      color: #555;
+    }
+
+    .footer-tip {
+      text-align: center;
+      color: #999;
+      font-size: 12px;
+      line-height: 1.8;
+      padding: 24px 0 40px;
+    }
+  </style>
+</head>
+
+<body>
+
+  <header class="header">
+    <div class="title">
+      <h1>MOODAY 在线编辑器</h1>
+      <p>魔镜灯光画</p>
+    </div>
+
+    <button class="submit-btn">提交制作</button>
+  </header>
+
+  <div class="container">
+
+    <div class="template-list">
+      <div class="template-item">韩系情侣</div>
+      <div class="template-item">暖光氛围</div>
+      <div class="template-item">夜景风格</div>
+      <div class="template-item">极简艺术</div>
+    </div>
+
+    <div class="editor-box">
+
+      <div class="frame">
+
+        <div class="inner-step"></div>
+
+        <div class="photo-area">
+
+          <img src="https://images.unsplash.com/photo-1524504388940-b1c1722653e1?q=80&w=1200&auto=format&fit=crop">
+
+          <div class="warm-light"></div>
+
+          <div class="text-layer">
+            FOREVER
+          </div>
+
         </div>
 
-        <button className="text-sm bg-black text-white px-4 py-2 rounded-full">
-          提交制作
-        </button>
-      </header>
+      </div>
 
-      {/* 主编辑区域 */}
-      <main className="w-full max-w-md px-4 py-5 flex flex-col gap-5">
-
-        {/* 默认模板 */}
-        <section className="flex gap-3 overflow-x-auto pb-2">
-          {[
-            "韩系情侣",
-            "暖光氛围",
-            "夜景风格",
-            "极简艺术"
-          ].map((item) => (
-            <div
-              key={item}
-              className="shrink-0 bg-white border border-gray-200 rounded-2xl px-4 py-2 text-sm"
-            >
-              {item}
-            </div>
-          ))}
-        </section>
-
-        {/* 相框显示区域 */}
-        <section className="bg-white rounded-[28px] shadow-sm border border-gray-200 p-5 flex justify-center">
-
-          {/* 实体相框 */}
-          <div className="relative w-[238px] h-[348px] bg-[#f7f7f7] rounded-[32px] p-[28px] shadow-inner border border-gray-300">
-
-            {/* 内凹层 */}
-            <div className="absolute inset-[28px] rounded-[18px] shadow-[inset_0_3px_8px_rgba(0,0,0,0.18)] border border-gray-300"></div>
-
-            {/* 照片显示区域 */}
-            <div className="relative w-full h-full overflow-hidden rounded-[12px] bg-black flex items-center justify-center">
-
-              {/* 默认图片 */}
-              <img
-                src="https://images.unsplash.com/photo-1524504388940-b1c1722653e1?q=80&w=1200&auto=format&fit=crop"
-                className="absolute w-full h-full object-cover"
-                alt="preview"
-              />
-
-              {/* 暖光效果 */}
-              <div className="absolute inset-0 bg-orange-200/30 mix-blend-screen"></div>
-
-              {/* 文字层 */}
-              <div className="absolute bottom-5 left-1/2 -translate-x-1/2 text-white text-xl font-light tracking-[0.25em] drop-shadow-lg">
-                FOREVER
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* 功能区 */}
-        <section className="bg-white rounded-3xl border border-gray-200 p-4 flex flex-col gap-4">
-
-          {/* 上传 */}
-          <button className="w-full bg-black text-white rounded-2xl py-3 text-sm font-medium">
-            上传照片
-          </button>
-
-          {/* 文字 */}
-          <div>
-            <p className="text-sm font-medium mb-3">文字编辑</p>
-
-            <div className="flex gap-2 overflow-x-auto">
-              {[
-                "添加文字",
-                "字体",
-                "颜色",
-                "放大",
-                "移动"
-              ].map((item) => (
-                <button
-                  key={item}
-                  className="shrink-0 bg-gray-100 px-4 py-2 rounded-full text-sm"
-                >
-                  {item}
-                </button>
-              ))}
-            </div>
-          </div>
-
-          {/* 灯光 */}
-          <div>
-            <p className="text-sm font-medium mb-3">灯光模式</p>
-
-            <div className="grid grid-cols-4 gap-2">
-              <button className="bg-blue-50 text-blue-700 rounded-2xl py-3 text-sm">
-                白光
-              </button>
-
-              <button className="bg-orange-50 text-orange-700 rounded-2xl py-3 text-sm">
-                暖光
-              </button>
-
-              <button className="bg-yellow-50 text-yellow-700 rounded-2xl py-3 text-sm">
-                日光
-              </button>
-
-              <button className="bg-gray-100 text-gray-700 rounded-2xl py-3 text-sm flex items-center justify-center gap-1">
-                💡✕
-                关灯
-              </button>
-            </div>
-          </div>
-        </section>
-
-        {/* 提示 */}
-        <section className="text-center text-[12px] text-gray-400 leading-6 pb-10">
-          用户看到哪里，最终就制作哪里<br />
-          支持 JPG / PNG / HEIC
-        </section>
-      </main>
     </div>
-  )
-}
+
+    <div class="panel">
+
+      <button class="upload-btn">上传照片</button>
+
+      <div class="section-title">文字编辑</div>
+
+      <div class="tool-row">
+        <button class="tool-btn">添加文字</button>
+        <button class="tool-btn">字体</button>
+        <button class="tool-btn">颜色</button>
+        <button class="tool-btn">放大</button>
+        <button class="tool-btn">移动</button>
+      </div>
+
+      <div class="section-title">灯光模式</div>
+
+      <div class="light-grid">
+        <button class="light-btn white-light">白光</button>
+        <button class="light-btn warm-light-btn">暖光</button>
+        <button class="light-btn day-light">日光</button>
+        <button class="light-btn off-light">💡✕ 关灯</button>
+      </div>
+
+    </div>
+
+    <div class="footer-tip">
+      用户看到哪里，最终就制作哪里<br>
+      支持 JPG / PNG / HEIC
+    </div>
+
+  </div>
+
+</body>
+</html>
