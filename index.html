@@ -21,6 +21,7 @@ body{
 background:#f5f5f7;
 color:#111;
 overflow-x:hidden;
+touch-action:none;
 }
 
 .header{
@@ -78,6 +79,7 @@ padding:10px 16px;
 white-space:nowrap;
 font-size:13px;
 flex-shrink:0;
+cursor:pointer;
 }
 
 .editor-box{
@@ -113,24 +115,34 @@ border-radius:18px;
 box-shadow:inset 0 3px 8px rgba(0,0,0,0.2);
 border:1px solid #d5d5d5;
 overflow:hidden;
+background:black;
 }
 
 .photo-area{
 width:100%;
 height:100%;
-overflow:hidden;
-border-radius:12px;
 position:relative;
-background:black;
+overflow:hidden;
+}
+
+.photo-wrapper{
+position:absolute;
+inset:0;
+display:flex;
+justify-content:center;
+align-items:center;
+overflow:hidden;
 }
 
 .photo-area img{
+position:absolute;
 width:100%;
 height:100%;
 object-fit:cover;
-transition:0.3s;
+transition:0.25s;
 user-select:none;
 pointer-events:none;
+transform-origin:center;
 }
 
 .light-layer{
@@ -139,6 +151,23 @@ inset:0;
 background:rgba(255,180,120,0.22);
 mix-blend-mode:screen;
 transition:0.3s;
+pointer-events:none;
+}
+
+.mirror-layer{
+position:absolute;
+inset:0;
+background:
+linear-gradient(
+135deg,
+rgba(255,255,255,0.2),
+rgba(255,255,255,0.03),
+rgba(255,255,255,0.12)
+);
+backdrop-filter:blur(1px);
+opacity:0;
+transition:0.3s;
+pointer-events:none;
 }
 
 .text-layer{
@@ -236,16 +265,16 @@ background:#f1f1f1;
 color:#555;
 }
 
+.active-light{
+outline:2px solid black;
+}
+
 .footer-tip{
 text-align:center;
 color:#999;
 font-size:12px;
 line-height:1.8;
 padding:10px 0 40px;
-}
-
-.active-light{
-outline:2px solid black;
 }
 
 </style>
@@ -269,10 +298,23 @@ outline:2px solid black;
 <div class="container">
 
 <div class="template-list">
-<div class="template-item">韩系情侣</div>
-<div class="template-item">暖光氛围</div>
-<div class="template-item">夜景风格</div>
-<div class="template-item">极简艺术</div>
+
+<div class="template-item">
+韩系情侣
+</div>
+
+<div class="template-item">
+暖光氛围
+</div>
+
+<div class="template-item">
+夜景风格
+</div>
+
+<div class="template-item">
+极简艺术
+</div>
+
 </div>
 
 <div class="editor-box">
@@ -283,12 +325,18 @@ outline:2px solid black;
 
 <div class="photo-area">
 
+<div class="photo-wrapper">
+
 <img
 id="photo"
 src="https://images.unsplash.com/photo-1524504388940-b1c1722653e1?q=80&w=1200&auto=format&fit=crop"
 >
 
+</div>
+
 <div class="light-layer" id="lightLayer"></div>
+
+<div class="mirror-layer" id="mirrorLayer"></div>
 
 <div class="text-layer" id="textLayer">
 FOREVER
@@ -330,10 +378,6 @@ FOREVER
 放大
 </button>
 
-<button class="tool-btn" id="moveBtn">
-移动
-</button>
-
 </div>
 
 <div class="section-title">
@@ -363,7 +407,7 @@ FOREVER
 </div>
 
 <div class="footer-tip">
-用户看到哪里，最终就制作哪里<br>
+支持双指缩放与拖动照片<br>
 支持 JPG / PNG / HEIC
 </div>
 
@@ -387,34 +431,34 @@ const photo=document.getElementById('photo');
 
 const lightLayer=document.getElementById('lightLayer');
 
+const mirrorLayer=document.getElementById('mirrorLayer');
+
 const textLayer=document.getElementById('textLayer');
 
-let currentFontSize=22;
+let currentScale=1;
 
-let currentColor='white';
+let currentX=0;
 
-let currentFont=0;
+let currentY=0;
 
-const fonts=[
-'Arial',
-'Georgia',
-'cursive',
-'monospace'
-];
+let startX=0;
 
-const colors=[
-'white',
-'#ffcc00',
-'#00e5ff',
-'#ff66cc',
-'#00ff99'
-];
+let startY=0;
 
-uploadBtn.addEventListener('click',()=>{
+let isDragging=false;
+
+function updatePhoto(){
+
+photo.style.transform=
+`translate(${currentX}px,${currentY}px) scale(${currentScale})`;
+
+}
+
+uploadBtn.onclick=()=>{
 
 fileInput.click();
 
-});
+};
 
 fileInput.addEventListener('change',(e)=>{
 
@@ -424,7 +468,7 @@ if(!file)return;
 
 const reader=new FileReader();
 
-reader.onload=function(event){
+reader.onload=(event)=>{
 
 photo.src=event.target.result;
 
@@ -434,7 +478,69 @@ reader.readAsDataURL(file);
 
 });
 
-function clearLightActive(){
+photo.parentElement.addEventListener('touchstart',(e)=>{
+
+if(e.touches.length===1){
+
+isDragging=true;
+
+startX=e.touches[0].clientX-currentX;
+
+startY=e.touches[0].clientY-currentY;
+
+}
+
+});
+
+document.addEventListener('touchmove',(e)=>{
+
+if(!isDragging)return;
+
+currentX=e.touches[0].clientX-startX;
+
+currentY=e.touches[0].clientY-startY;
+
+updatePhoto();
+
+});
+
+document.addEventListener('touchend',()=>{
+
+isDragging=false;
+
+});
+
+photo.parentElement.addEventListener('wheel',(e)=>{
+
+e.preventDefault();
+
+if(e.deltaY<0){
+
+currentScale+=0.05;
+
+}else{
+
+currentScale-=0.05;
+
+}
+
+if(currentScale<1){
+
+currentScale=1;
+
+}
+
+if(currentScale>3){
+
+currentScale=3;
+
+}
+
+updatePhoto();
+
+});
+
+function clearLight(){
 
 document
 .querySelectorAll('.light-btn')
@@ -446,55 +552,63 @@ btn.classList.remove('active-light');
 
 }
 
-document.getElementById('whiteBtn').onclick=()=>{
+whiteBtn.onclick=()=>{
 
-clearLightActive();
+clearLight();
 
 whiteBtn.classList.add('active-light');
 
 lightLayer.style.background='rgba(255,255,255,0.08)';
 
-photo.style.filter='brightness(1.05) contrast(1.02)';
+mirrorLayer.style.opacity='0';
+
+photo.style.filter='brightness(1.05)';
 
 };
 
-document.getElementById('warmBtn').onclick=()=>{
+warmBtn.onclick=()=>{
 
-clearLightActive();
+clearLight();
 
 warmBtn.classList.add('active-light');
 
 lightLayer.style.background='rgba(255,180,120,0.22)';
 
+mirrorLayer.style.opacity='0';
+
 photo.style.filter='sepia(0.08) brightness(1.02)';
 
 };
 
-document.getElementById('dayBtn').onclick=()=>{
+dayBtn.onclick=()=>{
 
-clearLightActive();
+clearLight();
 
 dayBtn.classList.add('active-light');
 
 lightLayer.style.background='rgba(255,245,200,0.16)';
 
+mirrorLayer.style.opacity='0';
+
 photo.style.filter='brightness(1.12) saturate(1.05)';
 
 };
 
-document.getElementById('offBtn').onclick=()=>{
+offBtn.onclick=()=>{
 
-clearLightActive();
+clearLight();
 
 offBtn.classList.add('active-light');
 
 lightLayer.style.background='rgba(0,0,0,0.75)';
 
+mirrorLayer.style.opacity='1';
+
 photo.style.filter='brightness(0)';
 
 };
 
-document.getElementById('addTextBtn').onclick=()=>{
+addTextBtn.onclick=()=>{
 
 const text=prompt('请输入文字');
 
@@ -506,87 +620,68 @@ textLayer.innerText=text;
 
 };
 
-document.getElementById('fontBtn').onclick=()=>{
+const fonts=[
+'Arial',
+'Georgia',
+'cursive',
+'monospace'
+];
 
-currentFont++;
+let fontIndex=0;
 
-if(currentFont>=fonts.length){
+fontBtn.onclick=()=>{
 
-currentFont=0;
+fontIndex++;
 
-}
+if(fontIndex>=fonts.length){
 
-textLayer.style.fontFamily=fonts[currentFont];
-
-};
-
-document.getElementById('colorBtn').onclick=()=>{
-
-let currentIndex=colors.indexOf(currentColor);
-
-currentIndex++;
-
-if(currentIndex>=colors.length){
-
-currentIndex=0;
+fontIndex=0;
 
 }
 
-currentColor=colors[currentIndex];
-
-textLayer.style.color=currentColor;
+textLayer.style.fontFamily=fonts[fontIndex];
 
 };
 
-document.getElementById('sizeBtn').onclick=()=>{
+const colors=[
+'white',
+'#ffcc00',
+'#00e5ff',
+'#ff66cc',
+'#00ff99'
+];
 
-currentFontSize+=4;
+let colorIndex=0;
 
-if(currentFontSize>50){
+colorBtn.onclick=()=>{
 
-currentFontSize=22;
+colorIndex++;
+
+if(colorIndex>=colors.length){
+
+colorIndex=0;
 
 }
 
-textLayer.style.fontSize=currentFontSize+'px';
+textLayer.style.color=colors[colorIndex];
 
 };
 
-let isDragging=false;
+let textSize=22;
 
-let startX=0;
+sizeBtn.onclick=()=>{
 
-let startY=0;
+textSize+=4;
 
-textLayer.addEventListener('touchstart',(e)=>{
+if(textSize>50){
 
-isDragging=true;
+textSize=22;
 
-startX=e.touches[0].clientX-textLayer.offsetLeft;
+}
 
-startY=e.touches[0].clientY-textLayer.offsetTop;
+textLayer.style.fontSize=textSize+'px';
 
-});
-
-document.addEventListener('touchmove',(e)=>{
-
-if(!isDragging)return;
-
-textLayer.style.left=(e.touches[0].clientX-startX)+'px';
-
-textLayer.style.top=(e.touches[0].clientY-startY)+'px';
-
-textLayer.style.bottom='auto';
-
-transform='none';
-
-});
-
-document.addEventListener('touchend',()=>{
-
-isDragging=false;
-
-});
+};
 
 </script>
 
