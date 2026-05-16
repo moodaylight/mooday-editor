@@ -23,14 +23,13 @@ font-family:Arial,sans-serif;
 
 html,body{
 background:#f5f5f7;
-overflow:hidden;
-touch-action:none;
+color:#111;
+height:100%;
+overflow-x:hidden;
 }
 
 body{
-height:100vh;
 overflow-y:auto;
-color:#111;
 }
 
 .header{
@@ -129,6 +128,7 @@ width:100%;
 height:100%;
 position:relative;
 overflow:hidden;
+touch-action:none;
 }
 
 #photo{
@@ -137,7 +137,7 @@ width:100%;
 height:100%;
 object-fit:cover;
 transform-origin:center;
-transition:0.05s;
+transition:0.03s;
 }
 
 .light-layer{
@@ -314,7 +314,7 @@ padding:10px 0 40px;
 
 <div class="inner-step">
 
-<div class="photo-area">
+<div class="photo-area" id="photoArea">
 
 <img
 id="photo"
@@ -416,6 +416,8 @@ document.body.appendChild(fileInput);
 
 const photo=document.getElementById('photo');
 
+const photoArea=document.getElementById('photoArea');
+
 const lightLayer=document.getElementById('lightLayer');
 
 const mirrorLayer=document.getElementById('mirrorLayer');
@@ -436,17 +438,21 @@ let isDragging=false;
 
 function limitPosition(){
 
-const maxOffsetX=(scale-1)*120;
+const areaWidth=photoArea.offsetWidth;
 
-const maxOffsetY=(scale-1)*170;
+const areaHeight=photoArea.offsetHeight;
 
-if(posX>maxOffsetX) posX=maxOffsetX;
+const maxX=((areaWidth*scale)-areaWidth)/2;
 
-if(posX<-maxOffsetX) posX=-maxOffsetX;
+const maxY=((areaHeight*scale)-areaHeight)/2;
 
-if(posY>maxOffsetY) posY=maxOffsetY;
+if(posX>maxX) posX=maxX;
 
-if(posY<-maxOffsetY) posY=-maxOffsetY;
+if(posX<-maxX) posX=-maxX;
+
+if(posY>maxY) posY=maxY;
+
+if(posY<-maxY) posY=-maxY;
 
 }
 
@@ -482,8 +488,6 @@ photo.src=event.target.result;
 reader.readAsDataURL(file);
 
 });
-
-const photoArea=document.querySelector('.photo-area');
 
 photoArea.addEventListener('touchstart',(e)=>{
 
@@ -576,8 +580,11 @@ btn.classList.remove('active-light');
 }
 
 function showLight(){
+
 mirrorLayer.style.opacity='0';
+
 textLayer.style.opacity='1';
+
 }
 
 whiteBtn.onclick=()=>{
