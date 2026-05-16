@@ -1,544 +1,130 @@
-<!DOCTYPE html>
-<html lang="ko">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>MOODAY FINAL REAL FRAME</title>
+export default function MoodayEditorV1() {
+  // MOODAY 魔镜灯光画 V1 手机版在线编辑器
+  return (
+    <div className="min-h-screen bg-[#f5f5f7] flex flex-col items-center">
+      {/* 顶部 */}
+      <header className="w-full bg-white border-b border-gray-200 px-4 py-3 flex items-center justify-between sticky top-0 z-50">
+        <div>
+          <h1 className="text-lg font-semibold tracking-wide">MOODAY 在线编辑器</h1>
+          <p className="text-[11px] text-gray-500">魔镜灯光画</p>
+        </div>
 
-<script src="https://cdn.tailwindcss.com"></script>
+        <button className="text-sm bg-black text-white px-4 py-2 rounded-full">
+          提交制作
+        </button>
+      </header>
 
-<style>
+      {/* 主编辑区域 */}
+      <main className="w-full max-w-md px-4 py-5 flex flex-col gap-5">
 
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
+        {/* 默认模板 */}
+        <section className="flex gap-3 overflow-x-auto pb-2">
+          {[
+            "韩系情侣",
+            "暖光氛围",
+            "夜景风格",
+            "极简艺术"
+          ].map((item) => (
+            <div
+              key={item}
+              className="shrink-0 bg-white border border-gray-200 rounded-2xl px-4 py-2 text-sm"
+            >
+              {item}
+            </div>
+          ))}
+        </section>
+
+        {/* 相框显示区域 */}
+        <section className="bg-white rounded-[28px] shadow-sm border border-gray-200 p-5 flex justify-center">
+
+          {/* 实体相框 */}
+          <div className="relative w-[238px] h-[348px] bg-[#f7f7f7] rounded-[32px] p-[28px] shadow-inner border border-gray-300">
+
+            {/* 内凹层 */}
+            <div className="absolute inset-[28px] rounded-[18px] shadow-[inset_0_3px_8px_rgba(0,0,0,0.18)] border border-gray-300"></div>
+
+            {/* 照片显示区域 */}
+            <div className="relative w-full h-full overflow-hidden rounded-[12px] bg-black flex items-center justify-center">
+
+              {/* 默认图片 */}
+              <img
+                src="https://images.unsplash.com/photo-1524504388940-b1c1722653e1?q=80&w=1200&auto=format&fit=crop"
+                className="absolute w-full h-full object-cover"
+                alt="preview"
+              />
+
+              {/* 暖光效果 */}
+              <div className="absolute inset-0 bg-orange-200/30 mix-blend-screen"></div>
+
+              {/* 文字层 */}
+              <div className="absolute bottom-5 left-1/2 -translate-x-1/2 text-white text-xl font-light tracking-[0.25em] drop-shadow-lg">
+                FOREVER
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* 功能区 */}
+        <section className="bg-white rounded-3xl border border-gray-200 p-4 flex flex-col gap-4">
+
+          {/* 上传 */}
+          <button className="w-full bg-black text-white rounded-2xl py-3 text-sm font-medium">
+            上传照片
+          </button>
+
+          {/* 文字 */}
+          <div>
+            <p className="text-sm font-medium mb-3">文字编辑</p>
+
+            <div className="flex gap-2 overflow-x-auto">
+              {[
+                "添加文字",
+                "字体",
+                "颜色",
+                "放大",
+                "移动"
+              ].map((item) => (
+                <button
+                  key={item}
+                  className="shrink-0 bg-gray-100 px-4 py-2 rounded-full text-sm"
+                >
+                  {item}
+                </button>
+              ))}
+            </div>
+          </div>
+
+          {/* 灯光 */}
+          <div>
+            <p className="text-sm font-medium mb-3">灯光模式</p>
+
+            <div className="grid grid-cols-4 gap-2">
+              <button className="bg-blue-50 text-blue-700 rounded-2xl py-3 text-sm">
+                白光
+              </button>
+
+              <button className="bg-orange-50 text-orange-700 rounded-2xl py-3 text-sm">
+                暖光
+              </button>
+
+              <button className="bg-yellow-50 text-yellow-700 rounded-2xl py-3 text-sm">
+                日光
+              </button>
+
+              <button className="bg-gray-100 text-gray-700 rounded-2xl py-3 text-sm flex items-center justify-center gap-1">
+                💡✕
+                关灯
+              </button>
+            </div>
+          </div>
+        </section>
+
+        {/* 提示 */}
+        <section className="text-center text-[12px] text-gray-400 leading-6 pb-10">
+          用户看到哪里，最终就制作哪里<br />
+          支持 JPG / PNG / HEIC
+        </section>
+      </main>
+    </div>
+  )
 }
-
-body{
-background:#ebe7e1;
-font-family:sans-serif;
-display:flex;
-justify-content:center;
-padding:20px;
-overflow-x:hidden;
-}
-
-/* 整体 */
-
-.app{
-width:100%;
-max-width:430px;
-}
-
-/* 顶部 */
-
-.topbar{
-display:flex;
-justify-content:space-between;
-align-items:center;
-margin-bottom:18px;
-}
-
-.title{
-font-size:34px;
-font-weight:900;
-color:#111;
-line-height:1.1;
-}
-
-.save-btn{
-background:#111;
-color:white;
-padding:16px 24px;
-border-radius:22px;
-font-size:18px;
-font-weight:800;
-}
-
-/* 编辑区域 */
-
-.editor{
-background:#f7f4ef;
-border-radius:40px;
-padding:22px;
-box-shadow:
-0 10px 35px rgba(0,0,0,.08),
-inset 0 2px 0 rgba(255,255,255,.8);
-}
-
-/* 房间背景 */
-
-.room{
-position:relative;
-height:640px;
-border-radius:34px;
-overflow:hidden;
-
-background:
-linear-gradient(rgba(255,255,255,.35),rgba(255,255,255,.35)),
-url('https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?q=80&w=1200&auto=format&fit=crop');
-
-background-size:cover;
-background-position:center;
-
-display:flex;
-justify-content:center;
-align-items:center;
-}
-
-/* 灯牌整体 */
-
-.frame-wrap{
-position:relative;
-display:flex;
-flex-direction:column;
-align-items:center;
-}
-
-/* 亚克力外框 */
-
-.real-frame{
-
-width:310px;
-height:195px;
-
-padding:12px;
-
-border-radius:30px;
-
-background:
-linear-gradient(145deg,
-rgba(255,255,255,.96),
-rgba(226,226,226,.92));
-
-box-shadow:
-0 30px 55px rgba(0,0,0,.25),
-0 12px 20px rgba(0,0,0,.12),
-inset 0 3px 2px rgba(255,255,255,.95),
-inset 0 -3px 4px rgba(0,0,0,.06);
-
-position:relative;
-}
-
-/* 外发光 */
-
-.real-frame::before{
-content:'';
-position:absolute;
-inset:-10px;
-border-radius:38px;
-
-background:rgba(255,255,255,.55);
-
-filter:blur(22px);
-
-z-index:-1;
-}
-
-/* 内部照片 */
-
-.photo{
-
-width:100%;
-height:100%;
-
-border-radius:22px;
-
-overflow:hidden;
-
-position:relative;
-}
-
-.photo img{
-width:100%;
-height:100%;
-object-fit:cover;
-}
-
-/* 粉色灯带 */
-
-.neon{
-position:absolute;
-inset:12px;
-
-border-radius:18px;
-
-border:3px dashed #ff7fd2;
-
-box-shadow:
-0 0 10px #ff7fd2,
-0 0 20px rgba(255,127,210,.9),
-0 0 30px rgba(255,127,210,.5);
-}
-
-/* 标题 */
-
-.main-text{
-position:absolute;
-top:20px;
-width:100%;
-text-align:center;
-
-font-size:24px;
-font-weight:900;
-
-color:white;
-
-text-shadow:
-0 2px 6px rgba(0,0,0,.5),
-0 0 12px rgba(255,255,255,.4);
-}
-
-/* 日期 */
-
-.date{
-position:absolute;
-bottom:24px;
-width:100%;
-text-align:center;
-
-font-size:20px;
-font-weight:800;
-
-color:white;
-
-text-shadow:
-0 2px 5px rgba(0,0,0,.5);
-}
-
-/* 底座 */
-
-.base{
-
-margin-top:20px;
-
-width:250px;
-height:72px;
-
-border-radius:22px;
-
-background:
-linear-gradient(145deg,#fff,#ece7df);
-
-display:flex;
-justify-content:center;
-align-items:center;
-
-font-size:18px;
-font-weight:700;
-
-color:#bba8a8;
-
-box-shadow:
-0 12px 22px rgba(0,0,0,.15),
-inset 0 2px 0 rgba(255,255,255,.9);
-}
-
-/* 吊牌 */
-
-.tag{
-
-position:absolute;
-right:-26px;
-top:52px;
-
-width:64px;
-height:128px;
-
-background:white;
-
-border-radius:20px;
-
-box-shadow:
-0 12px 24px rgba(0,0,0,.18);
-
-display:flex;
-flex-direction:column;
-justify-content:center;
-align-items:center;
-
-font-size:12px;
-font-weight:700;
-color:#666;
-
-line-height:1.4;
-}
-
-.tag::before{
-content:'';
-position:absolute;
-top:10px;
-
-width:10px;
-height:10px;
-
-border-radius:50%;
-background:#ddd;
-}
-
-/* 笔盒 */
-
-.pen-box{
-
-position:absolute;
-right:-52px;
-bottom:-8px;
-
-width:58px;
-height:126px;
-
-background:white;
-
-border-radius:20px;
-
-box-shadow:
-0 12px 24px rgba(0,0,0,.18);
-
-display:flex;
-justify-content:center;
-align-items:center;
-gap:8px;
-}
-
-.pen1{
-width:10px;
-height:74px;
-background:#ff6f61;
-border-radius:10px;
-transform:rotate(10deg);
-}
-
-.pen2{
-width:10px;
-height:74px;
-background:#3d455d;
-border-radius:10px;
-transform:rotate(-10deg);
-}
-
-/* 左侧工具栏 */
-
-.sidebar{
-
-position:fixed;
-
-left:16px;
-top:50%;
-
-transform:translateY(-50%);
-
-display:flex;
-flex-direction:column;
-gap:14px;
-
-z-index:999;
-}
-
-.tool{
-
-width:60px;
-height:60px;
-
-background:#f5f2ed;
-
-border-radius:18px;
-
-display:flex;
-justify-content:center;
-align-items:center;
-
-font-size:28px;
-
-box-shadow:
-0 6px 14px rgba(0,0,0,.08);
-}
-
-/* 手机适配 */
-
-@media(max-width:768px){
-
-body{
-padding:10px;
-}
-
-.sidebar{
-
-position:fixed;
-
-left:50%;
-bottom:10px;
-
-top:auto;
-
-transform:translateX(-50%);
-
-flex-direction:row;
-
-background:rgba(255,255,255,.92);
-
-padding:10px;
-
-border-radius:22px;
-
-backdrop-filter:blur(10px);
-}
-
-.tool{
-width:52px;
-height:52px;
-font-size:22px;
-}
-
-.title{
-font-size:28px;
-}
-
-.save-btn{
-padding:14px 18px;
-font-size:16px;
-}
-
-.room{
-height:560px;
-}
-
-.real-frame{
-width:255px;
-height:165px;
-}
-
-.base{
-width:215px;
-height:64px;
-font-size:16px;
-}
-
-.tag{
-width:54px;
-height:110px;
-right:-18px;
-font-size:10px;
-}
-
-.pen-box{
-right:-38px;
-width:48px;
-height:110px;
-}
-
-.pen1,
-.pen2{
-height:62px;
-}
-
-.main-text{
-font-size:20px;
-}
-
-.date{
-font-size:16px;
-}
-
-}
-
-</style>
-</head>
-
-<body>
-
-<!-- 左侧工具 -->
-
-<div class="sidebar">
-
-<div class="tool">🖼️</div>
-<div class="tool">T</div>
-<div class="tool">😊</div>
-<div class="tool">⬡</div>
-<div class="tool">🎨</div>
-
-</div>
-
-<div class="app">
-
-<!-- 顶部 -->
-
-<div class="topbar">
-
-<div class="title">
-조명 액자 편집
-</div>
-
-<div class="save-btn">
-저장
-</div>
-
-</div>
-
-<!-- 编辑器 -->
-
-<div class="editor">
-
-<div class="room">
-
-<div class="frame-wrap">
-
-<!-- 实体灯牌 -->
-
-<div class="real-frame">
-
-<div class="photo">
-
-<img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=1200&auto=format&fit=crop">
-
-<div class="neon"></div>
-
-<div class="main-text">
-♡ 우리의 추억 ♡
-</div>
-
-<div class="date">
-2024.05.20 사랑해 ♡
-</div>
-
-</div>
-
-</div>
-
-<!-- 吊牌 -->
-
-<div class="tag">
-
-🌸<br>
-우리의 추억<br>
-2024.05.20
-
-</div>
-
-<!-- 笔 -->
-
-<div class="pen-box">
-
-<div class="pen1"></div>
-<div class="pen2"></div>
-
-</div>
-
-<!-- 底座 -->
-
-<div class="base">
-
-♡ 나의 소중한 순간 ♡
-
-</div>
-
-</div>
-
-</div>
-
-</div>
-
-</div>
-
-</body>
-</html>
