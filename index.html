@@ -1,135 +1,163 @@
-<!-- 替换原来的 .tool-row -->
+<!DOCTYPE html>
+<html lang="zh-CN">
 
-.tool-row{
+<head>
+<meta charset="UTF-8">
 
-display:grid;
+<meta
+name="viewport"
+content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+>
 
-grid-template-columns:
-repeat(4,1fr);
+<title>MOODAY 在线编辑器</title>
 
-gap:10px;
+<style>
 
-margin-bottom:20px;
-
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial,sans-serif;
+-webkit-tap-highlight-color:transparent;
 }
 
+html,body{
+background:#f5f5f7;
+color:#111;
+height:100%;
+overflow-x:hidden;
+}
 
+body{
+overflow-y:auto;
+-webkit-overflow-scrolling:touch;
+}
 
-.tool-btn{
+.header{
+background:white;
+border-bottom:1px solid #e5e5e5;
+padding:14px 18px;
+display:flex;
+justify-content:space-between;
+align-items:center;
 
-background:#f1f1f1;
+position:fixed;
+top:0;
+left:0;
+width:100%;
 
+z-index:999;
+}
+
+.title h1{
+font-size:20px;
+font-weight:700;
+}
+
+.title p{
+font-size:11px;
+color:#777;
+margin-top:2px;
+}
+
+.submit-btn{
+background:black;
+color:white;
 border:none;
-
-border-radius:16px;
-
-padding:12px 10px;
-
+border-radius:999px;
+padding:10px 18px;
 font-size:13px;
-
-text-align:center;
-
 }
 
-
-
-
-
-<!-- 在 JS 里替换原来的文字拖动部分 -->
-
-
-
-let textX=0;
-
-let textY=0;
-
-let textRotation=0;
-
-let textDragging=false;
-
-let textStartX=0;
-
-let textStartY=0;
-
-let glowMode=false;
-
-let shadowMode=0;
-
-
-
-function limitTextPosition(){
-
-
-
-const maxX=70;
-
-const minX=-70;
-
-
-
-const maxY=85;
-
-const minY=-110;
-
-
-
-if(textX>maxX){
-
-textX=maxX;
-
+.container{
+max-width:430px;
+margin:auto;
+padding:90px 18px 18px;
 }
 
-
-
-if(textX<minX){
-
-textX=minX;
-
+.template-list{
+display:flex;
+gap:10px;
+overflow-x:auto;
+margin-bottom:18px;
 }
 
-
-
-if(textY>maxY){
-
-textY=maxY;
-
+.template-item{
+background:white;
+border:1px solid #ddd;
+border-radius:999px;
+padding:10px 16px;
+white-space:nowrap;
+font-size:13px;
+flex-shrink:0;
 }
 
-
-
-if(textY<minY){
-
-textY=minY;
-
+.editor-box{
+background:white;
+border-radius:30px;
+padding:24px;
+border:1px solid #e5e5e5;
+display:flex;
+justify-content:center;
+margin-bottom:20px;
 }
 
+.frame{
+width:238px;
+height:348px;
+background:#f8f8f8;
+border-radius:30px;
+padding:28px;
+position:relative;
+border:1px solid #d9d9d9;
 
-
+box-shadow:
+inset 0 0 10px rgba(0,0,0,0.08),
+0 8px 20px rgba(0,0,0,0.06);
 }
 
+.inner-step{
+position:absolute;
+top:28px;
+left:28px;
+right:28px;
+bottom:28px;
 
+overflow:hidden;
 
-function updateTextTransform(){
+border-radius:18px;
 
+border:1px solid #d5d5d5;
 
+box-shadow:
+inset 0 3px 8px rgba(0,0,0,0.2);
 
-limitTextPosition();
-
-
-
-textLayer.style.transform=
-`
-translate(
-calc(-50% + ${textX}px),
-calc(-50% + ${textY}px)
-)
-rotate(${textRotation}deg)
-`;
-
+background:black;
 }
 
+.photo-area{
+width:100%;
+height:100%;
+position:relative;
+overflow:hidden;
+touch-action:none;
+}
 
+#photo{
+position:absolute;
+width:110%;
+height:110%;
+left:-5%;
+top:-5%;
+object-fit:cover;
+transform-origin:center;
+transition:0.03s;
+}
 
-textLayer.addEventListener('touchstart',(e)=>{
-
-
+.light-layer{
+position:absolute;
+inset:0;
+background:rgba(255,180,120,0.22);
+mix-blend-mode:screen;
+transition:0.3s;
+z
