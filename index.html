@@ -162,6 +162,7 @@ text-shadow:0 0 10px rgba(255,255,255,0.6);
 white-space:nowrap;
 z-index:3;
 pointer-events:none;
+transition:0.3s;
 }
 
 .mirror-layer{
@@ -574,6 +575,11 @@ btn.classList.remove('active-light');
 
 }
 
+function showLight(){
+mirrorLayer.style.opacity='0';
+textLayer.style.opacity='1';
+}
+
 whiteBtn.onclick=()=>{
 
 clearLight();
@@ -582,9 +588,9 @@ whiteBtn.classList.add('active-light');
 
 lightLayer.style.background='rgba(255,255,255,0.08)';
 
-mirrorLayer.style.opacity='0';
-
 photo.style.filter='brightness(1.05)';
+
+showLight();
 
 };
 
@@ -596,9 +602,9 @@ warmBtn.classList.add('active-light');
 
 lightLayer.style.background='rgba(255,180,120,0.22)';
 
-mirrorLayer.style.opacity='0';
-
 photo.style.filter='sepia(0.08) brightness(1.02)';
+
+showLight();
 
 };
 
@@ -610,9 +616,9 @@ dayBtn.classList.add('active-light');
 
 lightLayer.style.background='rgba(255,245,200,0.16)';
 
-mirrorLayer.style.opacity='0';
-
 photo.style.filter='brightness(1.12) saturate(1.05)';
+
+showLight();
 
 };
 
@@ -629,54 +635,6 @@ mirrorLayer.style.opacity='1';
 photo.style.filter='brightness(0)';
 
 textLayer.style.opacity='0';
-
-};
-
-whiteBtn.onclick=()=>{
-
-clearLight();
-
-whiteBtn.classList.add('active-light');
-
-lightLayer.style.background='rgba(255,255,255,0.08)';
-
-mirrorLayer.style.opacity='0';
-
-photo.style.filter='brightness(1.05)';
-
-textLayer.style.opacity='1';
-
-};
-
-warmBtn.onclick=()=>{
-
-clearLight();
-
-warmBtn.classList.add('active-light');
-
-lightLayer.style.background='rgba(255,180,120,0.22)';
-
-mirrorLayer.style.opacity='0';
-
-photo.style.filter='sepia(0.08) brightness(1.02)';
-
-textLayer.style.opacity='1';
-
-};
-
-dayBtn.onclick=()=>{
-
-clearLight();
-
-dayBtn.classList.add('active-light');
-
-lightLayer.style.background='rgba(255,245,200,0.16)';
-
-mirrorLayer.style.opacity='0';
-
-photo.style.filter='brightness(1.12) saturate(1.05)';
-
-textLayer.style.opacity='1';
 
 };
 
@@ -739,15 +697,7 @@ textLayer.style.color=colors[colorIndex];
 
 };
 
-const sizeList=[
-18,
-22,
-26,
-30,
-34,
-38,
-42
-];
+const sizeList=[18,22,26,30,34,38,42,38,34,30,26,22];
 
 let sizeIndex=1;
 
