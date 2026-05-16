@@ -165,18 +165,35 @@ pointer-events:none;
 }
 
 .text-layer{
+
 position:absolute;
+
 left:50%;
-bottom:20px;
-transform:translateX(-50%);
+top:75%;
+
+transform:
+translate(-50%,-50%)
+rotate(0deg);
+
 color:white;
+
 font-size:22px;
+
 letter-spacing:4px;
-text-shadow:0 0 10px rgba(255,255,255,0.6);
+
+text-shadow:
+0 0 10px rgba(255,255,255,0.6);
+
 white-space:nowrap;
+
 z-index:3;
-pointer-events:none;
-transition:0.3s;
+
+transition:0.2s;
+
+cursor:move;
+
+user-select:none;
+
 }
 
 .mirror-layer{
@@ -383,6 +400,18 @@ A+
 
 <button class="tool-btn" id="sizeMinusBtn">
 A-
+</button>
+
+<button class="tool-btn" id="glowBtn">
+发光
+</button>
+
+<button class="tool-btn" id="shadowBtn">
+阴影
+</button>
+
+<button class="tool-btn" id="rotateBtn">
+旋转
 </button>
 
 </div>
@@ -755,6 +784,177 @@ textSize=14;
 }
 
 textLayer.style.fontSize=textSize+'px';
+
+};
+
+
+
+let textX=0;
+
+let textY=0;
+
+let textRotation=0;
+
+let textDragging=false;
+
+let textStartX=0;
+
+let textStartY=0;
+
+let glowMode=false;
+
+let shadowMode=0;
+
+
+
+function updateTextTransform(){
+
+textLayer.style.transform=
+`
+translate(
+calc(-50% + ${textX}px),
+calc(-50% + ${textY}px)
+)
+rotate(${textRotation}deg)
+`;
+
+}
+
+
+
+textLayer.addEventListener('touchstart',(e)=>{
+
+if(e.touches.length===1){
+
+textDragging=true;
+
+textStartX=e.touches[0].clientX-textX;
+
+textStartY=e.touches[0].clientY-textY;
+
+}
+
+});
+
+
+
+document.addEventListener('touchmove',(e)=>{
+
+if(textDragging){
+
+textX=e.touches[0].clientX-textStartX;
+
+textY=e.touches[0].clientY-textStartY;
+
+updateTextTransform();
+
+}
+
+});
+
+
+
+document.addEventListener('touchend',()=>{
+
+textDragging=false;
+
+});
+
+
+
+glowBtn.onclick=()=>{
+
+glowMode=!glowMode;
+
+if(glowMode){
+
+textLayer.style.textShadow=
+`
+0 0 8px white,
+0 0 16px white,
+0 0 28px white
+`;
+
+}else{
+
+textLayer.style.textShadow=
+`
+0 0 10px rgba(255,255,255,0.6)
+`;
+
+}
+
+};
+
+
+
+shadowBtn.onclick=()=>{
+
+shadowMode++;
+
+if(shadowMode>3){
+
+shadowMode=0;
+
+}
+
+
+
+if(shadowMode===0){
+
+textLayer.style.textShadow=
+'0 0 10px rgba(255,255,255,0.6)';
+
+}
+
+
+
+if(shadowMode===1){
+
+textLayer.style.textShadow=
+'3px 3px 10px rgba(0,0,0,0.6)';
+
+}
+
+
+
+if(shadowMode===2){
+
+textLayer.style.textShadow=
+`
+0 0 8px white,
+0 0 18px white
+`;
+
+}
+
+
+
+if(shadowMode===3){
+
+textLayer.style.textShadow=
+`
+2px 2px 8px black,
+0 0 20px white
+`;
+
+}
+
+};
+
+
+
+rotateBtn.onclick=()=>{
+
+textRotation+=5;
+
+if(textRotation>=360){
+
+textRotation=0;
+
+}
+
+updateTextTransform();
 
 };
 
