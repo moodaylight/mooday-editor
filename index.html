@@ -1,8 +1,10 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
+
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>MOODAY 在线编辑器</title>
 
 <style>
@@ -12,11 +14,13 @@ margin:0;
 padding:0;
 box-sizing:border-box;
 font-family:Arial,sans-serif;
+-webkit-tap-highlight-color:transparent;
 }
 
 body{
 background:#f5f5f7;
 color:#111;
+overflow-x:hidden;
 }
 
 .header{
@@ -63,6 +67,7 @@ display:flex;
 gap:10px;
 overflow-x:auto;
 margin-bottom:18px;
+padding-bottom:4px;
 }
 
 .template-item{
@@ -72,6 +77,7 @@ border-radius:999px;
 padding:10px 16px;
 white-space:nowrap;
 font-size:13px;
+flex-shrink:0;
 }
 
 .editor-box{
@@ -92,7 +98,9 @@ border-radius:30px;
 padding:28px;
 position:relative;
 border:1px solid #d9d9d9;
-box-shadow:inset 0 0 10px rgba(0,0,0,0.08);
+box-shadow:
+inset 0 0 10px rgba(0,0,0,0.08),
+0 8px 20px rgba(0,0,0,0.06);
 }
 
 .inner-step{
@@ -104,6 +112,7 @@ bottom:28px;
 border-radius:18px;
 box-shadow:inset 0 3px 8px rgba(0,0,0,0.2);
 border:1px solid #d5d5d5;
+overflow:hidden;
 }
 
 .photo-area{
@@ -120,9 +129,11 @@ width:100%;
 height:100%;
 object-fit:cover;
 transition:0.3s;
+user-select:none;
+pointer-events:none;
 }
 
-.warm-light{
+.light-layer{
 position:absolute;
 inset:0;
 background:rgba(255,180,120,0.22);
@@ -132,14 +143,18 @@ transition:0.3s;
 
 .text-layer{
 position:absolute;
-bottom:18px;
-width:100%;
-text-align:center;
+left:50%;
+bottom:20px;
+transform:translateX(-50%);
 color:white;
 font-size:22px;
 letter-spacing:4px;
 text-shadow:0 0 10px rgba(255,255,255,0.6);
 padding:0 10px;
+cursor:move;
+white-space:nowrap;
+z-index:5;
+user-select:none;
 }
 
 .panel{
@@ -147,6 +162,7 @@ background:white;
 border-radius:28px;
 padding:18px;
 border:1px solid #e5e5e5;
+margin-bottom:20px;
 }
 
 .upload-btn{
@@ -172,6 +188,7 @@ display:flex;
 gap:8px;
 overflow-x:auto;
 margin-bottom:20px;
+padding-bottom:2px;
 }
 
 .tool-btn{
@@ -182,6 +199,7 @@ padding:10px 16px;
 white-space:nowrap;
 font-size:13px;
 cursor:pointer;
+flex-shrink:0;
 }
 
 .light-grid{
@@ -223,7 +241,11 @@ text-align:center;
 color:#999;
 font-size:12px;
 line-height:1.8;
-padding:24px 0 40px;
+padding:10px 0 40px;
+}
+
+.active-light{
+outline:2px solid black;
 }
 
 </style>
@@ -257,17 +279,21 @@ padding:24px 0 40px;
 
 <div class="frame">
 
-<div class="inner-step"></div>
+<div class="inner-step">
 
 <div class="photo-area">
 
-<img id="photo"
-src="https://images.unsplash.com/photo-1524504388940-b1c1722653e1?q=80&w=1200&auto=format&fit=crop">
+<img
+id="photo"
+src="https://images.unsplash.com/photo-1524504388940-b1c1722653e1?q=80&w=1200&auto=format&fit=crop"
+>
 
-<div class="warm-light"></div>
+<div class="light-layer" id="lightLayer"></div>
 
 <div class="text-layer" id="textLayer">
 FOREVER
+</div>
+
 </div>
 
 </div>
@@ -287,11 +313,27 @@ FOREVER
 </div>
 
 <div class="tool-row">
-<button class="tool-btn" id="addTextBtn">添加文字</button>
-<button class="tool-btn">字体</button>
-<button class="tool-btn">颜色</button>
-<button class="tool-btn">放大</button>
-<button class="tool-btn">移动</button>
+
+<button class="tool-btn" id="addTextBtn">
+添加文字
+</button>
+
+<button class="tool-btn" id="fontBtn">
+字体
+</button>
+
+<button class="tool-btn" id="colorBtn">
+颜色
+</button>
+
+<button class="tool-btn" id="sizeBtn">
+放大
+</button>
+
+<button class="tool-btn" id="moveBtn">
+移动
+</button>
+
 </div>
 
 <div class="section-title">
@@ -300,7 +342,7 @@ FOREVER
 
 <div class="light-grid">
 
-<button class="light-btn white-light" id="whiteBtn">
+<button class="light-btn white-light active-light" id="whiteBtn">
 白光
 </button>
 
@@ -343,9 +385,30 @@ document.body.appendChild(fileInput);
 
 const photo=document.getElementById('photo');
 
-const warmLayer=document.querySelector('.warm-light');
+const lightLayer=document.getElementById('lightLayer');
 
 const textLayer=document.getElementById('textLayer');
+
+let currentFontSize=22;
+
+let currentColor='white';
+
+let currentFont=0;
+
+const fonts=[
+'Arial',
+'Georgia',
+'cursive',
+'monospace'
+];
+
+const colors=[
+'white',
+'#ffcc00',
+'#00e5ff',
+'#ff66cc',
+'#00ff99'
+];
 
 uploadBtn.addEventListener('click',()=>{
 
@@ -371,9 +434,25 @@ reader.readAsDataURL(file);
 
 });
 
+function clearLightActive(){
+
+document
+.querySelectorAll('.light-btn')
+.forEach(btn=>{
+
+btn.classList.remove('active-light');
+
+});
+
+}
+
 document.getElementById('whiteBtn').onclick=()=>{
 
-warmLayer.style.background='rgba(255,255,255,0.08)';
+clearLightActive();
+
+whiteBtn.classList.add('active-light');
+
+lightLayer.style.background='rgba(255,255,255,0.08)';
 
 photo.style.filter='brightness(1.05) contrast(1.02)';
 
@@ -381,7 +460,11 @@ photo.style.filter='brightness(1.05) contrast(1.02)';
 
 document.getElementById('warmBtn').onclick=()=>{
 
-warmLayer.style.background='rgba(255,180,120,0.22)';
+clearLightActive();
+
+warmBtn.classList.add('active-light');
+
+lightLayer.style.background='rgba(255,180,120,0.22)';
 
 photo.style.filter='sepia(0.08) brightness(1.02)';
 
@@ -389,7 +472,11 @@ photo.style.filter='sepia(0.08) brightness(1.02)';
 
 document.getElementById('dayBtn').onclick=()=>{
 
-warmLayer.style.background='rgba(255,245,200,0.16)';
+clearLightActive();
+
+dayBtn.classList.add('active-light');
+
+lightLayer.style.background='rgba(255,245,200,0.16)';
 
 photo.style.filter='brightness(1.12) saturate(1.05)';
 
@@ -397,7 +484,11 @@ photo.style.filter='brightness(1.12) saturate(1.05)';
 
 document.getElementById('offBtn').onclick=()=>{
 
-warmLayer.style.background='rgba(0,0,0,0.72)';
+clearLightActive();
+
+offBtn.classList.add('active-light');
+
+lightLayer.style.background='rgba(0,0,0,0.75)';
 
 photo.style.filter='brightness(0)';
 
@@ -414,6 +505,88 @@ textLayer.innerText=text;
 }
 
 };
+
+document.getElementById('fontBtn').onclick=()=>{
+
+currentFont++;
+
+if(currentFont>=fonts.length){
+
+currentFont=0;
+
+}
+
+textLayer.style.fontFamily=fonts[currentFont];
+
+};
+
+document.getElementById('colorBtn').onclick=()=>{
+
+let currentIndex=colors.indexOf(currentColor);
+
+currentIndex++;
+
+if(currentIndex>=colors.length){
+
+currentIndex=0;
+
+}
+
+currentColor=colors[currentIndex];
+
+textLayer.style.color=currentColor;
+
+};
+
+document.getElementById('sizeBtn').onclick=()=>{
+
+currentFontSize+=4;
+
+if(currentFontSize>50){
+
+currentFontSize=22;
+
+}
+
+textLayer.style.fontSize=currentFontSize+'px';
+
+};
+
+let isDragging=false;
+
+let startX=0;
+
+let startY=0;
+
+textLayer.addEventListener('touchstart',(e)=>{
+
+isDragging=true;
+
+startX=e.touches[0].clientX-textLayer.offsetLeft;
+
+startY=e.touches[0].clientY-textLayer.offsetTop;
+
+});
+
+document.addEventListener('touchmove',(e)=>{
+
+if(!isDragging)return;
+
+textLayer.style.left=(e.touches[0].clientX-startX)+'px';
+
+textLayer.style.top=(e.touches[0].clientY-startY)+'px';
+
+textLayer.style.bottom='auto';
+
+transform='none';
+
+});
+
+document.addEventListener('touchend',()=>{
+
+isDragging=false;
+
+});
 
 </script>
 
