@@ -3,7 +3,11 @@
 
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+<meta
+name="viewport"
+content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+>
 
 <title>MOODAY 在线编辑器</title>
 
@@ -18,15 +22,15 @@ font-family:Arial,sans-serif;
 }
 
 html,body{
-touch-action:none;
-overflow:hidden;
 background:#f5f5f7;
-color:#111;
+overflow:hidden;
+touch-action:none;
 }
 
 body{
 height:100vh;
 overflow-y:auto;
+color:#111;
 }
 
 .header{
@@ -59,7 +63,6 @@ border:none;
 border-radius:999px;
 padding:10px 18px;
 font-size:13px;
-cursor:pointer;
 }
 
 .container{
@@ -73,7 +76,6 @@ display:flex;
 gap:10px;
 overflow-x:auto;
 margin-bottom:18px;
-padding-bottom:4px;
 }
 
 .template-item{
@@ -115,8 +117,8 @@ top:28px;
 left:28px;
 right:28px;
 bottom:28px;
-border-radius:18px;
 overflow:hidden;
+border-radius:18px;
 border:1px solid #d5d5d5;
 box-shadow:inset 0 3px 8px rgba(0,0,0,0.2);
 background:black;
@@ -135,7 +137,7 @@ width:100%;
 height:100%;
 object-fit:cover;
 transform-origin:center;
-transition:0.15s;
+transition:0.05s;
 }
 
 .light-layer{
@@ -144,8 +146,8 @@ inset:0;
 background:rgba(255,180,120,0.22);
 mix-blend-mode:screen;
 transition:0.3s;
-pointer-events:none;
 z-index:2;
+pointer-events:none;
 }
 
 .text-layer{
@@ -159,6 +161,7 @@ letter-spacing:4px;
 text-shadow:0 0 10px rgba(255,255,255,0.6);
 white-space:nowrap;
 z-index:3;
+pointer-events:none;
 }
 
 .mirror-layer{
@@ -167,13 +170,13 @@ inset:0;
 background:
 linear-gradient(
 135deg,
-rgba(255,255,255,0.25),
+rgba(255,255,255,0.22),
 rgba(255,255,255,0.03),
-rgba(255,255,255,0.12)
+rgba(255,255,255,0.1)
 );
 opacity:0;
 transition:0.3s;
-z-index:10;
+z-index:20;
 pointer-events:none;
 }
 
@@ -187,13 +190,12 @@ margin-bottom:20px;
 
 .upload-btn{
 width:100%;
-border:none;
 background:black;
 color:white;
+border:none;
 padding:14px;
 border-radius:18px;
 font-size:14px;
-cursor:pointer;
 margin-bottom:18px;
 }
 
@@ -215,9 +217,8 @@ background:#f1f1f1;
 border:none;
 border-radius:999px;
 padding:10px 16px;
-white-space:nowrap;
 font-size:13px;
-cursor:pointer;
+white-space:nowrap;
 flex-shrink:0;
 }
 
@@ -232,7 +233,6 @@ border:none;
 border-radius:18px;
 padding:12px 0;
 font-size:13px;
-cursor:pointer;
 }
 
 .white-light{
@@ -261,9 +261,9 @@ outline:2px solid black;
 
 .footer-tip{
 text-align:center;
-color:#999;
 font-size:12px;
 line-height:1.8;
+color:#999;
 padding:10px 0 40px;
 }
 
@@ -289,13 +289,21 @@ padding:10px 0 40px;
 
 <div class="template-list">
 
-<div class="template-item">韩系情侣</div>
+<div class="template-item">
+韩系情侣
+</div>
 
-<div class="template-item">暖光氛围</div>
+<div class="template-item">
+暖光氛围
+</div>
 
-<div class="template-item">夜景风格</div>
+<div class="template-item">
+夜景风格
+</div>
 
-<div class="template-item">极简艺术</div>
+<div class="template-item">
+极简艺术
+</div>
 
 </div>
 
@@ -353,7 +361,7 @@ FOREVER
 </button>
 
 <button class="tool-btn" id="sizeBtn">
-放大
+大小
 </button>
 
 </div>
@@ -425,7 +433,25 @@ let startY=0;
 
 let isDragging=false;
 
+function limitPosition(){
+
+const maxOffsetX=(scale-1)*120;
+
+const maxOffsetY=(scale-1)*170;
+
+if(posX>maxOffsetX) posX=maxOffsetX;
+
+if(posX<-maxOffsetX) posX=-maxOffsetX;
+
+if(posY>maxOffsetY) posY=maxOffsetY;
+
+if(posY<-maxOffsetY) posY=-maxOffsetY;
+
+}
+
 function updatePhoto(){
+
+limitPosition();
 
 photo.style.transform=
 `translate(${posX}px,${posY}px) scale(${scale})`;
@@ -602,6 +628,56 @@ mirrorLayer.style.opacity='1';
 
 photo.style.filter='brightness(0)';
 
+textLayer.style.opacity='0';
+
+};
+
+whiteBtn.onclick=()=>{
+
+clearLight();
+
+whiteBtn.classList.add('active-light');
+
+lightLayer.style.background='rgba(255,255,255,0.08)';
+
+mirrorLayer.style.opacity='0';
+
+photo.style.filter='brightness(1.05)';
+
+textLayer.style.opacity='1';
+
+};
+
+warmBtn.onclick=()=>{
+
+clearLight();
+
+warmBtn.classList.add('active-light');
+
+lightLayer.style.background='rgba(255,180,120,0.22)';
+
+mirrorLayer.style.opacity='0';
+
+photo.style.filter='sepia(0.08) brightness(1.02)';
+
+textLayer.style.opacity='1';
+
+};
+
+dayBtn.onclick=()=>{
+
+clearLight();
+
+dayBtn.classList.add('active-light');
+
+lightLayer.style.background='rgba(255,245,200,0.16)';
+
+mirrorLayer.style.opacity='0';
+
+photo.style.filter='brightness(1.12) saturate(1.05)';
+
+textLayer.style.opacity='1';
+
 };
 
 addTextBtn.onclick=()=>{
@@ -663,23 +739,34 @@ textLayer.style.color=colors[colorIndex];
 
 };
 
-let textSize=22;
+const sizeList=[
+18,
+22,
+26,
+30,
+34,
+38,
+42
+];
+
+let sizeIndex=1;
 
 sizeBtn.onclick=()=>{
 
-textSize+=4;
+sizeIndex++;
 
-if(textSize>50){
+if(sizeIndex>=sizeList.length){
 
-textSize=22;
+sizeIndex=0;
 
 }
 
-textLayer.style.fontSize=textSize+'px';
+textLayer.style.fontSize=sizeList[sizeIndex]+'px';
 
 };
 
 </script>
 
 </body>
+
 </html>
