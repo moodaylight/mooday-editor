@@ -137,9 +137,8 @@ transition:0.3s;
 
 .text-layer{
 position:absolute;
-left:50%;
-top:50%;
-transform:translate(-50%,-50%);
+left:0;
+top:0;
 color:white;
 font-size:22px;
 letter-spacing:4px;
@@ -564,6 +563,9 @@ lastDistance=0;
 
 /* 文字功能 */
 
+let textX=40;
+let textY=110;
+
 addTextBtn.onclick=()=>{
 
 const text=prompt('请输入文字');
@@ -574,11 +576,7 @@ textLayer.style.display='block';
 
 textLayer.innerText=text;
 
-requestAnimationFrame(()=>{
-
 updateText();
-
-});
 
 }
 
@@ -726,9 +724,6 @@ updateText();
 
 /* 文字拖动 */
 
-let textX=0;
-let textY=0;
-
 let textDragging=false;
 
 let textStartX=0;
@@ -736,35 +731,33 @@ let textStartY=0;
 
 function updateText(){
 
-const safePadding=8;
-
-const areaWidth=photoArea.clientWidth;
-
-const areaHeight=photoArea.clientHeight;
-
-const textWidth=textLayer.offsetWidth;
-
-const textHeight=textLayer.offsetHeight;
+const safePadding=10;
 
 const maxX=
-(areaWidth/2)-(textWidth/2)-safePadding;
-
-const minX=-maxX;
+photoArea.clientWidth-
+textLayer.offsetWidth-
+safePadding;
 
 const maxY=
-(areaHeight/2)-(textHeight/2)-safePadding;
+photoArea.clientHeight-
+textLayer.offsetHeight-
+safePadding;
 
-const minY=-maxY;
+if(textX<safePadding){
+
+textX=safePadding;
+
+}
+
+if(textY<safePadding){
+
+textY=safePadding;
+
+}
 
 if(textX>maxX){
 
 textX=maxX;
-
-}
-
-if(textX<minX){
-
-textX=minX;
 
 }
 
@@ -774,22 +767,15 @@ textY=maxY;
 
 }
 
-if(textY<minY){
-
-textY=minY;
-
-}
-
 textLayer.style.transform=
 `
-translate(
-calc(-50% + ${textX}px),
-calc(-50% + ${textY}px)
-)
+translate(${textX}px,${textY}px)
 rotate(${textRotation}deg)
 `;
 
 }
+
+updateText();
 
 textLayer.addEventListener('touchstart',(e)=>{
 
