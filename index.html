@@ -746,11 +746,35 @@ let textStartY=0;
 
 function updateText(){
 
-if(textX>70) textX=70;
-if(textX<-70) textX=-70;
+const limitX=58;
 
-if(textY>90) textY=90;
-if(textY<-120) textY=-120;
+const limitTop=-65;
+
+const limitBottom=35;
+
+if(textX>limitX){
+
+textX=limitX;
+
+}
+
+if(textX<-limitX){
+
+textX=-limitX;
+
+}
+
+if(textY<limitTop){
+
+textY=limitTop;
+
+}
+
+if(textY>limitBottom){
+
+textY=limitBottom;
+
+}
 
 textLayer.style.transform=
 `
