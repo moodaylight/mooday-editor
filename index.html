@@ -200,8 +200,10 @@ margin-bottom:20px;
 background:#f1f1f1;
 border:none;
 border-radius:16px;
-padding:12px 10px;
+padding:10px 6px;
 font-size:13px;
+line-height:1.2;
+height:54px;
 }
 
 .light-grid{
@@ -304,15 +306,7 @@ FOREVER
 <div class="tool-row">
 
 <button class="tool-btn" id="addTextBtn">
-添加文字
-</button>
-
-<button class="tool-btn" id="deleteTextBtn">
-删除文字
-</button>
-
-<button class="tool-btn" id="colorBtn">
-颜色
+添加<br>文字
 </button>
 
 <button class="tool-btn" id="sizePlusBtn">
@@ -321,6 +315,14 @@ A+
 
 <button class="tool-btn" id="sizeMinusBtn">
 A-
+</button>
+
+<button class="tool-btn" id="deleteTextBtn">
+删除<br>文字
+</button>
+
+<button class="tool-btn" id="colorBtn">
+颜色
 </button>
 
 <button class="tool-btn" id="glowBtn">
@@ -437,9 +439,11 @@ let lastDistance=0;
 
 function limitPhotoPosition(){
 
-const maxX=((photoArea.offsetWidth*scale)-photoArea.offsetWidth)/2;
+const maxX=
+((photoArea.offsetWidth*scale)-photoArea.offsetWidth)/2;
 
-const maxY=((photoArea.offsetHeight*scale)-photoArea.offsetHeight)/2;
+const maxY=
+((photoArea.offsetHeight*scale)-photoArea.offsetHeight)/2;
 
 if(posX>maxX) posX=maxX;
 if(posX<-maxX) posX=-maxX;
