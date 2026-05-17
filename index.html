@@ -273,8 +273,8 @@ margin-top:18px;
 
 <img
 id="photo"
-crossorigin="anonymous"
-src="https://images.unsplash.com/photo-1524504388940-b1c1722653e1?q=80&w=1200&auto=format&fit=crop"
+src=""
+style="display:none"
 >
 
 <div class="light-layer" id="lightLayer"></div>
@@ -364,8 +364,7 @@ A-
 </div>
 
 <div class="footer-tip">
-支持 JPG / PNG / HEIC<br>
-支持双指缩放与拖动
+请先上传自己的照片再生成效果图
 </div>
 
 </div>
@@ -388,21 +387,7 @@ const input=document.createElement('input');
 input.type='file';
 input.accept='image/*';
 
-let scale=1;
-let posX=0;
-let posY=0;
-
-let dragging=false;
-
-let startX=0;
-let startY=0;
-
-function updatePhoto(){
-
-photo.style.transform=
-`translate(${posX}px,${posY}px) scale(${scale})`;
-
-}
+let hasUpload=false;
 
 uploadBtn.onclick=()=>{
 
@@ -422,108 +407,15 @@ reader.onload=(event)=>{
 
 photo.src=event.target.result;
 
+photo.style.display='block';
+
+hasUpload=true;
+
 };
 
 reader.readAsDataURL(file);
 
 };
-
-photoArea.addEventListener('touchstart',(e)=>{
-
-if(e.touches.length===1){
-
-dragging=true;
-
-startX=e.touches[0].clientX-posX;
-startY=e.touches[0].clientY-posY;
-
-}
-
-});
-
-photoArea.addEventListener('touchmove',(e)=>{
-
-if(dragging&&e.touches.length===1){
-
-posX=e.touches[0].clientX-startX;
-posY=e.touches[0].clientY-startY;
-
-updatePhoto();
-
-}
-
-});
-
-photoArea.addEventListener('touchend',()=>{
-
-dragging=false;
-
-});
-
-
-
-let textX=0;
-let textY=0;
-let textRotation=0;
-
-let textDragging=false;
-
-let lastTextTouchX=0;
-let lastTextTouchY=0;
-
-function updateText(){
-
-if(textX>70) textX=70;
-if(textX<-70) textX=-70;
-
-if(textY>90) textY=90;
-if(textY<-120) textY=-120;
-
-textLayer.style.transform=
-`translate(calc(-50% + ${textX}px),calc(-50% + ${textY}px)) rotate(${textRotation}deg)`;
-
-}
-
-textLayer.addEventListener('touchstart',(e)=>{
-
-e.stopPropagation();
-
-textDragging=true;
-
-lastTextTouchX=e.touches[0].clientX;
-lastTextTouchY=e.touches[0].clientY;
-
-});
-
-document.addEventListener('touchmove',(e)=>{
-
-if(textDragging){
-
-const moveX=
-e.touches[0].clientX-lastTextTouchX;
-
-const moveY=
-e.touches[0].clientY-lastTextTouchY;
-
-textX+=moveX;
-textY+=moveY;
-
-lastTextTouchX=e.touches[0].clientX;
-lastTextTouchY=e.touches[0].clientY;
-
-updateText();
-
-}
-
-});
-
-document.addEventListener('touchend',()=>{
-
-textDragging=false;
-
-});
-
-
 
 addTextBtn.onclick=()=>{
 
@@ -537,70 +429,11 @@ textLayer.innerText=text;
 
 };
 
-
-
-const fonts=[
-'Arial',
-'Georgia',
-'cursive',
-'monospace'
-];
-
-let fontIndex=0;
-
-fontBtn.onclick=()=>{
-
-fontIndex++;
-
-if(fontIndex>=fonts.length){
-
-fontIndex=0;
-
-}
-
-textLayer.style.fontFamily=fonts[fontIndex];
-
-};
-
-
-
-const colors=[
-'white',
-'#ffcc00',
-'#00e5ff',
-'#ff66cc',
-'#00ff99'
-];
-
-let colorIndex=0;
-
-colorBtn.onclick=()=>{
-
-colorIndex++;
-
-if(colorIndex>=colors.length){
-
-colorIndex=0;
-
-}
-
-textLayer.style.color=colors[colorIndex];
-
-};
-
-
-
 let textSize=22;
 
 sizePlusBtn.onclick=()=>{
 
 textSize+=2;
-
-if(textSize>60){
-
-textSize=60;
-
-}
 
 textLayer.style.fontSize=textSize+'px';
 
@@ -620,84 +453,6 @@ textLayer.style.fontSize=textSize+'px';
 
 };
 
-
-
-let glow=false;
-
-glowBtn.onclick=()=>{
-
-glow=!glow;
-
-if(glow){
-
-textLayer.style.textShadow=
-`
-0 0 8px white,
-0 0 18px white,
-0 0 30px white
-`;
-
-}else{
-
-textLayer.style.textShadow=
-'0 0 10px rgba(255,255,255,0.7)';
-
-}
-
-};
-
-
-
-let shadowMode=0;
-
-shadowBtn.onclick=()=>{
-
-shadowMode++;
-
-if(shadowMode>2){
-
-shadowMode=0;
-
-}
-
-if(shadowMode===0){
-
-textLayer.style.textShadow=
-'0 0 10px rgba(255,255,255,0.7)';
-
-}
-
-if(shadowMode===1){
-
-textLayer.style.textShadow=
-'3px 3px 10px rgba(0,0,0,0.7)';
-
-}
-
-if(shadowMode===2){
-
-textLayer.style.textShadow=
-`
-0 0 10px white,
-2px 2px 12px black
-`;
-
-}
-
-};
-
-
-
-rotateBtn.onclick=()=>{
-
-textRotation+=5;
-
-updateText();
-
-};
-
-
-
 whiteBtn.onclick=()=>{
 
 lightLayer.style.background=
@@ -711,8 +466,6 @@ photo.style.filter=
 'brightness(1.05)';
 
 };
-
-
 
 warmBtn.onclick=()=>{
 
@@ -728,8 +481,6 @@ photo.style.filter=
 
 };
 
-
-
 dayBtn.onclick=()=>{
 
 lightLayer.style.background=
@@ -743,8 +494,6 @@ photo.style.filter=
 'brightness(1.12)';
 
 };
-
-
 
 offBtn.onclick=()=>{
 
@@ -760,9 +509,15 @@ textLayer.style.opacity='0';
 
 };
 
-
-
 submitBtn.onclick=async()=>{
+
+if(!hasUpload){
+
+alert('请先上传自己的照片');
+
+return;
+
+}
 
 submitBtn.innerText='生成中...';
 
@@ -770,8 +525,7 @@ const canvas=await html2canvas(
 document.getElementById('captureArea'),
 {
 backgroundColor:null,
-scale:2,
-useCORS:true
+scale:2
 }
 );
 
