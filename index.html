@@ -362,7 +362,7 @@ A-
 </div>
 
 <div class="footer-tip">
-支持图片拖动、缩放、文字编辑、生成PNG
+支持图片拖动、双指缩放、文字编辑、生成PNG
 </div>
 
 </div>
@@ -387,7 +387,6 @@ const submitBtn=document.getElementById('submitBtn');
 const input=document.createElement('input');
 
 input.type='file';
-
 input.accept='image/*';
 
 let hasUpload=false;
@@ -422,25 +421,37 @@ reader.readAsDataURL(file);
 
 
 
-
-
 /* 图片拖动缩放 */
 
 let scale=1;
 
 let posX=0;
-
 let posY=0;
 
 let dragging=false;
 
 let startX=0;
-
 let startY=0;
 
 let lastDistance=0;
 
+function limitPhotoPosition(){
+
+const maxX=((photoArea.offsetWidth*scale)-photoArea.offsetWidth)/2;
+
+const maxY=((photoArea.offsetHeight*scale)-photoArea.offsetHeight)/2;
+
+if(posX>maxX) posX=maxX;
+if(posX<-maxX) posX=-maxX;
+
+if(posY>maxY) posY=maxY;
+if(posY<-maxY) posY=-maxY;
+
+}
+
 function updatePhoto(){
+
+limitPhotoPosition();
 
 photo.style.transform=
 `translate(${posX}px,${posY}px) scale(${scale})`;
@@ -545,11 +556,25 @@ lastDistance=0;
 
 
 
-
-
 /* 文字功能 */
 
+let hasText=true;
+
 addTextBtn.onclick=()=>{
+
+if(hasText){
+
+const text=prompt('修改当前文字');
+
+if(text!==null){
+
+textLayer.innerText=text;
+
+textLayer.style.display='block';
+
+}
+
+}else{
 
 const text=prompt('请输入文字');
 
@@ -558,6 +583,10 @@ if(text){
 textLayer.innerText=text;
 
 textLayer.style.display='block';
+
+hasText=true;
+
+}
 
 }
 
@@ -568,6 +597,8 @@ deleteTextBtn.onclick=()=>{
 textLayer.innerText='';
 
 textLayer.style.display='none';
+
+hasText=false;
 
 };
 
@@ -699,18 +730,14 @@ updateText();
 
 
 
-
-
 /* 文字拖动 */
 
 let textX=0;
-
 let textY=0;
 
 let textDragging=false;
 
 let textStartX=0;
-
 let textStartY=0;
 
 function updateText(){
@@ -763,8 +790,6 @@ document.addEventListener('touchend',()=>{
 textDragging=false;
 
 });
-
-
 
 
 
@@ -825,8 +850,6 @@ photo.style.filter=
 textLayer.style.opacity='0';
 
 };
-
-
 
 
 
