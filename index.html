@@ -108,7 +108,7 @@ width:100%;
 height:100%;
 position:relative;
 overflow:hidden;
-touch-action:none;
+background:black;
 }
 
 #photo{
@@ -116,10 +116,9 @@ position:absolute;
 width:100%;
 height:100%;
 object-fit:cover;
+object-position:center;
 left:0;
 top:0;
-transform-origin:center;
-transition:0.03s;
 display:none;
 }
 
@@ -145,7 +144,6 @@ white-space:nowrap;
 z-index:3;
 user-select:none;
 text-shadow:0 0 10px rgba(255,255,255,0.7);
-transition:0.15s;
 }
 
 .mirror-layer{
@@ -270,7 +268,7 @@ margin-top:18px;
 
 <div class="inner-step">
 
-<div class="photo-area" id="photoArea">
+<div class="photo-area">
 
 <img id="photo">
 
@@ -304,6 +302,10 @@ FOREVER
 
 <button class="tool-btn" id="addTextBtn">
 添加文字
+</button>
+
+<button class="tool-btn" id="deleteTextBtn">
+删除文字
 </button>
 
 <button class="tool-btn" id="colorBtn">
@@ -345,7 +347,7 @@ A-
 </div>
 
 <div class="footer-tip">
-提交制作后会自动生成最终PNG
+上传自己的照片后再点击提交制作
 </div>
 
 </div>
@@ -355,16 +357,21 @@ A-
 <script>
 
 const photo=document.getElementById('photo');
+
 const textLayer=document.getElementById('textLayer');
+
 const lightLayer=document.getElementById('lightLayer');
+
 const mirrorLayer=document.getElementById('mirrorLayer');
 
 const uploadBtn=document.getElementById('uploadBtn');
+
 const submitBtn=document.getElementById('submitBtn');
 
 const input=document.createElement('input');
 
 input.type='file';
+
 input.accept='image/*';
 
 let hasUpload=false;
@@ -405,7 +412,17 @@ if(text){
 
 textLayer.innerText=text;
 
+textLayer.style.display='block';
+
 }
+
+};
+
+deleteTextBtn.onclick=()=>{
+
+textLayer.innerText='';
+
+textLayer.style.display='none';
 
 };
 
@@ -550,10 +567,6 @@ link.download='MOODAY-light-art.png';
 link.click();
 
 submitBtn.innerText='已生成';
-
-alert(
-'目前是本地生成版本\\n\\n下一步会升级成：\\n自动上传到Cloudflare后台'
-);
 
 };
 
