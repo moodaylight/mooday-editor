@@ -113,13 +113,14 @@ touch-action:none;
 
 #photo{
 position:absolute;
-width:110%;
-height:110%;
-left:-5%;
-top:-5%;
+width:100%;
+height:100%;
 object-fit:cover;
+left:0;
+top:0;
 transform-origin:center;
 transition:0.03s;
+display:none;
 }
 
 .light-layer{
@@ -271,11 +272,7 @@ margin-top:18px;
 
 <div class="photo-area" id="photoArea">
 
-<img
-id="photo"
-src=""
-style="display:none"
->
+<img id="photo">
 
 <div class="light-layer" id="lightLayer"></div>
 
@@ -309,10 +306,6 @@ FOREVER
 添加文字
 </button>
 
-<button class="tool-btn" id="fontBtn">
-字体
-</button>
-
 <button class="tool-btn" id="colorBtn">
 颜色
 </button>
@@ -323,18 +316,6 @@ A+
 
 <button class="tool-btn" id="sizeMinusBtn">
 A-
-</button>
-
-<button class="tool-btn" id="glowBtn">
-发光
-</button>
-
-<button class="tool-btn" id="shadowBtn">
-阴影
-</button>
-
-<button class="tool-btn" id="rotateBtn">
-旋转
 </button>
 
 </div>
@@ -364,7 +345,7 @@ A-
 </div>
 
 <div class="footer-tip">
-请先上传自己的照片再生成效果图
+提交制作后会自动生成最终PNG
 </div>
 
 </div>
@@ -374,7 +355,6 @@ A-
 <script>
 
 const photo=document.getElementById('photo');
-const photoArea=document.getElementById('photoArea');
 const textLayer=document.getElementById('textLayer');
 const lightLayer=document.getElementById('lightLayer');
 const mirrorLayer=document.getElementById('mirrorLayer');
@@ -429,11 +409,41 @@ textLayer.innerText=text;
 
 };
 
+const colors=[
+'white',
+'#ffcc00',
+'#00e5ff',
+'#ff66cc',
+'#00ff99'
+];
+
+let colorIndex=0;
+
+colorBtn.onclick=()=>{
+
+colorIndex++;
+
+if(colorIndex>=colors.length){
+
+colorIndex=0;
+
+}
+
+textLayer.style.color=colors[colorIndex];
+
+};
+
 let textSize=22;
 
 sizePlusBtn.onclick=()=>{
 
 textSize+=2;
+
+if(textSize>60){
+
+textSize=60;
+
+}
 
 textLayer.style.fontSize=textSize+'px';
 
@@ -539,7 +549,11 @@ link.download='MOODAY-light-art.png';
 
 link.click();
 
-submitBtn.innerText='提交制作';
+submitBtn.innerText='已生成';
+
+alert(
+'目前是本地生成版本\\n\\n下一步会升级成：\\n自动上传到Cloudflare后台'
+);
 
 };
 
