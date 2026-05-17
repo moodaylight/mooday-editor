@@ -320,6 +320,18 @@ A+
 A-
 </button>
 
+<button class="tool-btn" id="glowBtn">
+发光
+</button>
+
+<button class="tool-btn" id="shadowBtn">
+阴影
+</button>
+
+<button class="tool-btn" id="rotateBtn">
+旋转
+</button>
+
 </div>
 
 <div class="section-title">
@@ -477,6 +489,79 @@ textSize=14;
 }
 
 textLayer.style.fontSize=textSize+'px';
+
+};
+
+let glow=false;
+
+glowBtn.onclick=()=>{
+
+glow=!glow;
+
+if(glow){
+
+textLayer.style.textShadow=
+`
+0 0 8px white,
+0 0 18px white,
+0 0 30px white
+`;
+
+}else{
+
+textLayer.style.textShadow=
+'0 0 10px rgba(255,255,255,0.7)';
+
+}
+
+};
+
+let shadowMode=0;
+
+shadowBtn.onclick=()=>{
+
+shadowMode++;
+
+if(shadowMode>2){
+
+shadowMode=0;
+
+}
+
+if(shadowMode===0){
+
+textLayer.style.textShadow=
+'0 0 10px rgba(255,255,255,0.7)';
+
+}
+
+if(shadowMode===1){
+
+textLayer.style.textShadow=
+'3px 3px 10px rgba(0,0,0,0.7)';
+
+}
+
+if(shadowMode===2){
+
+textLayer.style.textShadow=
+`
+0 0 10px white,
+2px 2px 12px black
+`;
+
+}
+
+};
+
+let textRotation=0;
+
+rotateBtn.onclick=()=>{
+
+textRotation+=5;
+
+textLayer.style.transform=
+`translate(-50%,-50%) rotate(${textRotation}deg)`;
 
 };
 
