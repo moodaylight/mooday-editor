@@ -22,6 +22,7 @@ html,body{
 background:#f5f5f7;
 overflow-x:hidden;
 color:#111;
+touch-action:manipulation;
 }
 
 body{
@@ -109,6 +110,7 @@ height:100%;
 position:relative;
 overflow:hidden;
 background:black;
+touch-action:none;
 }
 
 #photo{
@@ -119,6 +121,7 @@ object-fit:cover;
 object-position:center;
 left:0;
 top:0;
+transform-origin:center;
 display:none;
 }
 
@@ -268,7 +271,7 @@ margin-top:18px;
 
 <div class="inner-step">
 
-<div class="photo-area">
+<div class="photo-area" id="photoArea">
 
 <img id="photo">
 
@@ -359,7 +362,7 @@ A-
 </div>
 
 <div class="footer-tip">
-上传自己的照片后再点击提交制作
+支持图片拖动、缩放、文字编辑、生成PNG
 </div>
 
 </div>
@@ -369,6 +372,7 @@ A-
 <script>
 
 const photo=document.getElementById('photo');
+const photoArea=document.getElementById('photoArea');
 
 const textLayer=document.getElementById('textLayer');
 
@@ -415,6 +419,135 @@ hasUpload=true;
 reader.readAsDataURL(file);
 
 };
+
+
+
+
+
+/* 图片拖动缩放 */
+
+let scale=1;
+
+let posX=0;
+
+let posY=0;
+
+let dragging=false;
+
+let startX=0;
+
+let startY=0;
+
+let lastDistance=0;
+
+function updatePhoto(){
+
+photo.style.transform=
+`translate(${posX}px,${posY}px) scale(${scale})`;
+
+}
+
+photoArea.addEventListener('touchstart',(e)=>{
+
+if(e.touches.length===1){
+
+dragging=true;
+
+startX=e.touches[0].clientX-posX;
+
+startY=e.touches[0].clientY-posY;
+
+}
+
+if(e.touches.length===2){
+
+const dx=
+e.touches[0].clientX-
+e.touches[1].clientX;
+
+const dy=
+e.touches[0].clientY-
+e.touches[1].clientY;
+
+lastDistance=Math.sqrt(dx*dx+dy*dy);
+
+}
+
+});
+
+photoArea.addEventListener('touchmove',(e)=>{
+
+e.preventDefault();
+
+if(e.touches.length===1&&dragging){
+
+posX=e.touches[0].clientX-startX;
+
+posY=e.touches[0].clientY-startY;
+
+updatePhoto();
+
+}
+
+if(e.touches.length===2){
+
+const dx=
+e.touches[0].clientX-
+e.touches[1].clientX;
+
+const dy=
+e.touches[0].clientY-
+e.touches[1].clientY;
+
+const distance=Math.sqrt(dx*dx+dy*dy);
+
+if(lastDistance){
+
+if(distance>lastDistance){
+
+scale+=0.02;
+
+}else{
+
+scale-=0.02;
+
+}
+
+if(scale<1){
+
+scale=1;
+
+}
+
+if(scale>3){
+
+scale=3;
+
+}
+
+updatePhoto();
+
+}
+
+lastDistance=distance;
+
+}
+
+});
+
+photoArea.addEventListener('touchend',()=>{
+
+dragging=false;
+
+lastDistance=0;
+
+});
+
+
+
+
+
+/* 文字功能 */
 
 addTextBtn.onclick=()=>{
 
@@ -560,10 +693,82 @@ rotateBtn.onclick=()=>{
 
 textRotation+=5;
 
-textLayer.style.transform=
-`translate(-50%,-50%) rotate(${textRotation}deg)`;
+updateText();
 
 };
+
+
+
+
+
+/* 文字拖动 */
+
+let textX=0;
+
+let textY=0;
+
+let textDragging=false;
+
+let textStartX=0;
+
+let textStartY=0;
+
+function updateText(){
+
+if(textX>70) textX=70;
+if(textX<-70) textX=-70;
+
+if(textY>90) textY=90;
+if(textY<-120) textY=-120;
+
+textLayer.style.transform=
+`
+translate(
+calc(-50% + ${textX}px),
+calc(-50% + ${textY}px)
+)
+rotate(${textRotation}deg)
+`;
+
+}
+
+textLayer.addEventListener('touchstart',(e)=>{
+
+e.stopPropagation();
+
+textDragging=true;
+
+textStartX=e.touches[0].clientX-textX;
+
+textStartY=e.touches[0].clientY-textY;
+
+});
+
+document.addEventListener('touchmove',(e)=>{
+
+if(textDragging){
+
+textX=e.touches[0].clientX-textStartX;
+
+textY=e.touches[0].clientY-textStartY;
+
+updateText();
+
+}
+
+});
+
+document.addEventListener('touchend',()=>{
+
+textDragging=false;
+
+});
+
+
+
+
+
+/* 灯光 */
 
 whiteBtn.onclick=()=>{
 
@@ -620,6 +825,12 @@ photo.style.filter=
 textLayer.style.opacity='0';
 
 };
+
+
+
+
+
+/* 生成PNG */
 
 submitBtn.onclick=async()=>{
 
