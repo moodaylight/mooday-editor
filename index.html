@@ -148,6 +148,7 @@ z-index:3;
 user-select:none;
 text-shadow:0 0 10px rgba(255,255,255,0.7);
 touch-action:none;
+display:block;
 }
 
 .mirror-layer{
@@ -567,35 +568,21 @@ let hasText=true;
 
 addTextBtn.onclick=()=>{
 
-if(hasText){
-
-const text=prompt('修改当前文字');
-
-if(text!==null){
-
-textLayer.innerText=text;
-
-textLayer.style.display='block';
-
-updateText();
-
-}
-
-}else{
-
 const text=prompt('请输入文字');
 
-if(text){
-
-textLayer.innerText=text;
+if(text!==null && text.trim()!==''){
 
 textLayer.style.display='block';
+
+textLayer.innerText=text;
 
 hasText=true;
 
+requestAnimationFrame(()=>{
+
 updateText();
 
-}
+});
 
 }
 
