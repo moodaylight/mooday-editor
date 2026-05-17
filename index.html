@@ -577,6 +577,8 @@ textLayer.innerText=text;
 
 textLayer.style.display='block';
 
+updateText();
+
 }
 
 }else{
@@ -590,6 +592,8 @@ textLayer.innerText=text;
 textLayer.style.display='block';
 
 hasText=true;
+
+updateText();
 
 }
 
@@ -751,7 +755,7 @@ let textStartY=0;
 
 function updateText(){
 
-const safePadding=12;
+const safePadding=8;
 
 const areaWidth=photoArea.offsetWidth;
 
@@ -765,13 +769,13 @@ const maxX=
 (areaWidth/2)-(textWidth/2)-safePadding;
 
 const minX=
--((areaWidth/2)-(textWidth/2)-safePadding);
+-maxX;
 
 const maxY=
 (areaHeight/2)-(textHeight/2)-safePadding;
 
 const minY=
--((areaHeight/2)-(textHeight/2)-safePadding);
+-maxY;
 
 if(textX>maxX){
 
