@@ -14,7 +14,7 @@
 margin:0;
 padding:0;
 box-sizing:border-box;
-font-family:Arial,sans-serif;
+font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
 -webkit-tap-highlight-color:transparent;
 }
 
@@ -119,6 +119,7 @@ left:-5%;
 top:-5%;
 object-fit:cover;
 transform-origin:center;
+transition:0.03s;
 }
 
 .light-layer{
@@ -128,6 +129,7 @@ background:rgba(255,180,120,0.22);
 mix-blend-mode:screen;
 z-index:2;
 pointer-events:none;
+transition:0.3s;
 }
 
 .text-layer{
@@ -142,6 +144,7 @@ white-space:nowrap;
 z-index:3;
 user-select:none;
 text-shadow:0 0 10px rgba(255,255,255,0.7);
+transition:0.15s;
 }
 
 .mirror-layer{
@@ -157,6 +160,7 @@ rgba(255,255,255,0.12)
 opacity:0;
 z-index:20;
 pointer-events:none;
+transition:0.3s;
 }
 
 .panel{
@@ -231,6 +235,14 @@ background:#f1f1f1;
 color:#555;
 }
 
+.footer-tip{
+text-align:center;
+font-size:12px;
+line-height:1.7;
+color:#888;
+margin-top:18px;
+}
+
 </style>
 </head>
 
@@ -261,6 +273,7 @@ color:#555;
 
 <img
 id="photo"
+crossorigin="anonymous"
 src="https://images.unsplash.com/photo-1524504388940-b1c1722653e1?q=80&w=1200&auto=format&fit=crop"
 >
 
@@ -350,6 +363,11 @@ A-
 
 </div>
 
+<div class="footer-tip">
+支持 JPG / PNG / HEIC<br>
+支持双指缩放与拖动
+</div>
+
 </div>
 
 </div>
@@ -363,6 +381,7 @@ const lightLayer=document.getElementById('lightLayer');
 const mirrorLayer=document.getElementById('mirrorLayer');
 
 const uploadBtn=document.getElementById('uploadBtn');
+const submitBtn=document.getElementById('submitBtn');
 
 const input=document.createElement('input');
 
@@ -374,8 +393,16 @@ let posX=0;
 let posY=0;
 
 let dragging=false;
+
 let startX=0;
 let startY=0;
+
+function updatePhoto(){
+
+photo.style.transform=
+`translate(${posX}px,${posY}px) scale(${scale})`;
+
+}
 
 uploadBtn.onclick=()=>{
 
@@ -400,13 +427,6 @@ photo.src=event.target.result;
 reader.readAsDataURL(file);
 
 };
-
-function updatePhoto(){
-
-photo.style.transform=
-`translate(${posX}px,${posY}px) scale(${scale})`;
-
-}
 
 photoArea.addEventListener('touchstart',(e)=>{
 
@@ -440,26 +460,18 @@ dragging=false;
 
 });
 
+
+
 let textX=0;
 let textY=0;
 let textRotation=0;
 
 let textDragging=false;
 
-textLayer.addEventListener('touchstart',(e)=>{
+let lastTextTouchX=0;
+let lastTextTouchY=0;
 
-e.stopPropagation();
-
-textDragging=true;
-
-});
-
-document.addEventListener('touchmove',(e)=>{
-
-if(textDragging){
-
-textX+=e.touches[0].movementX||0;
-textY+=e.touches[0].movementY||0;
+function updateText(){
 
 if(textX>70) textX=70;
 if(textX<-70) textX=-70;
@@ -472,6 +484,37 @@ textLayer.style.transform=
 
 }
 
+textLayer.addEventListener('touchstart',(e)=>{
+
+e.stopPropagation();
+
+textDragging=true;
+
+lastTextTouchX=e.touches[0].clientX;
+lastTextTouchY=e.touches[0].clientY;
+
+});
+
+document.addEventListener('touchmove',(e)=>{
+
+if(textDragging){
+
+const moveX=
+e.touches[0].clientX-lastTextTouchX;
+
+const moveY=
+e.touches[0].clientY-lastTextTouchY;
+
+textX+=moveX;
+textY+=moveY;
+
+lastTextTouchX=e.touches[0].clientX;
+lastTextTouchY=e.touches[0].clientY;
+
+updateText();
+
+}
+
 });
 
 document.addEventListener('touchend',()=>{
@@ -479,6 +522,8 @@ document.addEventListener('touchend',()=>{
 textDragging=false;
 
 });
+
+
 
 addTextBtn.onclick=()=>{
 
@@ -491,6 +536,8 @@ textLayer.innerText=text;
 }
 
 };
+
+
 
 const fonts=[
 'Arial',
@@ -514,6 +561,8 @@ fontIndex=0;
 textLayer.style.fontFamily=fonts[fontIndex];
 
 };
+
+
 
 const colors=[
 'white',
@@ -539,11 +588,19 @@ textLayer.style.color=colors[colorIndex];
 
 };
 
+
+
 let textSize=22;
 
 sizePlusBtn.onclick=()=>{
 
 textSize+=2;
+
+if(textSize>60){
+
+textSize=60;
+
+}
 
 textLayer.style.fontSize=textSize+'px';
 
@@ -563,6 +620,8 @@ textLayer.style.fontSize=textSize+'px';
 
 };
 
+
+
 let glow=false;
 
 glowBtn.onclick=()=>{
@@ -575,7 +634,7 @@ textLayer.style.textShadow=
 `
 0 0 8px white,
 0 0 18px white,
-0 0 28px white
+0 0 30px white
 `;
 
 }else{
@@ -586,6 +645,8 @@ textLayer.style.textShadow=
 }
 
 };
+
+
 
 let shadowMode=0;
 
@@ -625,50 +686,81 @@ textLayer.style.textShadow=
 
 };
 
+
+
 rotateBtn.onclick=()=>{
 
 textRotation+=5;
 
-textLayer.style.transform=
-`translate(calc(-50% + ${textX}px),calc(-50% + ${textY}px)) rotate(${textRotation}deg)`;
+updateText();
 
 };
+
+
 
 whiteBtn.onclick=()=>{
 
-lightLayer.style.background='rgba(255,255,255,0.08)';
+lightLayer.style.background=
+'rgba(255,255,255,0.08)';
+
 mirrorLayer.style.opacity='0';
+
 textLayer.style.opacity='1';
-photo.style.filter='brightness(1.05)';
+
+photo.style.filter=
+'brightness(1.05)';
 
 };
+
+
 
 warmBtn.onclick=()=>{
 
-lightLayer.style.background='rgba(255,180,120,0.22)';
+lightLayer.style.background=
+'rgba(255,180,120,0.22)';
+
 mirrorLayer.style.opacity='0';
+
 textLayer.style.opacity='1';
-photo.style.filter='sepia(0.08) brightness(1.02)';
+
+photo.style.filter=
+'sepia(0.08) brightness(1.02)';
 
 };
+
+
 
 dayBtn.onclick=()=>{
 
-lightLayer.style.background='rgba(255,245,200,0.16)';
+lightLayer.style.background=
+'rgba(255,245,200,0.16)';
+
 mirrorLayer.style.opacity='0';
+
 textLayer.style.opacity='1';
-photo.style.filter='brightness(1.12)';
+
+photo.style.filter=
+'brightness(1.12)';
 
 };
+
+
 
 offBtn.onclick=()=>{
 
-lightLayer.style.background='rgba(0,0,0,0.75)';
+lightLayer.style.background=
+'rgba(0,0,0,0.75)';
+
 mirrorLayer.style.opacity='1';
-photo.style.filter='brightness(0)';
+
+photo.style.filter=
+'brightness(0)';
+
 textLayer.style.opacity='0';
 
 };
+
+
 
 submitBtn.onclick=async()=>{
 
@@ -678,7 +770,8 @@ const canvas=await html2canvas(
 document.getElementById('captureArea'),
 {
 backgroundColor:null,
-scale:2
+scale:2,
+useCORS:true
 }
 );
 
