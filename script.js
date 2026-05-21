@@ -1,18 +1,32 @@
 const uploadInput = document.getElementById("uploadInput");
 const photoLayer = document.getElementById("photoLayer");
 const photoImg = document.getElementById("photoImg");
+
 const textInput = document.getElementById("textInput");
-const scaleSlider = document.getElementById("scaleSlider");
-const rotateSlider = document.getElementById("rotateSlider");
-const textSizeSlider = document.getElementById("textSizeSlider");
-const photoArea = document.getElementById("photoArea");
+
+const addTextBtn =
+document.getElementById("addTextBtn");
+
+const scaleSlider =
+document.getElementById("scaleSlider");
+
+const rotateSlider =
+document.getElementById("rotateSlider");
+
+const textSizeSlider =
+document.getElementById("textSizeSlider");
+
+const photoArea =
+document.getElementById("photoArea");
 
 let scale = 1;
 let rotation = 0;
+
 let posX = 0;
 let posY = 0;
 
 let dragging = false;
+
 let startX = 0;
 let startY = 0;
 
@@ -26,239 +40,328 @@ let selectedTextLayer = null;
 
 const textLayers = [];
 
-uploadInput.addEventListener("change", (e) => {
+uploadInput.addEventListener(
+"change",
+(e)=>{
 
-  const file = e.target.files[0];
+const file = e.target.files[0];
 
-  if (!file) return;
+if(!file) return;
 
-  const reader = new FileReader();
+const reader = new FileReader();
 
-  reader.onload = function(event){
+reader.onload = function(event){
 
-    photoImg.src = event.target.result;
+photoImg.src =
+event.target.result;
 
-  };
+};
 
-  reader.readAsDataURL(file);
+reader.readAsDataURL(file);
 
-});
+}
+);
 
 function updatePhotoTransform(){
 
-  photoLayer.style.transform = `
-    translate(-50%,-50%)
-    translate(${posX}px,${posY}px)
-    scale(${scale})
-    rotate(${rotation}deg)
-  `;
+photoLayer.style.transform = `
+translate(-50%,-50%)
+translate(${posX}px,${posY}px)
+scale(${scale})
+rotate(${rotation}deg)
+`;
 
 }
 
-function getDistance(t1, t2){
+function getDistance(t1,t2){
 
-  const dx = t2.clientX - t1.clientX;
-  const dy = t2.clientY - t1.clientY;
+const dx =
+t2.clientX - t1.clientX;
 
-  return Math.sqrt(dx * dx + dy * dy);
+const dy =
+t2.clientY - t1.clientY;
 
-}
-
-function getAngle(t1, t2){
-
-  return Math.atan2(
-    t2.clientY - t1.clientY,
-    t2.clientX - t1.clientX
-  ) * 180 / Math.PI;
+return Math.sqrt(dx*dx + dy*dy);
 
 }
 
-photoLayer.addEventListener("touchstart", (e) => {
+function getAngle(t1,t2){
 
-  if(e.touches.length === 1){
+return Math.atan2(
+t2.clientY - t1.clientY,
+t2.clientX - t1.clientX
+) * 180 / Math.PI;
 
-    dragging = true;
+}
 
-    startX = e.touches[0].clientX - posX;
-    startY = e.touches[0].clientY - posY;
+photoLayer.addEventListener(
+"touchstart",
+(e)=>{
 
-  }
+if(e.touches.length===1){
 
-  if(e.touches.length === 2){
+dragging = true;
 
-    initialDistance = getDistance(
-      e.touches[0],
-      e.touches[1]
-    );
+startX =
+e.touches[0].clientX - posX;
 
-    initialAngle = getAngle(
-      e.touches[0],
-      e.touches[1]
-    );
+startY =
+e.touches[0].clientY - posY;
 
-    startScale = scale;
-    startRotation = rotation;
+}
 
-  }
+if(e.touches.length===2){
 
-});
+initialDistance =
+getDistance(
+e.touches[0],
+e.touches[1]
+);
 
-photoLayer.addEventListener("touchmove", (e) => {
+initialAngle =
+getAngle(
+e.touches[0],
+e.touches[1]
+);
 
-  e.preventDefault();
+startScale = scale;
 
-  if(e.touches.length === 1 && dragging){
+startRotation = rotation;
 
-    posX = e.touches[0].clientX - startX;
-    posY = e.touches[0].clientY - startY;
+}
 
-    updatePhotoTransform();
+}
+);
 
-  }
+photoLayer.addEventListener(
+"touchmove",
+(e)=>{
 
-  if(e.touches.length === 2){
+e.preventDefault();
 
-    const currentDistance = getDistance(
-      e.touches[0],
-      e.touches[1]
-    );
+if(
+e.touches.length===1 &&
+dragging
+){
 
-    const currentAngle = getAngle(
-      e.touches[0],
-      e.touches[1]
-    );
+posX =
+e.touches[0].clientX - startX;
 
-    scale = startScale * (
-      currentDistance / initialDistance
-    );
+posY =
+e.touches[0].clientY - startY;
 
-    rotation = startRotation + (
-      currentAngle - initialAngle
-    );
+updatePhotoTransform();
 
-    scaleSlider.value = scale;
-    rotateSlider.value = rotation;
+}
 
-    updatePhotoTransform();
+if(e.touches.length===2){
 
-  }
+const currentDistance =
+getDistance(
+e.touches[0],
+e.touches[1]
+);
 
-}, { passive:false });
+const currentAngle =
+getAngle(
+e.touches[0],
+e.touches[1]
+);
 
-window.addEventListener("touchend", () => {
+scale =
+startScale *
+(
+currentDistance /
+initialDistance
+);
 
-  dragging = false;
+rotation =
+startRotation +
+(
+currentAngle -
+initialAngle
+);
 
-});
+scaleSlider.value = scale;
 
-scaleSlider.addEventListener("input", (e) => {
+rotateSlider.value =
+rotation;
 
-  scale = parseFloat(e.target.value);
+updatePhotoTransform();
 
-  updatePhotoTransform();
+}
 
-});
+},
+{ passive:false }
+);
 
-rotateSlider.addEventListener("input", (e) => {
+window.addEventListener(
+"touchend",
+()=>{
 
-  rotation = parseFloat(e.target.value);
+dragging = false;
 
-  updatePhotoTransform();
+}
+);
 
-});
+scaleSlider.addEventListener(
+"input",
+(e)=>{
 
-function createTextLayer(text = "MOODAY"){
+scale =
+parseFloat(e.target.value);
 
-  const layer = document.createElement("div");
+updatePhotoTransform();
 
-  layer.className = "text-layer";
+}
+);
 
-  layer.innerText = text;
+rotateSlider.addEventListener(
+"input",
+(e)=>{
 
-  layer.style.left = "50%";
-  layer.style.top = "75%";
+rotation =
+parseFloat(e.target.value);
 
-  layer.dataset.x = 0;
-  layer.dataset.y = 0;
+updatePhotoTransform();
 
-  let textDragging = false;
+}
+);
 
-  let textStartX = 0;
-  let textStartY = 0;
+function createTextLayer(
+text="MOODAY"
+){
 
-  layer.addEventListener("pointerdown", (e) => {
+const layer =
+document.createElement("div");
 
-    selectedTextLayer = layer;
+layer.className =
+"text-layer";
 
-    textInput.value = layer.innerText;
+layer.innerText = text;
 
-    textDragging = true;
+layer.style.left = "50%";
 
-    textStartX =
-      e.clientX - parseFloat(layer.dataset.x);
+layer.style.top = "75%";
 
-    textStartY =
-      e.clientY - parseFloat(layer.dataset.y);
+layer.dataset.x = 0;
 
-  });
+layer.dataset.y = 0;
 
-  window.addEventListener("pointermove", (e) => {
+let textDragging = false;
 
-    if(!textDragging) return;
+let textStartX = 0;
+let textStartY = 0;
 
-    const x = e.clientX - textStartX;
-    const y = e.clientY - textStartY;
+layer.addEventListener(
+"pointerdown",
+(e)=>{
 
-    layer.dataset.x = x;
-    layer.dataset.y = y;
+selectedTextLayer = layer;
 
-    layer.style.transform = `
-      translate(-50%,-50%)
-      translate(${x}px,${y}px)
-    `;
+textInput.value =
+layer.innerText;
 
-  });
+textDragging = true;
 
-  window.addEventListener("pointerup", () => {
+textStartX =
+e.clientX -
+parseFloat(layer.dataset.x);
 
-    textDragging = false;
+textStartY =
+e.clientY -
+parseFloat(layer.dataset.y);
 
-  });
+}
+);
 
-  photoArea.appendChild(layer);
+window.addEventListener(
+"pointermove",
+(e)=>{
 
-  textLayers.push(layer);
+if(!textDragging) return;
 
-  selectedTextLayer = layer;
+const x =
+e.clientX - textStartX;
+
+const y =
+e.clientY - textStartY;
+
+layer.dataset.x = x;
+
+layer.dataset.y = y;
+
+layer.style.transform = `
+translate(-50%,-50%)
+translate(${x}px,${y}px)
+`;
+
+}
+);
+
+window.addEventListener(
+"pointerup",
+()=>{
+
+textDragging = false;
+
+}
+);
+
+photoArea.appendChild(layer);
+
+textLayers.push(layer);
+
+selectedTextLayer = layer;
 
 }
 
 createTextLayer();
 
-textInput.addEventListener("input", (e) => {
+addTextBtn.addEventListener(
+"click",
+()=>{
 
-  if(!selectedTextLayer) return;
+createTextLayer("新文字");
 
-  selectedTextLayer.innerText =
-    e.target.value || "MOODAY";
+}
+);
 
-});
+textInput.addEventListener(
+"input",
+(e)=>{
 
-textSizeSlider.addEventListener("input", (e) => {
+if(!selectedTextLayer)
+return;
 
-  if(!selectedTextLayer) return;
+selectedTextLayer.innerText =
+e.target.value || "MOODAY";
 
-  selectedTextLayer.style.fontSize =
-    e.target.value + "px";
+}
+);
 
-});
+textSizeSlider.addEventListener(
+"input",
+(e)=>{
+
+if(!selectedTextLayer)
+return;
+
+selectedTextLayer.style.fontSize =
+e.target.value + "px";
+
+}
+);
 
 document
 .getElementById("submitBtn")
-.addEventListener("click", () => {
+.addEventListener(
+"click",
+()=>{
 
-  alert("制作已提交");
+alert("制作已提交");
 
-});
+}
+);
 
 updatePhotoTransform();
