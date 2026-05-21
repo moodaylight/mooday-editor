@@ -1,8 +1,13 @@
 const uploadInput = document.getElementById("uploadInput");
-const photoLayer = document.getElementById("photoLayer");
-const photoImg = document.getElementById("photoImg");
 
-const textInput = document.getElementById("textInput");
+const photoLayer =
+document.getElementById("photoLayer");
+
+const photoImg =
+document.getElementById("photoImg");
+
+const textInput =
+document.getElementById("textInput");
 
 const addTextBtn =
 document.getElementById("addTextBtn");
@@ -20,20 +25,25 @@ const photoArea =
 document.getElementById("photoArea");
 
 let scale = 1;
+
 let rotation = 0;
 
 let posX = 0;
+
 let posY = 0;
 
 let dragging = false;
 
 let startX = 0;
+
 let startY = 0;
 
 let initialDistance = 0;
+
 let initialAngle = 0;
 
 let startScale = 1;
+
 let startRotation = 0;
 
 let selectedTextLayer = null;
@@ -81,7 +91,9 @@ t2.clientX - t1.clientX;
 const dy =
 t2.clientY - t1.clientY;
 
-return Math.sqrt(dx*dx + dy*dy);
+return Math.sqrt(
+dx * dx + dy * dy
+);
 
 }
 
@@ -182,7 +194,8 @@ currentAngle -
 initialAngle
 );
 
-scaleSlider.value = scale;
+scaleSlider.value =
+scale;
 
 rotateSlider.value =
 rotation;
@@ -238,11 +251,14 @@ document.createElement("div");
 layer.className =
 "text-layer";
 
-layer.innerText = text;
+layer.innerText =
+text;
 
-layer.style.left = "50%";
+layer.style.left =
+"50%";
 
-layer.style.top = "75%";
+layer.style.top =
+"75%";
 
 layer.dataset.x = 0;
 
@@ -251,13 +267,15 @@ layer.dataset.y = 0;
 let textDragging = false;
 
 let textStartX = 0;
+
 let textStartY = 0;
 
 layer.addEventListener(
 "pointerdown",
 (e)=>{
 
-selectedTextLayer = layer;
+selectedTextLayer =
+layer;
 
 textInput.value =
 layer.innerText;
@@ -279,7 +297,8 @@ window.addEventListener(
 "pointermove",
 (e)=>{
 
-if(!textDragging) return;
+if(!textDragging)
+return;
 
 const x =
 e.clientX - textStartX;
@@ -312,7 +331,8 @@ photoArea.appendChild(layer);
 
 textLayers.push(layer);
 
-selectedTextLayer = layer;
+selectedTextLayer =
+layer;
 
 }
 
