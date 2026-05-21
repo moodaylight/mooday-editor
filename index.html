@@ -1,12 +1,10 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="zh">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
-<title>MOODAY 在线编辑器</title>
-
-<script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
+<title>MOODAY EDITOR</title>
 
 <style>
 
@@ -14,238 +12,123 @@
 margin:0;
 padding:0;
 box-sizing:border-box;
-font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
--webkit-tap-highlight-color:transparent;
-}
-
-html,body{
-background:#f5f5f7;
-overflow-x:hidden;
-color:#111;
-touch-action:manipulation;
+font-family:sans-serif;
 }
 
 body{
-padding-bottom:40px;
+background:#0d0d0d;
+color:white;
+overflow:hidden;
 }
 
-.header{
-position:fixed;
-top:0;
-left:0;
-width:100%;
-background:#fff;
-border-bottom:1px solid #e5e5e5;
-padding:14px 18px;
+.app{
+width:100vw;
+height:100vh;
 display:flex;
-justify-content:space-between;
+flex-direction:column;
+}
+
+.topbar{
+height:70px;
+display:flex;
 align-items:center;
-z-index:999;
-}
-
-.title h1{
-font-size:20px;
-font-weight:700;
-}
-
-.title p{
-font-size:11px;
-color:#777;
-margin-top:2px;
-}
-
-.submit-btn{
-background:black;
-color:white;
-border:none;
-border-radius:999px;
-padding:10px 18px;
-font-size:13px;
-}
-
-.container{
-max-width:430px;
-margin:auto;
-padding:90px 18px 20px;
-}
-
-.editor-box{
-background:white;
-border-radius:30px;
-padding:24px;
-border:1px solid #e5e5e5;
-display:flex;
 justify-content:center;
-margin-bottom:20px;
+font-size:24px;
+font-weight:700;
+letter-spacing:2px;
+background:#111;
+border-bottom:1px solid rgba(255,255,255,0.08);
 }
 
-.frame{
-width:238px;
-height:348px;
-background:#f8f8f8;
-border-radius:30px;
-padding:28px;
-position:relative;
-border:1px solid #d9d9d9;
-box-shadow:
-inset 0 0 10px rgba(0,0,0,0.08),
-0 8px 20px rgba(0,0,0,0.06);
-}
-
-.inner-step{
-position:absolute;
-top:28px;
-left:28px;
-right:28px;
-bottom:28px;
-overflow:hidden;
-border-radius:18px;
-background:black;
-border:1px solid #d5d5d5;
-}
-
-.photo-area{
-width:100%;
-height:100%;
+.editor{
+flex:1;
+display:flex;
+align-items:center;
+justify-content:center;
 position:relative;
 overflow:hidden;
-background:black;
-touch-action:none;
-}
-
-#photo{
-position:absolute;
-width:100%;
-height:100%;
-object-fit:cover;
-object-position:center;
-left:0;
-top:0;
-transform-origin:center;
-display:none;
-}
-
-.light-layer{
-position:absolute;
-inset:0;
-background:rgba(255,180,120,0.22);
-mix-blend-mode:screen;
-z-index:2;
-pointer-events:none;
-transition:0.3s;
-}
-
-.text-layer{
-position:absolute;
-left:0;
-top:0;
-color:white;
-font-size:22px;
-letter-spacing:4px;
-white-space:nowrap;
-z-index:3;
-user-select:none;
-text-shadow:0 0 10px rgba(255,255,255,0.7);
-touch-action:none;
-display:block;
-}
-
-.mirror-layer{
-position:absolute;
-inset:0;
 background:
-linear-gradient(
-135deg,
-rgba(255,255,255,0.2),
-rgba(255,255,255,0.03),
-rgba(255,255,255,0.12)
-);
-opacity:0;
-z-index:20;
-pointer-events:none;
-transition:0.3s;
+radial-gradient(circle at center,
+rgba(255,255,255,0.06),
+transparent 70%);
 }
 
-.panel{
-background:white;
-border-radius:28px;
-padding:18px;
-border:1px solid #e5e5e5;
+.canvas{
+width:320px;
+height:480px;
+background:#1a1a1a;
+border-radius:24px;
+position:relative;
+overflow:hidden;
+box-shadow:
+0 0 50px rgba(255,255,255,0.08);
+}
+
+.canvas img{
+position:absolute;
+top:50%;
+left:50%;
+transform:
+translate(-50%,-50%)
+scale(1);
+max-width:none;
+user-select:none;
+touch-action:none;
+}
+
+.glow{
+position:absolute;
+inset:0;
+pointer-events:none;
+background:
+radial-gradient(circle,
+transparent 40%,
+rgba(255,255,255,0.08));
+}
+
+.controls{
+height:140px;
+background:#111;
+border-top:1px solid rgba(255,255,255,0.08);
+display:flex;
+flex-direction:column;
+padding:14px;
+gap:14px;
 }
 
 .upload-btn{
 width:100%;
-background:black;
-color:white;
+height:50px;
 border:none;
-padding:14px;
-border-radius:18px;
-font-size:14px;
-margin-bottom:18px;
-}
-
-.section-title{
-font-size:14px;
+border-radius:14px;
+background:white;
+color:black;
+font-size:16px;
 font-weight:700;
-margin-bottom:12px;
 }
 
-.tool-row{
-display:grid;
-grid-template-columns:repeat(4,1fr);
+.slider-wrap{
+display:flex;
+flex-direction:column;
 gap:10px;
-margin-bottom:20px;
 }
 
-.tool-btn{
-background:#f1f1f1;
-border:none;
-border-radius:16px;
-padding:10px 6px;
+.slider-wrap label{
 font-size:13px;
-line-height:1.2;
-height:54px;
+opacity:0.7;
 }
 
-.light-grid{
-display:grid;
-grid-template-columns:repeat(4,1fr);
-gap:8px;
+input[type="range"]{
+width:100%;
 }
 
-.light-btn{
-border:none;
-border-radius:18px;
-padding:12px 0;
-font-size:13px;
-}
-
-.white-light{
-background:#eef5ff;
-color:#2563eb;
-}
-
-.warm-light{
-background:#fff2e8;
-color:#ea580c;
-}
-
-.day-light{
-background:#fff8dc;
-color:#ca8a04;
-}
-
-.off-light{
-background:#f1f1f1;
-color:#555;
-}
-
-.footer-tip{
-text-align:center;
+.tip{
+position:absolute;
+bottom:20px;
+left:50%;
+transform:translateX(-50%);
 font-size:12px;
-line-height:1.7;
-color:#888;
-margin-top:18px;
+opacity:0.5;
 }
 
 </style>
@@ -253,119 +136,59 @@ margin-top:18px;
 
 <body>
 
-<header class="header">
+<div class="app">
 
-<div class="title">
-<h1>MOODAY 在线编辑器</h1>
-<p>魔镜灯光画</p>
+<div class="topbar">
+MOODAY EDITOR
 </div>
 
-<button class="submit-btn" id="submitBtn">
-提交制作
-</button>
+<div class="editor">
 
-</header>
+<div class="canvas" id="canvas">
 
-<div class="container">
+<img id="photo"/>
 
-<div class="editor-box">
+<div class="glow"></div>
 
-<div class="frame" id="captureArea">
-
-<div class="inner-step">
-
-<div class="photo-area" id="photoArea">
-
-<img id="photo">
-
-<div class="light-layer" id="lightLayer"></div>
-
-<div class="text-layer" id="textLayer">
-FOREVER
 </div>
 
-<div class="mirror-layer" id="mirrorLayer"></div>
-
+<div class="tip">
+拖动照片调整位置
 </div>
 
 </div>
 
-</div>
+<div class="controls">
 
-</div>
+<input
+type="file"
+id="upload"
+accept="image/*"
+hidden
+/>
 
-<div class="panel">
-
-<button class="upload-btn" id="uploadBtn">
+<button
+class="upload-btn"
+onclick="document.getElementById('upload').click()"
+>
 上传照片
 </button>
 
-<div class="section-title">
-文字编辑
-</div>
+<div class="slider-wrap">
 
-<div class="tool-row">
+<label>
+缩放
+</label>
 
-<button class="tool-btn" id="addTextBtn">
-添加<br>文字
-</button>
+<input
+type="range"
+id="scaleSlider"
+min="0.5"
+max="3"
+step="0.01"
+value="1"
+/>
 
-<button class="tool-btn" id="sizePlusBtn">
-A+
-</button>
-
-<button class="tool-btn" id="sizeMinusBtn">
-A-
-</button>
-
-<button class="tool-btn" id="deleteTextBtn">
-删除<br>文字
-</button>
-
-<button class="tool-btn" id="colorBtn">
-颜色
-</button>
-
-<button class="tool-btn" id="glowBtn">
-发光
-</button>
-
-<button class="tool-btn" id="shadowBtn">
-阴影
-</button>
-
-<button class="tool-btn" id="rotateBtn">
-旋转
-</button>
-
-</div>
-
-<div class="section-title">
-灯光模式
-</div>
-
-<div class="light-grid">
-
-<button class="light-btn white-light" id="whiteBtn">
-白光
-</button>
-
-<button class="light-btn warm-light" id="warmBtn">
-暖光
-</button>
-
-<button class="light-btn day-light" id="dayBtn">
-日光
-</button>
-
-<button class="light-btn off-light" id="offBtn">
-💡✕ 关灯
-</button>
-
-</div>
-
-<div class="footer-tip">
-支持图片拖动、双指缩放、文字编辑、生成PNG
 </div>
 
 </div>
@@ -374,538 +197,90 @@ A-
 
 <script>
 
-const photo=document.getElementById('photo');
-const photoArea=document.getElementById('photoArea');
+const upload = document.getElementById('upload');
+const photo = document.getElementById('photo');
+const slider = document.getElementById('scaleSlider');
 
-const textLayer=document.getElementById('textLayer');
+let scale = 1;
 
-const lightLayer=document.getElementById('lightLayer');
+let posX = 0;
+let posY = 0;
 
-const mirrorLayer=document.getElementById('mirrorLayer');
+let startX = 0;
+let startY = 0;
 
-const uploadBtn=document.getElementById('uploadBtn');
+let dragging = false;
 
-const submitBtn=document.getElementById('submitBtn');
+upload.addEventListener('change',(e)=>{
 
-const input=document.createElement('input');
+const file = e.target.files[0];
 
-input.type='file';
-input.accept='image/*';
+if(file){
 
-let hasUpload=false;
+const reader = new FileReader();
 
-uploadBtn.onclick=()=>{
+reader.onload = function(event){
 
-input.click();
+photo.src = event.target.result;
 
-};
+photo.style.width = '100%';
 
-input.onchange=(e)=>{
+updateTransform();
 
-const file=e.target.files[0];
-
-if(!file)return;
-
-const reader=new FileReader();
-
-reader.onload=(event)=>{
-
-photo.src=event.target.result;
-
-photo.style.display='block';
-
-hasUpload=true;
-
-};
+}
 
 reader.readAsDataURL(file);
 
-};
-
-
-
-/* 图片拖动缩放 */
-
-let scale=1;
-
-let posX=0;
-let posY=0;
-
-let dragging=false;
-
-let startX=0;
-let startY=0;
-
-let lastDistance=0;
-
-function limitPhotoPosition(){
-
-const maxX=
-((photoArea.offsetWidth*scale)-photoArea.offsetWidth)/2;
-
-const maxY=
-((photoArea.offsetHeight*scale)-photoArea.offsetHeight)/2;
-
-if(posX>maxX) posX=maxX;
-if(posX<-maxX) posX=-maxX;
-
-if(posY>maxY) posY=maxY;
-if(posY<-maxY) posY=-maxY;
-
-}
-
-function updatePhoto(){
-
-limitPhotoPosition();
-
-photo.style.transform=
-`translate(${posX}px,${posY}px) scale(${scale})`;
-
-}
-
-photoArea.addEventListener('touchstart',(e)=>{
-
-if(e.touches.length===1){
-
-dragging=true;
-
-startX=e.touches[0].clientX-posX;
-
-startY=e.touches[0].clientY-posY;
-
-}
-
-if(e.touches.length===2){
-
-const dx=
-e.touches[0].clientX-
-e.touches[1].clientX;
-
-const dy=
-e.touches[0].clientY-
-e.touches[1].clientY;
-
-lastDistance=Math.sqrt(dx*dx+dy*dy);
-
 }
 
 });
 
-photoArea.addEventListener('touchmove',(e)=>{
+slider.addEventListener('input',(e)=>{
 
-e.preventDefault();
+scale = e.target.value;
 
-if(e.touches.length===1&&dragging){
-
-posX=e.touches[0].clientX-startX;
-
-posY=e.touches[0].clientY-startY;
-
-updatePhoto();
-
-}
-
-if(e.touches.length===2){
-
-const dx=
-e.touches[0].clientX-
-e.touches[1].clientX;
-
-const dy=
-e.touches[0].clientY-
-e.touches[1].clientY;
-
-const distance=Math.sqrt(dx*dx+dy*dy);
-
-if(lastDistance){
-
-if(distance>lastDistance){
-
-scale+=0.02;
-
-}else{
-
-scale-=0.02;
-
-}
-
-if(scale<1){
-
-scale=1;
-
-}
-
-if(scale>3){
-
-scale=3;
-
-}
-
-updatePhoto();
-
-}
-
-lastDistance=distance;
-
-}
+updateTransform();
 
 });
 
-photoArea.addEventListener('touchend',()=>{
+function updateTransform(){
 
-dragging=false;
-
-lastDistance=0;
-
-});
-
-
-
-/* 文字功能 */
-
-let textX=40;
-let textY=110;
-
-addTextBtn.onclick=()=>{
-
-const text=prompt('请输入文字');
-
-if(text!==null && text.trim()!==''){
-
-textLayer.style.display='block';
-
-textLayer.innerText=text;
-
-updateText();
-
-}
-
-};
-
-deleteTextBtn.onclick=()=>{
-
-textLayer.innerText='';
-
-textLayer.style.display='none';
-
-};
-
-const colors=[
-'white',
-'#ffcc00',
-'#00e5ff',
-'#ff66cc',
-'#00ff99'
-];
-
-let colorIndex=0;
-
-colorBtn.onclick=()=>{
-
-colorIndex++;
-
-if(colorIndex>=colors.length){
-
-colorIndex=0;
-
-}
-
-textLayer.style.color=colors[colorIndex];
-
-};
-
-let textSize=22;
-
-sizePlusBtn.onclick=()=>{
-
-textSize+=2;
-
-if(textSize>60){
-
-textSize=60;
-
-}
-
-textLayer.style.fontSize=textSize+'px';
-
-updateText();
-
-};
-
-sizeMinusBtn.onclick=()=>{
-
-textSize-=2;
-
-if(textSize<14){
-
-textSize=14;
-
-}
-
-textLayer.style.fontSize=textSize+'px';
-
-updateText();
-
-};
-
-let glow=false;
-
-glowBtn.onclick=()=>{
-
-glow=!glow;
-
-if(glow){
-
-textLayer.style.textShadow=
+photo.style.transform =
 `
-0 0 8px white,
-0 0 18px white,
-0 0 30px white
-`;
-
-}else{
-
-textLayer.style.textShadow=
-'0 0 10px rgba(255,255,255,0.7)';
-
-}
-
-};
-
-let shadowMode=0;
-
-shadowBtn.onclick=()=>{
-
-shadowMode++;
-
-if(shadowMode>2){
-
-shadowMode=0;
-
-}
-
-if(shadowMode===0){
-
-textLayer.style.textShadow=
-'0 0 10px rgba(255,255,255,0.7)';
-
-}
-
-if(shadowMode===1){
-
-textLayer.style.textShadow=
-'3px 3px 10px rgba(0,0,0,0.7)';
-
-}
-
-if(shadowMode===2){
-
-textLayer.style.textShadow=
-`
-0 0 10px white,
-2px 2px 12px black
+translate(
+calc(-50% + ${posX}px),
+calc(-50% + ${posY}px)
+)
+scale(${scale})
 `;
 
 }
 
-};
+photo.addEventListener('pointerdown',(e)=>{
 
-let textRotation=0;
+dragging = true;
 
-rotateBtn.onclick=()=>{
-
-textRotation+=5;
-
-updateText();
-
-};
-
-
-
-/* 文字拖动 */
-
-let textDragging=false;
-
-let textStartX=0;
-let textStartY=0;
-
-function updateText(){
-
-const safePadding=10;
-
-const maxX=
-photoArea.clientWidth-
-textLayer.offsetWidth-
-safePadding;
-
-const maxY=
-photoArea.clientHeight-
-textLayer.offsetHeight-
-safePadding;
-
-if(textX<safePadding){
-
-textX=safePadding;
-
-}
-
-if(textY<safePadding){
-
-textY=safePadding;
-
-}
-
-if(textX>maxX){
-
-textX=maxX;
-
-}
-
-if(textY>maxY){
-
-textY=maxY;
-
-}
-
-textLayer.style.transform=
-`
-translate(${textX}px,${textY}px)
-rotate(${textRotation}deg)
-`;
-
-}
-
-updateText();
-
-textLayer.addEventListener('touchstart',(e)=>{
-
-e.stopPropagation();
-
-textDragging=true;
-
-textStartX=e.touches[0].clientX-textX;
-
-textStartY=e.touches[0].clientY-textY;
+startX = e.clientX - posX;
+startY = e.clientY - posY;
 
 });
 
-document.addEventListener('touchmove',(e)=>{
+window.addEventListener('pointermove',(e)=>{
 
-if(textDragging){
+if(!dragging) return;
 
-textX=e.touches[0].clientX-textStartX;
+posX = e.clientX - startX;
+posY = e.clientY - startY;
 
-textY=e.touches[0].clientY-textStartY;
-
-updateText();
-
-}
+updateTransform();
 
 });
 
-document.addEventListener('touchend',()=>{
+window.addEventListener('pointerup',()=>{
 
-textDragging=false;
+dragging = false;
 
 });
-
-
-
-/* 灯光 */
-
-whiteBtn.onclick=()=>{
-
-lightLayer.style.background=
-'rgba(255,255,255,0.08)';
-
-mirrorLayer.style.opacity='0';
-
-textLayer.style.opacity='1';
-
-photo.style.filter=
-'brightness(1.05)';
-
-};
-
-warmBtn.onclick=()=>{
-
-lightLayer.style.background=
-'rgba(255,180,120,0.22)';
-
-mirrorLayer.style.opacity='0';
-
-textLayer.style.opacity='1';
-
-photo.style.filter=
-'sepia(0.08) brightness(1.02)';
-
-};
-
-dayBtn.onclick=()=>{
-
-lightLayer.style.background=
-'rgba(255,245,200,0.16)';
-
-mirrorLayer.style.opacity='0';
-
-textLayer.style.opacity='1';
-
-photo.style.filter=
-'brightness(1.12)';
-
-};
-
-offBtn.onclick=()=>{
-
-lightLayer.style.background=
-'rgba(0,0,0,0.75)';
-
-mirrorLayer.style.opacity='1';
-
-photo.style.filter=
-'brightness(0)';
-
-textLayer.style.opacity='0';
-
-};
-
-
-
-/* 生成PNG */
-
-submitBtn.onclick=async()=>{
-
-if(!hasUpload){
-
-alert('请先上传自己的照片');
-
-return;
-
-}
-
-submitBtn.innerText='生成中...';
-
-const canvas=await html2canvas(
-document.getElementById('captureArea'),
-{
-backgroundColor:null,
-scale:2
-}
-);
-
-const image=canvas.toDataURL('image/png');
-
-const link=document.createElement('a');
-
-link.href=image;
-
-link.download='MOODAY-light-art.png';
-
-link.click();
-
-submitBtn.innerText='已生成';
-
-};
 
 </script>
 
