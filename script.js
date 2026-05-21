@@ -1,30 +1,44 @@
 const uploadInput = document.getElementById("uploadInput");
+
 const photoLayer = document.getElementById("photoLayer");
+
 const photoImg = document.getElementById("photoImg");
 
 const textInput = document.getElementById("textInput");
-const textLayer = document.getElementById("textLayer");
 
 const scaleSlider = document.getElementById("scaleSlider");
+
 const rotateSlider = document.getElementById("rotateSlider");
+
 const textSizeSlider = document.getElementById("textSizeSlider");
 
+const photoArea = document.getElementById("photoArea");
+
 let scale = 1;
+
 let rotation = 0;
 
 let posX = 0;
+
 let posY = 0;
 
 let startX = 0;
+
 let startY = 0;
 
 let dragging = false;
 
 let initialDistance = 0;
+
 let initialAngle = 0;
 
 let startScale = 1;
+
 let startRotation = 0;
+
+let selectedTextLayer = null;
+
+const textLayers = [];
 
 uploadInput.addEventListener("change",(e)=>{
 
@@ -54,6 +68,7 @@ rotate(${rotation}deg)
 `;
 
 scaleSlider.value = scale;
+
 rotateSlider.value = rotation;
 
 }
@@ -61,6 +76,7 @@ rotateSlider.value = rotation;
 function getDistance(t1,t2){
 
 const dx = t2.clientX - t1.clientX;
+
 const dy = t2.clientY - t1.clientY;
 
 return Math.sqrt(dx*dx + dy*dy);
@@ -83,6 +99,7 @@ if(e.touches.length===1){
 dragging = true;
 
 startX = e.touches[0].clientX - posX;
+
 startY = e.touches[0].clientY - posY;
 
 }
@@ -100,6 +117,7 @@ e.touches[1]
 );
 
 startScale = scale;
+
 startRotation = rotation;
 
 }
@@ -113,6 +131,7 @@ e.preventDefault();
 if(e.touches.length===1 && dragging){
 
 posX = e.touches[0].clientX - startX;
+
 posY = e.touches[0].clientY - startY;
 
 updateTransform();
@@ -167,21 +186,104 @@ updateTransform();
 
 });
 
+function createTextLayer(text="MOODAY"){
+
+const layer = document.createElement("div");
+
+layer.className = "text-layer";
+
+layer.innerText = text;
+
+layer.style.left = "50%";
+
+layer.style.top = "75%";
+
+layer.dataset.x = 0;
+
+layer.dataset.y = 0;
+
+let dragging = false;
+
+let startX = 0;
+
+let startY = 0;
+
+layer.addEventListener("pointerdown",(e)=>{
+
+selectedTextLayer = layer;
+
+textInput.value = layer.innerText;
+
+dragging = true;
+
+startX =
+e.clientX - parseFloat(layer.dataset.x);
+
+startY =
+e.clientY - parseFloat(layer.dataset.y);
+
+});
+
+window.addEventListener("pointermove",(e)=>{
+
+if(!dragging) return;
+
+const x =
+e.clientX - startX;
+
+const y =
+e.clientY - startY;
+
+layer.dataset.x = x;
+
+layer.dataset.y = y;
+
+layer.style.transform =
+`
+translate(-50%,-50%)
+translate(${x}px,${y}px)
+`;
+
+});
+
+window.addEventListener("pointerup",()=>{
+
+dragging = false;
+
+});
+
+photoArea.appendChild(layer);
+
+textLayers.push(layer);
+
+selectedTextLayer = layer;
+
+}
+
+createTextLayer();
+
 textInput.addEventListener("input",(e)=>{
 
-textLayer.innerText =
+if(!selectedTextLayer) return;
+
+selectedTextLayer.innerText =
 e.target.value || "MOODAY";
 
 });
 
 textSizeSlider.addEventListener("input",(e)=>{
 
-textLayer.style.fontSize =
+if(selectedTextLayer){
+
+selectedTextLayer.style.fontSize =
 e.target.value + "px";
+
+}
 
 });
 
-document.getElementById("submitBtn")
+document
+.getElementById("submitBtn")
 .addEventListener("click",()=>{
 
 alert("制作已提交");
