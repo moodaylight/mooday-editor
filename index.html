@@ -1,203 +1,37 @@
 <!DOCTYPE html>
 <html lang="zh">
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1.0" />
 
 <title>MOODAY EDITOR</title>
 
-<script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
+<link rel="stylesheet" href="style.css" />
 
-<style>
-
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
-font-family:-apple-system,BlinkMacSystemFont,sans-serif;
-}
-
-body{
-background:#000;
-color:#fff;
-overflow:hidden;
-}
-
-.app{
-width:100vw;
-height:100vh;
-display:flex;
-flex-direction:column;
-background:#000;
-}
-
-.header{
-height:90px;
-display:flex;
-align-items:center;
-justify-content:center;
-font-size:28px;
-font-weight:700;
-letter-spacing:4px;
-border-bottom:1px solid rgba(255,255,255,0.06);
-}
-
-.editor-wrap{
-flex:1;
-display:flex;
-justify-content:center;
-align-items:center;
-padding:20px;
-overflow:hidden;
-}
-
-.photo-area{
-width:100%;
-max-width:420px;
-aspect-ratio:3/4;
-background:#111;
-border-radius:30px;
-position:relative;
-overflow:hidden;
-box-shadow:
-0 0 80px rgba(255,255,255,0.05);
-}
-
-.photo-area::after{
-content:'';
-position:absolute;
-inset:0;
-background:
-radial-gradient(circle,
-rgba(255,255,255,0.06),
-transparent 70%);
-pointer-events:none;
-}
-
-#uploadedImage{
-position:absolute;
-top:50%;
-left:50%;
-transform-origin:center;
-touch-action:none;
-user-select:none;
--webkit-user-drag:none;
-}
-
-.text-layer{
-position:absolute;
-left:50%;
-top:78%;
-transform:translate(-50%,-50%);
-font-size:54px;
-font-weight:700;
-letter-spacing:4px;
-color:white;
-white-space:nowrap;
-text-shadow:
-0 0 10px rgba(255,255,255,0.9),
-0 0 25px rgba(255,255,255,0.8),
-0 0 50px rgba(255,255,255,0.6);
-z-index:10;
-}
-
-.tip{
-position:absolute;
-bottom:30px;
-left:50%;
-transform:translateX(-50%);
-font-size:16px;
-opacity:0.5;
-z-index:10;
-}
-
-.controls{
-padding:20px;
-display:flex;
-flex-direction:column;
-gap:18px;
-background:#000;
-}
-
-.upload-btn,
-.submit-btn{
-height:64px;
-border:none;
-border-radius:22px;
-font-size:26px;
-font-weight:700;
-}
-
-.upload-btn{
-background:#fff;
-color:#000;
-}
-
-.submit-btn{
-background:linear-gradient(
-135deg,
-#6d4dff,
-#8f63ff
-);
-color:white;
-}
-
-.text-input{
-height:64px;
-border:none;
-border-radius:18px;
-padding:0 20px;
-background:#111;
-color:white;
-font-size:24px;
-outline:none;
-}
-
-.range-wrap{
-display:flex;
-flex-direction:column;
-gap:10px;
-}
-
-.range-label{
-font-size:22px;
-opacity:0.9;
-}
-
-input[type="range"]{
-width:100%;
-height:10px;
-}
-
-</style>
 </head>
 
 <body>
 
 <div class="app">
 
-<div class="header">
+<h1 class="title">
 MOODAY EDITOR
+</h1>
+
+<div class="editor-area">
+
+<div id="photoArea" class="photo-area">
+
+<div id="photoLayer" class="photo-layer">
+
+<img id="photoImg" />
+
 </div>
 
-<div class="editor-wrap">
-
-<div
-class="photo-area"
-id="editorCanvas"
->
-
-<img id="uploadedImage">
-
-<div
-class="text-layer"
-id="textLayer"
->
+<div id="textLayer" class="text-layer">
 MOODAY
-</div>
-
-<div class="tip">
-双指缩放 · 拖动照片
 </div>
 
 </div>
@@ -206,304 +40,88 @@ MOODAY
 
 <div class="controls">
 
+<label class="upload-btn">
+
+上传照片
+
 <input
 type="file"
-id="imageInput"
+id="uploadInput"
 accept="image/*"
 hidden
->
+/>
 
-<button
-class="upload-btn"
-id="uploadBtn"
->
-上传照片
-</button>
+</label>
 
 <input
-class="text-input"
+type="text"
 id="textInput"
 placeholder="输入文字"
->
+/>
 
-<div class="range-wrap">
+<div class="slider-group">
 
-<div class="range-label">
+<label>
 图片缩放
-</div>
+</label>
 
 <input
 type="range"
 id="scaleSlider"
 min="0.5"
-max="4"
+max="3"
 step="0.01"
 value="1"
->
+/>
 
 </div>
 
-<button
-class="submit-btn"
-id="submitBtn"
->
+<div class="slider-group">
+
+<label>
+图片旋转
+</label>
+
+<input
+type="range"
+id="rotateSlider"
+min="-180"
+max="180"
+step="1"
+value="0"
+/>
+
+</div>
+
+<div class="slider-group">
+
+<label>
+文字大小
+</label>
+
+<input
+type="range"
+id="textSizeSlider"
+min="20"
+max="120"
+step="1"
+value="60"
+/>
+
+</div>
+
+<button id="submitBtn">
+
 提交制作
+
 </button>
 
 </div>
 
 </div>
 
-<script>
-
-const imageInput =
-document.getElementById("imageInput");
-
-const uploadBtn =
-document.getElementById("uploadBtn");
-
-const uploadedImage =
-document.getElementById("uploadedImage");
-
-const scaleSlider =
-document.getElementById("scaleSlider");
-
-const textInput =
-document.getElementById("textInput");
-
-const textLayer =
-document.getElementById("textLayer");
-
-const submitBtn =
-document.getElementById("submitBtn");
-
-const editorCanvas =
-document.getElementById("editorCanvas");
-
-let scale = 1;
-
-let posX = 0;
-let posY = 0;
-
-let dragging = false;
-
-let startX = 0;
-let startY = 0;
-
-uploadBtn.onclick = ()=>{
-
-imageInput.click();
-
-};
-
-imageInput.onchange = (e)=>{
-
-const file = e.target.files[0];
-
-if(!file) return;
-
-const reader = new FileReader();
-
-reader.onload = (event)=>{
-
-uploadedImage.src =
-event.target.result;
-
-uploadedImage.onload = ()=>{
-
-uploadedImage.style.width =
-"100%";
-
-updateTransform();
-
-};
-
-};
-
-reader.readAsDataURL(file);
-
-};
-
-scaleSlider.oninput = (e)=>{
-
-scale =
-parseFloat(e.target.value);
-
-updateTransform();
-
-};
-
-function updateTransform(){
-
-uploadedImage.style.transform =
-`
-translate(
-calc(-50% + ${posX}px),
-calc(-50% + ${posY}px)
-)
-scale(${scale})
-`;
-
-}
-
-uploadedImage.addEventListener(
-"pointerdown",
-(e)=>{
-
-dragging = true;
-
-startX =
-e.clientX - posX;
-
-startY =
-e.clientY - posY;
-
-}
-);
-
-window.addEventListener(
-"pointermove",
-(e)=>{
-
-if(!dragging) return;
-
-posX =
-e.clientX - startX;
-
-posY =
-e.clientY - startY;
-
-updateTransform();
-
-}
-);
-
-window.addEventListener(
-"pointerup",
-()=>{
-
-dragging = false;
-
-}
-);
-
-textInput.oninput = ()=>{
-
-textLayer.innerText =
-textInput.value || "MOODAY";
-
-};
-
-submitBtn.onclick = async ()=>{
-
-if(!uploadedImage.src){
-
-alert("请先上传照片");
-
-return;
-
-}
-
-submitBtn.innerText =
-"生成中...";
-
-try{
-
-const canvas =
-await html2canvas(
-editorCanvas,
-{
-backgroundColor:null,
-scale:4,
-useCORS:true
-}
-);
-
-submitBtn.innerText =
-"上传中...";
-
-canvas.toBlob(
-async(blob)=>{
-
-try{
-
-const formData =
-new FormData();
-
-const orderId =
-"MD-" + Date.now();
-
-formData.append(
-"file",
-blob,
-`${orderId}.png`
-);
-
-formData.append(
-"orderId",
-orderId
-);
-
-const response =
-await fetch(
-"https://mooday-upload.changyou7777.workers.dev",
-{
-method:"POST",
-body:formData
-}
-);
-
-const result =
-await response.json();
-
-if(result.success){
-
-submitBtn.innerText =
-"上传成功";
-
-alert(
-"作品上传成功\n订单号："
-+ orderId
-);
-
-}else{
-
-submitBtn.innerText =
-"上传失败";
-
-alert("上传失败");
-
-}
-
-}catch(err){
-
-console.error(err);
-
-submitBtn.innerText =
-"上传失败";
-
-alert("上传失败");
-
-}
-
-},
-"image/png"
-);
-
-}catch(err){
-
-console.error(err);
-
-submitBtn.innerText =
-"生成失败";
-
-alert("生成失败");
-
-}
-
-};
-
-</script>
+<script src="script.js"></script>
 
 </body>
+
 </html>
