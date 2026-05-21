@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="zh">
 <head>
-<meta charset="UTF-8" />
+<meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
-<title>MOODAY EDITOR</title>
+<title>MOODAY PRO EDITOR</title>
 
 <style>
 
@@ -16,9 +16,9 @@ font-family:sans-serif;
 }
 
 body{
-background:#0d0d0d;
-color:white;
+background:#0a0a0a;
 overflow:hidden;
+color:white;
 }
 
 .app{
@@ -33,7 +33,7 @@ height:70px;
 display:flex;
 align-items:center;
 justify-content:center;
-font-size:24px;
+font-size:22px;
 font-weight:700;
 letter-spacing:2px;
 background:#111;
@@ -43,8 +43,8 @@ border-bottom:1px solid rgba(255,255,255,0.08);
 .editor{
 flex:1;
 display:flex;
-align-items:center;
 justify-content:center;
+align-items:center;
 position:relative;
 overflow:hidden;
 background:
@@ -53,13 +53,17 @@ rgba(255,255,255,0.06),
 transparent 70%);
 }
 
+.canvas-wrap{
+position:relative;
+}
+
 .canvas{
 width:320px;
 height:480px;
-background:#1a1a1a;
-border-radius:24px;
-position:relative;
+background:#1b1b1b;
+border-radius:26px;
 overflow:hidden;
+position:relative;
 box-shadow:
 0 0 50px rgba(255,255,255,0.08);
 }
@@ -68,15 +72,12 @@ box-shadow:
 position:absolute;
 top:50%;
 left:50%;
-transform:
-translate(-50%,-50%)
-scale(1);
-max-width:none;
-user-select:none;
+transform-origin:center;
 touch-action:none;
+user-select:none;
 }
 
-.glow{
+.overlay{
 position:absolute;
 inset:0;
 pointer-events:none;
@@ -86,34 +87,52 @@ transparent 40%,
 rgba(255,255,255,0.08));
 }
 
-.controls{
-height:140px;
-background:#111;
-border-top:1px solid rgba(255,255,255,0.08);
-display:flex;
-flex-direction:column;
-padding:14px;
-gap:14px;
+.product-tag{
+position:absolute;
+top:14px;
+left:14px;
+padding:6px 12px;
+background:rgba(255,255,255,0.08);
+backdrop-filter:blur(10px);
+border-radius:999px;
+font-size:12px;
 }
 
-.upload-btn{
-width:100%;
-height:50px;
+.controls{
+height:220px;
+background:#111;
+border-top:1px solid rgba(255,255,255,0.08);
+padding:14px;
+display:flex;
+flex-direction:column;
+gap:12px;
+}
+
+button{
+height:52px;
 border:none;
-border-radius:14px;
-background:white;
-color:black;
-font-size:16px;
+border-radius:16px;
+font-size:15px;
 font-weight:700;
 }
 
-.slider-wrap{
-display:flex;
-flex-direction:column;
-gap:10px;
+.upload-btn{
+background:white;
+color:black;
 }
 
-.slider-wrap label{
+.export-btn{
+background:#7c5cff;
+color:white;
+}
+
+.slider-group{
+display:flex;
+flex-direction:column;
+gap:8px;
+}
+
+label{
 font-size:13px;
 opacity:0.7;
 }
@@ -144,16 +163,24 @@ MOODAY EDITOR
 
 <div class="editor">
 
+<div class="canvas-wrap">
+
 <div class="canvas" id="canvas">
+
+<div class="product-tag">
+15×20 Mood Frame
+</div>
 
 <img id="photo"/>
 
-<div class="glow"></div>
+<div class="overlay"></div>
+
+</div>
 
 </div>
 
 <div class="tip">
-拖动照片调整位置
+双指缩放 · 拖动调整
 </div>
 
 </div>
@@ -174,22 +201,27 @@ onclick="document.getElementById('upload').click()"
 上传照片
 </button>
 
-<div class="slider-wrap">
+<div class="slider-group">
 
-<label>
-缩放
-</label>
+<label>缩放</label>
 
 <input
 type="range"
 id="scaleSlider"
 min="0.5"
-max="3"
+max="4"
 step="0.01"
 value="1"
 />
 
 </div>
+
+<button
+class="export-btn"
+onclick="exportImage()"
+>
+生成高清作品
+</button>
 
 </div>
 
@@ -202,14 +234,13 @@ const photo = document.getElementById('photo');
 const slider = document.getElementById('scaleSlider');
 
 let scale = 1;
-
 let posX = 0;
 let posY = 0;
 
+let dragging = false;
+
 let startX = 0;
 let startY = 0;
-
-let dragging = false;
 
 upload.addEventListener('change',(e)=>{
 
@@ -223,11 +254,15 @@ reader.onload = function(event){
 
 photo.src = event.target.result;
 
+photo.onload = ()=>{
+
 photo.style.width = '100%';
 
 updateTransform();
 
-}
+};
+
+};
 
 reader.readAsDataURL(file);
 
@@ -237,7 +272,7 @@ reader.readAsDataURL(file);
 
 slider.addEventListener('input',(e)=>{
 
-scale = e.target.value;
+scale = parseFloat(e.target.value);
 
 updateTransform();
 
@@ -281,6 +316,51 @@ window.addEventListener('pointerup',()=>{
 dragging = false;
 
 });
+
+function exportImage(){
+
+const exportCanvas = document.createElement('canvas');
+
+exportCanvas.width = 1800;
+exportCanvas.height = 2700;
+
+const ctx = exportCanvas.getContext('2d');
+
+ctx.fillStyle = '#1b1b1b';
+ctx.fillRect(0,0,1800,2700);
+
+const img = new Image();
+
+img.crossOrigin = "anonymous";
+
+img.onload = ()=>{
+
+const drawWidth = img.width * scale;
+const drawHeight = img.height * scale;
+
+ctx.drawImage(
+img,
+900 - drawWidth/2 + posX*5,
+1350 - drawHeight/2 + posY*5,
+drawWidth,
+drawHeight
+);
+
+const link = document.createElement('a');
+
+link.download = 'MOODAY_PRINT.png';
+
+link.href = exportCanvas.toDataURL('image/png');
+
+link.click();
+
+alert('高清作品已生成');
+
+};
+
+img.src = photo.src;
+
+}
 
 </script>
 
