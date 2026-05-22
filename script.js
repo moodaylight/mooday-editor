@@ -28,15 +28,13 @@ const colorPicker = document.getElementById("colorPicker");
 
 let image = null;
 
-let imgX = 0;
-let imgY = 0;
 let imgScale = 1;
 let imgRotation = 0;
 
 let texts = [];
 let selectedText = null;
 
-upload.addEventListener("change", e => {
+upload.addEventListener("change", (e) => {
 
 ```
 const file = e.target.files[0];
@@ -51,13 +49,12 @@ reader.onload = function(event){
 
     image.onload = function(){
 
-        imgX = canvas.width / 2;
-        imgY = canvas.height / 2;
-
         draw();
+
     };
 
     image.src = event.target.result;
+
 };
 
 reader.readAsDataURL(file);
@@ -69,13 +66,13 @@ addTextBtn.addEventListener("click", () => {
 
 ```
 const text = {
-    content:textInput.value || "MOODAY",
-    x:canvas.width/2,
-    y:canvas.height/2,
-    size:60,
-    rotation:0,
-    color:"#ffffff",
-    glow:20
+    content: textInput.value || "MOODAY",
+    x: canvas.width / 2,
+    y: canvas.height / 2,
+    size: 60,
+    rotation: 0,
+    color: "#ffffff",
+    glow: 20
 };
 
 texts.push(text);
@@ -102,67 +99,73 @@ colorPicker.value = selectedText.color;
 
 }
 
-textSizeSlider.addEventListener("input", ()=>{
+textSizeSlider.addEventListener("input", () => {
 
 ```
 if(selectedText){
 
     selectedText.size = Number(textSizeSlider.value);
+
     draw();
 }
 ```
 
 });
 
-textRotateSlider.addEventListener("input", ()=>{
+textRotateSlider.addEventListener("input", () => {
 
 ```
 if(selectedText){
 
     selectedText.rotation = Number(textRotateSlider.value);
+
     draw();
 }
 ```
 
 });
 
-glowSlider.addEventListener("input", ()=>{
+glowSlider.addEventListener("input", () => {
 
 ```
 if(selectedText){
 
     selectedText.glow = Number(glowSlider.value);
+
     draw();
 }
 ```
 
 });
 
-colorPicker.addEventListener("input", ()=>{
+colorPicker.addEventListener("input", () => {
 
 ```
 if(selectedText){
 
     selectedText.color = colorPicker.value;
+
     draw();
 }
 ```
 
 });
 
-scaleSlider.addEventListener("input", ()=>{
+scaleSlider.addEventListener("input", () => {
 
 ```
 imgScale = Number(scaleSlider.value);
+
 draw();
 ```
 
 });
 
-rotateSlider.addEventListener("input", ()=>{
+rotateSlider.addEventListener("input", () => {
 
 ```
 imgRotation = Number(rotateSlider.value);
+
 draw();
 ```
 
@@ -175,20 +178,21 @@ ctx.clearRect(0,0,canvas.width,canvas.height);
 
 if(image){
 
-    ctx.save();
+    const centerX = canvas.width / 2;
+    const centerY = canvas.height / 2;
 
-    ctx.translate(imgX,imgY);
-
-    ctx.scale(imgScale,imgScale);
-
-    ctx.rotate(imgRotation * Math.PI / 180);
-
-    const maxWidth = canvas.width * 0.7;
+    const maxWidth = canvas.width * 0.8;
 
     const scale = maxWidth / image.width;
 
-    const drawWidth = image.width * scale;
-    const drawHeight = image.height * scale;
+    const drawWidth = image.width * scale * imgScale;
+    const drawHeight = image.height * scale * imgScale;
+
+    ctx.save();
+
+    ctx.translate(centerX, centerY);
+
+    ctx.rotate(imgRotation * Math.PI / 180);
 
     ctx.drawImage(
         image,
@@ -205,7 +209,7 @@ texts.forEach(text => {
 
     ctx.save();
 
-    ctx.translate(text.x,text.y);
+    ctx.translate(text.x, text.y);
 
     ctx.rotate(text.rotation * Math.PI / 180);
 
@@ -214,28 +218,31 @@ texts.forEach(text => {
     ctx.fillStyle = text.color;
 
     ctx.shadowColor = text.color;
+
     ctx.shadowBlur = text.glow;
 
     ctx.textAlign = "center";
 
-    ctx.fillText(text.content,0,0);
+    ctx.fillText(text.content, 0, 0);
 
     if(text === selectedText){
 
         const width = ctx.measureText(text.content).width;
 
         ctx.strokeStyle = "#7b5cff";
+
         ctx.lineWidth = 2;
 
         ctx.strokeRect(
-            -width/2 -10,
+            -width / 2 - 10,
             -text.size,
-            width+20,
-            text.size+20
+            width + 20,
+            text.size + 20
         );
     }
 
     ctx.restore();
+
 });
 ```
 
@@ -243,13 +250,14 @@ texts.forEach(text => {
 
 let draggingText = false;
 
-canvas.addEventListener("mousedown", e => {
+canvas.addEventListener("mousedown", (e) => {
 
 ```
 const x = e.offsetX;
 const y = e.offsetY;
 
 draggingText = false;
+
 selectedText = null;
 
 texts.forEach(text => {
@@ -257,12 +265,14 @@ texts.forEach(text => {
     const width = text.content.length * text.size * 0.5;
 
     if(
-        x > text.x - width/2 &&
-        x < text.x + width/2 &&
+        x > text.x - width / 2 &&
+        x < text.x + width / 2 &&
         y > text.y - text.size &&
         y < text.y + text.size
     ){
+
         selectedText = text;
+
         draggingText = true;
     }
 
@@ -275,7 +285,7 @@ draw();
 
 });
 
-canvas.addEventListener("mousemove", e => {
+canvas.addEventListener("mousemove", (e) => {
 
 ```
 if(draggingText && selectedText){
@@ -289,7 +299,7 @@ if(draggingText && selectedText){
 
 });
 
-canvas.addEventListener("mouseup", ()=>{
+canvas.addEventListener("mouseup", () => {
 
 ```
 draggingText = false;
