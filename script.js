@@ -46,11 +46,60 @@ upload.addEventListener("change", (e) => {
 
         image = new Image();
 
-        image.onload = function(){
+        let draggingText = false;
 
-            draw();
+canvas.addEventListener("mousedown", (e) => {
 
-        };
+    const x = e.offsetX;
+    const y = e.offsetY;
+
+    draggingText = false;
+
+    selectedText = null;
+
+    texts.forEach(text => {
+
+        const width = text.content.length * text.size * 0.5;
+
+        if(
+            x > text.x - width / 2 &&
+            x < text.x + width / 2 &&
+            y > text.y - text.size &&
+            y < text.y + text.size
+        ){
+
+            selectedText = text;
+
+            draggingText = true;
+
+        }
+
+    });
+
+    updateControls();
+
+    draw();
+
+});
+
+canvas.addEventListener("mousemove", (e) => {
+
+    if(draggingText && selectedText){
+
+        selectedText.x = e.offsetX;
+        selectedText.y = e.offsetY;
+
+        draw();
+
+    }
+
+});
+
+canvas.addEventListener("mouseup", () => {
+
+    draggingText = false;
+
+});
 
         image.src = event.target.result;
 
