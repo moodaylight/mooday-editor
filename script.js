@@ -1,387 +1,245 @@
-const uploadInput = document.getElementById("uploadInput");
+const canvas = document.getElementById("canvas");
+const ctx = canvas.getContext("2d");
 
-const photoLayer =
-document.getElementById("photoLayer");
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight * 0.6;
 
-const photoImg =
-document.getElementById("photoImg");
+const upload = document.getElementById("upload");
+const addTextBtn = document.getElementById("addText");
+const textInput = document.getElementById("textInput");
 
-const textInput =
-document.getElementById("textInput");
+const scaleSlider = document.getElementById("scaleSlider");
+const rotateSlider = document.getElementById("rotateSlider");
 
-const addTextBtn =
-document.getElementById("addTextBtn");
+const textSizeSlider = document.getElementById("textSizeSlider");
+const textRotateSlider = document.getElementById("textRotateSlider");
 
-const scaleSlider =
-document.getElementById("scaleSlider");
+const glowSlider = document.getElementById("glowSlider");
+const colorPicker = document.getElementById("colorPicker");
 
-const rotateSlider =
-document.getElementById("rotateSlider");
+let image = null;
 
-const textSizeSlider =
-document.getElementById("textSizeSlider");
+let imgX = 0;
+let imgY = 0;
+let imgScale = 1;
+let imgRotation = 0;
 
-const photoArea =
-document.getElementById("photoArea");
+let texts = [];
+let selectedText = null;
 
-let scale = 1;
+upload.addEventListener("change", e => {
 
-let rotation = 0;
+    const file = e.target.files[0];
 
-let posX = 0;
+    const reader = new FileReader();
 
-let posY = 0;
+    reader.onload = function(event){
 
-let dragging = false;
+        image = new Image();
 
-let startX = 0;
+        image.onload = function(){
 
-let startY = 0;
+            imgX = canvas.width / 2;
+            imgY = canvas.height / 2;
 
-let initialDistance = 0;
+            draw();
+        }
 
-let initialAngle = 0;
+        image.src = event.target.result;
+    }
 
-let startScale = 1;
+    reader.readAsDataURL(file);
 
-let startRotation = 0;
+});
 
-let selectedTextLayer = null;
+addTextBtn.addEventListener("click", () => {
 
-const textLayers = [];
+    const text = {
+        content:textInput.value || "MOODAY",
+        x:canvas.width/2,
+        y:canvas.height/2,
+        size:60,
+        rotation:0,
+        color:"#ffffff",
+        glow:20
+    };
 
-uploadInput.addEventListener(
-"change",
-(e)=>{
+    texts.push(text);
 
-const file = e.target.files[0];
+    selectedText = text;
 
-if(!file) return;
+    updateControls();
 
-const reader = new FileReader();
+    draw();
+});
 
-reader.onload = function(event){
+function updateControls(){
 
-photoImg.src =
-event.target.result;
+    if(!selectedText) return;
 
-};
-
-reader.readAsDataURL(file);
-
-}
-);
-
-function updatePhotoTransform(){
-
-photoLayer.style.transform = `
-translate(-50%,-50%)
-translate(${posX}px,${posY}px)
-scale(${scale})
-rotate(${rotation}deg)
-`;
-
-}
-
-function getDistance(t1,t2){
-
-const dx =
-t2.clientX - t1.clientX;
-
-const dy =
-t2.clientY - t1.clientY;
-
-return Math.sqrt(
-dx * dx + dy * dy
-);
-
+    textSizeSlider.value = selectedText.size;
+    textRotateSlider.value = selectedText.rotation;
+    glowSlider.value = selectedText.glow;
+    colorPicker.value = selectedText.color;
 }
 
-function getAngle(t1,t2){
+textSizeSlider.addEventListener("input", ()=>{
 
-return Math.atan2(
-t2.clientY - t1.clientY,
-t2.clientX - t1.clientX
-) * 180 / Math.PI;
+    if(selectedText){
 
-}
+        selectedText.size = textSizeSlider.value;
+        draw();
+    }
 
-photoLayer.addEventListener(
-"touchstart",
-(e)=>{
+});
 
-if(e.touches.length===1){
+textRotateSlider.addEventListener("input", ()=>{
 
-dragging = true;
+    if(selectedText){
 
-startX =
-e.touches[0].clientX - posX;
+        selectedText.rotation = textRotateSlider.value;
+        draw();
+    }
 
-startY =
-e.touches[0].clientY - posY;
+});
 
-}
+glowSlider.addEventListener("input", ()=>{
 
-if(e.touches.length===2){
+    if(selectedText){
 
-initialDistance =
-getDistance(
-e.touches[0],
-e.touches[1]
-);
+        selectedText.glow = glowSlider.value;
+        draw();
+    }
 
-initialAngle =
-getAngle(
-e.touches[0],
-e.touches[1]
-);
+});
 
-startScale = scale;
+colorPicker.addEventListener("input", ()=>{
 
-startRotation = rotation;
+    if(selectedText){
 
-}
+        selectedText.color = colorPicker.value;
+        draw();
+    }
 
-}
-);
+});
 
-photoLayer.addEventListener(
-"touchmove",
-(e)=>{
+scaleSlider.addEventListener("input", ()=>{
 
-e.preventDefault();
+    imgScale = scaleSlider.value;
+    draw();
+});
 
-if(
-e.touches.length===1 &&
-dragging
-){
+rotateSlider.addEventListener("input", ()=>{
 
-posX =
-e.touches[0].clientX - startX;
+    imgRotation = rotateSlider.value;
+    draw();
+});
 
-posY =
-e.touches[0].clientY - startY;
+function draw(){
 
-updatePhotoTransform();
+    ctx.clearRect(0,0,canvas.width,canvas.height);
 
-}
+    if(image){
 
-if(e.touches.length===2){
+        ctx.save();
 
-const currentDistance =
-getDistance(
-e.touches[0],
-e.touches[1]
-);
+        ctx.translate(imgX,imgY);
 
-const currentAngle =
-getAngle(
-e.touches[0],
-e.touches[1]
-);
+        ctx.scale(imgScale,imgScale);
 
-scale =
-startScale *
-(
-currentDistance /
-initialDistance
-);
+        ctx.rotate(imgRotation * Math.PI / 180);
 
-rotation =
-startRotation +
-(
-currentAngle -
-initialAngle
-);
+        ctx.drawImage(
+            image,
+            -image.width/2,
+            -image.height/2
+        );
 
-scaleSlider.value =
-scale;
+        ctx.restore();
+    }
 
-rotateSlider.value =
-rotation;
+    texts.forEach(text => {
 
-updatePhotoTransform();
+        ctx.save();
+
+        ctx.translate(text.x,text.y);
+
+        ctx.rotate(text.rotation * Math.PI / 180);
+
+        ctx.font = `${text.size}px sans-serif`;
+
+        ctx.fillStyle = text.color;
+
+        ctx.shadowColor = text.color;
+        ctx.shadowBlur = text.glow;
+
+        ctx.textAlign = "center";
+
+        ctx.fillText(text.content,0,0);
+
+        if(text === selectedText){
+
+            const width = ctx.measureText(text.content).width;
+
+            ctx.strokeStyle = "#7b5cff";
+            ctx.lineWidth = 2;
+
+            ctx.strokeRect(
+                -width/2 -10,
+                -text.size,
+                width+20,
+                text.size+20
+            );
+        }
+
+        ctx.restore();
+    });
 
 }
 
-},
-{ passive:false }
-);
+let draggingText = false;
 
-window.addEventListener(
-"touchend",
-()=>{
+canvas.addEventListener("mousedown", e => {
 
-dragging = false;
+    const x = e.offsetX;
+    const y = e.offsetY;
 
-}
-);
+    selectedText = null;
 
-scaleSlider.addEventListener(
-"input",
-(e)=>{
+    texts.forEach(text => {
 
-scale =
-parseFloat(e.target.value);
+        const width = text.content.length * text.size * 0.5;
 
-updatePhotoTransform();
+        if(
+            x > text.x - width/2 &&
+            x < text.x + width/2 &&
+            y > text.y - text.size &&
+            y < text.y + text.size
+        ){
+            selectedText = text;
+            draggingText = true;
+        }
 
-}
-);
+    });
 
-rotateSlider.addEventListener(
-"input",
-(e)=>{
+    updateControls();
 
-rotation =
-parseFloat(e.target.value);
+    draw();
+});
 
-updatePhotoTransform();
+canvas.addEventListener("mousemove", e => {
 
-}
-);
+    if(draggingText && selectedText){
 
-function createTextLayer(
-text="MOODAY"
-){
+        selectedText.x = e.offsetX;
+        selectedText.y = e.offsetY;
 
-const layer =
-document.createElement("div");
+        draw();
+    }
 
-layer.className =
-"text-layer";
+});
 
-layer.innerText =
-text;
+canvas.addEventListener("mouseup", ()=>{
 
-layer.style.left =
-"50%";
-
-layer.style.top =
-"75%";
-
-layer.dataset.x = 0;
-
-layer.dataset.y = 0;
-
-let textDragging = false;
-
-let textStartX = 0;
-
-let textStartY = 0;
-
-layer.addEventListener(
-"pointerdown",
-(e)=>{
-
-selectedTextLayer =
-layer;
-
-textInput.value =
-layer.innerText;
-
-textDragging = true;
-
-textStartX =
-e.clientX -
-parseFloat(layer.dataset.x);
-
-textStartY =
-e.clientY -
-parseFloat(layer.dataset.y);
-
-}
-);
-
-window.addEventListener(
-"pointermove",
-(e)=>{
-
-if(!textDragging)
-return;
-
-const x =
-e.clientX - textStartX;
-
-const y =
-e.clientY - textStartY;
-
-layer.dataset.x = x;
-
-layer.dataset.y = y;
-
-layer.style.transform = `
-translate(-50%,-50%)
-translate(${x}px,${y}px)
-`;
-
-}
-);
-
-window.addEventListener(
-"pointerup",
-()=>{
-
-textDragging = false;
-
-}
-);
-
-photoArea.appendChild(layer);
-
-textLayers.push(layer);
-
-selectedTextLayer =
-layer;
-
-}
-
-createTextLayer();
-
-addTextBtn.addEventListener(
-"click",
-()=>{
-
-createTextLayer("新文字");
-
-}
-);
-
-textInput.addEventListener(
-"input",
-(e)=>{
-
-if(!selectedTextLayer)
-return;
-
-selectedTextLayer.innerText =
-e.target.value || "MOODAY";
-
-}
-);
-
-textSizeSlider.addEventListener(
-"input",
-(e)=>{
-
-if(!selectedTextLayer)
-return;
-
-selectedTextLayer.style.fontSize =
-e.target.value + "px";
-
-}
-);
-
-document
-.getElementById("submitBtn")
-.addEventListener(
-"click",
-()=>{
-
-alert("制作已提交");
-
-}
-);
-
-updatePhotoTransform();
+    draggingText = false;
+});
