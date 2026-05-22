@@ -1,142 +1,51 @@
 <!DOCTYPE html>
 <html lang="zh">
-
 <head>
-
 <meta charset="UTF-8">
-
-<meta
-name="viewport"
-content="width=device-width,initial-scale=1.0"
-/>
-
-<title>
-MOODAY EDITOR
-</title>
-
-<link
-rel="stylesheet"
-href="style.css"
-/>
-
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MOODAY EDITOR</title>
+<link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
 <div class="app">
 
-<h1 class="title">
-MOODAY EDITOR
-</h1>
+    <div class="canvas-wrap">
+        <canvas id="canvas"></canvas>
+    </div>
 
-<div class="editor-area">
+    <div class="controls">
 
-<div
-id="photoArea"
-class="photo-area"
->
+        <input type="file" id="upload">
 
-<div
-id="photoLayer"
-class="photo-layer"
->
+        <input type="text" id="textInput" placeholder="输入文字">
 
-<img id="photoImg"/>
+        <button id="addText">新增文字</button>
 
-</div>
+        <label>图片缩放</label>
+        <input type="range" id="scaleSlider" min="0.5" max="3" step="0.01" value="1">
 
-</div>
+        <label>图片旋转</label>
+        <input type="range" id="rotateSlider" min="-180" max="180" value="0">
 
-</div>
+        <label>文字大小</label>
+        <input type="range" id="textSizeSlider" min="20" max="150" value="60">
 
-<div class="controls">
+        <label>文字旋转</label>
+        <input type="range" id="textRotateSlider" min="-180" max="180" value="0">
 
-<label class="upload-btn">
+        <label>发光强度</label>
+        <input type="range" id="glowSlider" min="0" max="50" value="20">
 
-上传照片
+        <label>文字颜色</label>
+        <input type="color" id="colorPicker" value="#ffffff">
 
-<input
-type="file"
-id="uploadInput"
-accept="image/*"
-hidden
-/>
-
-</label>
-
-<input
-type="text"
-id="textInput"
-placeholder="输入文字"
-/>
-
-<button id="addTextBtn">
-新增文字
-</button>
-
-<div class="slider-group">
-
-<label>
-图片缩放
-</label>
-
-<input
-type="range"
-id="scaleSlider"
-min="0.5"
-max="3"
-step="0.01"
-value="1"
-/>
-
-</div>
-
-<div class="slider-group">
-
-<label>
-图片旋转
-</label>
-
-<input
-type="range"
-id="rotateSlider"
-min="-180"
-max="180"
-step="1"
-value="0"
-/>
-
-</div>
-
-<div class="slider-group">
-
-<label>
-文字大小
-</label>
-
-<input
-type="range"
-id="textSizeSlider"
-min="20"
-max="120"
-step="1"
-value="60"
-/>
-
-</div>
-
-<button id="submitBtn">
-
-提交制作
-
-</button>
-
-</div>
+    </div>
 
 </div>
 
 <script src="script.js"></script>
 
 </body>
-
 </html>
