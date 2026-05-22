@@ -1,8 +1,17 @@
 const canvas = document.getElementById("canvas");
 const ctx = canvas.getContext("2d");
 
-canvas.width = window.innerWidth;
-canvas.height = window.innerHeight * 0.6;
+function resizeCanvas() {
+canvas.width = canvas.offsetWidth;
+canvas.height = canvas.offsetHeight;
+}
+
+resizeCanvas();
+
+window.addEventListener("resize", () => {
+resizeCanvas();
+draw();
+});
 
 const upload = document.getElementById("upload");
 const addTextBtn = document.getElementById("addText");
@@ -32,7 +41,7 @@ upload.addEventListener("change", e => {
 ```
 const file = e.target.files[0];
 
-if(!file) return;
+if (!file) return;
 
 const reader = new FileReader();
 
@@ -98,7 +107,7 @@ textSizeSlider.addEventListener("input", ()=>{
 ```
 if(selectedText){
 
-    selectedText.size = textSizeSlider.value;
+    selectedText.size = Number(textSizeSlider.value);
     draw();
 }
 ```
@@ -110,7 +119,7 @@ textRotateSlider.addEventListener("input", ()=>{
 ```
 if(selectedText){
 
-    selectedText.rotation = textRotateSlider.value;
+    selectedText.rotation = Number(textRotateSlider.value);
     draw();
 }
 ```
@@ -122,7 +131,7 @@ glowSlider.addEventListener("input", ()=>{
 ```
 if(selectedText){
 
-    selectedText.glow = glowSlider.value;
+    selectedText.glow = Number(glowSlider.value);
     draw();
 }
 ```
@@ -144,7 +153,7 @@ if(selectedText){
 scaleSlider.addEventListener("input", ()=>{
 
 ```
-imgScale = scaleSlider.value;
+imgScale = Number(scaleSlider.value);
 draw();
 ```
 
@@ -153,7 +162,7 @@ draw();
 rotateSlider.addEventListener("input", ()=>{
 
 ```
-imgRotation = rotateSlider.value;
+imgRotation = Number(rotateSlider.value);
 draw();
 ```
 
@@ -174,7 +183,7 @@ if(image){
 
     ctx.rotate(imgRotation * Math.PI / 180);
 
-    const maxWidth = 300;
+    const maxWidth = canvas.width * 0.7;
 
     const scale = maxWidth / image.width;
 
@@ -240,6 +249,7 @@ canvas.addEventListener("mousedown", e => {
 const x = e.offsetX;
 const y = e.offsetY;
 
+draggingText = false;
 selectedText = null;
 
 texts.forEach(text => {
