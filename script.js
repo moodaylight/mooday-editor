@@ -29,171 +29,195 @@ let selectedText = null;
 
 upload.addEventListener("change", e => {
 
-    const file = e.target.files[0];
+```
+const file = e.target.files[0];
 
-    const reader = new FileReader();
+const reader = new FileReader();
 
-    reader.onload = function(event){
+reader.onload = function(event){
 
-        image = new Image();
+    image = new Image();
 
-        image.onload = function(){
+    image.onload = function(){
 
-            imgX = canvas.width / 2;
-            imgY = canvas.height / 2;
+        imgX = canvas.width / 2;
+        imgY = canvas.height / 2;
 
-            draw();
-        }
-
-        image.src = event.target.result;
+        draw();
     }
 
-    reader.readAsDataURL(file);
+    image.src = event.target.result;
+}
+
+reader.readAsDataURL(file);
+```
 
 });
 
 addTextBtn.addEventListener("click", () => {
 
-    const text = {
-        content:textInput.value || "MOODAY",
-        x:canvas.width/2,
-        y:canvas.height/2,
-        size:60,
-        rotation:0,
-        color:"#ffffff",
-        glow:20
-    };
+```
+const text = {
+    content:textInput.value || "MOODAY",
+    x:canvas.width/2,
+    y:canvas.height/2,
+    size:60,
+    rotation:0,
+    color:"#ffffff",
+    glow:20
+};
 
-    texts.push(text);
+texts.push(text);
 
-    selectedText = text;
+selectedText = text;
 
-    updateControls();
+updateControls();
 
-    draw();
+draw();
+```
+
 });
 
 function updateControls(){
 
-    if(!selectedText) return;
+```
+if(!selectedText) return;
 
-    textSizeSlider.value = selectedText.size;
-    textRotateSlider.value = selectedText.rotation;
-    glowSlider.value = selectedText.glow;
-    colorPicker.value = selectedText.color;
+textSizeSlider.value = selectedText.size;
+textRotateSlider.value = selectedText.rotation;
+glowSlider.value = selectedText.glow;
+colorPicker.value = selectedText.color;
+```
+
 }
 
 textSizeSlider.addEventListener("input", ()=>{
 
-    if(selectedText){
+```
+if(selectedText){
 
-        selectedText.size = textSizeSlider.value;
-        draw();
-    }
+    selectedText.size = textSizeSlider.value;
+    draw();
+}
+```
 
 });
 
 textRotateSlider.addEventListener("input", ()=>{
 
-    if(selectedText){
+```
+if(selectedText){
 
-        selectedText.rotation = textRotateSlider.value;
-        draw();
-    }
+    selectedText.rotation = textRotateSlider.value;
+    draw();
+}
+```
 
 });
 
 glowSlider.addEventListener("input", ()=>{
 
-    if(selectedText){
+```
+if(selectedText){
 
-        selectedText.glow = glowSlider.value;
-        draw();
-    }
+    selectedText.glow = glowSlider.value;
+    draw();
+}
+```
 
 });
 
 colorPicker.addEventListener("input", ()=>{
 
-    if(selectedText){
+```
+if(selectedText){
 
-        selectedText.color = colorPicker.value;
-        draw();
-    }
+    selectedText.color = colorPicker.value;
+    draw();
+}
+```
 
 });
 
 scaleSlider.addEventListener("input", ()=>{
 
-    imgScale = scaleSlider.value;
-    draw();
+```
+imgScale = scaleSlider.value;
+draw();
+```
+
 });
 
 rotateSlider.addEventListener("input", ()=>{
 
-    imgRotation = rotateSlider.value;
-    draw();
+```
+imgRotation = rotateSlider.value;
+draw();
+```
+
 });
 
 function draw(){
 
-    ctx.clearRect(0,0,canvas.width,canvas.height);
+```
+ctx.clearRect(0,0,canvas.width,canvas.height);
 
-    if(image){
+if(image){
 
-        ctx.save();
+    ctx.save();
 
-        ctx.translate(imgX,imgY);
+    ctx.translate(imgX,imgY);
 
-        ctx.scale(imgScale,imgScale);
+    ctx.scale(imgScale,imgScale);
 
-        ctx.rotate(imgRotation * Math.PI / 180);
+    ctx.rotate(imgRotation * Math.PI / 180);
 
-        ctx.drawImage(
-            image,
-            -image.width/2,
-            -image.height/2
+    ctx.drawImage(
+        image,
+        -image.width/2,
+        -image.height/2
+    );
+
+    ctx.restore();
+}
+
+texts.forEach(text => {
+
+    ctx.save();
+
+    ctx.translate(text.x,text.y);
+
+    ctx.rotate(text.rotation * Math.PI / 180);
+
+    ctx.font = `${text.size}px sans-serif`;
+
+    ctx.fillStyle = text.color;
+
+    ctx.shadowColor = text.color;
+    ctx.shadowBlur = text.glow;
+
+    ctx.textAlign = "center";
+
+    ctx.fillText(text.content,0,0);
+
+    if(text === selectedText){
+
+        const width = ctx.measureText(text.content).width;
+
+        ctx.strokeStyle = "#7b5cff";
+        ctx.lineWidth = 2;
+
+        ctx.strokeRect(
+            -width/2 -10,
+            -text.size,
+            width+20,
+            text.size+20
         );
-
-        ctx.restore();
     }
 
-    texts.forEach(text => {
-
-        ctx.save();
-
-        ctx.translate(text.x,text.y);
-
-        ctx.rotate(text.rotation * Math.PI / 180);
-
-        ctx.font = `${text.size}px sans-serif`;
-
-        ctx.fillStyle = text.color;
-
-        ctx.shadowColor = text.color;
-        ctx.shadowBlur = text.glow;
-
-        ctx.textAlign = "center";
-
-        ctx.fillText(text.content,0,0);
-
-        if(text === selectedText){
-
-            const width = ctx.measureText(text.content).width;
-
-            ctx.strokeStyle = "#7b5cff";
-            ctx.lineWidth = 2;
-
-            ctx.strokeRect(
-                -width/2 -10,
-                -text.size,
-                width+20,
-                text.size+20
-            );
-        }
-
-        ctx.restore();
-    });
+    ctx.restore();
+});
+```
 
 }
 
@@ -201,45 +225,53 @@ let draggingText = false;
 
 canvas.addEventListener("mousedown", e => {
 
-    const x = e.offsetX;
-    const y = e.offsetY;
+```
+const x = e.offsetX;
+const y = e.offsetY;
 
-    selectedText = null;
+selectedText = null;
 
-    texts.forEach(text => {
+texts.forEach(text => {
 
-        const width = text.content.length * text.size * 0.5;
+    const width = text.content.length * text.size * 0.5;
 
-        if(
-            x > text.x - width/2 &&
-            x < text.x + width/2 &&
-            y > text.y - text.size &&
-            y < text.y + text.size
-        ){
-            selectedText = text;
-            draggingText = true;
-        }
+    if(
+        x > text.x - width/2 &&
+        x < text.x + width/2 &&
+        y > text.y - text.size &&
+        y < text.y + text.size
+    ){
+        selectedText = text;
+        draggingText = true;
+    }
 
-    });
+});
 
-    updateControls();
+updateControls();
 
-    draw();
+draw();
+```
+
 });
 
 canvas.addEventListener("mousemove", e => {
 
-    if(draggingText && selectedText){
+```
+if(draggingText && selectedText){
 
-        selectedText.x = e.offsetX;
-        selectedText.y = e.offsetY;
+    selectedText.x = e.offsetX;
+    selectedText.y = e.offsetY;
 
-        draw();
-    }
+    draw();
+}
+```
 
 });
 
 canvas.addEventListener("mouseup", ()=>{
 
-    draggingText = false;
+```
+draggingText = false;
+```
+
 });
