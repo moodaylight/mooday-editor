@@ -46,6 +46,50 @@ upload.addEventListener("change", (e) => {
 
         image = new Image();
 
+       image = new Image();
+
+image.onload = function(){
+
+    const tempCanvas = document.createElement("canvas");
+    const tempCtx = tempCanvas.getContext("2d");
+
+    const maxSize = 1000;
+
+    let width = image.width;
+    let height = image.height;
+
+    if(width > maxSize){
+
+        height = height * (maxSize / width);
+        width = maxSize;
+
+    }
+
+    tempCanvas.width = width;
+    tempCanvas.height = height;
+
+    tempCtx.drawImage(image, 0, 0, width, height);
+
+    const compressedImage = new Image();
+
+    compressedImage.onload = function(){
+
+        image = compressedImage;
+
+        draw();
+
+    };
+
+    compressedImage.src = tempCanvas.toDataURL("image/jpeg", 0.8);
+
+};
+       image.src = event.target.result;
+
+};
+
+reader.readAsDataURL(file);
+
+});
         let draggingText = false;
 
 canvas.addEventListener("mousedown", (e) => {
