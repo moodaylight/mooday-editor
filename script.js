@@ -14,24 +14,33 @@ window.addEventListener("resize", () => {
 });
 
 const upload = document.getElementById("upload");
+
 const addTextBtn = document.getElementById("addText");
+
+const deleteTextBtn = document.getElementById("deleteText");
+
 const textInput = document.getElementById("textInput");
 
 const scaleSlider = document.getElementById("scaleSlider");
+
 const rotateSlider = document.getElementById("rotateSlider");
 
 const textSizeSlider = document.getElementById("textSizeSlider");
+
 const textRotateSlider = document.getElementById("textRotateSlider");
 
 const glowSlider = document.getElementById("glowSlider");
+
 const colorPicker = document.getElementById("colorPicker");
 
 let image = null;
 
 let imgScale = 1;
+
 let imgRotation = 0;
 
 let texts = [];
+
 let selectedText = null;
 
 upload.addEventListener("change", (e) => {
@@ -49,21 +58,25 @@ upload.addEventListener("change", (e) => {
         image.onload = function(){
 
             const tempCanvas = document.createElement("canvas");
+
             const tempCtx = tempCanvas.getContext("2d");
 
             const maxSize = 1000;
 
             let width = image.width;
+
             let height = image.height;
 
             if(width > maxSize){
 
                 height = height * (maxSize / width);
+
                 width = maxSize;
 
             }
 
             tempCanvas.width = width;
+
             tempCanvas.height = height;
 
             tempCtx.drawImage(image, 0, 0, width, height);
@@ -93,13 +106,21 @@ upload.addEventListener("change", (e) => {
 addTextBtn.addEventListener("click", () => {
 
     const text = {
+
         content: textInput.value || "MOODAY",
+
         x: canvas.width / 2,
+
         y: canvas.height / 2,
+
         size: 60,
+
         rotation: 0,
+
         color: "#ffffff",
+
         glow: 20
+
     };
 
     texts.push(text);
@@ -112,13 +133,28 @@ addTextBtn.addEventListener("click", () => {
 
 });
 
+deleteTextBtn.addEventListener("click", () => {
+
+    if(!selectedText) return;
+
+    texts = texts.filter(text => text !== selectedText);
+
+    selectedText = null;
+
+    draw();
+
+});
+
 function updateControls(){
 
     if(!selectedText) return;
 
     textSizeSlider.value = selectedText.size;
+
     textRotateSlider.value = selectedText.rotation;
+
     glowSlider.value = selectedText.glow;
+
     colorPicker.value = selectedText.color;
 
 }
@@ -194,6 +230,7 @@ function draw(){
     if(image){
 
         const centerX = canvas.width / 2;
+
         const centerY = canvas.height / 2;
 
         const maxWidth = canvas.width * 0.8;
@@ -201,6 +238,7 @@ function draw(){
         const scale = maxWidth / image.width;
 
         const drawWidth = image.width * scale * imgScale;
+
         const drawHeight = image.height * scale * imgScale;
 
         ctx.save();
@@ -210,11 +248,17 @@ function draw(){
         ctx.rotate(imgRotation * Math.PI / 180);
 
         ctx.drawImage(
+
             image,
+
             -drawWidth / 2,
+
             -drawHeight / 2,
+
             drawWidth,
+
             drawHeight
+
         );
 
         ctx.restore();
@@ -250,10 +294,15 @@ function draw(){
             ctx.lineWidth = 2;
 
             ctx.strokeRect(
+
                 -width / 2 - 10,
+
                 -text.size,
+
                 width + 20,
+
                 text.size + 20
+
             );
 
         }
@@ -269,6 +318,7 @@ let draggingText = false;
 canvas.addEventListener("mousedown", (e) => {
 
     const x = e.offsetX;
+
     const y = e.offsetY;
 
     draggingText = false;
@@ -280,10 +330,15 @@ canvas.addEventListener("mousedown", (e) => {
         const width = text.content.length * text.size * 0.5;
 
         if(
+
             x > text.x - width / 2 &&
+
             x < text.x + width / 2 &&
+
             y > text.y - text.size &&
+
             y < text.y + text.size
+
         ){
 
             selectedText = text;
@@ -305,6 +360,7 @@ canvas.addEventListener("mousemove", (e) => {
     if(draggingText && selectedText){
 
         selectedText.x = e.offsetX;
+
         selectedText.y = e.offsetY;
 
         draw();
