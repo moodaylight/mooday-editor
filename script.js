@@ -32,6 +32,8 @@ upload.addEventListener("change", e => {
 ```
 const file = e.target.files[0];
 
+if(!file) return;
+
 const reader = new FileReader();
 
 reader.onload = function(event){
@@ -44,10 +46,10 @@ reader.onload = function(event){
         imgY = canvas.height / 2;
 
         draw();
-    }
+    };
 
     image.src = event.target.result;
-}
+};
 
 reader.readAsDataURL(file);
 ```
@@ -172,10 +174,19 @@ if(image){
 
     ctx.rotate(imgRotation * Math.PI / 180);
 
+    const maxWidth = 300;
+
+    const scale = maxWidth / image.width;
+
+    const drawWidth = image.width * scale;
+    const drawHeight = image.height * scale;
+
     ctx.drawImage(
         image,
-        -image.width/2,
-        -image.height/2
+        -drawWidth / 2,
+        -drawHeight / 2,
+        drawWidth,
+        drawHeight
     );
 
     ctx.restore();
