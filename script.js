@@ -2,15 +2,15 @@ const canvas = document.getElementById("canvas");
 const ctx = canvas.getContext("2d");
 
 function resizeCanvas() {
-canvas.width = canvas.offsetWidth;
-canvas.height = canvas.offsetHeight;
+    canvas.width = canvas.offsetWidth;
+    canvas.height = canvas.offsetHeight;
 }
 
 resizeCanvas();
 
 window.addEventListener("resize", () => {
-resizeCanvas();
-draw();
+    resizeCanvas();
+    draw();
 });
 
 const upload = document.getElementById("upload");
@@ -36,273 +36,292 @@ let selectedText = null;
 
 upload.addEventListener("change", (e) => {
 
-```
-const file = e.target.files[0];
+    const file = e.target.files[0];
 
-if (!file) return;
+    if (!file) return;
 
-const reader = new FileReader();
+    const reader = new FileReader();
 
-reader.onload = function(event){
+    reader.onload = function(event){
 
-    image = new Image();
+        image = new Image();
 
-    image.onload = function(){
+        image.onload = function(){
 
-        draw();
+            draw();
+
+        };
+
+        image.src = event.target.result;
 
     };
 
-    image.src = event.target.result;
-
-};
-
-reader.readAsDataURL(file);
-```
+    reader.readAsDataURL(file);
 
 });
 
 addTextBtn.addEventListener("click", () => {
 
-```
-const text = {
-    content: textInput.value || "MOODAY",
-    x: canvas.width / 2,
-    y: canvas.height / 2,
-    size: 60,
-    rotation: 0,
-    color: "#ffffff",
-    glow: 20
-};
+    const text = {
+        content: textInput.value || "MOODAY",
+        x: canvas.width / 2,
+        y: canvas.height / 2,
+        size: 60,
+        rotation: 0,
+        color: "#ffffff",
+        glow: 20
+    };
 
-texts.push(text);
+    texts.push(text);
 
-selectedText = text;
+    selectedText = text;
 
-updateControls();
+    updateControls();
 
-draw();
-```
+    draw();
+});
+
+function updateControls(){
+
+    if(!selectedText) return;
+
+    textSizeSlider.value = selectedText.size;
+    textRotateSlider.value = selectedText.rotation;
+    glowSlider.value = selectedText.glow;
+    colorPicker.value = selectedText.color;
+}
+        };
+
+        image.src = event.target.result;
+
+    };
+
+    reader.readAsDataURL(file);
+
+});
+
+addTextBtn.addEventListener("click", () => {
+
+    const text = {
+        content: textInput.value || "MOODAY",
+        x: canvas.width / 2,
+        y: canvas.height / 2,
+        size: 60,
+        rotation: 0,
+        color: "#ffffff",
+        glow: 20
+    };
+
+    texts.push(text);
+
+    selectedText = text;
+
+    updateControls();
+
+    draw();
 
 });
 
 function updateControls(){
 
-```
-if(!selectedText) return;
+    if(!selectedText) return;
 
-textSizeSlider.value = selectedText.size;
-textRotateSlider.value = selectedText.rotation;
-glowSlider.value = selectedText.glow;
-colorPicker.value = selectedText.color;
-```
+    textSizeSlider.value = selectedText.size;
+    textRotateSlider.value = selectedText.rotation;
+    glowSlider.value = selectedText.glow;
+    colorPicker.value = selectedText.color;
 
 }
-
 textSizeSlider.addEventListener("input", () => {
 
-```
-if(selectedText){
+    if(selectedText){
 
-    selectedText.size = Number(textSizeSlider.value);
+        selectedText.size = Number(textSizeSlider.value);
 
-    draw();
-}
-```
+        draw();
+
+    }
 
 });
 
 textRotateSlider.addEventListener("input", () => {
 
-```
-if(selectedText){
+    if(selectedText){
 
-    selectedText.rotation = Number(textRotateSlider.value);
+        selectedText.rotation = Number(textRotateSlider.value);
 
-    draw();
-}
-```
+        draw();
+
+    }
 
 });
 
 glowSlider.addEventListener("input", () => {
 
-```
-if(selectedText){
+    if(selectedText){
 
-    selectedText.glow = Number(glowSlider.value);
+        selectedText.glow = Number(glowSlider.value);
 
-    draw();
-}
-```
+        draw();
+
+    }
 
 });
 
 colorPicker.addEventListener("input", () => {
 
-```
-if(selectedText){
+    if(selectedText){
 
-    selectedText.color = colorPicker.value;
+        selectedText.color = colorPicker.value;
 
-    draw();
-}
-```
+        draw();
+
+    }
 
 });
 
 scaleSlider.addEventListener("input", () => {
 
-```
-imgScale = Number(scaleSlider.value);
+    imgScale = Number(scaleSlider.value);
 
-draw();
-```
+    draw();
 
 });
 
 rotateSlider.addEventListener("input", () => {
 
-```
-imgRotation = Number(rotateSlider.value);
+    imgRotation = Number(rotateSlider.value);
 
-draw();
-```
+    draw();
 
 });
-
 function draw(){
 
-```
-ctx.clearRect(0,0,canvas.width,canvas.height);
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-if(image){
+    if(image){
 
-    const centerX = canvas.width / 2;
-    const centerY = canvas.height / 2;
+        const centerX = canvas.width / 2;
+        const centerY = canvas.height / 2;
 
-    const maxWidth = canvas.width * 0.8;
+        const maxWidth = canvas.width * 0.8;
 
-    const scale = maxWidth / image.width;
+        const scale = maxWidth / image.width;
 
-    const drawWidth = image.width * scale * imgScale;
-    const drawHeight = image.height * scale * imgScale;
+        const drawWidth = image.width * scale * imgScale;
+        const drawHeight = image.height * scale * imgScale;
 
-    ctx.save();
+        ctx.save();
 
-    ctx.translate(centerX, centerY);
+        ctx.translate(centerX, centerY);
 
-    ctx.rotate(imgRotation * Math.PI / 180);
+        ctx.rotate(imgRotation * Math.PI / 180);
 
-    ctx.drawImage(
-        image,
-        -drawWidth / 2,
-        -drawHeight / 2,
-        drawWidth,
-        drawHeight
-    );
-
-    ctx.restore();
-}
-
-texts.forEach(text => {
-
-    ctx.save();
-
-    ctx.translate(text.x, text.y);
-
-    ctx.rotate(text.rotation * Math.PI / 180);
-
-    ctx.font = `${text.size}px sans-serif`;
-
-    ctx.fillStyle = text.color;
-
-    ctx.shadowColor = text.color;
-
-    ctx.shadowBlur = text.glow;
-
-    ctx.textAlign = "center";
-
-    ctx.fillText(text.content, 0, 0);
-
-    if(text === selectedText){
-
-        const width = ctx.measureText(text.content).width;
-
-        ctx.strokeStyle = "#7b5cff";
-
-        ctx.lineWidth = 2;
-
-        ctx.strokeRect(
-            -width / 2 - 10,
-            -text.size,
-            width + 20,
-            text.size + 20
+        ctx.drawImage(
+            image,
+            -drawWidth / 2,
+            -drawHeight / 2,
+            drawWidth,
+            drawHeight
         );
+
+        ctx.restore();
+
     }
 
-    ctx.restore();
+    texts.forEach(text => {
 
-});
-```
+        ctx.save();
+
+        ctx.translate(text.x, text.y);
+
+        ctx.rotate(text.rotation * Math.PI / 180);
+
+        ctx.font = `${text.size}px sans-serif`;
+
+        ctx.fillStyle = text.color;
+
+        ctx.shadowColor = text.color;
+
+        ctx.shadowBlur = text.glow;
+
+        ctx.textAlign = "center";
+
+        ctx.fillText(text.content, 0, 0);
+
+        if(text === selectedText){
+
+            const width = ctx.measureText(text.content).width;
+
+            ctx.strokeStyle = "#7b5cff";
+
+            ctx.lineWidth = 2;
+
+            ctx.strokeRect(
+                -width / 2 - 10,
+                -text.size,
+                width + 20,
+                text.size + 20
+            );
+
+        }
+
+        ctx.restore();
+
+    });
 
 }
-
 let draggingText = false;
 
 canvas.addEventListener("mousedown", (e) => {
 
-```
-const x = e.offsetX;
-const y = e.offsetY;
+    const x = e.offsetX;
+    const y = e.offsetY;
 
-draggingText = false;
+    draggingText = false;
 
-selectedText = null;
+    selectedText = null;
 
-texts.forEach(text => {
+    texts.forEach(text => {
 
-    const width = text.content.length * text.size * 0.5;
+        const width = text.content.length * text.size * 0.5;
 
-    if(
-        x > text.x - width / 2 &&
-        x < text.x + width / 2 &&
-        y > text.y - text.size &&
-        y < text.y + text.size
-    ){
+        if(
+            x > text.x - width / 2 &&
+            x < text.x + width / 2 &&
+            y > text.y - text.size &&
+            y < text.y + text.size
+        ){
 
-        selectedText = text;
+            selectedText = text;
 
-        draggingText = true;
-    }
+            draggingText = true;
 
-});
+        }
 
-updateControls();
+    });
 
-draw();
-```
+    updateControls();
+
+    draw();
 
 });
 
 canvas.addEventListener("mousemove", (e) => {
 
-```
-if(draggingText && selectedText){
+    if(draggingText && selectedText){
 
-    selectedText.x = e.offsetX;
-    selectedText.y = e.offsetY;
+        selectedText.x = e.offsetX;
+        selectedText.y = e.offsetY;
 
-    draw();
-}
-```
+        draw();
+
+    }
 
 });
 
 canvas.addEventListener("mouseup", () => {
 
-```
-draggingText = false;
-```
+    draggingText = false;
 
 });
