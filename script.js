@@ -46,143 +46,40 @@ upload.addEventListener("change", (e) => {
 
         image = new Image();
 
-       image = new Image();
+        image.onload = function(){
 
-image.onload = function(){
+            const tempCanvas = document.createElement("canvas");
+            const tempCtx = tempCanvas.getContext("2d");
 
-    const tempCanvas = document.createElement("canvas");
-    const tempCtx = tempCanvas.getContext("2d");
+            const maxSize = 1000;
 
-    const maxSize = 1000;
+            let width = image.width;
+            let height = image.height;
 
-    let width = image.width;
-    let height = image.height;
+            if(width > maxSize){
 
-    if(width > maxSize){
+                height = height * (maxSize / width);
+                width = maxSize;
 
-        height = height * (maxSize / width);
-        width = maxSize;
+            }
 
-    }
+            tempCanvas.width = width;
+            tempCanvas.height = height;
 
-    tempCanvas.width = width;
-    tempCanvas.height = height;
+            tempCtx.drawImage(image, 0, 0, width, height);
 
-    tempCtx.drawImage(image, 0, 0, width, height);
+            const compressedImage = new Image();
 
-    const compressedImage = new Image();
+            compressedImage.onload = function(){
 
-    compressedImage.onload = function(){
+                image = compressedImage;
 
-        image = compressedImage;
+                draw();
 
-        draw();
+            };
 
-    };
+            compressedImage.src = tempCanvas.toDataURL("image/jpeg", 0.8);
 
-    compressedImage.src = tempCanvas.toDataURL("image/jpeg", 0.8);
-
-};
-       image.src = event.target.result;
-
-};
-
-reader.readAsDataURL(file);
-
-});
-        let draggingText = false;
-
-canvas.addEventListener("mousedown", (e) => {
-
-    const x = e.offsetX;
-    const y = e.offsetY;
-
-    draggingText = false;
-
-    selectedText = null;
-
-    texts.forEach(text => {
-
-        const width = text.content.length * text.size * 0.5;
-
-        if(
-            x > text.x - width / 2 &&
-            x < text.x + width / 2 &&
-            y > text.y - text.size &&
-            y < text.y + text.size
-        ){
-
-            selectedText = text;
-
-            draggingText = true;
-
-        }
-
-    });
-
-    updateControls();
-
-    draw();
-
-});
-
-canvas.addEventListener("mousemove", (e) => {
-
-    if(draggingText && selectedText){
-
-        selectedText.x = e.offsetX;
-        selectedText.y = e.offsetY;
-
-        draw();
-
-    }
-
-});
-
-canvas.addEventListener("mouseup", () => {
-
-    draggingText = false;
-
-});
-
-        image.src = event.target.result;
-
-    };
-
-    reader.readAsDataURL(file);
-
-});
-
-addTextBtn.addEventListener("click", () => {
-
-    const text = {
-        content: textInput.value || "MOODAY",
-        x: canvas.width / 2,
-        y: canvas.height / 2,
-        size: 60,
-        rotation: 0,
-        color: "#ffffff",
-        glow: 20
-    };
-
-    texts.push(text);
-
-    selectedText = text;
-
-    updateControls();
-
-    draw();
-});
-
-function updateControls(){
-
-    if(!selectedText) return;
-
-    textSizeSlider.value = selectedText.size;
-    textRotateSlider.value = selectedText.rotation;
-    glowSlider.value = selectedText.glow;
-    colorPicker.value = selectedText.color;
-}
         };
 
         image.src = event.target.result;
@@ -225,6 +122,7 @@ function updateControls(){
     colorPicker.value = selectedText.color;
 
 }
+
 textSizeSlider.addEventListener("input", () => {
 
     if(selectedText){
@@ -288,6 +186,7 @@ rotateSlider.addEventListener("input", () => {
     draw();
 
 });
+
 function draw(){
 
     ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -364,6 +263,7 @@ function draw(){
     });
 
 }
+
 let draggingText = false;
 
 canvas.addEventListener("mousedown", (e) => {
