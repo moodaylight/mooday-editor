@@ -715,6 +715,7 @@ canvas.addEventListener("touchend",(e)=>{
     if(e.touches.length === 0){
 
         draggingText = false;
+
         draggingImage = false;
 
         touchTargetLocked = false;
@@ -723,6 +724,16 @@ canvas.addEventListener("touchend",(e)=>{
 
 });
 
+// 点击结束以后
+// 强制停止文字拖动
+
+canvas.addEventListener("touchcancel",()=>{
+
+    draggingText = false;
+
+    draggingImage = false;
+
+});
 // ======================
 // 初始化
 // ======================
