@@ -314,3 +314,492 @@ function draw(){
     });
 
 }
+
+upload.addEventListener("change",(e)=>{
+
+    const file = e.target.files[0];
+
+    if(!file) return;
+
+    const reader = new FileReader();
+
+    reader.onload = function(event){
+
+        image = new Image();
+
+        image.onload = function(){
+
+            imgX = canvas.width / 2;
+            imgY = canvas.height / 2;
+
+            imgScale = 1;
+            imgRotation = 0;
+
+            imageSelected = true;
+
+            selectedText = null;
+
+            updateLayerPanel();
+
+            draw();
+
+        };
+
+        image.src = event.target.result;
+
+    };
+
+    reader.readAsDataURL(file);
+
+});
+
+// 新增文字
+
+addTextBtn.addEventListener("click",()=>{
+
+    const offset = texts.length * 80;
+
+    const text = {
+
+        content: "双击编辑",
+
+        x: canvas.width / 2,
+
+        y: canvas.height / 2 + offset,
+
+        size: 60,
+
+        rotation: 0,
+
+        color: "#ffffff",
+
+        glow: 20
+
+    };
+
+    texts.push(text);
+
+    selectedText = text;
+
+    imageSelected = false;
+
+    textInput.value = text.content;
+
+    updateLayerPanel();
+
+    draw();
+
+});
+
+// 删除文字
+
+deleteTextBtn.addEventListener("click",()=>{
+
+    if(!selectedText) return;
+
+    texts = texts.filter(
+
+        text => text !== selectedText
+
+    );
+
+    selectedText = null;
+
+    updateLayerPanel();
+
+    draw();
+
+});
+
+moveUpBtn.addEventListener("click",()=>{
+
+    if(!selectedText) return;
+
+    const index = texts.indexOf(selectedText);
+
+    if(index < texts.length - 1){
+
+        [texts[index], texts[index + 1]] =
+
+        [texts[index + 1], texts[index]];
+
+    }
+
+    updateLayerPanel();
+
+    draw();
+
+});
+
+// 图层下移
+
+moveDownBtn.addEventListener("click",()=>{
+
+    if(!selectedText) return;
+
+    const index = texts.indexOf(selectedText);
+
+    if(index > 0){
+
+        [texts[index], texts[index - 1]] =
+
+        [texts[index - 1], texts[index]];
+
+    }
+
+    updateLayerPanel();
+
+    draw();
+
+});
+
+// 输入框实时同步文字
+
+textInput.addEventListener("input",()=>{
+
+    if(selectedText){
+
+        selectedText.content = textInput.value;
+
+        draw();
+
+    }
+
+});
+
+function updateLayerPanel(){
+
+    layerPanel.innerHTML = "";
+
+    // 图片图层
+
+    if(image){
+
+        const imageItem = document.createElement("div");
+
+        imageItem.className = "layer-item";
+
+        if(imageSelected){
+
+            imageItem.classList.add("active");
+
+        }
+
+        imageItem.innerText = "图片";
+
+        imageItem.onclick = ()=>{
+
+            imageSelected = true;
+
+            selectedText = null;
+
+            updateLayerPanel();
+
+            draw();
+
+        };
+
+        layerPanel.appendChild(imageItem);
+
+    }
+
+    // 文字图层
+
+    texts.forEach((text,index)=>{
+
+        const item = document.createElement("div");
+
+        item.className = "layer-item";
+
+        if(text === selectedText){
+
+            item.classList.add("active");
+
+        }
+
+        item.innerText = `文字 ${index + 1}`;
+
+        item.onclick = ()=>{
+
+            selectedText = text;
+
+            imageSelected = false;
+
+            textInput.value = text.content;
+
+            updateLayerPanel();
+
+            draw();
+
+        };
+
+        layerPanel.appendChild(item);
+
+    });
+
+}
+
+// 文字点击范围
+
+function resizeHitbox(text){
+
+    const width = text.content.length * text.size * 0.5;
+
+    return {
+
+        left: text.x - width / 2,
+        right: text.x + width / 2,
+
+        top: text.y - text.size,
+        bottom: text.y + text.size
+
+    };
+
+}
+
+// 判断是否点中文字
+
+function pointInText(text,x,y){
+
+    const box = resizeHitbox(text);
+
+    return (
+
+        x >= box.left &&
+        x <= box.right &&
+        y >= box.top &&
+        y <= box.bottom
+
+    );
+
+}
+
+function getTopText(x,y){
+
+    let clickedText = null;
+
+    [...texts].reverse().forEach(text=>{
+
+        if(pointInText(text,x,y)){
+
+            if(!clickedText){
+
+                clickedText = text;
+
+            }
+
+        }
+
+    });
+
+    return clickedText;
+
+}
+
+// 双指距离
+
+function getDistance(touch1,touch2){
+
+    const dx = touch2.clientX - touch1.clientX;
+
+    const dy = touch2.clientY - touch1.clientY;
+
+    return Math.sqrt(dx * dx + dy * dy);
+
+}
+
+// 双指角度
+
+function getAngle(touch1,touch2){
+
+    return Math.atan2(
+
+        touch2.clientY - touch1.clientY,
+
+        touch2.clientX - touch1.clientX
+
+    ) * 180 / Math.PI;
+
+}
+
+// 画布自适应
+
+function resizeCanvas(){
+
+    canvas.width = canvas.offsetWidth;
+
+    canvas.height = canvas.offsetHeight;
+
+    draw();
+
+}
+
+resizeCanvas();
+
+window.addEventListener("resize", resizeCanvas);
+
+const canvas = document.getElementById("canvas");
+const ctx = canvas.getContext("2d");
+
+const layerPanel = document.getElementById("layerPanel");
+
+const upload = document.getElementById("upload");
+const addTextBtn = document.getElementById("addText");
+const deleteTextBtn = document.getElementById("deleteText");
+
+const moveUpBtn = document.getElementById("moveUp");
+const moveDownBtn = document.getElementById("moveDown");
+
+const textInput = document.getElementById("textInput");
+
+let image = null;
+
+let imgScale = 1;
+let imgRotation = 0;
+
+let imgX = 0;
+let imgY = 0;
+
+let texts = [];
+
+let selectedText = null;
+
+let imageSelected = false;
+
+let draggingText = false;
+let draggingImage = false;
+
+let touchTargetLocked = false;
+
+let initialPinchDistance = null;
+let initialRotationAngle = null;
+
+let initialTextSize = null;
+let initialTextRotation = null;
+
+let initialImageScale = null;
+let initialImageRotation = null;
+
+// 初始化
+
+updateLayerPanel();
+
+draw();
+
+// 防止浏览器双指缩放页面
+
+document.addEventListener(
+
+    "gesturestart",
+
+    function(e){
+
+        e.preventDefault();
+
+    }
+
+);
+
+document.addEventListener(
+
+    "gesturechange",
+
+    function(e){
+
+        e.preventDefault();
+
+    }
+
+);
+
+document.addEventListener(
+
+    "gestureend",
+
+    function(e){
+
+        e.preventDefault();
+
+    }
+
+);
+
+// 删除文字
+
+deleteTextBtn.addEventListener("click",()=>{
+
+    if(!selectedText) return;
+
+    texts = texts.filter(
+
+        text => text !== selectedText
+
+    );
+
+    selectedText = null;
+
+    updateLayerPanel();
+
+    draw();
+
+});
+
+// 图层上移
+
+moveUpBtn.addEventListener("click",()=>{
+
+    if(!selectedText) return;
+
+    const index = texts.indexOf(selectedText);
+
+    if(index < texts.length - 1){
+
+        [texts[index], texts[index + 1]] =
+
+        [texts[index + 1], texts[index]];
+
+    }
+
+    updateLayerPanel();
+
+    draw();
+
+});
+
+// 图层下移
+
+moveDownBtn.addEventListener("click",()=>{
+
+    if(!selectedText) return;
+
+    const index = texts.indexOf(selectedText);
+
+    if(index > 0){
+
+        [texts[index], texts[index - 1]] =
+
+        [texts[index - 1], texts[index]];
+
+    }
+
+    updateLayerPanel();
+
+    draw();
+
+});
+
+// 输入框实时同步
+
+textInput.addEventListener("input",()=>{
+
+    if(selectedText){
+
+        selectedText.content = textInput.value;
+
+        draw();
+
+    }
+
+});
+
+// 全部代码结束
