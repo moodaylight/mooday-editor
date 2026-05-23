@@ -598,14 +598,26 @@ canvas.addEventListener("touchmove",(e)=>{
 
         if(selectedText){
 
-            selectedText.size =
+         const newSize = initialTextSize * scale;
 
-            initialTextSize * scale;
+// 限制最小文字大小
 
-            selectedText.rotation =
+selectedText.size = Math.max(
 
-            initialTextRotation + rotation;
+```
+30,
 
+newSize
+```
+
+);
+
+// 限制旋转范围
+
+selectedText.rotation =
+
+(initialTextRotation + rotation) % 360;
+   
         }
 
         // 图片
