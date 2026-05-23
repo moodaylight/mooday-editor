@@ -510,19 +510,6 @@ canvas.addEventListener("touchstart",(e)=>{
         // 并且再次点击当前文字
         // 不允许取消焦点
 
-        if(selectedText && pointInText(selectedText,x,y)){
-
-            draggingText = true;
-
-            draggingImage = false;
-
-            imageSelected = false;
-
-            draw();
-
-            return;
-
-        }
 
         // 点击其他文字
 
