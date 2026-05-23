@@ -55,6 +55,10 @@ let selectedText = null;
 
 let draggingText = false;
 
+let initialPinchDistance = null;
+
+let initialTextSize = null;
+
 function updateLayerPanel(){
 
     layerPanel.innerHTML = "";
@@ -90,6 +94,16 @@ function updateLayerPanel(){
         layerPanel.appendChild(item);
 
     });
+
+}
+
+function getDistance(touch1,touch2){
+
+    const dx = touch2.clientX - touch1.clientX;
+
+    const dy = touch2.clientY - touch1.clientY;
+
+    return Math.sqrt(dx * dx + dy * dy);
 
 }
 
@@ -456,69 +470,42 @@ function draw(){
 
 }
 
-canvas.addEventListener("mousedown", (e) => {
-
-    const text = getTopText(e.offsetX,e.offsetY);
-
-    if(text){
-
-        selectedText = text;
-
-        textInput.value = text.content;
-
-        draggingText = true;
-
-    }
-
-    updateControls();
-
-    updateLayerPanel();
-
-    draw();
-
-});
-
-canvas.addEventListener("mousemove", (e) => {
-
-    if(draggingText && selectedText){
-
-        selectedText.x = e.offsetX;
-
-        selectedText.y = e.offsetY;
-
-        draw();
-
-    }
-
-});
-
-canvas.addEventListener("mouseup", () => {
-
-    draggingText = false;
-
-});
-
 canvas.addEventListener("touchstart", (e) => {
 
     e.preventDefault();
 
     const rect = canvas.getBoundingClientRect();
 
-    const touch = e.touches[0];
+    if(e.touches.length === 1){
 
-    const x = touch.clientX - rect.left;
+        const touch = e.touches[0];
 
-    const y = touch.clientY - rect.top;
+        const x = touch.clientX - rect.left;
 
-    const text = getTopText(x,y);
+        const y = touch.clientY - rect.top;
 
-    if(text){
+        const text = getTopText(x,y);
 
-        selectedText = text;
+        if(text){
 
-        textInput.value = text.content;
+            selectedText = text;
 
-        draggingText = true;
+            textInput.value = text.content;
+
+            draggingText = true;
+
+        }
+
+    }
+
+    if(e.touches.length === 2 && selectedText){
+
+        initialPinchDistance = getDistance(
+            e.touches[0],
+            e.touches[1]
+        );
+
+        initialTextSize = selectedText.size;
 
     }
 
@@ -534,9 +521,9 @@ canvas.addEventListener("touchmove", (e) => {
 
     e.preventDefault();
 
-    if(draggingText && selectedText){
+    const rect = canvas.getBoundingClientRect();
 
-        const rect = canvas.getBoundingClientRect();
+    if(e.touches.length === 1 && draggingText && selectedText){
 
         const touch = e.touches[0];
 
@@ -548,10 +535,29 @@ canvas.addEventListener("touchmove", (e) => {
 
     }
 
+    if(e.touches.length === 2 && selectedText){
+
+        const currentDistance = getDistance(
+            e.touches[0],
+            e.touches[1]
+        );
+
+        const scale = currentDistance / initialPinchDistance;
+
+        selectedText.size = initialTextSize * scale;
+
+        textSizeSlider.value = selectedText.size;
+
+        draw();
+
+    }
+
 });
 
 canvas.addEventListener("touchend", () => {
 
     draggingText = false;
+
+    initialPinchDistance = null;
 
 });
