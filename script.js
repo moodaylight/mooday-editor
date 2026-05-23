@@ -1,24 +1,23 @@
 const canvas = document.getElementById("canvas");
 const ctx = canvas.getContext("2d");
 
-const layerPanel = document.getElementById("layerPanel");
-
 const upload = document.getElementById("upload");
 const addTextBtn = document.getElementById("addText");
-const deleteTextBtn = document.getElementById("deleteText");
-
-const moveUpBtn = document.getElementById("moveUp");
-const moveDownBtn = document.getElementById("moveDown");
-
 const textInput = document.getElementById("textInput");
 
+const layerPanel = document.getElementById("layerPanel");
+
 let image = null;
+
+// 图片状态
+
+let imgX = 0;
+let imgY = 0;
 
 let imgScale = 1;
 let imgRotation = 0;
 
-let imgX = 0;
-let imgY = 0;
+// 文字
 
 let texts = [];
 
@@ -26,27 +25,30 @@ let selectedText = null;
 
 let imageSelected = false;
 
+// 拖动状态
+
 let draggingText = false;
 let draggingImage = false;
 
-let touchTargetLocked = false;
+// 双指状态
 
-let initialPinchDistance = null;
-let initialRotationAngle = null;
+let initialPinchDistance = 0;
+let initialRotationAngle = 0;
 
-let initialTextSize = null;
-let initialTextRotation = null;
+let initialTextSize = 0;
+let initialTextRotation = 0;
 
-let initialImageScale = null;
-let initialImageRotation = null;
+let initialImageScale = 1;
+let initialImageRotation = 0;
 
-// ======================
-// 画布自适应
-// ======================
+// =====================
+// 画布大小
+// =====================
 
 function resizeCanvas(){
 
     canvas.width = canvas.offsetWidth;
+
     canvas.height = canvas.offsetHeight;
 
     draw();
@@ -57,11 +59,11 @@ resizeCanvas();
 
 window.addEventListener("resize", resizeCanvas);
 
-// ======================
-// 文字点击区域
-// ======================
+// =====================
+// 获取文字真实框
+// =====================
 
-function resizeHitbox(text){
+function getTextBounds(text){
 
     ctx.save();
 
@@ -73,96 +75,90 @@ function resizeHitbox(text){
 
     return {
 
-        left: text.x - width / 2 - 20,
+        left: text.x - width / 2 - 10,
 
-        right: text.x + width / 2 + 20,
+        right: text.x + width / 2 + 10,
 
-        top: text.y - text.size - 20,
+        top: text.y - text.size - 10,
 
-        bottom: text.y + 20
+        bottom: text.y + 10
 
     };
 
 }
 
+// =====================
+// 是否点中文字
+// =====================
+
 function pointInText(text,x,y){
 
-    ctx.save();
-
-    ctx.font = `${text.size}px sans-serif`;
-
-    const width = ctx.measureText(text.content).width;
-
-    ctx.restore();
-
-    const left = text.x - width / 2 - 10;
-
-    const right = text.x + width / 2 + 10;
-
-    const top = text.y - text.size;
-
-    const bottom = text.y + 20;
+    const box = getTextBounds(text);
 
     return (
 
-        x >= left &&
-        x <= right &&
-        y >= top &&
-        y <= bottom
+        x >= box.left &&
+        x <= box.right &&
+        y >= box.top &&
+        y <= box.bottom
 
     );
 
 }
 
+// =====================
+// 获取顶部文字
+// =====================
+
 function getTopText(x,y){
 
-    let clickedText = null;
+    for(let i = texts.length - 1; i >= 0; i--){
 
-    [...texts].reverse().forEach(text=>{
+        if(pointInText(texts[i],x,y)){
 
-        if(pointInText(text,x,y)){
-
-            if(!clickedText){
-
-                clickedText = text;
-
-            }
+            return texts[i];
 
         }
 
-    });
+    }
 
-    return clickedText;
+    return null;
 
 }
 
-// ======================
-// 双指计算
-// ======================
+// =====================
+// 双指距离
+// =====================
 
-function getDistance(touch1,touch2){
+function getDistance(t1,t2){
 
-    const dx = touch2.clientX - touch1.clientX;
-    const dy = touch2.clientY - touch1.clientY;
+    const dx = t2.clientX - t1.clientX;
+
+    const dy = t2.clientY - t1.clientY;
 
     return Math.sqrt(dx * dx + dy * dy);
 
 }
 
-function getAngle(touch1,touch2){
+// =====================
+// 双指角度
+// =====================
+
+function getAngle(t1,t2){
 
     return Math.atan2(
 
-        touch2.clientY - touch1.clientY,
-        touch2.clientX - touch1.clientX
+        t2.clientY - t1.clientY,
+
+        t2.clientX - t1.clientX
 
     ) * 180 / Math.PI;
 
 }
 
-// ======================
-// 图层面板
-// ======================
+// =====================
+// 图层
+// =====================
 
 function updateLayerPanel(){
 
@@ -170,30 +166,31 @@ function updateLayerPanel(){
 
     if(image){
 
-        const imageItem = document.createElement("div");
+        const imgItem = document.createElement("div");
 
-        imageItem.className = "layer-item";
+        imgItem.className = "layer-item";
+
+        imgItem.innerText = "图片";
 
         if(imageSelected){
 
-            imageItem.classList.add("active");
+            imgItem.classList.add("active");
 
         }
 
-        imageItem.innerText = "图片";
-
-        imageItem.onclick = ()=>{
+        imgItem.onclick = ()=>{
 
             imageSelected = true;
-            selectedText = null;
 
-            updateLayerPanel();
+            selectedText = null;
 
             draw();
 
+            updateLayerPanel();
+
         };
 
-        layerPanel.appendChild(imageItem);
+        layerPanel.appendChild(imgItem);
 
     }
 
@@ -203,13 +200,13 @@ function updateLayerPanel(){
 
         item.className = "layer-item";
 
+        item.innerText = `文字 ${index + 1}`;
+
         if(text === selectedText){
 
             item.classList.add("active");
 
         }
-
-        item.innerText = `文字 ${index + 1}`;
 
         item.onclick = ()=>{
 
@@ -219,9 +216,9 @@ function updateLayerPanel(){
 
             textInput.value = text.content;
 
-            updateLayerPanel();
-
             draw();
+
+            updateLayerPanel();
 
         };
 
@@ -231,9 +228,9 @@ function updateLayerPanel(){
 
 }
 
-// ======================
+// =====================
 // 上传图片
-// ======================
+// =====================
 
 upload.addEventListener("change",(e)=>{
 
@@ -250,18 +247,20 @@ upload.addEventListener("change",(e)=>{
         image.onload = function(){
 
             imgX = canvas.width / 2;
+
             imgY = canvas.height / 2;
 
             imgScale = 1;
+
             imgRotation = 0;
 
             imageSelected = true;
 
             selectedText = null;
 
-            updateLayerPanel();
-
             draw();
+
+            updateLayerPanel();
 
         };
 
@@ -273,13 +272,11 @@ upload.addEventListener("change",(e)=>{
 
 });
 
-// ======================
+// =====================
 // 新增文字
-// ======================
+// =====================
 
 addTextBtn.addEventListener("click",()=>{
-
-    const offset = texts.length * 80;
 
     const text = {
 
@@ -287,15 +284,13 @@ addTextBtn.addEventListener("click",()=>{
 
         x: canvas.width / 2,
 
-        y: canvas.height / 2 + offset,
+        y: canvas.height / 2,
 
         size: 60,
 
         rotation: 0,
 
-        color: "#ffffff",
-
-        glow: 20
+        color: "#ffffff"
 
     };
 
@@ -307,85 +302,15 @@ addTextBtn.addEventListener("click",()=>{
 
     textInput.value = text.content;
 
-    updateLayerPanel();
-
     draw();
-
-});
-
-// ======================
-// 删除文字
-// ======================
-
-deleteTextBtn.addEventListener("click",()=>{
-
-    if(!selectedText) return;
-
-    texts = texts.filter(
-
-        text => text !== selectedText
-
-    );
-
-    selectedText = null;
 
     updateLayerPanel();
 
-    draw();
-
 });
 
-// ======================
-// 图层上移
-// ======================
-
-moveUpBtn.addEventListener("click",()=>{
-
-    if(!selectedText) return;
-
-    const index = texts.indexOf(selectedText);
-
-    if(index < texts.length - 1){
-
-        [texts[index], texts[index + 1]] =
-
-        [texts[index + 1], texts[index]];
-
-    }
-
-    updateLayerPanel();
-
-    draw();
-
-});
-
-// ======================
-// 图层下移
-// ======================
-
-moveDownBtn.addEventListener("click",()=>{
-
-    if(!selectedText) return;
-
-    const index = texts.indexOf(selectedText);
-
-    if(index > 0){
-
-        [texts[index], texts[index - 1]] =
-
-        [texts[index - 1], texts[index]];
-
-    }
-
-    updateLayerPanel();
-
-    draw();
-
-});
-
-// ======================
-// 实时文字同步
-// ======================
+// =====================
+// 输入框同步
+// =====================
 
 textInput.addEventListener("input",()=>{
 
@@ -399,9 +324,9 @@ textInput.addEventListener("input",()=>{
 
 });
 
-// ======================
+// =====================
 // 绘制
-// ======================
+// =====================
 
 function draw(){
 
@@ -411,8 +336,9 @@ function draw(){
 
     if(image){
 
-        const drawWidth = image.width * imgScale;
-        const drawHeight = image.height * imgScale;
+        const w = image.width * imgScale;
+
+        const h = image.height * imgScale;
 
         ctx.save();
 
@@ -424,11 +350,13 @@ function draw(){
 
             image,
 
-            -drawWidth / 2,
-            -drawHeight / 2,
+            -w / 2,
 
-            drawWidth,
-            drawHeight
+            -h / 2,
+
+            w,
+
+            h
 
         );
 
@@ -440,11 +368,13 @@ function draw(){
 
             ctx.strokeRect(
 
-                -drawWidth / 2,
-                -drawHeight / 2,
+                -w / 2,
 
-                drawWidth,
-                drawHeight
+                -h / 2,
+
+                w,
+
+                h
 
             );
 
@@ -468,17 +398,13 @@ function draw(){
 
         ctx.fillStyle = text.color;
 
-        ctx.shadowColor = text.color;
-
-        ctx.shadowBlur = text.glow;
-
         ctx.textAlign = "center";
 
         ctx.fillText(text.content,0,0);
 
         if(text === selectedText){
 
-            const width = ctx.measureText(text.content).width;
+            const box = getTextBounds(text);
 
             ctx.strokeStyle = "#7b5cff";
 
@@ -486,11 +412,13 @@ function draw(){
 
             ctx.strokeRect(
 
-                -width / 2 - 10,
-                -text.size,
+                box.left - text.x,
 
-                width + 20,
-                text.size + 20
+                box.top - text.y,
+
+                box.right - box.left,
+
+                box.bottom - box.top
 
             );
 
@@ -502,9 +430,9 @@ function draw(){
 
 }
 
-// ======================
+// =====================
 // Touch Start
-// ======================
+// =====================
 
 canvas.addEventListener("touchstart",(e)=>{
 
@@ -512,81 +440,60 @@ canvas.addEventListener("touchstart",(e)=>{
 
     const rect = canvas.getBoundingClientRect();
 
-    if(e.touches.length === 1 && !touchTargetLocked){
+    const touch = e.touches[0];
 
-        const touch = e.touches[0];
+    const x = touch.clientX - rect.left;
 
-        const x = touch.clientX - rect.left;
-        const y = touch.clientY - rect.top;
+    const y = touch.clientY - rect.top;
 
-        // 当前文字已经选中
-        // 并且再次点击当前文字
-        // 不允许取消焦点
+    // 先判断文字
 
+    const clickedText = getTopText(x,y);
 
-        // 点击其他文字
+    // 点击了文字
 
-        const text = getTopText(x,y);
+    if(clickedText){
 
-        if(text){
+        selectedText = clickedText;
 
-            selectedText = text;
+        imageSelected = false;
 
-            imageSelected = false;
+        draggingText = true;
 
-            draggingText = true;
+        draggingImage = false;
 
-            draggingImage = false;
+        textInput.value = clickedText.content;
 
-            textInput.value = text.content;
+        draw();
 
-            draw();
+        updateLayerPanel();
 
-            return;
+        return;
 
-        }
+    }
 
- // 当前已有文字选中
-// 并且没有点击其它文字
-// 不允许自动取消
+    // 点击空白区域
 
-if(selectedText){
+    selectedText = null;
 
-    draggingText = true;
+    imageSelected = true;
 
-    draggingImage = false;
+    draggingImage = true;
 
-    imageSelected = false;
+    draggingText = false;
 
     draw();
 
-    return;
+    updateLayerPanel();
 
-}
-
-// 真正空白状态
-// 才允许进入图片
-
-selectedText = null;
-
-imageSelected = true;
-
-draggingImage = true;
-
-draggingText = false;
-
-draw();
-    }
-
-    // 双指开始
+    // 双指初始化
 
     if(e.touches.length === 2){
-
-        touchTargetLocked = true;
 
         initialPinchDistance = getDistance(
 
             e.touches[0],
+
             e.touches[1]
 
         );
@@ -594,11 +501,10 @@ draw();
         initialRotationAngle = getAngle(
 
             e.touches[0],
+
             e.touches[1]
 
         );
-
-        // 文字状态
 
         if(selectedText){
 
@@ -607,8 +513,6 @@ draw();
             initialTextRotation = selectedText.rotation;
 
         }
-
-        // 图片状态
 
         if(imageSelected){
 
@@ -622,9 +526,9 @@ draw();
 
 });
 
-// ======================
+// =====================
 // Touch Move
-// ======================
+// =====================
 
 canvas.addEventListener("touchmove",(e)=>{
 
@@ -632,25 +536,32 @@ canvas.addEventListener("touchmove",(e)=>{
 
     const rect = canvas.getBoundingClientRect();
 
-    // 单指拖动
+    // 单指
 
     if(e.touches.length === 1){
 
         const touch = e.touches[0];
 
         const x = touch.clientX - rect.left;
+
         const y = touch.clientY - rect.top;
+
+        // 拖文字
 
         if(draggingText && selectedText){
 
             selectedText.x = x;
+
             selectedText.y = y;
 
         }
 
+        // 拖图片
+
         if(draggingImage && imageSelected){
 
             imgX = x;
+
             imgY = y;
 
         }
@@ -659,15 +570,14 @@ canvas.addEventListener("touchmove",(e)=>{
 
     }
 
-    // 双指缩放旋转
+    // 双指
 
     if(e.touches.length === 2){
-
-        touchTargetLocked = true;
 
         const currentDistance = getDistance(
 
             e.touches[0],
+
             e.touches[1]
 
         );
@@ -675,15 +585,14 @@ canvas.addEventListener("touchmove",(e)=>{
         const currentAngle = getAngle(
 
             e.touches[0],
+
             e.touches[1]
 
         );
 
         const scale = currentDistance / initialPinchDistance;
 
-        const rotationDelta =
-
-        currentAngle - initialRotationAngle;
+        const rotation = currentAngle - initialRotationAngle;
 
         // 文字
 
@@ -695,7 +604,7 @@ canvas.addEventListener("touchmove",(e)=>{
 
             selectedText.rotation =
 
-            initialTextRotation + rotationDelta;
+            initialTextRotation + rotation;
 
         }
 
@@ -709,7 +618,7 @@ canvas.addEventListener("touchmove",(e)=>{
 
             imgRotation =
 
-            initialImageRotation + rotationDelta;
+            initialImageRotation + rotation;
 
         }
 
@@ -719,78 +628,22 @@ canvas.addEventListener("touchmove",(e)=>{
 
 });
 
-// ======================
+// =====================
 // Touch End
-// ======================
+// =====================
 
-canvas.addEventListener("touchend",(e)=>{
-
-    if(e.touches.length === 0){
-
-        draggingText = false;
-
-        draggingImage = false;
-
-        touchTargetLocked = false;
-
-    }
-
-});
-
-// 点击结束以后
-// 强制停止文字拖动
-
-canvas.addEventListener("touchcancel",()=>{
+canvas.addEventListener("touchend",()=>{
 
     draggingText = false;
 
     draggingImage = false;
 
 });
-// ======================
+
+// =====================
 // 初始化
-// ======================
+// =====================
 
 updateLayerPanel();
 
 draw();
-
-// ======================
-// 防止浏览器双指缩放
-// ======================
-
-document.addEventListener(
-
-    "gesturestart",
-
-    function(e){
-
-        e.preventDefault();
-
-    }
-
-);
-
-document.addEventListener(
-
-    "gesturechange",
-
-    function(e){
-
-        e.preventDefault();
-
-    }
-
-);
-
-document.addEventListener(
-
-    "gestureend",
-
-    function(e){
-
-        e.preventDefault();
-
-    }
-
-);
