@@ -406,6 +406,8 @@ function draw(){
 
         ctx.textAlign = "center";
 
+        ctx.textBaseline = "middle";
+        
         ctx.fillText(text.content,0,0);
 
         if(text === selectedText){
