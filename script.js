@@ -53,6 +53,8 @@ let texts = [];
 
 let selectedText = null;
 
+let draggingText = false;
+
 function updateLayerPanel(){
 
     layerPanel.innerHTML = "";
@@ -88,6 +90,37 @@ function updateLayerPanel(){
         layerPanel.appendChild(item);
 
     });
+
+}
+
+function getTopText(x,y){
+
+    let clickedText = null;
+
+    [...texts].reverse().forEach(text => {
+
+        const width = text.content.length * text.size * 0.5;
+
+        if(
+
+            x > text.x - width / 2 &&
+            x < text.x + width / 2 &&
+            y > text.y - text.size &&
+            y < text.y + text.size
+
+        ){
+
+            if(!clickedText){
+
+                clickedText = text;
+
+            }
+
+        }
+
+    });
+
+    return clickedText;
 
 }
 
@@ -423,47 +456,19 @@ function draw(){
 
 }
 
-let draggingText = false;
-
 canvas.addEventListener("mousedown", (e) => {
 
-    const x = e.offsetX;
+    const text = getTopText(e.offsetX,e.offsetY);
 
-    const y = e.offsetY;
+    if(text){
 
-    draggingText = false;
+        selectedText = text;
 
-    selectedText = null;
+        textInput.value = text.content;
 
-    [...texts].reverse().forEach(text => {
+        draggingText = true;
 
-        const width = text.content.length * text.size * 0.5;
-
-        if(
-
-            x > text.x - width / 2 &&
-
-            x < text.x + width / 2 &&
-
-            y > text.y - text.size &&
-
-            y < text.y + text.size
-
-        ){
-
-            if(!selectedText){
-
-                selectedText = text;
-
-                textInput.value = text.content;
-
-                draggingText = true;
-
-            }
-
-        }
-
-    });
+    }
 
     updateControls();
 
@@ -488,6 +493,64 @@ canvas.addEventListener("mousemove", (e) => {
 });
 
 canvas.addEventListener("mouseup", () => {
+
+    draggingText = false;
+
+});
+
+canvas.addEventListener("touchstart", (e) => {
+
+    e.preventDefault();
+
+    const rect = canvas.getBoundingClientRect();
+
+    const touch = e.touches[0];
+
+    const x = touch.clientX - rect.left;
+
+    const y = touch.clientY - rect.top;
+
+    const text = getTopText(x,y);
+
+    if(text){
+
+        selectedText = text;
+
+        textInput.value = text.content;
+
+        draggingText = true;
+
+    }
+
+    updateControls();
+
+    updateLayerPanel();
+
+    draw();
+
+});
+
+canvas.addEventListener("touchmove", (e) => {
+
+    e.preventDefault();
+
+    if(draggingText && selectedText){
+
+        const rect = canvas.getBoundingClientRect();
+
+        const touch = e.touches[0];
+
+        selectedText.x = touch.clientX - rect.left;
+
+        selectedText.y = touch.clientY - rect.top;
+
+        draw();
+
+    }
+
+});
+
+canvas.addEventListener("touchend", () => {
 
     draggingText = false;
 
