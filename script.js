@@ -452,25 +452,32 @@ canvas.addEventListener("touchstart",(e)=>{
 
     // 点击了文字
 
-    if(clickedText){
+    // 点击了文字
 
-        selectedText = clickedText;
+if(clickedText){
 
-        imageSelected = false;
+```
+selectedText = clickedText;
 
-        draggingText = true;
+imageSelected = false;
 
-        draggingImage = false;
+textInput.value = clickedText.content;
 
-        textInput.value = clickedText.content;
+updateLayerPanel();
 
-        draw();
+// 单指拖动
 
-        updateLayerPanel();
+if(e.touches.length === 1){
 
-        return;
+    draggingText = true;
 
-    }
+    draggingImage = false;
+
+}
+
+draw();
+
+}
 
     // 点击空白区域
 
