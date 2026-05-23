@@ -87,17 +87,30 @@ function resizeHitbox(text){
 
 function pointInText(text,x,y){
 
-    const dx = x - text.x;
+    ctx.save();
 
-    const dy = y - text.y;
+    ctx.font = `${text.size}px sans-serif`;
 
-    const distance = Math.sqrt(
+    const width = ctx.measureText(text.content).width;
 
-        dx * dx + dy * dy
+    ctx.restore();
+
+    const left = text.x - width / 2 - 10;
+
+    const right = text.x + width / 2 + 10;
+
+    const top = text.y - text.size;
+
+    const bottom = text.y + 20;
+
+    return (
+
+        x >= left &&
+        x <= right &&
+        y >= top &&
+        y <= bottom
 
     );
-
-    return distance < text.size * 1.2;
 
 }
 
