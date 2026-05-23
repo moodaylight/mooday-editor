@@ -49,15 +49,23 @@ let imgScale = 1;
 
 let imgRotation = 0;
 
+let imgX = 0;
+
+let imgY = 0;
+
 let texts = [];
 
 let selectedText = null;
 
 let draggingText = false;
 
+let draggingImage = false;
+
 let initialPinchDistance = null;
 
 let initialTextSize = null;
+
+let initialImageScale = null;
 
 function updateLayerPanel(){
 
@@ -181,6 +189,10 @@ upload.addEventListener("change", (e) => {
             compressedImage.onload = function(){
 
                 image = compressedImage;
+
+                imgX = canvas.width / 2;
+
+                imgY = canvas.height / 2;
 
                 draw();
 
@@ -316,79 +328,11 @@ function updateControls(){
 
 }
 
-textSizeSlider.addEventListener("input", () => {
-
-    if(selectedText){
-
-        selectedText.size = Number(textSizeSlider.value);
-
-        draw();
-
-    }
-
-});
-
-textRotateSlider.addEventListener("input", () => {
-
-    if(selectedText){
-
-        selectedText.rotation = Number(textRotateSlider.value);
-
-        draw();
-
-    }
-
-});
-
-glowSlider.addEventListener("input", () => {
-
-    if(selectedText){
-
-        selectedText.glow = Number(glowSlider.value);
-
-        draw();
-
-    }
-
-});
-
-colorPicker.addEventListener("input", () => {
-
-    if(selectedText){
-
-        selectedText.color = colorPicker.value;
-
-        draw();
-
-    }
-
-});
-
-scaleSlider.addEventListener("input", () => {
-
-    imgScale = Number(scaleSlider.value);
-
-    draw();
-
-});
-
-rotateSlider.addEventListener("input", () => {
-
-    imgRotation = Number(rotateSlider.value);
-
-    draw();
-
-});
-
 function draw(){
 
     ctx.clearRect(0, 0, canvas.width, canvas.height);
 
     if(image){
-
-        const centerX = canvas.width / 2;
-
-        const centerY = canvas.height / 2;
 
         const maxWidth = canvas.width * 0.8;
 
@@ -400,7 +344,7 @@ function draw(){
 
         ctx.save();
 
-        ctx.translate(centerX, centerY);
+        ctx.translate(imgX, imgY);
 
         ctx.rotate(imgRotation * Math.PI / 180);
 
@@ -442,28 +386,6 @@ function draw(){
 
         ctx.fillText(text.content, 0, 0);
 
-        if(text === selectedText){
-
-            const width = ctx.measureText(text.content).width;
-
-            ctx.strokeStyle = "#7b5cff";
-
-            ctx.lineWidth = 2;
-
-            ctx.strokeRect(
-
-                -width / 2 - 10,
-
-                -text.size,
-
-                width + 20,
-
-                text.size + 20
-
-            );
-
-        }
-
         ctx.restore();
 
     });
@@ -494,22 +416,32 @@ canvas.addEventListener("touchstart", (e) => {
 
             draggingText = true;
 
+        }else{
+
+            draggingImage = true;
+
         }
 
     }
 
-    if(e.touches.length === 2 && selectedText){
+    if(e.touches.length === 2){
 
         initialPinchDistance = getDistance(
             e.touches[0],
             e.touches[1]
         );
 
-        initialTextSize = selectedText.size;
+        if(selectedText){
+
+            initialTextSize = selectedText.size;
+
+        }else{
+
+            initialImageScale = imgScale;
+
+        }
 
     }
-
-    updateControls();
 
     updateLayerPanel();
 
@@ -523,19 +455,35 @@ canvas.addEventListener("touchmove", (e) => {
 
     const rect = canvas.getBoundingClientRect();
 
-    if(e.touches.length === 1 && draggingText && selectedText){
+    if(e.touches.length === 1){
 
         const touch = e.touches[0];
 
-        selectedText.x = touch.clientX - rect.left;
+        const x = touch.clientX - rect.left;
 
-        selectedText.y = touch.clientY - rect.top;
+        const y = touch.clientY - rect.top;
+
+        if(draggingText && selectedText){
+
+            selectedText.x = x;
+
+            selectedText.y = y;
+
+        }
+
+        if(draggingImage){
+
+            imgX = x;
+
+            imgY = y;
+
+        }
 
         draw();
 
     }
 
-    if(e.touches.length === 2 && selectedText){
+    if(e.touches.length === 2){
 
         const currentDistance = getDistance(
             e.touches[0],
@@ -544,9 +492,15 @@ canvas.addEventListener("touchmove", (e) => {
 
         const scale = currentDistance / initialPinchDistance;
 
-        selectedText.size = initialTextSize * scale;
+        if(selectedText){
 
-        textSizeSlider.value = selectedText.size;
+            selectedText.size = initialTextSize * scale;
+
+        }else{
+
+            imgScale = initialImageScale * scale;
+
+        }
 
         draw();
 
@@ -558,6 +512,6 @@ canvas.addEventListener("touchend", () => {
 
     draggingText = false;
 
-    initialPinchDistance = null;
+    draggingImage = false;
 
 });
