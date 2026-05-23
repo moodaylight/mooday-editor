@@ -558,14 +558,18 @@ canvas.addEventListener("touchmove",(e)=>{
 
 });
 
-canvas.addEventListener("touchend",()=>{
+canvas.addEventListener("touchend",(e)=>{
 
-    draggingText = false;
+    if(e.touches.length === 0){
 
-    draggingImage = false;
+        draggingText = false;
 
-    transformTarget = null;
+        draggingImage = false;
 
-    touchTargetLocked = false;
+        transformTarget = null;
+
+        touchTargetLocked = false;
+
+    }
 
 });
