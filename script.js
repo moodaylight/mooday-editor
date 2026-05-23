@@ -149,13 +149,15 @@ upload.addEventListener("change", (e) => {
 
 addTextBtn.addEventListener("click", () => {
 
+    const offset = texts.length * 70;
+
     const text = {
 
         content: "双击编辑",
 
         x: canvas.width / 2,
 
-        y: canvas.height / 2,
+        y: canvas.height / 2 + offset,
 
         size: 60,
 
@@ -202,6 +204,8 @@ textInput.addEventListener("input", () => {
     if(selectedText){
 
         selectedText.content = textInput.value;
+
+        updateLayerPanel();
 
         draw();
 
