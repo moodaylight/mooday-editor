@@ -67,6 +67,39 @@ let initialImageScale = null;
 
 let initialImageRotation = null;
 
+function resizeHitbox(text){
+
+    const width = text.content.length * text.size * 0.5;
+
+    return {
+
+        left: text.x - width / 2,
+
+        right: text.x + width / 2,
+
+        top: text.y - text.size,
+
+        bottom: text.y + text.size
+
+    };
+
+}
+
+function pointInText(text,x,y){
+
+    const box = resizeHitbox(text);
+
+    return (
+
+        x >= box.left &&
+        x <= box.right &&
+        y >= box.top &&
+        y <= box.bottom
+
+    );
+
+}
+
 function updateLayerPanel(){
 
     layerPanel.innerHTML = "";
@@ -163,16 +196,7 @@ function getTopText(x,y){
 
     [...texts].reverse().forEach(text=>{
 
-        const width = text.content.length * text.size * 0.5;
-
-        if(
-
-            x > text.x - width / 2 &&
-            x < text.x + width / 2 &&
-            y > text.y - text.size &&
-            y < text.y + text.size
-
-        ){
+        if(pointInText(text,x,y)){
 
             if(!clickedText){
 
@@ -402,6 +426,20 @@ canvas.addEventListener("touchstart",(e)=>{
 
         const y = touch.clientY - rect.top;
 
+        if(selectedText && pointInText(selectedText,x,y)){
+
+            draggingText = true;
+
+            draggingImage = false;
+
+            updateLayerPanel();
+
+            draw();
+
+            return;
+
+        }
+
         const text = getTopText(x,y);
 
         if(text){
@@ -547,7 +585,6 @@ canvas.addEventListener("touchmove",(e)=>{
             transformTarget.size = initialTextSize * scale;
 
             transformTarget.rotation =
-
             initialTextRotation + rotationDelta;
 
         }
