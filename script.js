@@ -39,12 +39,10 @@ let initialImageRotation = null;
 
 function resizeCanvas(){
 
-```
 canvas.width = canvas.offsetWidth;
 canvas.height = canvas.offsetHeight;
 
 draw();
-```
 
 }
 
@@ -54,7 +52,6 @@ window.addEventListener("resize", resizeCanvas);
 
 function resizeHitbox(text){
 
-```
 const width = text.content.length * text.size * 0.5;
 
 return {
@@ -65,13 +62,11 @@ return {
     bottom: text.y + text.size
 
 };
-```
 
 }
 
 function pointInText(text,x,y){
 
-```
 const box = resizeHitbox(text);
 
 return (
@@ -82,13 +77,11 @@ return (
     y <= box.bottom
 
 );
-```
 
 }
 
 function getTopText(x,y){
 
-```
 let clickedText = null;
 
 [...texts].reverse().forEach(text=>{
@@ -106,7 +99,6 @@ let clickedText = null;
 });
 
 return clickedText;
-```
 
 }
 
@@ -117,26 +109,22 @@ const dx = touch2.clientX - touch1.clientX;
 const dy = touch2.clientY - touch1.clientY;
 
 return Math.sqrt(dx * dx + dy * dy);
-```
 
 }
 
 function getAngle(touch1,touch2){
 
-```
 return Math.atan2(
 
     touch2.clientY - touch1.clientY,
     touch2.clientX - touch1.clientX
 
 ) * 180 / Math.PI;
-```
 
 }
 
 function updateLayerPanel(){
 
-```
 layerPanel.innerHTML = "";
 
 if(image){
@@ -196,13 +184,11 @@ texts.forEach((text,index)=>{
     layerPanel.appendChild(item);
 
 });
-```
 
 }
 
 upload.addEventListener("change",(e)=>{
 
-```
 const file = e.target.files[0];
 
 if(!file) return;
@@ -234,13 +220,11 @@ reader.onload = function(event){
 };
 
 reader.readAsDataURL(file);
-```
 
 });
 
 addTextBtn.addEventListener("click",()=>{
 
-```
 const offset = texts.length * 80;
 
 const text = {
@@ -270,13 +254,11 @@ textInput.value = text.content;
 
 updateLayerPanel();
 draw();
-```
 
 });
 
 deleteTextBtn.addEventListener("click",()=>{
 
-```
 if(!selectedText) return;
 
 texts = texts.filter(text=>text !== selectedText);
@@ -285,13 +267,11 @@ selectedText = null;
 
 updateLayerPanel();
 draw();
-```
 
 });
 
 moveUpBtn.addEventListener("click",()=>{
 
-```
 if(!selectedText) return;
 
 const index = texts.indexOf(selectedText);
@@ -306,13 +286,11 @@ if(index < texts.length - 1){
 
 updateLayerPanel();
 draw();
-```
 
 });
 
 moveDownBtn.addEventListener("click",()=>{
 
-```
 if(!selectedText) return;
 
 const index = texts.indexOf(selectedText);
@@ -327,13 +305,11 @@ if(index > 0){
 
 updateLayerPanel();
 draw();
-```
 
 });
 
 textInput.addEventListener("input",()=>{
 
-```
 if(selectedText){
 
     selectedText.content = textInput.value;
@@ -341,13 +317,11 @@ if(selectedText){
     draw();
 
 }
-```
 
 });
 
 function draw(){
 
-```
 ctx.clearRect(0,0,canvas.width,canvas.height);
 
 if(image){
@@ -436,13 +410,11 @@ texts.forEach(text=>{
     ctx.restore();
 
 });
-```
 
 }
 
 canvas.addEventListener("touchstart",(e)=>{
 
-```
 e.preventDefault();
 
 const rect = canvas.getBoundingClientRect();
@@ -539,13 +511,11 @@ if(e.touches.length === 2){
     }
 
 }
-```
 
 });
 
 canvas.addEventListener("touchmove",(e)=>{
 
-```
 e.preventDefault();
 
 const rect = canvas.getBoundingClientRect();
@@ -622,13 +592,11 @@ if(e.touches.length === 2){
     draw();
 
 }
-```
 
 });
 
 canvas.addEventListener("touchend",(e)=>{
 
-```
 if(e.touches.length === 0){
 
     draggingText = false;
@@ -640,7 +608,6 @@ if(e.touches.length === 0){
     touchTargetLocked = false;
 
 }
-```
 
 });
 
