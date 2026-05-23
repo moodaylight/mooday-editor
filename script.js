@@ -7,9 +7,13 @@ const textInput = document.getElementById("textInput");
 
 const layerPanel = document.getElementById("layerPanel");
 
+// =====================
+// 数据
+// =====================
+
 let image = null;
 
-// 图片状态
+// 图片
 
 let imgX = 0;
 let imgY = 0;
@@ -22,6 +26,8 @@ let imgRotation = 0;
 let texts = [];
 
 let selectedText = null;
+
+// 当前是否选中图片
 
 let imageSelected = false;
 
@@ -60,7 +66,7 @@ resizeCanvas();
 window.addEventListener("resize", resizeCanvas);
 
 // =====================
-// 获取文字真实框
+// 获取文字真实区域
 // =====================
 
 function getTextBounds(text){
@@ -157,7 +163,7 @@ function getAngle(t1,t2){
 }
 
 // =====================
-// 图层
+// 图层面板
 // =====================
 
 function updateLayerPanel(){
@@ -440,59 +446,6 @@ canvas.addEventListener("touchstart",(e)=>{
 
     const rect = canvas.getBoundingClientRect();
 
-    const touch = e.touches[0];
-
-    const x = touch.clientX - rect.left;
-
-    const y = touch.clientY - rect.top;
-
-    // 先判断文字
-
-    const clickedText = getTopText(x,y);
-
-    // 点击了文字
-
-    // 点击了文字
-
-if(clickedText){
-
-```
-selectedText = clickedText;
-
-imageSelected = false;
-
-textInput.value = clickedText.content;
-
-updateLayerPanel();
-
-// 单指拖动
-
-if(e.touches.length === 1){
-
-    draggingText = true;
-
-    draggingImage = false;
-
-}
-
-draw();
-
-}
-
-    // 点击空白区域
-
-    selectedText = null;
-
-    imageSelected = true;
-
-    draggingImage = true;
-
-    draggingText = false;
-
-    draw();
-
-    updateLayerPanel();
-
     // 双指初始化
 
     if(e.touches.length === 2){
@@ -529,7 +482,57 @@ draw();
 
         }
 
+        return;
+
     }
+
+    // 单指
+
+    const touch = e.touches[0];
+
+    const x = touch.clientX - rect.left;
+
+    const y = touch.clientY - rect.top;
+
+    // 判断文字
+
+    const clickedText = getTopText(x,y);
+
+    // 点击文字
+
+    if(clickedText){
+
+        selectedText = clickedText;
+
+        imageSelected = false;
+
+        draggingText = true;
+
+        draggingImage = false;
+
+        textInput.value = clickedText.content;
+
+        draw();
+
+        updateLayerPanel();
+
+        return;
+
+    }
+
+    // 点击空白
+
+    selectedText = null;
+
+    imageSelected = true;
+
+    draggingImage = true;
+
+    draggingText = false;
+
+    draw();
+
+    updateLayerPanel();
 
 });
 
@@ -543,7 +546,7 @@ canvas.addEventListener("touchmove",(e)=>{
 
     const rect = canvas.getBoundingClientRect();
 
-    // 单指
+    // 单指拖动
 
     if(e.touches.length === 1){
 
@@ -553,7 +556,7 @@ canvas.addEventListener("touchmove",(e)=>{
 
         const y = touch.clientY - rect.top;
 
-        // 拖文字
+        // 文字
 
         if(draggingText && selectedText){
 
@@ -563,7 +566,7 @@ canvas.addEventListener("touchmove",(e)=>{
 
         }
 
-        // 拖图片
+        // 图片
 
         if(draggingImage && imageSelected){
 
@@ -577,7 +580,7 @@ canvas.addEventListener("touchmove",(e)=>{
 
     }
 
-    // 双指
+    // 双指缩放旋转
 
     if(e.touches.length === 2){
 
@@ -605,26 +608,20 @@ canvas.addEventListener("touchmove",(e)=>{
 
         if(selectedText){
 
-         const newSize = initialTextSize * scale;
+            const newSize = initialTextSize * scale;
 
-// 限制最小文字大小
+            selectedText.size = Math.max(
 
-selectedText.size = Math.max(
+                30,
 
-```
-30,
+                newSize
 
-newSize
-```
+            );
 
-);
+            selectedText.rotation =
 
-// 限制旋转范围
+            (initialTextRotation + rotation) % 360;
 
-selectedText.rotation =
-
-(initialTextRotation + rotation) % 360;
-   
         }
 
         // 图片
