@@ -31,18 +31,6 @@ const moveDownBtn = document.getElementById("moveDown");
 
 const textInput = document.getElementById("textInput");
 
-const scaleSlider = document.getElementById("scaleSlider");
-
-const rotateSlider = document.getElementById("rotateSlider");
-
-const textSizeSlider = document.getElementById("textSizeSlider");
-
-const textRotateSlider = document.getElementById("textRotateSlider");
-
-const glowSlider = document.getElementById("glowSlider");
-
-const colorPicker = document.getElementById("colorPicker");
-
 let image = null;
 
 let imgScale = 1;
@@ -57,6 +45,8 @@ let texts = [];
 
 let selectedText = null;
 
+let imageSelected = false;
+
 let draggingText = false;
 
 let draggingImage = false;
@@ -70,6 +60,36 @@ let initialImageScale = null;
 function updateLayerPanel(){
 
     layerPanel.innerHTML = "";
+
+    if(image){
+
+        const imageItem = document.createElement("div");
+
+        imageItem.className = "layer-item";
+
+        if(imageSelected){
+
+            imageItem.classList.add("active");
+
+        }
+
+        imageItem.innerText = "图片";
+
+        imageItem.onclick = ()=>{
+
+            imageSelected = true;
+
+            selectedText = null;
+
+            updateLayerPanel();
+
+            draw();
+
+        };
+
+        layerPanel.appendChild(imageItem);
+
+    }
 
     texts.forEach((text,index)=>{
 
@@ -89,9 +109,9 @@ function updateLayerPanel(){
 
             selectedText = text;
 
-            textInput.value = text.content;
+            imageSelected = false;
 
-            updateControls();
+            textInput.value = text.content;
 
             updateLayerPanel();
 
@@ -146,11 +166,11 @@ function getTopText(x,y){
 
 }
 
-upload.addEventListener("change", (e) => {
+upload.addEventListener("change",(e)=>{
 
     const file = e.target.files[0];
 
-    if (!file) return;
+    if(!file) return;
 
     const reader = new FileReader();
 
@@ -160,45 +180,17 @@ upload.addEventListener("change", (e) => {
 
         image.onload = function(){
 
-            const tempCanvas = document.createElement("canvas");
+            imgX = canvas.width / 2;
 
-            const tempCtx = tempCanvas.getContext("2d");
+            imgY = canvas.height / 2;
 
-            const maxSize = 1000;
+            imageSelected = true;
 
-            let width = image.width;
+            selectedText = null;
 
-            let height = image.height;
+            updateLayerPanel();
 
-            if(width > maxSize){
-
-                height = height * (maxSize / width);
-
-                width = maxSize;
-
-            }
-
-            tempCanvas.width = width;
-
-            tempCanvas.height = height;
-
-            tempCtx.drawImage(image, 0, 0, width, height);
-
-            const compressedImage = new Image();
-
-            compressedImage.onload = function(){
-
-                image = compressedImage;
-
-                imgX = canvas.width / 2;
-
-                imgY = canvas.height / 2;
-
-                draw();
-
-            };
-
-            compressedImage.src = tempCanvas.toDataURL("image/jpeg", 0.8);
+            draw();
 
         };
 
@@ -210,25 +202,25 @@ upload.addEventListener("change", (e) => {
 
 });
 
-addTextBtn.addEventListener("click", () => {
+addTextBtn.addEventListener("click",()=>{
 
     const offset = texts.length * 70;
 
     const text = {
 
-        content: "双击编辑",
+        content:"双击编辑",
 
-        x: canvas.width / 2,
+        x:canvas.width / 2,
 
-        y: canvas.height / 2 + offset,
+        y:canvas.height / 2 + offset,
 
-        size: 60,
+        size:60,
 
-        rotation: 0,
+        rotation:0,
 
-        color: "#ffffff",
+        color:"#ffffff",
 
-        glow: 20
+        glow:20
 
     };
 
@@ -236,9 +228,9 @@ addTextBtn.addEventListener("click", () => {
 
     selectedText = text;
 
-    textInput.value = text.content;
+    imageSelected = false;
 
-    updateControls();
+    textInput.value = text.content;
 
     updateLayerPanel();
 
@@ -246,7 +238,7 @@ addTextBtn.addEventListener("click", () => {
 
 });
 
-deleteTextBtn.addEventListener("click", () => {
+deleteTextBtn.addEventListener("click",()=>{
 
     if(!selectedText) return;
 
@@ -262,7 +254,7 @@ deleteTextBtn.addEventListener("click", () => {
 
 });
 
-moveUpBtn.addEventListener("click", () => {
+moveUpBtn.addEventListener("click",()=>{
 
     if(!selectedText) return;
 
@@ -281,7 +273,7 @@ moveUpBtn.addEventListener("click", () => {
 
 });
 
-moveDownBtn.addEventListener("click", () => {
+moveDownBtn.addEventListener("click",()=>{
 
     if(!selectedText) return;
 
@@ -300,13 +292,11 @@ moveDownBtn.addEventListener("click", () => {
 
 });
 
-textInput.addEventListener("input", () => {
+textInput.addEventListener("input",()=>{
 
     if(selectedText){
 
         selectedText.content = textInput.value;
-
-        updateLayerPanel();
 
         draw();
 
@@ -314,37 +304,19 @@ textInput.addEventListener("input", () => {
 
 });
 
-function updateControls(){
-
-    if(!selectedText) return;
-
-    textSizeSlider.value = selectedText.size;
-
-    textRotateSlider.value = selectedText.rotation;
-
-    glowSlider.value = selectedText.glow;
-
-    colorPicker.value = selectedText.color;
-
-}
-
 function draw(){
 
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    ctx.clearRect(0,0,canvas.width,canvas.height);
 
     if(image){
 
-        const maxWidth = canvas.width * 0.8;
+        const drawWidth = image.width * imgScale;
 
-        const scale = maxWidth / image.width;
-
-        const drawWidth = image.width * scale * imgScale;
-
-        const drawHeight = image.height * scale * imgScale;
+        const drawHeight = image.height * imgScale;
 
         ctx.save();
 
-        ctx.translate(imgX, imgY);
+        ctx.translate(imgX,imgY);
 
         ctx.rotate(imgRotation * Math.PI / 180);
 
@@ -362,15 +334,35 @@ function draw(){
 
         );
 
+        if(imageSelected){
+
+            ctx.strokeStyle = "#7b5cff";
+
+            ctx.lineWidth = 4;
+
+            ctx.strokeRect(
+
+                -drawWidth / 2,
+
+                -drawHeight / 2,
+
+                drawWidth,
+
+                drawHeight
+
+            );
+
+        }
+
         ctx.restore();
 
     }
 
-    texts.forEach(text => {
+    texts.forEach(text=>{
 
         ctx.save();
 
-        ctx.translate(text.x, text.y);
+        ctx.translate(text.x,text.y);
 
         ctx.rotate(text.rotation * Math.PI / 180);
 
@@ -384,7 +376,29 @@ function draw(){
 
         ctx.textAlign = "center";
 
-        ctx.fillText(text.content, 0, 0);
+        ctx.fillText(text.content,0,0);
+
+        if(text === selectedText){
+
+            const width = ctx.measureText(text.content).width;
+
+            ctx.strokeStyle = "#7b5cff";
+
+            ctx.lineWidth = 2;
+
+            ctx.strokeRect(
+
+                -width / 2 - 10,
+
+                -text.size,
+
+                width + 20,
+
+                text.size + 20
+
+            );
+
+        }
 
         ctx.restore();
 
@@ -392,7 +406,7 @@ function draw(){
 
 }
 
-canvas.addEventListener("touchstart", (e) => {
+canvas.addEventListener("touchstart",(e)=>{
 
     e.preventDefault();
 
@@ -412,13 +426,23 @@ canvas.addEventListener("touchstart", (e) => {
 
             selectedText = text;
 
+            imageSelected = false;
+
             textInput.value = text.content;
 
             draggingText = true;
 
+            draggingImage = false;
+
         }else{
 
+            selectedText = null;
+
+            imageSelected = true;
+
             draggingImage = true;
+
+            draggingText = false;
 
         }
 
@@ -427,17 +451,26 @@ canvas.addEventListener("touchstart", (e) => {
     if(e.touches.length === 2){
 
         initialPinchDistance = getDistance(
+
             e.touches[0],
+
             e.touches[1]
+
         );
+
+        if(imageSelected){
+
+            selectedText = null;
+
+            initialImageScale = imgScale;
+
+        }
 
         if(selectedText){
 
+            imageSelected = false;
+
             initialTextSize = selectedText.size;
-
-        }else{
-
-            initialImageScale = imgScale;
 
         }
 
@@ -449,7 +482,7 @@ canvas.addEventListener("touchstart", (e) => {
 
 });
 
-canvas.addEventListener("touchmove", (e) => {
+canvas.addEventListener("touchmove",(e)=>{
 
     e.preventDefault();
 
@@ -471,7 +504,7 @@ canvas.addEventListener("touchmove", (e) => {
 
         }
 
-        if(draggingImage){
+        if(draggingImage && imageSelected){
 
             imgX = x;
 
@@ -486,19 +519,24 @@ canvas.addEventListener("touchmove", (e) => {
     if(e.touches.length === 2){
 
         const currentDistance = getDistance(
+
             e.touches[0],
+
             e.touches[1]
+
         );
 
         const scale = currentDistance / initialPinchDistance;
 
+        if(imageSelected){
+
+            imgScale = initialImageScale * scale;
+
+        }
+
         if(selectedText){
 
             selectedText.size = initialTextSize * scale;
-
-        }else{
-
-            imgScale = initialImageScale * scale;
 
         }
 
@@ -508,7 +546,7 @@ canvas.addEventListener("touchmove", (e) => {
 
 });
 
-canvas.addEventListener("touchend", () => {
+canvas.addEventListener("touchend",()=>{
 
     draggingText = false;
 
