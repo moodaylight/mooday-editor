@@ -57,6 +57,12 @@ let initialTextSize = null;
 
 let initialImageScale = null;
 
+let initialRotationAngle = null;
+
+let initialTextRotation = null;
+
+let initialImageRotation = null;
+
 function updateLayerPanel(){
 
     layerPanel.innerHTML = "";
@@ -132,6 +138,18 @@ function getDistance(touch1,touch2){
     const dy = touch2.clientY - touch1.clientY;
 
     return Math.sqrt(dx * dx + dy * dy);
+
+}
+
+function getAngle(touch1,touch2){
+
+    return Math.atan2(
+
+        touch2.clientY - touch1.clientY,
+
+        touch2.clientX - touch1.clientX
+
+    ) * 180 / Math.PI;
 
 }
 
@@ -247,44 +265,6 @@ deleteTextBtn.addEventListener("click",()=>{
     selectedText = null;
 
     textInput.value = "";
-
-    updateLayerPanel();
-
-    draw();
-
-});
-
-moveUpBtn.addEventListener("click",()=>{
-
-    if(!selectedText) return;
-
-    const index = texts.indexOf(selectedText);
-
-    if(index < texts.length - 1){
-
-        [texts[index], texts[index + 1]] =
-        [texts[index + 1], texts[index]];
-
-    }
-
-    updateLayerPanel();
-
-    draw();
-
-});
-
-moveDownBtn.addEventListener("click",()=>{
-
-    if(!selectedText) return;
-
-    const index = texts.indexOf(selectedText);
-
-    if(index > 0){
-
-        [texts[index], texts[index - 1]] =
-        [texts[index - 1], texts[index]];
-
-    }
 
     updateLayerPanel();
 
@@ -458,11 +438,21 @@ canvas.addEventListener("touchstart",(e)=>{
 
         );
 
+        initialRotationAngle = getAngle(
+
+            e.touches[0],
+
+            e.touches[1]
+
+        );
+
         if(imageSelected){
 
             selectedText = null;
 
             initialImageScale = imgScale;
+
+            initialImageRotation = imgRotation;
 
         }
 
@@ -471,6 +461,8 @@ canvas.addEventListener("touchstart",(e)=>{
             imageSelected = false;
 
             initialTextSize = selectedText.size;
+
+            initialTextRotation = selectedText.rotation;
 
         }
 
@@ -526,17 +518,31 @@ canvas.addEventListener("touchmove",(e)=>{
 
         );
 
+        const currentAngle = getAngle(
+
+            e.touches[0],
+
+            e.touches[1]
+
+        );
+
         const scale = currentDistance / initialPinchDistance;
+
+        const rotationDelta = currentAngle - initialRotationAngle;
 
         if(imageSelected){
 
             imgScale = initialImageScale * scale;
+
+            imgRotation = initialImageRotation + rotationDelta;
 
         }
 
         if(selectedText){
 
             selectedText.size = initialTextSize * scale;
+
+            selectedText.rotation = initialTextRotation + rotationDelta;
 
         }
 
