@@ -25,6 +25,10 @@ const addTextBtn = document.getElementById("addText");
 
 const deleteTextBtn = document.getElementById("deleteText");
 
+const moveUpBtn = document.getElementById("moveUp");
+
+const moveDownBtn = document.getElementById("moveDown");
+
 const textInput = document.getElementById("textInput");
 
 const scaleSlider = document.getElementById("scaleSlider");
@@ -192,6 +196,44 @@ deleteTextBtn.addEventListener("click", () => {
     selectedText = null;
 
     textInput.value = "";
+
+    updateLayerPanel();
+
+    draw();
+
+});
+
+moveUpBtn.addEventListener("click", () => {
+
+    if(!selectedText) return;
+
+    const index = texts.indexOf(selectedText);
+
+    if(index < texts.length - 1){
+
+        [texts[index], texts[index + 1]] =
+        [texts[index + 1], texts[index]];
+
+    }
+
+    updateLayerPanel();
+
+    draw();
+
+});
+
+moveDownBtn.addEventListener("click", () => {
+
+    if(!selectedText) return;
+
+    const index = texts.indexOf(selectedText);
+
+    if(index > 0){
+
+        [texts[index], texts[index - 1]] =
+        [texts[index - 1], texts[index]];
+
+    }
 
     updateLayerPanel();
 
