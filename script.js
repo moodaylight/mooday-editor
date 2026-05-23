@@ -537,18 +537,36 @@ canvas.addEventListener("touchstart",(e)=>{
 
         }
 
-        // 点击空白区域
+ // 当前已有文字选中
+// 并且没有点击其它文字
+// 不允许自动取消
 
-        selectedText = null;
+if(selectedText){
 
-        imageSelected = true;
+    draggingText = true;
 
-        draggingImage = true;
+    draggingImage = false;
 
-        draggingText = false;
+    imageSelected = false;
 
-        draw();
+    draw();
 
+    return;
+
+}
+
+// 真正空白状态
+// 才允许进入图片
+
+selectedText = null;
+
+imageSelected = true;
+
+draggingImage = true;
+
+draggingText = false;
+
+draw();
     }
 
     // 双指开始
