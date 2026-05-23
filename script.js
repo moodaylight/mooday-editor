@@ -418,13 +418,11 @@ canvas.addEventListener("touchstart",(e)=>{
 
         }else{
 
-            if(!selectedText){
+            selectedText = null;
 
-                imageSelected = true;
+            imageSelected = true;
 
-            }
-
-            draggingImage = imageSelected;
+            draggingImage = true;
 
             draggingText = false;
 
