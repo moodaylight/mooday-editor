@@ -63,15 +63,23 @@ window.addEventListener("resize", resizeCanvas);
 
 function resizeHitbox(text){
 
-    const width = text.content.length * text.size * 0.5;
+    ctx.save();
+
+    ctx.font = `${text.size}px sans-serif`;
+
+    const width = ctx.measureText(text.content).width;
+
+    ctx.restore();
 
     return {
 
-        left: text.x - width / 2,
-        right: text.x + width / 2,
+        left: text.x - width / 2 - 20,
 
-        top: text.y - text.size,
-        bottom: text.y + text.size
+        right: text.x + width / 2 + 20,
+
+        top: text.y - text.size - 20,
+
+        bottom: text.y + 20
 
     };
 
