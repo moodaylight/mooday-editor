@@ -3,7 +3,7 @@ const ctx = canvas.getContext("2d");
 
 const layerPanel = document.getElementById("layerPanel");
 
-function resizeCanvas() {
+function resizeCanvas(){
 
     canvas.width = canvas.offsetWidth;
     canvas.height = canvas.offsetHeight;
@@ -12,7 +12,7 @@ function resizeCanvas() {
 
 resizeCanvas();
 
-window.addEventListener("resize", () => {
+window.addEventListener("resize",()=>{
 
     resizeCanvas();
     draw();
@@ -51,15 +51,17 @@ let draggingText = false;
 
 let draggingImage = false;
 
+let transformTarget = null;
+
 let initialPinchDistance = null;
-
-let initialTextSize = null;
-
-let initialImageScale = null;
 
 let initialRotationAngle = null;
 
+let initialTextSize = null;
+
 let initialTextRotation = null;
+
+let initialImageScale = null;
 
 let initialImageRotation = null;
 
@@ -157,7 +159,7 @@ function getTopText(x,y){
 
     let clickedText = null;
 
-    [...texts].reverse().forEach(text => {
+    [...texts].reverse().forEach(text=>{
 
         const width = text.content.length * text.size * 0.5;
 
@@ -263,8 +265,6 @@ deleteTextBtn.addEventListener("click",()=>{
     texts = texts.filter(text => text !== selectedText);
 
     selectedText = null;
-
-    textInput.value = "";
 
     updateLayerPanel();
 
@@ -408,11 +408,11 @@ canvas.addEventListener("touchstart",(e)=>{
 
             imageSelected = false;
 
-            textInput.value = text.content;
-
             draggingText = true;
 
             draggingImage = false;
+
+            textInput.value = text.content;
 
         }else{
 
@@ -446,23 +446,23 @@ canvas.addEventListener("touchstart",(e)=>{
 
         );
 
-        if(imageSelected){
-
-            selectedText = null;
-
-            initialImageScale = imgScale;
-
-            initialImageRotation = imgRotation;
-
-        }
-
         if(selectedText){
 
-            imageSelected = false;
+            transformTarget = selectedText;
 
             initialTextSize = selectedText.size;
 
             initialTextRotation = selectedText.rotation;
+
+        }
+
+        if(imageSelected){
+
+            transformTarget = "image";
+
+            initialImageScale = imgScale;
+
+            initialImageRotation = imgRotation;
 
         }
 
@@ -530,7 +530,7 @@ canvas.addEventListener("touchmove",(e)=>{
 
         const rotationDelta = currentAngle - initialRotationAngle;
 
-        if(imageSelected){
+        if(transformTarget === "image"){
 
             imgScale = initialImageScale * scale;
 
@@ -538,11 +538,13 @@ canvas.addEventListener("touchmove",(e)=>{
 
         }
 
-        if(selectedText){
+        if(transformTarget && transformTarget !== "image"){
 
-            selectedText.size = initialTextSize * scale;
+            transformTarget.size = initialTextSize * scale;
 
-            selectedText.rotation = initialTextRotation + rotationDelta;
+            transformTarget.rotation =
+
+            initialTextRotation + rotationDelta;
 
         }
 
@@ -557,5 +559,7 @@ canvas.addEventListener("touchend",()=>{
     draggingText = false;
 
     draggingImage = false;
+
+    transformTarget = null;
 
 });
