@@ -1,119 +1,160 @@
-canvas.addEventListener("touchstart",(e)=>{
+const canvas = document.getElementById("canvas");
+const ctx = canvas.getContext("2d");
 
-    e.preventDefault();
+const layerPanel = document.getElementById("layerPanel");
 
-    const rect = canvas.getBoundingClientRect();
+function resizeCanvas(){
 
-    if(e.touches.length === 1 && !touchTargetLocked){
+```
+canvas.width = canvas.offsetWidth;
+canvas.height = canvas.offsetHeight;
+```
 
-        const touch = e.touches[0];
+}
 
-        const x = touch.clientX - rect.left;
+resizeCanvas();
 
-        const y = touch.clientY - rect.top;
+window.addEventListener("resize",()=>{
 
-        // 当前文字已经选中
-        // 并且再次点击的还是当前文字区域
-        // 直接保持状态
-        // 不允许切换图片
+```
+resizeCanvas();
+draw();
+```
 
-        if(selectedText && pointInText(selectedText,x,y)){
+});
 
-            draggingText = true;
+const upload = document.getElementById("upload");
 
-            draggingImage = false;
+const addTextBtn = document.getElementById("addText");
 
-            imageSelected = false;
+const deleteTextBtn = document.getElementById("deleteText");
 
-            updateLayerPanel();
+const moveUpBtn = document.getElementById("moveUp");
 
-            draw();
+const moveDownBtn = document.getElementById("moveDown");
 
-            return;
+const textInput = document.getElementById("textInput");
 
-        }
+let image = null;
 
-        // 检测是否点击了其他文字
+let imgScale = 1;
 
-        const text = getTopText(x,y);
+let imgRotation = 0;
 
-        if(text){
+let imgX = 0;
 
-            selectedText = text;
+let imgY = 0;
 
-            imageSelected = false;
+let texts = [];
 
-            draggingText = true;
+let selectedText = null;
 
-            draggingImage = false;
+let imageSelected = false;
 
-            textInput.value = text.content;
+let draggingText = false;
 
-            updateLayerPanel();
+let draggingImage = false;
 
-            draw();
+let transformTarget = null;
 
-            return;
+let touchTargetLocked = false;
 
-        }
+let initialPinchDistance = null;
 
-        // 点击空白区域
-        // 才切换到图片
+let initialRotationAngle = null;
 
-        selectedText = null;
+let initialTextSize = null;
+
+let initialTextRotation = null;
+
+let initialImageScale = null;
+
+let initialImageRotation = null;
+
+function resizeHitbox(text){
+
+```
+const width = text.content.length * text.size * 0.5;
+
+return {
+
+    left: text.x - width / 2,
+    right: text.x + width / 2,
+    top: text.y - text.size,
+    bottom: text.y + text.size
+
+};
+```
+
+}
+
+function pointInText(text,x,y){
+
+```
+const box = resizeHitbox(text);
+
+return (
+
+    x >= box.left &&
+    x <= box.right &&
+    y >= box.top &&
+    y <= box.bottom
+
+);
+```
+
+}
+
+function updateLayerPanel(){
+
+```
+layerPanel.innerHTML = "";
+
+if(image){
+
+    const imageItem = document.createElement("div");
+
+    imageItem.className = "layer-item";
+
+    if(imageSelected){
+
+        imageItem.classList.add("active");
+
+    }
+
+    imageItem.innerText = "图片";
+
+    imageItem.onclick = ()=>{
 
         imageSelected = true;
 
-        draggingImage = true;
+        selectedText = null;
 
-        draggingText = false;
+        updateLayerPanel();
 
-    }
+        draw();
 
-    if(e.touches.length === 2){
+    };
 
-        touchTargetLocked = true;
+    layerPanel.appendChild(imageItem);
 
-        initialPinchDistance = getDistance(
+}
 
-            e.touches[0],
+texts.forEach((text,index)=>{
 
-            e.touches[1]
+    const item = document.createElement("div");
 
-        );
+    item.className = "layer-item";
 
-        initialRotationAngle = getAngle(
+    if(text === selectedText){
 
-            e.touches[0],
-
-            e.touches[1]
-
-        );
-
-        if(selectedText){
-
-            transformTarget = selectedText;
-
-            initialTextSize = selectedText.size;
-
-            initialTextRotation = selectedText.rotation;
-
-        }
-
-        else if(imageSelected){
-
-            transformTarget = "image";
-
-            initialImageScale = imgScale;
-
-            initialImageRotation = imgRotation;
-
-        }
+        item.classList.add("active");
 
     }
 
-    updateLayerPanel();
+    item.innerText = `文字 ${index + 1}`;
 
-    draw();
+    item.onclick = ()=>{
 
-});
+        selectedText =
+```
