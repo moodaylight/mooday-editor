@@ -1,96 +1,210 @@
-const canvas = document.getElementById("canvas");
-const ctx = canvas.getContext("2d");
+canvas.addEventListener("touchmove",(e)=>{
 
-const layerPanel = document.getElementById("layerPanel");
+    e.preventDefault();
 
-const upload = document.getElementById("upload");
-const addTextBtn = document.getElementById("addText");
-const deleteTextBtn = document.getElementById("deleteText");
-const moveUpBtn = document.getElementById("moveUp");
-const moveDownBtn = document.getElementById("moveDown");
-const textInput = document.getElementById("textInput");
+    const rect = canvas.getBoundingClientRect();
 
-let image = null;
+    if(e.touches.length === 1){
 
-let imgScale = 1;
-let imgRotation = 0;
-let imgX = 0;
-let imgY = 0;
+        const touch = e.touches[0];
 
-let texts = [];
+        const x = touch.clientX - rect.left;
+        const y = touch.clientY - rect.top;
 
-let selectedText = null;
-let imageSelected = false;
+        if(draggingText && selectedText){
 
-let draggingText = false;
-let draggingImage = false;
+            selectedText.x = x;
+            selectedText.y = y;
 
-let transformTarget = null;
-let touchTargetLocked = false;
+        }
 
-let initialPinchDistance = null;
-let initialRotationAngle = null;
+        if(draggingImage && imageSelected){
 
-let initialTextSize = null;
-let initialTextRotation = null;
+            imgX = x;
+            imgY = y;
 
-let initialImageScale = null;
-let initialImageRotation = null;
+        }
 
-function resizeCanvas(){
+        draw();
 
-canvas.width = canvas.offsetWidth;
-canvas.height = canvas.offsetHeight;
+    }
+
+    if(e.touches.length === 2){
+
+        touchTargetLocked = true;
+
+        const currentDistance = getDistance(
+
+            e.touches[0],
+            e.touches[1]
+
+        );
+
+        const currentAngle = getAngle(
+
+            e.touches[0],
+            e.touches[1]
+
+        );
+
+        const scale = currentDistance / initialPinchDistance;
+
+        const rotationDelta =
+
+        currentAngle - initialRotationAngle;
+
+        if(selectedText){
+
+            selectedText.size =
+
+            initialTextSize * scale;
+
+            selectedText.rotation =
+
+            initialTextRotation + rotationDelta;
+
+        }
+
+        if(imageSelected){
+
+            imgScale =
+
+            initialImageScale * scale;
+
+            imgRotation =
+
+            initialImageRotation + rotationDelta;
+
+        }
+
+        draw();
+
+    }
+
+});
+
+canvas.addEventListener("touchend",(e)=>{
+
+    if(e.touches.length === 0){
+
+        draggingText = false;
+        draggingImage = false;
+
+        touchTargetLocked = false;
+
+    }
+
+});
+
+updateLayerPanel();
 
 draw();
 
-}
+canvas.addEventListener("touchstart",(e)=>{
 
-resizeCanvas();
+    e.preventDefault();
 
-window.addEventListener("resize", resizeCanvas);
+    const rect = canvas.getBoundingClientRect();
 
-function resizeHitbox(text){
+    if(e.touches.length === 1 && !touchTargetLocked){
 
-const width = text.content.length * text.size * 0.5;
+        const touch = e.touches[0];
 
-return {
+        const x = touch.clientX - rect.left;
+        const y = touch.clientY - rect.top;
 
-    left: text.x - width / 2,
-    right: text.x + width / 2,
-    top: text.y - text.size,
-    bottom: text.y + text.size
+        // 当前文字已经选中
+        // 并且再次点击的是当前文字区域
+        // 保持焦点不消失
 
-};
+        if(selectedText && pointInText(selectedText,x,y)){
 
-}
+            draggingText = true;
 
-function pointInText(text,x,y){
+            draggingImage = false;
 
-const box = resizeHitbox(text);
+            imageSelected = false;
 
-return (
+            draw();
 
-    x >= box.left &&
-    x <= box.right &&
-    y >= box.top &&
-    y <= box.bottom
+            return;
 
-);
+        }
 
-}
+        // 点击其他文字
 
-function getTopText(x,y){
+        const text = getTopText(x,y);
 
-let clickedText = null;
+        if(text){
 
-[...texts].reverse().forEach(text=>{
+            selectedText = text;
 
-    if(pointInText(text,x,y)){
+            imageSelected = false;
 
-        if(!clickedText){
+            draggingText = true;
 
-            clickedText = text;
+            draggingImage = false;
+
+            textInput.value = text.content;
+
+            draw();
+
+            return;
+
+        }
+
+        // 点击空白区域
+        // 才切换图片
+
+        selectedText = null;
+
+        imageSelected = true;
+
+        draggingImage = true;
+
+        draggingText = false;
+
+        draw();
+
+    }
+
+    // 双指开始
+
+    if(e.touches.length === 2){
+
+        touchTargetLocked = true;
+
+        initialPinchDistance = getDistance(
+
+            e.touches[0],
+            e.touches[1]
+
+        );
+
+        initialRotationAngle = getAngle(
+
+            e.touches[0],
+            e.touches[1]
+
+        );
+
+        // 文字编辑状态
+
+        if(selectedText){
+
+            initialTextSize = selectedText.size;
+
+            initialTextRotation = selectedText.rotation;
+
+        }
+
+        // 图片编辑状态
+
+        if(imageSelected){
+
+            initialImageScale = imgScale;
+
+            initialImageRotation = imgRotation;
 
         }
 
@@ -98,261 +212,26 @@ let clickedText = null;
 
 });
 
-return clickedText;
-
-}
-
-function getDistance(touch1,touch2){
-
-```
-const dx = touch2.clientX - touch1.clientX;
-const dy = touch2.clientY - touch1.clientY;
-
-return Math.sqrt(dx * dx + dy * dy);
-
-}
-
-function getAngle(touch1,touch2){
-
-return Math.atan2(
-
-    touch2.clientY - touch1.clientY,
-    touch2.clientX - touch1.clientX
-
-) * 180 / Math.PI;
-
-}
-
-function updateLayerPanel(){
-
-layerPanel.innerHTML = "";
-
-if(image){
-
-    const imageItem = document.createElement("div");
-
-    imageItem.className = "layer-item";
-
-    if(imageSelected){
-
-        imageItem.classList.add("active");
-
-    }
-
-    imageItem.innerText = "图片";
-
-    imageItem.onclick = ()=>{
-
-        imageSelected = true;
-        selectedText = null;
-
-        updateLayerPanel();
-        draw();
-
-    };
-
-    layerPanel.appendChild(imageItem);
-
-}
-
-texts.forEach((text,index)=>{
-
-    const item = document.createElement("div");
-
-    item.className = "layer-item";
-
-    if(text === selectedText){
-
-        item.classList.add("active");
-
-    }
-
-    item.innerText = `文字 ${index + 1}`;
-
-    item.onclick = ()=>{
-
-        selectedText = text;
-        imageSelected = false;
-
-        textInput.value = text.content;
-
-        updateLayerPanel();
-        draw();
-
-    };
-
-    layerPanel.appendChild(item);
-
-});
-
-}
-
-upload.addEventListener("change",(e)=>{
-
-const file = e.target.files[0];
-
-if(!file) return;
-
-const reader = new FileReader();
-
-reader.onload = function(event){
-
-    image = new Image();
-
-    image.onload = function(){
-
-        imgX = canvas.width / 2;
-        imgY = canvas.height / 2;
-
-        imgScale = 1;
-        imgRotation = 0;
-
-        imageSelected = true;
-        selectedText = null;
-
-        draw();
-        updateLayerPanel();
-
-    };
-
-    image.src = event.target.result;
-
-};
-
-reader.readAsDataURL(file);
-
-});
-
-addTextBtn.addEventListener("click",()=>{
-
-const offset = texts.length * 80;
-
-const text = {
-
-    content: "双击编辑",
-
-    x: canvas.width / 2,
-
-    y: canvas.height / 2 + offset,
-
-    size: 60,
-
-    rotation: 0,
-
-    color: "#ffffff",
-
-    glow: 20
-
-};
-
-texts.push(text);
-
-selectedText = text;
-imageSelected = false;
-
-textInput.value = text.content;
-
-updateLayerPanel();
-draw();
-
-});
-
-deleteTextBtn.addEventListener("click",()=>{
-
-if(!selectedText) return;
-
-texts = texts.filter(text=>text !== selectedText);
-
-selectedText = null;
-
-updateLayerPanel();
-draw();
-
-});
-
-moveUpBtn.addEventListener("click",()=>{
-
-if(!selectedText) return;
-
-const index = texts.indexOf(selectedText);
-
-if(index < texts.length - 1){
-
-    [texts[index], texts[index + 1]] =
-
-    [texts[index + 1], texts[index]];
-
-}
-
-updateLayerPanel();
-draw();
-
-});
-
-moveDownBtn.addEventListener("click",()=>{
-
-if(!selectedText) return;
-
-const index = texts.indexOf(selectedText);
-
-if(index > 0){
-
-    [texts[index], texts[index - 1]] =
-
-    [texts[index - 1], texts[index]];
-
-}
-
-updateLayerPanel();
-draw();
-
-});
-
-textInput.addEventListener("input",()=>{
-
-if(selectedText){
-
-    selectedText.content = textInput.value;
-
-    draw();
-
-}
-
-});
-
 function draw(){
 
-ctx.clearRect(0,0,canvas.width,canvas.height);
+    ctx.clearRect(0,0,canvas.width,canvas.height);
 
-if(image){
+    // 图片
 
-    const drawWidth = image.width * imgScale;
-    const drawHeight = image.height * imgScale;
+    if(image){
 
-    ctx.save();
+        const drawWidth = image.width * imgScale;
+        const drawHeight = image.height * imgScale;
 
-    ctx.translate(imgX,imgY);
+        ctx.save();
 
-    ctx.rotate(imgRotation * Math.PI / 180);
+        ctx.translate(imgX,imgY);
 
-    ctx.drawImage(
+        ctx.rotate(imgRotation * Math.PI / 180);
 
-        image,
+        ctx.drawImage(
 
-        -drawWidth / 2,
-        -drawHeight / 2,
-
-        drawWidth,
-        drawHeight
-
-    );
-
-    if(imageSelected){
-
-        ctx.strokeStyle = "#7b5cff";
-        ctx.lineWidth = 4;
-
-        ctx.strokeRect(
+            image,
 
             -drawWidth / 2,
             -drawHeight / 2,
@@ -362,255 +241,76 @@ if(image){
 
         );
 
+        // 图片选中框
+
+        if(imageSelected){
+
+            ctx.strokeStyle = "#7b5cff";
+
+            ctx.lineWidth = 4;
+
+            ctx.strokeRect(
+
+                -drawWidth / 2,
+                -drawHeight / 2,
+
+                drawWidth,
+                drawHeight
+
+            );
+
+        }
+
+        ctx.restore();
+
     }
 
-    ctx.restore();
+    // 文字图层
+
+    texts.forEach(text=>{
+
+        ctx.save();
+
+        ctx.translate(text.x,text.y);
+
+        ctx.rotate(text.rotation * Math.PI / 180);
+
+        ctx.font = `${text.size}px sans-serif`;
+
+        ctx.fillStyle = text.color;
+
+        ctx.shadowColor = text.color;
+
+        ctx.shadowBlur = text.glow;
+
+        ctx.textAlign = "center";
+
+        ctx.fillText(text.content,0,0);
+
+        // 当前选中文字框
+
+        if(text === selectedText){
+
+            const width = ctx.measureText(text.content).width;
+
+            ctx.strokeStyle = "#7b5cff";
+
+            ctx.lineWidth = 2;
+
+            ctx.strokeRect(
+
+                -width / 2 - 10,
+                -text.size,
+
+                width + 20,
+                text.size + 20
+
+            );
+
+        }
+
+        ctx.restore();
+
+    });
 
 }
-
-texts.forEach(text=>{
-
-    ctx.save();
-
-    ctx.translate(text.x,text.y);
-
-    ctx.rotate(text.rotation * Math.PI / 180);
-
-    ctx.font = `${text.size}px sans-serif`;
-
-    ctx.fillStyle = text.color;
-
-    ctx.shadowColor = text.color;
-
-    ctx.shadowBlur = text.glow;
-
-    ctx.textAlign = "center";
-
-    ctx.fillText(text.content,0,0);
-
-    if(text === selectedText){
-
-        const width = ctx.measureText(text.content).width;
-
-        ctx.strokeStyle = "#7b5cff";
-        ctx.lineWidth = 2;
-
-        ctx.strokeRect(
-
-            -width / 2 - 10,
-            -text.size,
-
-            width + 20,
-            text.size + 20
-
-        );
-
-    }
-
-    ctx.restore();
-
-});
-
-}
-
-canvas.addEventListener("touchstart",(e)=>{
-
-e.preventDefault();
-
-const rect = canvas.getBoundingClientRect();
-
-if(e.touches.length === 1 && !touchTargetLocked){
-
-    const touch = e.touches[0];
-
-    const x = touch.clientX - rect.left;
-    const y = touch.clientY - rect.top;
-
-    if(selectedText && pointInText(selectedText,x,y)){
-
-        draggingText = true;
-
-        draggingImage = false;
-
-        imageSelected = false;
-
-        draw();
-
-        return;
-
-    }
-
-    const text = getTopText(x,y);
-
-    if(text){
-
-        selectedText = text;
-
-        imageSelected = false;
-
-        draggingText = true;
-
-        draggingImage = false;
-
-        textInput.value = text.content;
-
-        draw();
-
-        return;
-
-    }
-
-    selectedText = null;
-
-    imageSelected = true;
-
-    draggingImage = true;
-
-    draggingText = false;
-
-    draw();
-
-}
-
-if(e.touches.length === 2){
-
-    touchTargetLocked = true;
-
-    initialPinchDistance = getDistance(
-
-        e.touches[0],
-        e.touches[1]
-
-    );
-
-    initialRotationAngle = getAngle(
-
-        e.touches[0],
-        e.touches[1]
-
-    );
-
-    if(selectedText){
-
-        transformTarget = selectedText;
-
-        initialTextSize = selectedText.size;
-
-        initialTextRotation = selectedText.rotation;
-
-    }
-
-    else if(imageSelected){
-
-        transformTarget = "image";
-
-        initialImageScale = imgScale;
-
-        initialImageRotation = imgRotation;
-
-    }
-
-}
-
-});
-
-canvas.addEventListener("touchmove",(e)=>{
-
-e.preventDefault();
-
-const rect = canvas.getBoundingClientRect();
-
-if(e.touches.length === 1){
-
-    const touch = e.touches[0];
-
-    const x = touch.clientX - rect.left;
-    const y = touch.clientY - rect.top;
-
-    if(draggingText && selectedText){
-
-        selectedText.x = x;
-        selectedText.y = y;
-
-    }
-
-    if(draggingImage && imageSelected){
-
-        imgX = x;
-        imgY = y;
-
-    }
-
-    draw();
-
-}
-
-if(e.touches.length === 2){
-
-    const currentDistance = getDistance(
-
-        e.touches[0],
-        e.touches[1]
-
-    );
-
-    const currentAngle = getAngle(
-
-        e.touches[0],
-        e.touches[1]
-
-    );
-
-    const scale = currentDistance / initialPinchDistance;
-
-    const rotationDelta =
-
-    currentAngle - initialRotationAngle;
-
-    if(transformTarget === "image"){
-
-        imgScale = initialImageScale * scale;
-
-        imgRotation =
-
-        initialImageRotation + rotationDelta;
-
-    }
-
-    if(transformTarget && transformTarget !== "image"){
-
-        transformTarget.size =
-
-        initialTextSize * scale;
-
-        transformTarget.rotation =
-
-        initialTextRotation + rotationDelta;
-
-    }
-
-    draw();
-
-}
-
-});
-
-canvas.addEventListener("touchend",(e)=>{
-
-if(e.touches.length === 0){
-
-    draggingText = false;
-
-    draggingImage = false;
-
-    transformTarget = null;
-
-    touchTargetLocked = false;
-
-}
-
-});
-
-updateLayerPanel();
-
-draw();
