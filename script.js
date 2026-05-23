@@ -53,6 +53,8 @@ let draggingImage = false;
 
 let transformTarget = null;
 
+let touchTargetLocked = false;
+
 let initialPinchDistance = null;
 
 let initialRotationAngle = null;
@@ -392,7 +394,7 @@ canvas.addEventListener("touchstart",(e)=>{
 
     const rect = canvas.getBoundingClientRect();
 
-    if(e.touches.length === 1){
+    if(e.touches.length === 1 && !touchTargetLocked){
 
         const touch = e.touches[0];
 
@@ -429,6 +431,8 @@ canvas.addEventListener("touchstart",(e)=>{
     }
 
     if(e.touches.length === 2){
+
+        touchTargetLocked = true;
 
         initialPinchDistance = getDistance(
 
@@ -561,5 +565,7 @@ canvas.addEventListener("touchend",()=>{
     draggingImage = false;
 
     transformTarget = null;
+
+    touchTargetLocked = false;
 
 });
