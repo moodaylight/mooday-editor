@@ -2,15 +2,19 @@ const canvas = document.getElementById("canvas");
 const ctx = canvas.getContext("2d");
 
 function resizeCanvas() {
+
     canvas.width = canvas.offsetWidth;
     canvas.height = canvas.offsetHeight;
+
 }
 
 resizeCanvas();
 
 window.addEventListener("resize", () => {
+
     resizeCanvas();
     draw();
+
 });
 
 const upload = document.getElementById("upload");
@@ -127,6 +131,8 @@ addTextBtn.addEventListener("click", () => {
 
     selectedText = text;
 
+    textInput.value = text.content;
+
     updateControls();
 
     draw();
@@ -141,7 +147,21 @@ deleteTextBtn.addEventListener("click", () => {
 
     selectedText = null;
 
+    textInput.value = "";
+
     draw();
+
+});
+
+textInput.addEventListener("input", () => {
+
+    if(selectedText){
+
+        selectedText.content = textInput.value;
+
+        draw();
+
+    }
 
 });
 
@@ -342,6 +362,8 @@ canvas.addEventListener("mousedown", (e) => {
         ){
 
             selectedText = text;
+
+            textInput.value = text.content;
 
             draggingText = true;
 
