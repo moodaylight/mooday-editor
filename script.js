@@ -1,6 +1,8 @@
 const canvas = document.getElementById("canvas");
 const ctx = canvas.getContext("2d");
 
+const layerPanel = document.getElementById("layerPanel");
+
 function resizeCanvas() {
 
     canvas.width = canvas.offsetWidth;
@@ -46,6 +48,44 @@ let imgRotation = 0;
 let texts = [];
 
 let selectedText = null;
+
+function updateLayerPanel(){
+
+    layerPanel.innerHTML = "";
+
+    texts.forEach((text,index)=>{
+
+        const item = document.createElement("div");
+
+        item.className = "layer-item";
+
+        if(text === selectedText){
+
+            item.classList.add("active");
+
+        }
+
+        item.innerText = `文字 ${index + 1}`;
+
+        item.onclick = ()=>{
+
+            selectedText = text;
+
+            textInput.value = text.content;
+
+            updateControls();
+
+            updateLayerPanel();
+
+            draw();
+
+        };
+
+        layerPanel.appendChild(item);
+
+    });
+
+}
 
 upload.addEventListener("change", (e) => {
 
@@ -135,6 +175,8 @@ addTextBtn.addEventListener("click", () => {
 
     updateControls();
 
+    updateLayerPanel();
+
     draw();
 
 });
@@ -148,6 +190,8 @@ deleteTextBtn.addEventListener("click", () => {
     selectedText = null;
 
     textInput.value = "";
+
+    updateLayerPanel();
 
     draw();
 
@@ -372,6 +416,8 @@ canvas.addEventListener("mousedown", (e) => {
     });
 
     updateControls();
+
+    updateLayerPanel();
 
     draw();
 
