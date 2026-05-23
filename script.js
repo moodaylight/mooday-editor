@@ -111,7 +111,7 @@ addTextBtn.addEventListener("click", () => {
 
     const text = {
 
-        content: textInput.value || "MOODAY",
+        content: "双击编辑",
 
         x: canvas.width / 2,
 
