@@ -85,9 +85,9 @@ function getTextBounds(text){
 
         right: text.x + width / 2 + 10,
 
-       top: text.y - text.size + 10,
+       top: text.y - text.size + 5,
 
-bottom: text.y + 20 
+bottom: text.y + 15 
     };
 
 }
