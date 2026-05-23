@@ -435,7 +435,7 @@ canvas.addEventListener("mousedown", (e) => {
 
     selectedText = null;
 
-    texts.forEach(text => {
+    [...texts].reverse().forEach(text => {
 
         const width = text.content.length * text.size * 0.5;
 
@@ -451,11 +451,15 @@ canvas.addEventListener("mousedown", (e) => {
 
         ){
 
-            selectedText = text;
+            if(!selectedText){
 
-            textInput.value = text.content;
+                selectedText = text;
 
-            draggingText = true;
+                textInput.value = text.content;
+
+                draggingText = true;
+
+            }
 
         }
 
