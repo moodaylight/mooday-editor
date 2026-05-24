@@ -725,8 +725,51 @@ if(lightMode === 2){
 // 镜子模式
 if(lightMode === 3){
 
+    // 半透灰黑镜
+
     ctx.fillStyle =
-    "rgba(10,10,10,0.82)";
+    "rgba(20,20,20,0.58)";
+
+    ctx.fillRect(
+        -w / 2,
+        -h / 2,
+        w,
+        h
+    );
+
+    // =====================
+    // 镜面高光
+    // =====================
+
+    const mirrorGradient =
+    ctx.createLinearGradient(
+        -w / 2,
+        -h / 2,
+        w / 2,
+        h / 2
+    );
+
+    mirrorGradient.addColorStop(
+        0,
+        "rgba(255,255,255,0.16)"
+    );
+
+    mirrorGradient.addColorStop(
+        0.25,
+        "rgba(255,255,255,0.04)"
+    );
+
+    mirrorGradient.addColorStop(
+        0.5,
+        "rgba(255,255,255,0)"
+    );
+
+    mirrorGradient.addColorStop(
+        1,
+        "rgba(255,255,255,0.08)"
+    );
+
+    ctx.fillStyle = mirrorGradient;
 
     ctx.fillRect(
         -w / 2,
