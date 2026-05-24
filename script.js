@@ -751,7 +751,7 @@ canvas.addEventListener("touchend",()=>{
 function drawFrame(){
 
     // =====================
-    // 真实产品尺寸
+    // 真实尺寸
     // =====================
 
     const frameWidth = 12;
@@ -763,25 +763,33 @@ function drawFrame(){
     const visibleHeight = 15.3;
 
     // =====================
-    // 画布边距
+    // 边框真实结构
     // =====================
 
-    const outerMargin = 20;
+    const outerFrameSize = 0.75;
+
+    const innerFrameSize = 0.35;
 
     // =====================
-    // 外框尺寸
+    // 外边距
     // =====================
 
-    const outerX = outerMargin;
-
-    const outerY = outerMargin;
-
-    const outerW = canvas.width - outerMargin * 2;
-
-    const outerH = canvas.height - outerMargin * 2;
+    const margin = 20;
 
     // =====================
-    // 可视区真实比例
+    // 外框
+    // =====================
+
+    const outerX = margin;
+
+    const outerY = margin;
+
+    const outerW = canvas.width - margin * 2;
+
+    const outerH = canvas.height - margin * 2;
+
+    // =====================
+    // 可视区比例
     // =====================
 
     const visibleRatioX =
@@ -797,7 +805,7 @@ function drawFrame(){
     outerH * visibleRatioY;
 
     // =====================
-    // 可视区居中
+    // 可视区位置
     // =====================
 
     const visibleX =
@@ -807,7 +815,29 @@ function drawFrame(){
     (canvas.height - visibleH) / 2;
 
     // =====================
-    // 外框
+    // 实际比例计算
+    // =====================
+
+    const totalFrame =
+    outerFrameSize + innerFrameSize;
+
+    const outerRatio =
+    outerFrameSize / totalFrame;
+
+    const innerRatio =
+    innerFrameSize / totalFrame;
+
+    const frameThickness =
+    (outerW - visibleW) / 2;
+
+    const outerThickness =
+    frameThickness * outerRatio;
+
+    const innerThickness =
+    frameThickness * innerRatio;
+
+    // =====================
+    // 外凸白框
     // =====================
 
     ctx.fillStyle = "#f8f8f8";
@@ -824,14 +854,14 @@ function drawFrame(){
     // 内凹层
     // =====================
 
-    ctx.fillStyle = "#dcdcdc";
+    ctx.fillStyle = "#d8d8d8";
 
     roundRect(
-        visibleX - 12,
-        visibleY - 12,
-        visibleW + 24,
-        visibleH + 24,
-        24
+        visibleX - innerThickness,
+        visibleY - innerThickness,
+        visibleW + innerThickness * 2,
+        visibleH + innerThickness * 2,
+        22
     );
 
     // =====================
