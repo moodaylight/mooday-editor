@@ -833,7 +833,6 @@ if(lightMode === 3){
 
 }
 
-ctx.restore();
 
 } 
 
