@@ -422,55 +422,136 @@ function draw(){
    
     // 图片
 
-    if(image){
+   if(image){
 
-        const w = image.width * imgScale;
+    // =====================
+    // 真实尺寸
+    // =====================
 
-        const h = image.height * imgScale;
+    const frameWidth = 12;
+    const frameHeight = 17.5;
 
-        ctx.save();
+    const visibleWidth = 9.8;
+    const visibleHeight = 15.3;
 
-        ctx.translate(imgX,imgY);
+    // =====================
+    // 外边距
+    // =====================
 
-        ctx.rotate(imgRotation * Math.PI / 180);
+    const marginX = 20;
+    const marginTop = 10;
 
-        ctx.drawImage(
+    // =====================
+    // 外框尺寸
+    // =====================
 
-            image,
+    const outerW =
+    canvas.width - marginX * 2;
 
-            -w / 2,
+    const outerH =
+    canvas.height - marginX * 2;
 
-            -h / 2,
+    // =====================
+    // 可视区域比例
+    // =====================
 
-            w,
+    const visibleRatioX =
+    visibleWidth / frameWidth;
 
-            h
+    const visibleRatioY =
+    visibleHeight / frameHeight;
 
-        );
+    // =====================
+    // 可视区域大小
+    // =====================
 
-        if(imageSelected){
+    const visibleW =
+    outerW * visibleRatioX;
 
-            ctx.strokeStyle = "#7b5cff";
+    const visibleH =
+    outerH * visibleRatioY;
 
-            ctx.lineWidth = 4;
+    // =====================
+    // 可视区域位置
+    // =====================
 
-            ctx.strokeRect(
+    const visibleX =
+    (canvas.width - visibleW) / 2;
 
-                -w / 2,
+    const visibleY =
+    marginTop + (outerH - visibleH) / 2;
 
-                -h / 2,
+    // =====================
+    // 图片真实尺寸
+    // =====================
 
-                w,
+    const w =
+    image.width * imgScale;
 
-                h
+    const h =
+    image.height * imgScale;
 
-            );
+    // =====================
+    // 防止露白（边界限制）
+    // =====================
 
-        }
+    const minX =
+    visibleX + visibleW - w / 2;
 
-        ctx.restore();
+    const maxX =
+    visibleX + w / 2;
 
-    }
+    const minY =
+    visibleY + visibleH - h / 2;
+
+    const maxY =
+    visibleY + h / 2;
+
+    imgX =
+    Math.min(maxX, Math.max(minX, imgX));
+
+    imgY =
+    Math.min(maxY, Math.max(minY, imgY));
+
+    // =====================
+    // 裁切区域
+    // =====================
+
+    ctx.save();
+
+    ctx.beginPath();
+
+    roundRect(
+        visibleX,
+        visibleY,
+        visibleW,
+        visibleH,
+        18
+    );
+
+    ctx.clip();
+
+    // =====================
+    // 绘制图片
+    // =====================
+
+    ctx.translate(imgX,imgY);
+
+    ctx.rotate(
+        imgRotation * Math.PI / 180
+    );
+
+    ctx.drawImage(
+        image,
+        -w / 2,
+        -h / 2,
+        w,
+        h
+    );
+
+    ctx.restore();
+
+} 
 
     // 文字
 
