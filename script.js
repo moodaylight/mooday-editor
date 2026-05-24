@@ -584,7 +584,7 @@ function draw(){
     // =====================
 
     const marginX = 20;
-    const marginTop = 10;
+    const marginTop = 22;
 
     // =====================
     // 外框尺寸
@@ -1258,8 +1258,10 @@ ctx.stroke();
     // =====================
     // 可视区
     // =====================
+ctx.shadowBlur = 0;
 
-    ctx.fillStyle = "#111";
+ctx.shadowColor = "transparent";
+   ctx.fillStyle = "#1a1a1a";
 
     roundRect(
         visibleX,
