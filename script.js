@@ -753,10 +753,10 @@ if(lightMode === 3){
     "rgba(0,0,0,0.88)";
 
     ctx.fillRect(
-        frameX,
-        frameY,
-        frameW,
-        frameH
+        visibleX,
+        visibleY,
+        visibleW,
+        visibleH
     );
 
     /* =========================
@@ -766,9 +766,9 @@ if(lightMode === 3){
     const mirrorGlow =
     ctx.createLinearGradient(
         0,
-        frameY,
+        visibleY,
         0,
-        frameY + frameH
+        visibleY + visibleH
     );
 
     mirrorGlow.addColorStop(
@@ -789,10 +789,10 @@ if(lightMode === 3){
     ctx.fillStyle = mirrorGlow;
 
     ctx.fillRect(
-        frameX,
-        frameY,
-        frameW,
-        frameH
+        visibleX,
+        visibleY,
+        visibleW,
+        visibleH
     );
 
     /* =========================
@@ -802,13 +802,13 @@ if(lightMode === 3){
     const edgeDark =
     ctx.createRadialGradient(
 
-        frameX + frameW / 2,
-        frameY + frameH / 2,
-        frameW * 0.2,
+        visibleX + visibleW / 2,
+        visibleY + visibleH / 2,
+        visibleW * 0.2,
 
-        frameX + frameW / 2,
-        frameY + frameH / 2,
-        frameW * 0.9
+        visibleX + visibleW / 2,
+        visibleY + visibleH / 2,
+        visibleW * 0.9
 
     );
 
@@ -825,10 +825,10 @@ if(lightMode === 3){
     ctx.fillStyle = edgeDark;
 
     ctx.fillRect(
-        frameX,
-        frameY,
-        frameW,
-        frameH
+        visibleX,
+        visibleY,
+        visibleW,
+        visibleH
     );
 
 }
