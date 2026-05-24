@@ -676,27 +676,24 @@ function draw(){
 
     ctx.clip();
 
-    // =====================
-    // 绘制图片
-    // =====================
-
-    ctx.translate(imgX,imgY);
 // =====================
-// 镜子模式降低图片亮度
+// 绘制图片
 // =====================
 
+ctx.translate(imgX,imgY);
 
-    
-    ctx.drawImage(
-        image,
-        -w / 2,
-        -h / 2,
-        w,
-        h
-    );
+ctx.drawImage(
+    image,
+    -w / 2,
+    -h / 2,
+    w,
+    h
+);
 
-
+// =====================
 // 暖光
+// =====================
+
 if(lightMode === 1){
 
     ctx.fillStyle =
@@ -711,7 +708,10 @@ if(lightMode === 1){
 
 }
 
+// =====================
 // 日光
+// =====================
+
 if(lightMode === 2){
 
     ctx.fillStyle =
@@ -726,10 +726,11 @@ if(lightMode === 2){
 
 }
 
+// =====================
 // 镜子模式
-if(lightMode === 3){
+// =====================
 
-    // 直接盖住图片
+if(lightMode === 3){
 
     ctx.fillStyle =
     "rgba(40,40,40,0.96)";
@@ -743,40 +744,7 @@ if(lightMode === 3){
 
 }
 
-    
-
-    mirrorGradient.addColorStop(
-        0,
-        "rgba(255,255,255,0.16)"
-    );
-
-    mirrorGradient.addColorStop(
-        0.25,
-        "rgba(255,255,255,0.04)"
-    );
-
-    mirrorGradient.addColorStop(
-        0.5,
-        "rgba(255,255,255,0)"
-    );
-
-    mirrorGradient.addColorStop(
-        1,
-        "rgba(255,255,255,0.08)"
-    );
-
-    ctx.fillStyle = mirrorGradient;
-
-    ctx.fillRect(
-        -w / 2,
-        -h / 2,
-        w,
-        h
-    );
-
-}
- 
-       ctx.restore();
+ctx.restore();
 
 } 
 
