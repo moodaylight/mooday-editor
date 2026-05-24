@@ -305,7 +305,7 @@ addTextBtn.addEventListener("click",()=>{
 
         color: "#ffffff",
         
-        glow: 0,
+        glow: 0
     };
 
     texts.push(text);
