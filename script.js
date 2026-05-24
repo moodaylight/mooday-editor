@@ -4,7 +4,7 @@ const ctx = canvas.getContext("2d");
 const upload = document.getElementById("upload");
 const addTextBtn = document.getElementById("addText");
 const textInput = document.getElementById("textInput");
-
+const deleteTextBtn = document.getElementById("deleteText");
 const layerPanel = document.getElementById("layerPanel");
 
 // =====================
@@ -315,6 +315,19 @@ addTextBtn.addEventListener("click",()=>{
 
 });
 
+deleteTextBtn.addEventListener("click",()=>{
+
+    if(!selectedText) return;
+
+    texts = texts.filter(t => t !== selectedText);
+
+    selectedText = null;
+
+    draw();
+
+    updateLayerPanel();
+
+});
 // =====================
 // 输入框同步
 // =====================
