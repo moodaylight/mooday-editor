@@ -1235,13 +1235,12 @@ function drawFrame(){
     ctx.fillStyle = "#1a1a1a";
 
     roundRect(
-        visibleX,
-        visibleY,
-        visibleW,
-        visibleH,
-        18
-    );
-
+    visibleX - 1,
+    visibleY - 1,
+    visibleW + 2,
+    visibleH + 2,
+    18
+);
 }
 
 function roundRect(x,y,w,h,r){
