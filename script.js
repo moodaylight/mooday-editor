@@ -1150,6 +1150,8 @@ canvas.addEventListener("touchend",()=>{
 // =====================
 function drawFrame(){
 
+    ctx.save();
+
     // =====================
     // 实际尺寸
     // =====================
@@ -1329,6 +1331,7 @@ function drawFrame(){
     visibleH + 2,
     18
 );
+ctx.restore();
 }
 
 function roundRect(x,y,w,h,r){
