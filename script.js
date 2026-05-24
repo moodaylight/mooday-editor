@@ -6,6 +6,8 @@ const addTextBtn = document.getElementById("addText");
 const textInput = document.getElementById("textInput");
 const colorPicker =
 document.getElementById("colorPicker");
+const glowSlider =
+document.getElementById("glowSlider");
 const deleteTextBtn = document.getElementById("deleteText");
 const moveUpBtn = document.getElementById("moveUp");
 const moveDownBtn = document.getElementById("moveDown");
@@ -302,7 +304,8 @@ addTextBtn.addEventListener("click",()=>{
         rotation: 0,
 
         color: "#ffffff"
-
+        
+        glow: 0,
     };
 
     texts.push(text);
@@ -396,6 +399,17 @@ colorPicker.addEventListener("input",()=>{
     }
 
 });
+glowSlider.addEventListener("input",()=>{
+
+    if(selectedText){
+
+        selectedText.glow = parseInt(glowSlider.value);
+
+        draw();
+
+    }
+
+});
 // =====================
 // 绘制
 // =====================
@@ -470,6 +484,10 @@ function draw(){
 
         ctx.fillStyle = text.color;
 
+       ctx.shadowColor = text.color;
+
+       ctx.shadowBlur = text.glow;
+       
         ctx.textAlign = "center";
 
         ctx.textBaseline = "middle";
