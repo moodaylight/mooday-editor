@@ -303,7 +303,7 @@ addTextBtn.addEventListener("click",()=>{
 
         rotation: 0,
 
-        color: "#ffffff"
+        color: "#ffffff",
         
         glow: 0,
     };
