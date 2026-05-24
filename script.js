@@ -417,7 +417,9 @@ glowSlider.addEventListener("input",()=>{
 function draw(){
 
     ctx.clearRect(0,0,canvas.width,canvas.height);
-
+    
+    drawFrame();
+   
     // 图片
 
     if(image){
@@ -722,6 +724,70 @@ canvas.addEventListener("touchmove",(e)=>{
 
             initialImageRotation + rotation;
 
+            function drawFrame(){
+
+    // 外框
+    ctx.fillStyle = "#f8f8f8";
+
+    roundRect(
+        20,
+        20,
+        canvas.width - 40,
+        canvas.height - 40,
+        35
+    );
+
+    // 内凹层
+    ctx.fillStyle = "#dcdcdc";
+
+    roundRect(
+        45,
+        45,
+        canvas.width - 90,
+        canvas.height - 90,
+        25
+    );
+
+    // 可视区
+    ctx.fillStyle = "#111";
+
+    roundRect(
+        60,
+        60,
+        canvas.width - 120,
+        canvas.height - 120,
+        18
+    );
+
+}
+
+function roundRect(x,y,w,h,r){
+
+    ctx.beginPath();
+
+    ctx.moveTo(x+r,y);
+
+    ctx.lineTo(x+w-r,y);
+
+    ctx.quadraticCurveTo(x+w,y,x+w,y+r);
+
+    ctx.lineTo(x+w,y+h-r);
+
+    ctx.quadraticCurveTo(x+w,y+h,x+w-r,y+h);
+
+    ctx.lineTo(x+r,y+h);
+
+    ctx.quadraticCurveTo(x,y+h,x,y+h-r);
+
+    ctx.lineTo(x,y+r);
+
+    ctx.quadraticCurveTo(x,y,x+r,y);
+
+    ctx.closePath();
+
+    ctx.fill();
+
+}
         }
 
         draw();
