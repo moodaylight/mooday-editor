@@ -263,7 +263,66 @@ upload.addEventListener("change",(e)=>{
 
             imgY = canvas.height / 2;
 
-            imgScale = 1;
+            // =====================
+// 可视区域真实尺寸
+// =====================
+
+const frameWidth = 12;
+const frameHeight = 17.5;
+
+const visibleWidth = 9.8;
+const visibleHeight = 15.3;
+
+// =====================
+// Canvas边距
+// =====================
+
+const marginX = 20;
+
+// =====================
+// 外框尺寸
+// =====================
+
+const outerW =
+canvas.width - marginX * 2;
+
+const outerH =
+canvas.height - marginX * 2;
+
+// =====================
+// 可视区域比例
+// =====================
+
+const visibleRatioX =
+visibleWidth / frameWidth;
+
+const visibleRatioY =
+visibleHeight / frameHeight;
+
+// =====================
+// 可视区域像素大小
+// =====================
+
+const visibleW =
+outerW * visibleRatioX;
+
+const visibleH =
+outerH * visibleRatioY;
+
+// =====================
+// Cover算法
+// =====================
+
+const scaleX =
+visibleW / image.width;
+
+const scaleY =
+visibleH / image.height;
+
+// 自动铺满（关键）
+
+imgScale =
+Math.max(scaleX, scaleY);
 
             imgRotation = 0;
 
