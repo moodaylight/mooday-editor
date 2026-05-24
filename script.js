@@ -51,7 +51,6 @@ let initialTextSize = 0;
 let initialTextRotation = 0;
 
 let initialImageScale = 1;
-let initialImageRotation = 0;
 
 // =====================
 // 画布大小
@@ -596,10 +595,7 @@ function draw(){
 
     ctx.translate(imgX,imgY);
 
-    ctx.rotate(
-        imgRotation * Math.PI / 180
-    );
-
+    
     ctx.drawImage(
         image,
         -w / 2,
@@ -706,7 +702,6 @@ canvas.addEventListener("touchstart",(e)=>{
 
             initialImageScale = imgScale;
 
-            initialImageRotation = imgRotation;
 
         }
 
@@ -859,10 +854,6 @@ canvas.addEventListener("touchmove",(e)=>{
             imgScale =
 
             initialImageScale * scale;
-
-            imgRotation =
-
-            initialImageRotation + rotation;
 
            
         }
