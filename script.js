@@ -4,6 +4,8 @@ const ctx = canvas.getContext("2d");
 const upload = document.getElementById("upload");
 const addTextBtn = document.getElementById("addText");
 const textInput = document.getElementById("textInput");
+const colorPicker =
+document.getElementById("colorPicker");
 const deleteTextBtn = document.getElementById("deleteText");
 const moveUpBtn = document.getElementById("moveUp");
 const moveDownBtn = document.getElementById("moveDown");
@@ -383,7 +385,17 @@ textInput.addEventListener("input",()=>{
     }
 
 });
+colorPicker.addEventListener("input",()=>{
 
+    if(selectedText){
+
+        selectedText.color = colorPicker.value;
+
+        draw();
+
+    }
+
+});
 // =====================
 // 绘制
 // =====================
