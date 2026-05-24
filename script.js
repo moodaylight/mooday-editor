@@ -5,6 +5,8 @@ const upload = document.getElementById("upload");
 const addTextBtn = document.getElementById("addText");
 const textInput = document.getElementById("textInput");
 const deleteTextBtn = document.getElementById("deleteText");
+const moveUpBtn = document.getElementById("moveUp");
+const moveDownBtn = document.getElementById("moveDown");
 const layerPanel = document.getElementById("layerPanel");
 
 // =====================
@@ -322,6 +324,44 @@ deleteTextBtn.addEventListener("click",()=>{
     texts = texts.filter(t => t !== selectedText);
 
     selectedText = null;
+
+    draw();
+
+    updateLayerPanel();
+
+});
+moveUpBtn.addEventListener("click",()=>{
+
+    if(!selectedText) return;
+
+    const index = texts.indexOf(selectedText);
+
+    if(index < texts.length - 1){
+
+        [texts[index], texts[index + 1]] =
+
+        [texts[index + 1], texts[index]];
+
+    }
+
+    draw();
+
+    updateLayerPanel();
+
+});
+moveDownBtn.addEventListener("click",()=>{
+
+    if(!selectedText) return;
+
+    const index = texts.indexOf(selectedText);
+
+    if(index > 0){
+
+        [texts[index], texts[index - 1]] =
+
+        [texts[index - 1], texts[index]];
+
+    }
 
     draw();
 
