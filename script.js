@@ -1207,10 +1207,9 @@ function drawFrame(){
 
     roundRect(
         visibleX - innerThickness,
-        visibleY - innerThickness+1,
+        visibleY - innerThickness,
         visibleW + innerThickness * 2,
-        visibleH + innerThickness * 2
-        -1,
+        visibleH + innerThickness * 2,
         24
     );
 
