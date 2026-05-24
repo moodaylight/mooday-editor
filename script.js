@@ -1062,7 +1062,9 @@ canvas.addEventListener("touchend",()=>{
 // =====================
 function drawFrame(){
 
-    // 实际比例
+    // =====================
+    // 实际尺寸
+    // =====================
 
     const frameWidth = 12;
     const frameHeight = 17.5;
@@ -1070,12 +1072,27 @@ function drawFrame(){
     const visibleWidth = 9.8;
     const visibleHeight = 15.3;
 
-    // 边距
+    // =====================
+    // 边框真实结构
+    // =====================
+
+    // 总边框 11mm
+    // 外凸 7.5mm
+    // 内凹 3.5mm
+
+    const outerFrameSize = 7.5;
+    const innerFrameSize = 3.5;
+
+    // =====================
+    // 外边距
+    // =====================
 
     const marginX = 20;
     const marginTop = 10;
 
-    // 外框
+    // =====================
+    // 外框尺寸
+    // =====================
 
     const outerX = marginX;
     const outerY = marginTop;
@@ -1086,7 +1103,9 @@ function drawFrame(){
     const outerH =
     canvas.height - marginX * 2;
 
+    // =====================
     // 可视区域比例
+    // =====================
 
     const visibleRatioX =
     visibleWidth / frameWidth;
@@ -1100,7 +1119,9 @@ function drawFrame(){
     const visibleH =
     outerH * visibleRatioY;
 
+    // =====================
     // 可视区域位置
+    // =====================
 
     const visibleX =
     (canvas.width - visibleW) / 2;
@@ -1109,13 +1130,35 @@ function drawFrame(){
     outerY + (outerH - visibleH) / 2;
 
     // =====================
+    // 边框比例计算
+    // =====================
+
+    const totalFrame =
+    outerFrameSize + innerFrameSize;
+
+    const outerRatio =
+    outerFrameSize / totalFrame;
+
+    const innerRatio =
+    innerFrameSize / totalFrame;
+
+    const frameThickness =
+    (outerW - visibleW) / 2;
+
+    const outerThickness =
+    frameThickness * outerRatio;
+
+    const innerThickness =
+    frameThickness * innerRatio;
+
+    // =====================
     // 外框
     // =====================
 
     ctx.shadowColor =
-    "rgba(0,0,0,0.25)";
+    "rgba(0,0,0,0.20)";
 
-    ctx.shadowBlur = 6;
+    ctx.shadowBlur = 5;
 
     ctx.shadowOffsetY = 2;
 
@@ -1147,7 +1190,9 @@ function drawFrame(){
         35
     );
 
+    // =====================
     // 清除阴影
+    // =====================
 
     ctx.shadowBlur = 0;
 
@@ -1161,14 +1206,16 @@ function drawFrame(){
     ctx.fillStyle = "#d4d4d4";
 
     roundRect(
-        visibleX - 4,
-        visibleY - 4,
-        visibleW + 8,
-        visibleH + 8,
+        visibleX - innerThickness,
+        visibleY - innerThickness,
+        visibleW + innerThickness * 2,
+        visibleH + innerThickness * 2,
         24
     );
 
-    // 下边暗边（凹陷感）
+    // =====================
+    // 内凹下边暗边
+    // =====================
 
     ctx.fillStyle =
     "rgba(0,0,0,0.12)";
