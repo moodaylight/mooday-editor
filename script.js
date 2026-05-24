@@ -22,6 +22,63 @@ let image = new Image();
 image.src = "default.png";
 image.onload = function(){
 
+    // =====================
+    // 可视区域真实尺寸
+    // =====================
+
+    const frameWidth = 12;
+    const frameHeight = 17.5;
+
+    const visibleWidth = 9.8;
+    const visibleHeight = 15.3;
+
+    const marginX = 20;
+
+    // =====================
+    // 外框尺寸
+    // =====================
+
+    const outerW =
+    canvas.width - marginX * 2;
+
+    const outerH =
+    canvas.height - marginX * 2;
+
+    // =====================
+    // 可视区域比例
+    // =====================
+
+    const visibleRatioX =
+    visibleWidth / frameWidth;
+
+    const visibleRatioY =
+    visibleHeight / frameHeight;
+
+    const visibleW =
+    outerW * visibleRatioX;
+
+    const visibleH =
+    outerH * visibleRatioY;
+
+    // =====================
+    // Cover算法
+    // =====================
+
+    const scaleX =
+    visibleW / image.width;
+
+    const scaleY =
+    visibleH / image.height;
+
+    imgScale =
+    Math.max(scaleX, scaleY);
+
+    // 自动居中
+
+    imgX = canvas.width / 2;
+
+    imgY = canvas.height / 2;
+
     draw();
 
 }
