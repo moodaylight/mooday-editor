@@ -748,7 +748,7 @@ if(lightMode === 3){
     // 深黑镜面
 
     ctx.fillStyle =
-    "rgba(15,15,15,0.78)";
+    "rgba(40,40,40,0.72)";
 
     ctx.fillRect(
         -w / 2,
