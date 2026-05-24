@@ -1073,7 +1073,7 @@ function drawFrame(){
     // 边距
 
     const marginX = 20;
-    const marginTop = 22;
+    const marginTop = 10;
 
     // 外框
 
