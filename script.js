@@ -793,54 +793,7 @@ if(lightMode === 3){
     );
 
 }
-  // =====================
-// 灯光效果
-// =====================
-
-ctx.save();
-
-ctx.fillStyle = "transparent";
-
-// 白光
-if(lightMode === 0){
-
-    ctx.fillStyle =
-    "rgba(255,255,255,0.05)";
-
-}
-
-// 暖光
-if(lightMode === 1){
-
-    ctx.fillStyle =
-    "rgba(255,210,120,0.18)";
-
-}
-
-// 日光
-if(lightMode === 2){
-
-    ctx.fillStyle =
-    "rgba(255,255,255,0.12)";
-
-}
-
-// 镜子模式
-if(lightMode === 3){
-
-    ctx.fillStyle =
-    "rgba(0,0,0,0.45)";
-
-}
-
-ctx.fillRect(
-    -w / 2,
-    -h / 2,
-    w,
-    h
-);
-ctx.filter = "none";
-ctx.restore();  
+ 
        ctx.restore();
 
 } 
