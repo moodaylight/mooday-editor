@@ -17,39 +17,68 @@
 
 <div class="app">
 
+    <!-- =========================
+    Canvas区域
+    ========================== -->
+
     <div class="canvas-wrap">
 
         <canvas id="canvas"></canvas>
 
     </div>
 
+    <!-- =========================
+    控制区
+    ========================== -->
+
     <div class="controls">
 
+        <button id="lightModeBtn">
+            灯光模式
+        </button>
+
         <input type="file" id="upload">
-<button id="lightModeBtn">
-切换灯光
-</button>
-        <input type="text" id="textInput" placeholder="输入文字">
 
-        <button id="addText">新增文字</button>
+        <input
+        type="text"
+        id="textInput"
+        placeholder="输入文字">
 
-        <button id="deleteText">删除文字</button>
+        <button id="addText">
+            新增文字
+        </button>
 
-        <button id="moveUp">图层上移</button>
-
-        <button id="moveDown">图层下移</button>
-
-        <label>发光强度</label>
-
-        <input type="range" id="glowSlider" min="0" max="50" value="20">
-
-        <label>文字颜色</label>
-
-        <input type="color" id="colorPicker" value="#ffffff">
+        <button id="deleteText">
+            删除文字
+        </button>
 
     </div>
 
+    <!-- =========================
+    图层面板
+    ========================== -->
+
     <div id="layerPanel"></div>
+
+    <!-- =========================
+    底部Dock
+    ========================== -->
+
+    <div class="bottom-dock">
+
+        <button class="dock-btn">
+            颜色
+        </button>
+
+        <button class="dock-btn">
+            发光
+        </button>
+
+        <button class="dock-btn">
+            图层
+        </button>
+
+    </div>
 
 </div>
 
