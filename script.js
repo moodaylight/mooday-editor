@@ -1215,36 +1215,6 @@ roundRect(
 // 内凹层（真实浮雕感）
 // =====================
 
-// 灰色内圈
-
-ctx.fillStyle = "#d6d6d6";
-
-roundRect(
-    visibleX - 4,
-    visibleY - 4,
-    visibleW + 8,
-    visibleH + 8,
-    24
-);
-
-// 轻微内阴影
-
-ctx.shadowColor =
-"rgba(0,0,0,0.18)";
-
-ctx.shadowBlur = 8;
-
-ctx.shadowOffsetY = 2;
-
-ctx.strokeStyle =
-"rgba(0,0,0,0.08)";
-
-ctx.lineWidth = 2;
-
-ctx.stroke();
-
-ctx.shadowBlur = 0;
-
 // 下边暗边
 
 ctx.fillStyle =
@@ -1263,94 +1233,28 @@ innerGradient.addColorStop(
     0,
     "#cfcfcf"
 );
+// =====================
+// 内凹灰框
+// =====================
 
-innerGradient.addColorStop(
-    1,
-    "#9e9e9e"
+ctx.fillStyle = "#d4d4d4";
+
+roundRect(
+    visibleX - 4,
+    visibleY - 4,
+    visibleW + 8,
+    visibleH + 8,
+    24
 );
 
-ctx.fillStyle = innerGradient;
-
-    roundRect(
-        visibleX - innerThickness,
-        visibleY - innerThickness,
-        visibleW + innerThickness * 2,
-        visibleH + innerThickness * 2,
-        22
-    );
-
-// =====================
-// 内圈柔光
-// =====================
-
-ctx.shadowColor =
-"rgba(255,255,255,0.22)";
-
-ctx.shadowBlur = 12;
+// 微阴影（下沉感）
 
 ctx.strokeStyle =
-"rgba(255,255,255,0.10)";
+"rgba(0,0,0,0.12)";
 
 ctx.lineWidth = 2;
 
-ctx.beginPath();
-
-ctx.moveTo(
-    visibleX + 18,
-    visibleY + 4
-);
-
-ctx.lineTo(
-    visibleX + visibleW - 18,
-    visibleY + 4
-);
-
-ctx.quadraticCurveTo(
-    visibleX + visibleW - 4,
-    visibleY + 4,
-    visibleX + visibleW - 4,
-    visibleY + 18
-);
-
-ctx.lineTo(
-    visibleX + visibleW - 4,
-    visibleY + visibleH - 18
-);
-
-ctx.quadraticCurveTo(
-    visibleX + visibleW - 4,
-    visibleY + visibleH - 4,
-    visibleX + visibleW - 18,
-    visibleY + visibleH - 4
-);
-
-ctx.lineTo(
-    visibleX + 18,
-    visibleY + visibleH - 4
-);
-
-ctx.quadraticCurveTo(
-    visibleX + 4,
-    visibleY + visibleH - 4,
-    visibleX + 4,
-    visibleY + visibleH - 18
-);
-
-ctx.lineTo(
-    visibleX + 4,
-    visibleY + 18
-);
-
-ctx.quadraticCurveTo(
-    visibleX + 4,
-    visibleY + 4,
-    visibleX + 18,
-    visibleY + 4
-);
-
 ctx.stroke();
-
-ctx.shadowBlur = 0;
     // =====================
     // 可视区
     // =====================
