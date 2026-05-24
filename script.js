@@ -738,11 +738,51 @@ if(lightMode === 2){
     );
 
 }
+if(lightMode === 3){
 
-// =====================
-// 镜子模式
-// =====================
- 
+    ctx.fillStyle =
+    "rgba(0,0,0,0.88)";
+
+    ctx.fillRect(
+        -w / 2,
+        -h / 2,
+        w,
+        h
+    );
+
+    const mirrorGlow =
+    ctx.createLinearGradient(
+        0,
+        -h / 2,
+        0,
+        h / 2
+    );
+
+    mirrorGlow.addColorStop(
+        0,
+        "rgba(255,255,255,0.16)"
+    );
+
+    mirrorGlow.addColorStop(
+        0.08,
+        "rgba(255,255,255,0.04)"
+    );
+
+    mirrorGlow.addColorStop(
+        0.2,
+        "rgba(255,255,255,0)"
+    );
+
+    ctx.fillStyle = mirrorGlow;
+
+    ctx.fillRect(
+        -w / 2,
+        -h / 2,
+        w,
+        h
+    );
+
+}
 
     // 文字
 
@@ -791,95 +831,7 @@ if(lightMode === 2){
         }
 
         ctx.restore();
-if(lightMode === 3){
 
-    /* =========================
-    深黑镜面遮罩
-    ========================== */
-
-    ctx.fillStyle =
-    "rgba(0,0,0,0.88)";
-
-    ctx.fillRect(
-        visibleX,
-        visibleY,
-        visibleW,
-        visibleH
-    );
-
-    /* =========================
-    镜面顶部反光
-    ========================== */
-
-    const mirrorGlow =
-    ctx.createLinearGradient(
-        0,
-        visibleY,
-        0,
-        visibleY + visibleH
-    );
-
-    mirrorGlow.addColorStop(
-        0,
-        "rgba(255,255,255,0.16)"
-    );
-
-    mirrorGlow.addColorStop(
-        0.08,
-        "rgba(255,255,255,0.04)"
-    );
-
-    mirrorGlow.addColorStop(
-        0.2,
-        "rgba(255,255,255,0)"
-    );
-
-    ctx.fillStyle = mirrorGlow;
-
-    ctx.fillRect(
-        visibleX,
-        visibleY,
-        visibleW,
-        visibleH
-    );
-
-    /* =========================
-    镜面边缘暗角
-    ========================== */
-
-    const edgeDark =
-    ctx.createRadialGradient(
-
-        visibleX + visibleW / 2,
-        visibleY + visibleH / 2,
-        visibleW * 0.2,
-
-        visibleX + visibleW / 2,
-        visibleY + visibleH / 2,
-        visibleW * 0.9
-
-    );
-
-    edgeDark.addColorStop(
-        0,
-        "rgba(0,0,0,0)"
-    );
-
-    edgeDark.addColorStop(
-        1,
-        "rgba(0,0,0,0.35)"
-    );
-
-    ctx.fillStyle = edgeDark;
-
-    ctx.fillRect(
-        visibleX,
-        visibleY,
-        visibleW,
-        visibleH
-    );
-
-}
 
 ctx.restore();
 }
