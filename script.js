@@ -17,7 +17,9 @@ const layerPanel = document.getElementById("layerPanel");
 // 数据
 // =====================
 
-let image = null;
+let image = new Image();
+
+image.src = "default.png";
 
 // 图片
 
@@ -475,7 +477,52 @@ glowSlider.addEventListener("input",()=>{
 function draw(){
 
     ctx.clearRect(0,0,canvas.width,canvas.height);
-    
+    if(image && image.complete){
+
+    if(imgScale === 1){
+
+        const frameWidth = 12;
+        const frameHeight = 17.5;
+
+        const visibleWidth = 9.8;
+        const visibleHeight = 15.3;
+
+        const marginX = 20;
+
+        const outerW =
+        canvas.width - marginX * 2;
+
+        const outerH =
+        canvas.height - marginX * 2;
+
+        const visibleRatioX =
+        visibleWidth / frameWidth;
+
+        const visibleRatioY =
+        visibleHeight / frameHeight;
+
+        const visibleW =
+        outerW * visibleRatioX;
+
+        const visibleH =
+        outerH * visibleRatioY;
+
+        const scaleX =
+        visibleW / image.width;
+
+        const scaleY =
+        visibleH / image.height;
+
+        imgScale =
+        Math.max(scaleX, scaleY);
+
+        imgX = canvas.width / 2;
+
+        imgY = canvas.height / 2;
+
+    }
+
+}
     drawFrame();
    
     // 图片
