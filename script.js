@@ -1150,24 +1150,96 @@ function drawFrame(){
     frameThickness * innerRatio;
 
     // =====================
-    // 外凸白框
-    // =====================
+// =====================
+// 外凸白框（立体感）
+// =====================
 
-    ctx.fillStyle = "#f8f8f8";
+// 外阴影
 
-    roundRect(
-        outerX,
-        outerY,
-        outerW,
-        outerH,
-        35
-    );
+ctx.shadowColor =
+"rgba(0,0,0,0.35)";
+
+ctx.shadowBlur = 40;
+
+ctx.shadowOffsetY = 18;
+
+// 主体白框
+
+const frameGradient =
+ctx.createLinearGradient(
+    outerX,
+    outerY,
+    outerX,
+    outerY + outerH
+);
+
+frameGradient.addColorStop(
+    0,
+    "#ffffff"
+);
+
+frameGradient.addColorStop(
+    0.45,
+    "#f5f5f5"
+);
+
+frameGradient.addColorStop(
+    1,
+    "#dcdcdc"
+);
+
+ctx.fillStyle = frameGradient;
+
+roundRect(
+    outerX,
+    outerY,
+    outerW,
+    outerH,
+    35
+);
+
+// 清除阴影
+
+ctx.shadowColor = "transparent";
+
+// =====================
+// 顶部高光
+// =====================
+
+ctx.fillStyle =
+"rgba(255,255,255,0.55)";
+
+roundRect(
+    outerX + 8,
+    outerY + 8,
+    outerW - 16,
+    18,
+    12
+);
 
     // =====================
     // 内凹层
     // =====================
 
-    ctx.fillStyle = "#d8d8d8";
+   const innerGradient =
+ctx.createLinearGradient(
+    visibleX,
+    visibleY,
+    visibleX,
+    visibleY + visibleH
+);
+
+innerGradient.addColorStop(
+    0,
+    "#cfcfcf"
+);
+
+innerGradient.addColorStop(
+    1,
+    "#9e9e9e"
+);
+
+ctx.fillStyle = innerGradient;
 
     roundRect(
         visibleX - innerThickness,
