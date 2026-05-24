@@ -767,8 +767,8 @@ canvas.addEventListener("touchend",()=>{
     roundRect(
         32,
         32,
-        canvas.width - 90,
-        canvas.height - 90,
+        canvas.width - 64,
+        canvas.height - 64,
         25
     );
 
@@ -778,8 +778,8 @@ canvas.addEventListener("touchend",()=>{
     roundRect(
         40,
         40,
-        canvas.width - 120,
-        canvas.height - 120,
+        canvas.width - 80,
+        canvas.height - 80,
         18
     );
 
