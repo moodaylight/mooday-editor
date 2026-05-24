@@ -584,7 +584,7 @@ function draw(){
     // =====================
 
     const marginX = 20;
-    const marginTop = 22;
+    const marginTop = 10;
 
     // =====================
     // 外框尺寸
