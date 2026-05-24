@@ -748,38 +748,103 @@ canvas.addEventListener("touchend",()=>{
 // =====================
 // 初始化
 // =====================
- function drawFrame(){
+function drawFrame(){
 
+    // =====================
+    // 真实产品尺寸
+    // =====================
+
+    const frameWidth = 12;
+
+    const frameHeight = 17.5;
+
+    const visibleWidth = 9.8;
+
+    const visibleHeight = 15.3;
+
+    // =====================
+    // 画布边距
+    // =====================
+
+    const outerMargin = 20;
+
+    // =====================
+    // 外框尺寸
+    // =====================
+
+    const outerX = outerMargin;
+
+    const outerY = outerMargin;
+
+    const outerW = canvas.width - outerMargin * 2;
+
+    const outerH = canvas.height - outerMargin * 2;
+
+    // =====================
+    // 可视区真实比例
+    // =====================
+
+    const visibleRatioX =
+    visibleWidth / frameWidth;
+
+    const visibleRatioY =
+    visibleHeight / frameHeight;
+
+    const visibleW =
+    outerW * visibleRatioX;
+
+    const visibleH =
+    outerH * visibleRatioY;
+
+    // =====================
+    // 可视区居中
+    // =====================
+
+    const visibleX =
+    (canvas.width - visibleW) / 2;
+
+    const visibleY =
+    (canvas.height - visibleH) / 2;
+
+    // =====================
     // 外框
+    // =====================
+
     ctx.fillStyle = "#f8f8f8";
 
     roundRect(
-        20,
-        20,
-        canvas.width - 40,
-        canvas.height - 40,
+        outerX,
+        outerY,
+        outerW,
+        outerH,
         35
     );
 
+    // =====================
     // 内凹层
+    // =====================
+
     ctx.fillStyle = "#dcdcdc";
 
     roundRect(
-        32,
-        32,
-        canvas.width - 64,
-        canvas.height - 64,
-        25
+        visibleX - 12,
+        visibleY - 12,
+        visibleW + 24,
+        visibleH + 24,
+        24
     );
 
+    // =====================
     // 可视区
+    // =====================
+
     ctx.fillStyle = "#111";
 
     roundRect(
-        40,
-        40,
-        canvas.width - 80,
-        canvas.height - 80,
+        visibleX,
+        visibleY,
+        visibleW,
+        visibleH,
         18
     );
 
