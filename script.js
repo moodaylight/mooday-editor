@@ -87,15 +87,15 @@ function getTextBounds(text){
 
     return {
 
-        left: text.x - width / 2 - 10,
+    left: text.x - width / 2 - 10,
 
-        right: text.x + width / 2 + 10,
+    right: text.x + width / 2 + 10,
 
-       top: text.y - text.size + 25,
+    top: text.y - text.size / 2 - 10,
 
-bottom: text.y + 35 
-    };
+    bottom: text.y + text.size / 2 + 10
 
+};
 }
 
 // =====================
