@@ -742,7 +742,55 @@ if(lightMode === 2){
 // =====================
 // 镜子模式
 // =====================
+ 
 
+    // 文字
+
+    texts.forEach(text=>{
+
+        ctx.save();
+
+        ctx.translate(text.x,text.y);
+
+        ctx.rotate(text.rotation * Math.PI / 180);
+
+        ctx.font = `${text.size}px sans-serif`;
+
+        ctx.fillStyle = text.color;
+
+       ctx.shadowColor = text.color;
+
+       ctx.shadowBlur = text.glow;
+       
+        ctx.textAlign = "center";
+
+        ctx.textBaseline = "middle";
+        
+        ctx.fillText(text.content,0,0);
+
+        if(text === selectedText){
+
+            const box = getTextBounds(text);
+
+            ctx.strokeStyle = "#7b5cff";
+
+            ctx.lineWidth = 2;
+
+            ctx.strokeRect(
+
+                box.left - text.x,
+
+                box.top - text.y,
+
+                box.right - box.left,
+
+                box.bottom - box.top
+
+            );
+
+        }
+
+        ctx.restore();
 if(lightMode === 3){
 
     /* =========================
@@ -834,56 +882,7 @@ if(lightMode === 3){
 }
 
 ctx.restore();
-} 
-
-    // 文字
-
-    texts.forEach(text=>{
-
-        ctx.save();
-
-        ctx.translate(text.x,text.y);
-
-        ctx.rotate(text.rotation * Math.PI / 180);
-
-        ctx.font = `${text.size}px sans-serif`;
-
-        ctx.fillStyle = text.color;
-
-       ctx.shadowColor = text.color;
-
-       ctx.shadowBlur = text.glow;
-       
-        ctx.textAlign = "center";
-
-        ctx.textBaseline = "middle";
-        
-        ctx.fillText(text.content,0,0);
-
-        if(text === selectedText){
-
-            const box = getTextBounds(text);
-
-            ctx.strokeStyle = "#7b5cff";
-
-            ctx.lineWidth = 2;
-
-            ctx.strokeRect(
-
-                box.left - text.x,
-
-                box.top - text.y,
-
-                box.right - box.left,
-
-                box.bottom - box.top
-
-            );
-
-        }
-
-        ctx.restore();
-
+}
     });
 
 }
