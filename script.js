@@ -814,8 +814,7 @@ function drawFrame(){
     (canvas.width - visibleW) / 2;
 
     const visibleY =
-    (canvas.height - visibleH) / 2;
-
+    outerY + (outerH - visibleH) / 2;
     // =====================
     // 实际比例计算
     // =====================
