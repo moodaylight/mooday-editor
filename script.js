@@ -1217,17 +1217,72 @@ roundRect(
     12
 );
 
-    // =====================
-    // 内凹层
-    // =====================
+ // =====================
+// 内凹层（真实浮雕感）
+// =====================
 
-   const innerGradient =
+// 上亮下暗渐变
+
+const innerGradient =
 ctx.createLinearGradient(
     visibleX,
     visibleY,
     visibleX,
     visibleY + visibleH
 );
+
+innerGradient.addColorStop(
+    0,
+    "#f0f0f0"
+);
+
+innerGradient.addColorStop(
+    0.45,
+    "#d9d9d9"
+);
+
+innerGradient.addColorStop(
+    1,
+    "#bdbdbd"
+);
+
+ctx.fillStyle =
+innerGradient;
+
+roundRect(
+    visibleX - 4,
+    visibleY - 4,
+    visibleW + 8,
+    visibleH + 8,
+    24
+);
+
+// 左边亮边
+
+ctx.fillStyle =
+"rgba(255,255,255,0.18)";
+
+roundRect(
+    visibleX - 3,
+    visibleY + 8,
+    2,
+    visibleH - 16,
+    2
+);
+
+// 下边暗边
+
+ctx.fillStyle =
+"rgba(0,0,0,0.10)";
+
+roundRect(
+    visibleX + 8,
+    visibleY + visibleH + 1,
+    visibleW - 16,
+    2,
+    2
+);   
+  
 
 innerGradient.addColorStop(
     0,
