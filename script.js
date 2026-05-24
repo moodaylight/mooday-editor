@@ -765,8 +765,8 @@ canvas.addEventListener("touchend",()=>{
     ctx.fillStyle = "#dcdcdc";
 
     roundRect(
-        45,
-        45,
+        32,
+        32,
         canvas.width - 90,
         canvas.height - 90,
         25
@@ -776,8 +776,8 @@ canvas.addEventListener("touchend",()=>{
     ctx.fillStyle = "#111";
 
     roundRect(
-        60,
-        60,
+        40,
+        40,
         canvas.width - 120,
         canvas.height - 120,
         18
