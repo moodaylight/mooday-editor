@@ -851,12 +851,53 @@ canvas.addEventListener("touchmove",(e)=>{
 
         if(imageSelected){
 
-            imgScale =
+    imgScale =
+    initialImageScale * scale;
 
-            initialImageScale * scale;
+    // =====================
+    // 最小缩放限制（防露白）
+    // =====================
 
-           
-        }
+    const frameWidth = 12;
+    const frameHeight = 17.5;
+
+    const visibleWidth = 9.8;
+    const visibleHeight = 15.3;
+
+    const marginX = 20;
+
+    const outerW =
+    canvas.width - marginX * 2;
+
+    const outerH =
+    canvas.height - marginX * 2;
+
+    const visibleRatioX =
+    visibleWidth / frameWidth;
+
+    const visibleRatioY =
+    visibleHeight / frameHeight;
+
+    const visibleW =
+    outerW * visibleRatioX;
+
+    const visibleH =
+    outerH * visibleRatioY;
+
+    // Cover最小值
+
+    const minScale =
+    Math.max(
+        visibleW / image.width,
+        visibleH / image.height
+    );
+
+    // 不允许缩小到露白
+
+    imgScale =
+    Math.max(imgScale, minScale);
+
+}
 
         draw();
 
