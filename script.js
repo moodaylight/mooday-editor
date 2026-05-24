@@ -774,19 +774,21 @@ function drawFrame(){
     // 外边距
     // =====================
 
-    const margin = 20;
+    const marginX = 20;
+
+    const marginTop = 10;
 
     // =====================
     // 外框
     // =====================
 
-    const outerX = margin;
+    const outerX = marginX;
 
-    const outerY = margin;
+    const outerY = marginTop;
 
-    const outerW = canvas.width - margin * 2;
+   const outerW = canvas.width - marginX * 2;
 
-    const outerH = canvas.height - margin * 2;
+   const outerH = canvas.height - marginTop * 2;
 
     // =====================
     // 可视区比例
