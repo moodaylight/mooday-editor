@@ -1159,9 +1159,9 @@ function drawFrame(){
 ctx.shadowColor =
 "rgba(0,0,0,0.35)";
 
-ctx.shadowBlur = 40;
+ctx.shadowBlur = 6;
 
-ctx.shadowOffsetY = 18;
+ctx.shadowOffsetY = 2;
 
 // 主体白框
 
@@ -1207,7 +1207,7 @@ ctx.shadowColor = "transparent";
 // =====================
 
 ctx.fillStyle =
-"rgba(255,255,255,0.55)";
+"rgba(255,255,255,0.08)";
 
 roundRect(
     outerX + 8,
@@ -1248,50 +1248,6 @@ ctx.fillStyle = innerGradient;
         visibleH + innerThickness * 2,
         22
     );
-// =====================
-// 左侧高光
-// =====================
-
-ctx.fillStyle =
-"rgba(255,255,255,0.38)";
-
-roundRect(
-    outerX + 6,
-    outerY + 10,
-    10,
-    outerH - 20,
-    8
-);
-
-// =====================
-// 顶部高光
-// =====================
-
-ctx.fillStyle =
-"rgba(255,255,255,0.22)";
-
-roundRect(
-    outerX + 12,
-    outerY + 10,
-    outerW - 24,
-    8,
-    6
-);
-
-// =====================
-// 底部暗边
-// =====================
-
-ctx.fillStyle =
-"rgba(0,0,0,0.08)";
-
-roundRect(
-    outerX + 18,
-    outerY + outerH - 18,
-    outerW - 36,
-    10,
-    6
-);
 
 // =====================
 // 内圈柔光
