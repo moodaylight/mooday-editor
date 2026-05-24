@@ -788,7 +788,7 @@ function drawFrame(){
 
    const outerW = canvas.width - marginX * 2;
 
-   const outerH = canvas.height - marginTop * 2;
+   const outerH = canvas.height - marginX * 2;
 
     // =====================
     // 可视区比例
