@@ -738,24 +738,37 @@ if(lightMode === 2){
     );
 
 }
+
+// =====================
+// 镜子模式
+// =====================
+
 if(lightMode === 3){
+
+    /* =========================
+    深黑镜面遮罩
+    ========================== */
 
     ctx.fillStyle =
     "rgba(0,0,0,0.88)";
 
     ctx.fillRect(
-        -w / 2,
-        -h / 2,
-        w,
-        h
+        frameX,
+        frameY,
+        frameW,
+        frameH
     );
+
+    /* =========================
+    镜面顶部反光
+    ========================== */
 
     const mirrorGlow =
     ctx.createLinearGradient(
         0,
-        -h / 2,
+        frameY,
         0,
-        h / 2
+        frameY + frameH
     );
 
     mirrorGlow.addColorStop(
@@ -776,13 +789,53 @@ if(lightMode === 3){
     ctx.fillStyle = mirrorGlow;
 
     ctx.fillRect(
-        -w / 2,
-        -h / 2,
-        w,
-        h
+        frameX,
+        frameY,
+        frameW,
+        frameH
+    );
+
+    /* =========================
+    镜面边缘暗角
+    ========================== */
+
+    const edgeDark =
+    ctx.createRadialGradient(
+
+        frameX + frameW / 2,
+        frameY + frameH / 2,
+        frameW * 0.2,
+
+        frameX + frameW / 2,
+        frameY + frameH / 2,
+        frameW * 0.9
+
+    );
+
+    edgeDark.addColorStop(
+        0,
+        "rgba(0,0,0,0)"
+    );
+
+    edgeDark.addColorStop(
+        1,
+        "rgba(0,0,0,0.35)"
+    );
+
+    ctx.fillStyle = edgeDark;
+
+    ctx.fillRect(
+        frameX,
+        frameY,
+        frameW,
+        frameH
     );
 
 }
+
+ctx.restore();
+
+} 
 
     // 文字
 
@@ -832,9 +885,6 @@ if(lightMode === 3){
 
         ctx.restore();
 
-
-ctx.restore();
-}
     });
 
 }
@@ -1101,8 +1151,6 @@ canvas.addEventListener("touchend",()=>{
 // =====================
 function drawFrame(){
 
-    ctx.save();
-
     // =====================
     // 实际尺寸
     // =====================
@@ -1282,7 +1330,6 @@ function drawFrame(){
     visibleH + 2,
     18
 );
-ctx.restore();
 }
 
 function roundRect(x,y,w,h,r){
