@@ -387,3 +387,45 @@ input[type="range"]::-webkit-slider-thumb{
     border:none;
 
 }
+
+/* =========================
+颜色选择器高级化
+========================= */
+
+input[type="color"]{
+
+    width:100%;
+
+    height:56px;
+
+    padding:6px;
+
+    border-radius:18px;
+
+    border:1px solid rgba(255,255,255,0.08);
+
+    background:rgba(255,255,255,0.05);
+
+    box-sizing:border-box;
+
+    overflow:hidden;
+
+}
+
+/* =========================
+颜色内部区域
+========================= */
+
+input[type="color"]::-webkit-color-swatch{
+
+    border:none;
+
+    border-radius:12px;
+
+}
+
+input[type="color"]::-webkit-color-swatch-wrapper{
+
+    padding:0;
+
+}
