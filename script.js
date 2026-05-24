@@ -974,9 +974,27 @@ canvas.addEventListener("touchmove",(e)=>{
 
         if(draggingText && selectedText){
 
-            selectedText.x = x;
+            selectedText.x = Math.max(
 
-            selectedText.y = y;
+    visibleX + 20,
+
+    Math.min(
+        x,
+        visibleX + visibleW - 20
+    )
+
+);
+
+selectedText.y = Math.max(
+
+    visibleY + 20,
+
+    Math.min(
+        y,
+        visibleY + visibleH - 20
+    )
+
+);
 
         }
 
