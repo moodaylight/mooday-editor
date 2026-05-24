@@ -12,7 +12,8 @@ const deleteTextBtn = document.getElementById("deleteText");
 const moveUpBtn = document.getElementById("moveUp");
 const moveDownBtn = document.getElementById("moveDown");
 const layerPanel = document.getElementById("layerPanel");
-
+const lightModeBtn =
+document.getElementById("lightModeBtn");
 // =====================
 // 数据
 // =====================
@@ -99,7 +100,11 @@ let selectedText = null;
 // 当前是否选中图片
 
 let imageSelected = false;
+// =====================
+// 灯光模式
+// =====================
 
+let lightMode = 0;
 // 拖动状态
 
 let draggingText = false;
@@ -532,6 +537,25 @@ glowSlider.addEventListener("input",()=>{
 
 });
 // =====================
+// 灯光切换
+// =====================
+
+lightModeBtn.addEventListener(
+"click",
+()=>{
+
+    lightMode++;
+
+    if(lightMode > 3){
+
+        lightMode = 0;
+
+    }
+
+    draw();
+
+});
+// =====================
 // 绘制
 // =====================
 
@@ -666,7 +690,69 @@ function draw(){
         w,
         h
     );
+// =====================
+// 灯光效果
+// =====================
 
+// 白光
+if(lightMode === 0){
+
+    ctx.fillStyle =
+    "rgba(255,255,255,0.05)";
+
+    ctx.fillRect(
+        -w / 2,
+        -h / 2,
+        w,
+        h
+    );
+
+}
+
+// 暖光
+if(lightMode === 1){
+
+    ctx.fillStyle =
+    "rgba(255,210,120,0.18)";
+
+    ctx.fillRect(
+        -w / 2,
+        -h / 2,
+        w,
+        h
+    );
+
+}
+
+// 日光
+if(lightMode === 2){
+
+    ctx.fillStyle =
+    "rgba(255,255,255,0.12)";
+
+    ctx.fillRect(
+        -w / 2,
+        -h / 2,
+        w,
+        h
+    );
+
+}
+
+// 镜子模式
+if(lightMode === 3){
+
+    ctx.fillStyle =
+    "rgba(0,0,0,0.45)";
+
+    ctx.fillRect(
+        -w / 2,
+        -h / 2,
+        w,
+        h
+    );
+
+}
     ctx.restore();
 
 } 
