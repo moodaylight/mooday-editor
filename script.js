@@ -726,7 +726,7 @@ if(lightMode === 2){
 if(lightMode === 3){
 
     ctx.fillStyle =
-    "rgba(0,0,0,0.45)";
+    "rgba(10,10,10,0.82)";
 
     ctx.fillRect(
         -w / 2,
