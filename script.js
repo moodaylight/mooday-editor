@@ -739,10 +739,6 @@ if(lightMode === 2){
 
 }
 
-// =====================
-// 镜子模式
-// =====================
-
 if(lightMode === 3){
 
     /* =========================
@@ -836,7 +832,7 @@ if(lightMode === 3){
 ctx.restore();
 
 } 
-
+ctx.restore();
     // 文字
 
     texts.forEach(text=>{
