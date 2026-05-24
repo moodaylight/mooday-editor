@@ -109,7 +109,8 @@ let lightMode = 0;
 
 let draggingText = false;
 let draggingImage = false;
-
+let dragOffsetX = 0;
+let dragOffsetY = 0;
 // 双指状态
 
 let initialPinchDistance = 0;
@@ -941,7 +942,8 @@ canvas.addEventListener("touchstart",(e)=>{
     draggingImage = true;
 
     draggingText = false;
-
+dragOffsetX = x - imgX;
+dragOffsetY = y - imgY;
     draw();
 
     updateLayerPanel();
@@ -982,11 +984,11 @@ canvas.addEventListener("touchmove",(e)=>{
 
         if(draggingImage && imageSelected){
 
-            imgX = x;
+    imgX = x - dragOffsetX;
 
-            imgY = y;
+    imgY = y - dragOffsetY;
 
-        }
+}
 
         draw();
 
