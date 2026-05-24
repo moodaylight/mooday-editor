@@ -1062,49 +1062,31 @@ canvas.addEventListener("touchend",()=>{
 // =====================
 function drawFrame(){
 
-    // =====================
-    // 真实尺寸
-    // =====================
+    // 实际比例
 
     const frameWidth = 12;
-
     const frameHeight = 17.5;
 
     const visibleWidth = 9.8;
-
     const visibleHeight = 15.3;
 
-    // =====================
-    // 边框真实结构
-    // =====================
-
-    const outerFrameSize = 0.75;
-
-    const innerFrameSize = 0.35;
-
-    // =====================
-    // 外边距
-    // =====================
+    // 边距
 
     const marginX = 20;
+    const marginTop = 22;
 
-    const marginTop = 10;
-
-    // =====================
     // 外框
-    // =====================
 
     const outerX = marginX;
-
     const outerY = marginTop;
 
-   const outerW = canvas.width - marginX * 2;
+    const outerW =
+    canvas.width - marginX * 2;
 
-   const outerH = canvas.height - marginX * 2;
+    const outerH =
+    canvas.height - marginX * 2;
 
-    // =====================
-    // 可视区比例
-    // =====================
+    // 可视区域比例
 
     const visibleRatioX =
     visibleWidth / frameWidth;
@@ -1118,150 +1100,92 @@ function drawFrame(){
     const visibleH =
     outerH * visibleRatioY;
 
-    // =====================
-    // 可视区位置
-    // =====================
+    // 可视区域位置
 
     const visibleX =
     (canvas.width - visibleW) / 2;
 
     const visibleY =
     outerY + (outerH - visibleH) / 2;
-    // =====================
-    // 实际比例计算
-    // =====================
-
-    const totalFrame =
-    outerFrameSize + innerFrameSize;
-
-    const outerRatio =
-    outerFrameSize / totalFrame;
-
-    const innerRatio =
-    innerFrameSize / totalFrame;
-
-    const frameThickness =
-    (outerW - visibleW) / 2;
-
-    const outerThickness =
-    frameThickness * outerRatio;
-
-    const innerThickness =
-    frameThickness * innerRatio;
 
     // =====================
-// =====================
-// 外凸白框（立体感）
-// =====================
-
-// 外阴影
-
-ctx.shadowColor =
-"rgba(0,0,0,0.35)";
-
-ctx.shadowBlur = 6;
-
-ctx.shadowOffsetY = 2;
-
-// 主体白框
-
-const frameGradient =
-ctx.createLinearGradient(
-    outerX,
-    outerY,
-    outerX,
-    outerY + outerH
-);
-
-frameGradient.addColorStop(
-    0,
-    "#fafafa"
-);
-
-frameGradient.addColorStop(
-    1,
-    "#ececec"
-);
-ctx.fillStyle = frameGradient;
-
-roundRect(
-    outerX,
-    outerY,
-    outerW,
-    outerH,
-    35
-);
-
-// 清除阴影
-
-ctx.shadowColor = "transparent";
-
-// =====================
-// 顶部高光
-// =====================
-
-ctx.fillStyle =
-"rgba(255,255,255,0.08)";
-
-roundRect(
-    outerX + 8,
-    outerY + 8,
-    outerW - 16,
-    18,
-    12
-);
-
- // =====================
-// 内凹层（真实浮雕感）
-// =====================
-
-// 下边暗边
-
-ctx.fillStyle =
-"rgba(0,0,0,0.10)";
-
-roundRect(
-    visibleX + 8,
-    visibleY + visibleH + 1,
-    visibleW - 16,
-    2,
-    2
-);   
-  
-
-innerGradient.addColorStop(
-    0,
-    "#cfcfcf"
-);
-// =====================
-// 内凹灰框
-// =====================
-
-ctx.fillStyle = "#d4d4d4";
-
-roundRect(
-    visibleX - 4,
-    visibleY - 4,
-    visibleW + 8,
-    visibleH + 8,
-    24
-);
-
-// 微阴影（下沉感）
-
-ctx.strokeStyle =
-"rgba(0,0,0,0.12)";
-
-ctx.lineWidth = 2;
-
-ctx.stroke();
+    // 外框
     // =====================
-    // 可视区
-    // =====================
-ctx.shadowBlur = 0;
 
-ctx.shadowColor = "transparent";
-   ctx.fillStyle = "#1a1a1a";
+    ctx.shadowColor =
+    "rgba(0,0,0,0.25)";
+
+    ctx.shadowBlur = 6;
+
+    ctx.shadowOffsetY = 2;
+
+    const frameGradient =
+    ctx.createLinearGradient(
+        outerX,
+        outerY,
+        outerX,
+        outerY + outerH
+    );
+
+    frameGradient.addColorStop(
+        0,
+        "#fafafa"
+    );
+
+    frameGradient.addColorStop(
+        1,
+        "#ececec"
+    );
+
+    ctx.fillStyle = frameGradient;
+
+    roundRect(
+        outerX,
+        outerY,
+        outerW,
+        outerH,
+        35
+    );
+
+    // 清除阴影
+
+    ctx.shadowBlur = 0;
+
+    ctx.shadowColor =
+    "transparent";
+
+    // =====================
+    // 内凹灰框
+    // =====================
+
+    ctx.fillStyle = "#d4d4d4";
+
+    roundRect(
+        visibleX - 4,
+        visibleY - 4,
+        visibleW + 8,
+        visibleH + 8,
+        24
+    );
+
+    // 下边暗边（凹陷感）
+
+    ctx.fillStyle =
+    "rgba(0,0,0,0.12)";
+
+    roundRect(
+        visibleX + 8,
+        visibleY + visibleH + 1,
+        visibleW - 16,
+        2,
+        2
+    );
+
+    // =====================
+    // 黑镜区域
+    // =====================
+
+    ctx.fillStyle = "#1a1a1a";
 
     roundRect(
         visibleX,
