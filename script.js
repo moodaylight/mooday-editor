@@ -724,7 +724,31 @@ canvas.addEventListener("touchmove",(e)=>{
 
             initialImageRotation + rotation;
 
-            function drawFrame(){
+           
+        }
+
+        draw();
+
+    }
+
+});
+
+// =====================
+// Touch End
+// =====================
+
+canvas.addEventListener("touchend",()=>{
+
+    draggingText = false;
+
+    draggingImage = false;
+
+});
+
+// =====================
+// 初始化
+// =====================
+ function drawFrame(){
 
     // 外框
     ctx.fillStyle = "#f8f8f8";
@@ -788,30 +812,6 @@ function roundRect(x,y,w,h,r){
     ctx.fill();
 
 }
-        }
-
-        draw();
-
-    }
-
-});
-
-// =====================
-// Touch End
-// =====================
-
-canvas.addEventListener("touchend",()=>{
-
-    draggingText = false;
-
-    draggingImage = false;
-
-});
-
-// =====================
-// 初始化
-// =====================
-
 updateLayerPanel();
 
 draw();
