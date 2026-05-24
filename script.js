@@ -745,40 +745,36 @@ if(lightMode === 2){
 
 if(lightMode === 3){
 
-    /* =========================
-    深黑镜面遮罩
-    ========================== */
+    // 深黑镜面
 
     ctx.fillStyle =
-    "rgba(0,0,0,0.88)";
+    "rgba(0,0,0,0.82)";
 
     ctx.fillRect(
-        frameX,
-        frameY,
-        frameW,
-        frameH
+        -w / 2,
+        -h / 2,
+        w,
+        h
     );
 
-    /* =========================
-    镜面顶部反光
-    ========================== */
+    // 顶部镜面反光
 
     const mirrorGlow =
     ctx.createLinearGradient(
         0,
-        frameY,
+        -h / 2,
         0,
-        frameY + frameH
+        h / 2
     );
 
     mirrorGlow.addColorStop(
         0,
-        "rgba(255,255,255,0.16)"
+        "rgba(255,255,255,0.18)"
     );
 
     mirrorGlow.addColorStop(
         0.08,
-        "rgba(255,255,255,0.04)"
+        "rgba(255,255,255,0.05)"
     );
 
     mirrorGlow.addColorStop(
@@ -789,46 +785,10 @@ if(lightMode === 3){
     ctx.fillStyle = mirrorGlow;
 
     ctx.fillRect(
-        frameX,
-        frameY,
-        frameW,
-        frameH
-    );
-
-    /* =========================
-    镜面边缘暗角
-    ========================== */
-
-    const edgeDark =
-    ctx.createRadialGradient(
-
-        frameX + frameW / 2,
-        frameY + frameH / 2,
-        frameW * 0.2,
-
-        frameX + frameW / 2,
-        frameY + frameH / 2,
-        frameW * 0.9
-
-    );
-
-    edgeDark.addColorStop(
-        0,
-        "rgba(0,0,0,0)"
-    );
-
-    edgeDark.addColorStop(
-        1,
-        "rgba(0,0,0,0.35)"
-    );
-
-    ctx.fillStyle = edgeDark;
-
-    ctx.fillRect(
-        frameX,
-        frameY,
-        frameW,
-        frameH
+        -w / 2,
+        -h / 2,
+        w,
+        h
     );
 
 }
