@@ -1248,7 +1248,73 @@ ctx.fillStyle = innerGradient;
         visibleH + innerThickness * 2,
         22
     );
+// =====================
+// 左侧高光
+// =====================
 
+ctx.fillStyle =
+"rgba(255,255,255,0.38)";
+
+roundRect(
+    outerX + 6,
+    outerY + 10,
+    10,
+    outerH - 20,
+    8
+);
+
+// =====================
+// 顶部高光
+// =====================
+
+ctx.fillStyle =
+"rgba(255,255,255,0.22)";
+
+roundRect(
+    outerX + 12,
+    outerY + 10,
+    outerW - 24,
+    8,
+    6
+);
+
+// =====================
+// 底部暗边
+// =====================
+
+ctx.fillStyle =
+"rgba(0,0,0,0.08)";
+
+roundRect(
+    outerX + 18,
+    outerY + outerH - 18,
+    outerW - 36,
+    10,
+    6
+);
+
+// =====================
+// 内圈微发光
+// =====================
+
+ctx.shadowColor =
+"rgba(255,255,255,0.35)";
+
+ctx.shadowBlur = 18;
+
+ctx.strokeStyle =
+"rgba(255,255,255,0.18)";
+
+ctx.lineWidth = 2;
+
+ctx.strokeRect(
+    visibleX + 4,
+    visibleY + 4,
+    visibleW - 8,
+    visibleH - 8
+);
+
+ctx.shadowBlur = 0;
     // =====================
     // 可视区
     // =====================
