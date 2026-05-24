@@ -681,7 +681,21 @@ function draw(){
     // =====================
 
     ctx.translate(imgX,imgY);
+// =====================
+// 镜子模式降低图片亮度
+// =====================
 
+if(lightMode === 3){
+
+    ctx.filter =
+    "brightness(0.18)";
+
+}else{
+
+    ctx.filter =
+    "brightness(1)";
+
+}
     
     ctx.drawImage(
         image,
@@ -825,7 +839,7 @@ ctx.fillRect(
     w,
     h
 );
-
+ctx.filter = "none";
 ctx.restore();  
        ctx.restore();
 
