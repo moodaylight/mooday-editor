@@ -743,17 +743,7 @@ if(lightMode === 3){
 
 }
 
-    // =====================
-    // 镜面高光
-    // =====================
-
-    const mirrorGradient =
-    ctx.createLinearGradient(
-        -w / 2,
-        -h / 2,
-        w / 2,
-        h / 2
-    );
+    
 
     mirrorGradient.addColorStop(
         0,
