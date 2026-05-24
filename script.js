@@ -24,7 +24,7 @@ let imgRotation = 0;
 // 文字
 
 let texts = [];
-
+let selectedTextIndex = -1;
 let selectedText = null;
 
 // 当前是否选中图片
@@ -119,11 +119,13 @@ function getTopText(x,y){
 
     for(let i = texts.length - 1; i >= 0; i--){
 
-        if(pointInText(texts[i],x,y)){
+ if(pointInText(texts[i],x,y)){
 
-            return texts[i];
+    selectedTextIndex = i;
 
-        }
+    return texts[i];
+
+}       
 
     }
 
