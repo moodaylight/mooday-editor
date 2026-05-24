@@ -257,3 +257,66 @@ input[type="color"]{
     display:none;
 
 }
+/* =========================
+底部Dock
+========================= */
+
+.bottom-dock{
+
+    position:fixed;
+
+    bottom:18px;
+
+    left:50%;
+
+    transform:translateX(-50%);
+
+    width:calc(100% - 32px);
+
+    max-width:420px;
+
+    height:70px;
+
+    border-radius:28px;
+
+    background:rgba(20,20,20,0.72);
+
+    border:1px solid rgba(255,255,255,0.08);
+
+    backdrop-filter:blur(30px);
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:space-around;
+
+    padding:0 14px;
+
+    box-sizing:border-box;
+
+    z-index:999;
+
+}
+
+/* =========================
+Dock按钮
+========================= */
+
+.dock-btn{
+
+    width:auto;
+
+    padding:0 20px;
+
+    height:44px;
+
+    border-radius:16px;
+
+    background:rgba(255,255,255,0.06);
+
+    border:1px solid rgba(255,255,255,0.08);
+
+    font-size:14px;
+
+}
