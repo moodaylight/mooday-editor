@@ -685,17 +685,7 @@ function draw(){
 // 镜子模式降低图片亮度
 // =====================
 
-if(lightMode === 3){
 
-    ctx.filter =
-    "brightness(0.18)";
-
-}else{
-
-    ctx.filter =
-    "brightness(1)";
-
-}
     
     ctx.drawImage(
         image,
@@ -739,10 +729,10 @@ if(lightMode === 2){
 // 镜子模式
 if(lightMode === 3){
 
-    // 半透灰黑镜
+    // 直接盖住图片
 
     ctx.fillStyle =
-    "rgba(20,20,20,0.58)";
+    "rgba(40,40,40,0.96)";
 
     ctx.fillRect(
         -w / 2,
@@ -750,6 +740,8 @@ if(lightMode === 3){
         w,
         h
     );
+
+}
 
     // =====================
     // 镜面高光
