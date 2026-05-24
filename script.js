@@ -1294,25 +1294,75 @@ roundRect(
 );
 
 // =====================
-// 内圈微发光
+// 内圈柔光
 // =====================
 
 ctx.shadowColor =
-"rgba(255,255,255,0.35)";
+"rgba(255,255,255,0.22)";
 
-ctx.shadowBlur = 18;
+ctx.shadowBlur = 12;
 
 ctx.strokeStyle =
-"rgba(255,255,255,0.18)";
+"rgba(255,255,255,0.10)";
 
 ctx.lineWidth = 2;
 
-ctx.strokeRect(
+ctx.beginPath();
+
+ctx.moveTo(
+    visibleX + 18,
+    visibleY + 4
+);
+
+ctx.lineTo(
+    visibleX + visibleW - 18,
+    visibleY + 4
+);
+
+ctx.quadraticCurveTo(
+    visibleX + visibleW - 4,
+    visibleY + 4,
+    visibleX + visibleW - 4,
+    visibleY + 18
+);
+
+ctx.lineTo(
+    visibleX + visibleW - 4,
+    visibleY + visibleH - 18
+);
+
+ctx.quadraticCurveTo(
+    visibleX + visibleW - 4,
+    visibleY + visibleH - 4,
+    visibleX + visibleW - 18,
+    visibleY + visibleH - 4
+);
+
+ctx.lineTo(
+    visibleX + 18,
+    visibleY + visibleH - 4
+);
+
+ctx.quadraticCurveTo(
+    visibleX + 4,
+    visibleY + visibleH - 4,
+    visibleX + 4,
+    visibleY + visibleH - 18
+);
+
+ctx.lineTo(
+    visibleX + 4,
+    visibleY + 18
+);
+
+ctx.quadraticCurveTo(
     visibleX + 4,
     visibleY + 4,
-    visibleW - 8,
-    visibleH - 8
+    visibleX + 18,
+    visibleY + 4
 );
+
+ctx.stroke();
 
 ctx.shadowBlur = 0;
     // =====================
