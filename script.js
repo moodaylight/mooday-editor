@@ -748,7 +748,7 @@ if(lightMode === 3){
     // 深黑镜面
 
     ctx.fillStyle =
-    "rgba(0,0,0,0.94)";
+    "rgba(15,15,15,0.78)";
 
     ctx.fillRect(
         -w / 2,
@@ -769,7 +769,7 @@ if(lightMode === 3){
 
     mirrorGlow.addColorStop(
         0,
-        "rgba(255,255,255,0.10)"
+        "rgba(255,255,255,0.14)"
     );
 
     mirrorGlow.addColorStop(
