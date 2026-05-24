@@ -1175,19 +1175,13 @@ ctx.createLinearGradient(
 
 frameGradient.addColorStop(
     0,
-    "#ffffff"
-);
-
-frameGradient.addColorStop(
-    0.45,
-    "#f5f5f5"
+    "#fafafa"
 );
 
 frameGradient.addColorStop(
     1,
-    "#dcdcdc"
+    "#ececec"
 );
-
 ctx.fillStyle = frameGradient;
 
 roundRect(
@@ -1221,33 +1215,9 @@ roundRect(
 // 内凹层（真实浮雕感）
 // =====================
 
-// 上亮下暗渐变
+// 灰色内圈
 
-const innerGradient =
-ctx.createLinearGradient(
-    visibleX,
-    visibleY,
-    visibleX,
-    visibleY + visibleH
-);
-
-innerGradient.addColorStop(
-    0,
-    "#f0f0f0"
-);
-
-innerGradient.addColorStop(
-    0.45,
-    "#d9d9d9"
-);
-
-innerGradient.addColorStop(
-    1,
-    "#bdbdbd"
-);
-
-ctx.fillStyle =
-innerGradient;
+ctx.fillStyle = "#d6d6d6";
 
 roundRect(
     visibleX - 4,
@@ -1257,18 +1227,23 @@ roundRect(
     24
 );
 
-// 左边亮边
+// 轻微内阴影
 
-ctx.fillStyle =
-"rgba(255,255,255,0.18)";
+ctx.shadowColor =
+"rgba(0,0,0,0.18)";
 
-roundRect(
-    visibleX - 3,
-    visibleY + 8,
-    2,
-    visibleH - 16,
-    2
-);
+ctx.shadowBlur = 8;
+
+ctx.shadowOffsetY = 2;
+
+ctx.strokeStyle =
+"rgba(0,0,0,0.08)";
+
+ctx.lineWidth = 2;
+
+ctx.stroke();
+
+ctx.shadowBlur = 0;
 
 // 下边暗边
 
