@@ -694,7 +694,7 @@ function draw(){
 // =====================
 
 ctx.translate(imgX,imgY);
-
+if(lightMode !== 3){
 ctx.drawImage(
     image,
     -w / 2,
@@ -702,7 +702,7 @@ ctx.drawImage(
     w,
     h
 );
-
+}
 // =====================
 // 暖光
 // =====================
