@@ -4,16 +4,7 @@ const ctx = canvas.getContext("2d");
 const upload = document.getElementById("upload");
 const uploadBtn =
 document.getElementById("uploadBtn");
-const addTextBtn = document.getElementById("addText");
-const textInput = document.getElementById("textInput");
-const colorPicker =
-document.getElementById("colorPicker");
-const glowSlider =
-document.getElementById("glowSlider");
-const deleteTextBtn = document.getElementById("deleteText");
-const moveUpBtn = document.getElementById("moveUp");
-const moveDownBtn = document.getElementById("moveDown");
-const layerPanel = document.getElementById("layerPanel");
+
 const lightModeBtn =
 document.getElementById("lightModeBtn");
 // =====================
@@ -421,131 +412,6 @@ Math.max(scaleX, scaleY);
 
 });
 
-// =====================
-// 新增文字
-// =====================
-
-addTextBtn.addEventListener("click",()=>{
-
-    const text = {
-
-        content: "双击编辑",
-
-        x: canvas.width / 2,
-
-        y: canvas.height / 2,
-
-        size: 60,
-
-        rotation: 0,
-
-        color: "#ffffff",
-        
-        glow: 0
-    };
-
-    texts.push(text);
-
-    selectedText = text;
-
-    imageSelected = false;
-
-    textInput.value = text.content;
-
-    draw();
-
-    updateLayerPanel();
-
-});
-
-deleteTextBtn.addEventListener("click",()=>{
-
-    if(!selectedText) return;
-
-    texts = texts.filter(t => t !== selectedText);
-
-    selectedText = null;
-
-    draw();
-
-    updateLayerPanel();
-
-});
-moveUpBtn.addEventListener("click",()=>{
-
-    if(!selectedText) return;
-
-    const index = texts.indexOf(selectedText);
-
-    if(index < texts.length - 1){
-
-        [texts[index], texts[index + 1]] =
-
-        [texts[index + 1], texts[index]];
-
-    }
-
-    draw();
-
-    updateLayerPanel();
-
-});
-moveDownBtn.addEventListener("click",()=>{
-
-    if(!selectedText) return;
-
-    const index = texts.indexOf(selectedText);
-
-    if(index > 0){
-
-        [texts[index], texts[index - 1]] =
-
-        [texts[index - 1], texts[index]];
-
-    }
-
-    draw();
-
-    updateLayerPanel();
-
-});
-// =====================
-// 输入框同步
-// =====================
-
-textInput.addEventListener("input",()=>{
-
-    if(selectedText){
-
-        selectedText.content = textInput.value;
-
-        draw();
-
-    }
-
-});
-colorPicker.addEventListener("input",()=>{
-
-    if(selectedText){
-
-        selectedText.color = colorPicker.value;
-
-        draw();
-
-    }
-
-});
-glowSlider.addEventListener("input",()=>{
-
-    if(selectedText){
-
-        selectedText.glow = parseInt(glowSlider.value);
-
-        draw();
-
-    }
-
-});
 // =====================
 // 灯光切换
 // =====================
