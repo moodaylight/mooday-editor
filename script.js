@@ -675,12 +675,7 @@ function draw(){
     const maxY =
     visibleY + h / 2;
 
-    imgX =
-    Math.min(maxX, Math.max(minX, imgX));
-
-    imgY =
-    Math.min(maxY, Math.max(minY, imgY));
-
+    
     // =====================
     // 裁切区域
     // =====================
