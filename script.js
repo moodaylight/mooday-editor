@@ -883,13 +883,7 @@ canvas.addEventListener("touchstart",(e)=>{
 
         );
 
-        if(selectedText){
-
-            initialTextSize = selectedText.size;
-
-            initialTextRotation = selectedText.rotation;
-
-        }
+        
 
         if(imageSelected){
 
