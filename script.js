@@ -747,8 +747,7 @@ ctx.restore();
 
        ctx.shadowColor = text.color;
 
-       ctx.shadowBlur = 0;
-       
+              
         ctx.textAlign = "center";
 
         ctx.textBaseline = "middle";
