@@ -935,22 +935,21 @@ canvas.addEventListener("touchstart",(e)=>{
 
     // 点击空白
 
-    selectedText = null;
-
 imageSelected = true;
 
-draggingText = false;
+selectedText = null;
 
 draggingImage = true;
 
-console.log("图片拖动开启");
+draggingText = false;
 
 dragOffsetX = x - imgX;
 
 dragOffsetY = y - imgY;
-    draw();
 
-    updateLayerPanel();
+updateLayerPanel();
+
+draw();    
 
 });
 
