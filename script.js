@@ -375,7 +375,6 @@ titleBtn.addEventListener(
 draw();
     }
 
-    draw();
 
     return;
 
