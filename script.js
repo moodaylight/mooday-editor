@@ -943,6 +943,8 @@ draggingText = false;
 
 draggingImage = true;
 
+console.log("图片拖动开启");
+
 dragOffsetX = x - imgX;
 
 dragOffsetY = y - imgY;
@@ -1025,7 +1027,7 @@ if(box.bottom > 480){
     imgX = x - dragOffsetX;
 
     imgY = y - dragOffsetY;
-
+    console.log("图片正在移动");
 }
 
         draw();
