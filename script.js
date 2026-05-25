@@ -984,17 +984,17 @@ canvas.addEventListener("touchmove",(e)=>{
     60,
     Math.min(
         selectedText.x,
-        canvas.width - 60
+        300
     )
 );
 
 selectedText.y = Math.max(
-    60,
+    55,
     Math.min(
         selectedText.y,
-        canvas.height - 60
+        470
     )
-);   
+);
         }
 
         // 图片
