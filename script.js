@@ -760,28 +760,6 @@ ctx.restore();
         
         ctx.fillText(text.content,0,0);
 
-        if(text === selectedText){
-
-            const box = getTextBounds(text);
-
-            ctx.strokeStyle = "#7b5cff";
-
-            ctx.lineWidth = 2;
-
-            ctx.strokeRect(
-
-                box.left - text.x,
-
-                box.top - text.y,
-
-                box.right - box.left,
-
-                box.bottom - box.top
-
-            );
-
-        }
-
         ctx.restore();
 
     });
