@@ -980,21 +980,43 @@ canvas.addEventListener("touchmove",(e)=>{
         if(draggingText && selectedText){
       selectedText.x = x - textOffsetX
        selectedText.y = y - textOffsetY
-       selectedText.x = Math.max(
-    60,
-    Math.min(
-        selectedText.x,
-        300
-    )
-);
+       const box = getTextBounds(selectedText);
 
-selectedText.y = Math.max(
-    55,
-    Math.min(
-        selectedText.y,
-        470
-    )
-);
+// 左边界
+
+if(box.left < 48){
+
+    selectedText.x +=
+    48 - box.left;
+
+}
+
+// 右边界
+
+if(box.right > 312){
+
+    selectedText.x -=
+    box.right - 312;
+
+}
+
+// 上边界
+
+if(box.top < 45){
+
+    selectedText.y +=
+    45 - box.top;
+
+}
+
+// 下边界
+
+if(box.bottom > 480){
+
+    selectedText.y -=
+    box.bottom - 480;
+
+
         }
 
         // 图片
