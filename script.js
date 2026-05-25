@@ -372,7 +372,7 @@ titleBtn.addEventListener(
     if(newText !== null){
 
         titleText.content = newText;
-
+draw();
     }
 
     draw();
