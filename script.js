@@ -111,6 +111,9 @@ let draggingText = false;
 let draggingImage = false;
 let dragOffsetX = 0;
 let dragOffsetY = 0;
+let textOffsetX = 0;
+let textOffsetY = 0;
+
 // 双指状态
 
 let initialPinchDistance = 0;
@@ -921,6 +924,8 @@ canvas.addEventListener("touchstart",(e)=>{
 
         draggingText = true;
 
+        textOffsetX = x - clickedText.x;
+        textOffsetY = y - clickedText.y;
         draggingImage = false;
 
         textInput.value = clickedText.content;
@@ -974,28 +979,8 @@ canvas.addEventListener("touchmove",(e)=>{
 
         if(draggingText && selectedText){
 
-            selectedText.x = Math.max(
-
-    visibleX + 20,
-
-    Math.min(
-        x,
-        visibleX + visibleW - 20
-    )
-
-);
-
-selectedText.y = Math.max(
-
-    visibleY + 20,
-
-    Math.min(
-        y,
-        visibleY + visibleH - 20
-    )
-
-);
-
+           selectedText.x = x - textOffsetX
+           selectedText.y = y - textOffsetY
         }
 
         // 图片
