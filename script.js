@@ -937,12 +937,14 @@ canvas.addEventListener("touchstart",(e)=>{
 
     selectedText = null;
 
-    imageSelected = true;
+imageSelected = true;
 
-    draggingImage = true;
+draggingText = false;
 
-    draggingText = false;
+draggingImage = true;
+
 dragOffsetX = x - imgX;
+
 dragOffsetY = y - imgY;
     draw();
 
