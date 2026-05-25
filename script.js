@@ -371,7 +371,7 @@ titleBtn.addEventListener(
 
     if(newText !== null){
 
-        titleText.content = newText;
+        clickedText.content = newText;
 draw();
     }
 
