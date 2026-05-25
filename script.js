@@ -7,6 +7,9 @@ document.getElementById("uploadBtn");
 
 const lightModeBtn =
 document.getElementById("lightModeBtn");
+const titleBtn =
+document.getElementById("titleBtn");
+
 // =====================
 // 数据
 // =====================
@@ -89,7 +92,7 @@ let imgRotation = 0;
 let texts = [];
 let selectedTextIndex = -1;
 let selectedText = null;
-
+let titleText = null;
 // 当前是否选中图片
 
 let imageSelected = false;
@@ -412,6 +415,63 @@ Math.max(scaleX, scaleY);
 
 });
 
+// =====================
+// 主标题
+// =====================
+
+titleBtn.addEventListener(
+"click",
+()=>{
+
+    // 已存在 → 删除
+
+    if(titleText){
+
+        texts = texts.filter(
+            t => t !== titleText
+        );
+
+        titleText = null;
+
+        selectedText = null;
+
+        draw();
+
+        return;
+
+    }
+
+    // 不存在 → 创建
+
+    const text = {
+
+        content: "主标题",
+
+        x: canvas.width / 2,
+
+        y: 140,
+
+        size: 32,
+
+        rotation: 0,
+
+        color: "#ffffff",
+
+        glow: 0
+
+    };
+
+    texts.push(text);
+
+    titleText = text;
+
+    selectedText = text;
+
+    imageSelected = false;
+
+    draw();
+
+});
 // =====================
 // 灯光切换
 // =====================
