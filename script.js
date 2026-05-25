@@ -1053,25 +1053,6 @@ if(box.bottom > 480){
 
         const rotation = currentAngle - initialRotationAngle;
 
-        // 文字
-
-        if(selectedText){
-
-            const newSize = initialTextSize * scale;
-
-            selectedText.size = Math.max(
-
-                30,
-
-                newSize
-
-            );
-
-            selectedText.rotation =
-
-            (initialTextRotation + rotation) % 360;
-
-        }
 
         // 图片
 
