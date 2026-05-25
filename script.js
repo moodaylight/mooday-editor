@@ -242,73 +242,7 @@ function getAngle(t1,t2){
 // 图层面板
 // =====================
 
-function updateLayerPanel(){
 
-    layerPanel.innerHTML = "";
-
-    if(image){
-
-        const imgItem = document.createElement("div");
-
-        imgItem.className = "layer-item";
-
-        imgItem.innerText = "图片";
-
-        if(imageSelected){
-
-            imgItem.classList.add("active");
-
-        }
-
-        imgItem.onclick = ()=>{
-
-            imageSelected = true;
-
-            selectedText = null;
-
-            draw();
-
-            updateLayerPanel();
-
-        };
-
-        layerPanel.appendChild(imgItem);
-
-    }
-
-    texts.forEach((text,index)=>{
-
-        const item = document.createElement("div");
-
-        item.className = "layer-item";
-
-        item.innerText = `文字 ${index + 1}`;
-
-        if(text === selectedText){
-
-            item.classList.add("active");
-
-        }
-
-        item.onclick = ()=>{
-
-            selectedText = text;
-
-            imageSelected = false;
-
-            textInput.value = text.content;
-
-            draw();
-
-            updateLayerPanel();
-
-        };
-
-        layerPanel.appendChild(item);
-
-    });
-
-}
 
 // =====================
 // 上传图片
@@ -405,7 +339,7 @@ Math.max(scaleX, scaleY);
 
             draw();
 
-            updateLayerPanel();
+            
 
         };
 
@@ -900,7 +834,7 @@ canvas.addEventListener("touchstart",(e)=>{
 
         draw();
 
-        updateLayerPanel();
+       
 
         return;
 
@@ -920,7 +854,7 @@ dragOffsetX = x - imgX;
 
 dragOffsetY = y - imgY;
 
-updateLayerPanel();
+
 
 draw();    
 
@@ -1314,6 +1248,6 @@ function roundRect(x,y,w,h,r){
     ctx.fill();
 
 }
-updateLayerPanel();
+
 
 draw();
