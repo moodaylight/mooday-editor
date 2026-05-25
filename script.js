@@ -978,28 +978,9 @@ canvas.addEventListener("touchmove",(e)=>{
         // 文字
 
         if(draggingText && selectedText){
-
-          selectedText.x = Math.max(
-
-    visibleX + 20,
-
-    Math.min(
-        x - textOffsetX,
-        visibleX + visibleW - 20
-    )
-
-);
-
-selectedText.y = Math.max(
-
-    visibleY + 20,
-
-    Math.min(
-        y - textOffsetY,
-        visibleY + visibleH - 20
-    )
-
-);
+      selectedText.x = x - textOffsetX
+       selectedText.y = y - textOffsetY
+          
         }
 
         // 图片
