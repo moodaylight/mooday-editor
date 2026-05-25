@@ -822,7 +822,16 @@ canvas.addEventListener("touchstart",(e)=>{
     if(clickedText){
 
         selectedText = clickedText;
+const newText = prompt(
+    "编辑文字",
+    clickedText.content
+);
 
+if(newText !== null){
+
+    clickedText.content = newText;
+
+}
         imageSelected = false;
 
         draggingText = true;
