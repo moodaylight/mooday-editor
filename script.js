@@ -94,6 +94,7 @@ let texts = [];
 let selectedTextIndex = -1;
 let selectedText = null;
 let titleText = null;
+let subTitleText = null;
 // 当前是否选中图片
 
 let imageSelected = false;
@@ -473,6 +474,65 @@ titleBtn.addEventListener(
     draw();
 
 });
+
+// =====================
+// 副标题
+// =====================
+
+subTitleBtn.addEventListener(
+"click",
+()=>{
+
+    // 已存在 → 删除
+
+    if(subTitleText){
+
+        texts = texts.filter(
+            t => t !== subTitleText
+        );
+
+        subTitleText = null;
+
+        selectedText = null;
+
+        draw();
+
+        return;
+
+    }
+
+    // 不存在 → 创建
+
+    const text = {
+
+        content: "副标题",
+
+        x: canvas.width / 2,
+
+        y: 460,
+
+        size: 20,
+
+        rotation: 0,
+
+        color: "#ffffff",
+
+        glow: 0
+
+    };
+
+    texts.push(text);
+
+    subTitleText = text;
+
+    selectedText = text;
+
+    imageSelected = false;
+
+    draw();
+
+});
+
 // =====================
 // 灯光切换
 // =====================
