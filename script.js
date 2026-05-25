@@ -9,7 +9,8 @@ const lightModeBtn =
 document.getElementById("lightModeBtn");
 const titleBtn =
 document.getElementById("titleBtn");
-
+const subTitleBtn =
+document.getElementById("subTitleBtn");
 // =====================
 // 数据
 // =====================
