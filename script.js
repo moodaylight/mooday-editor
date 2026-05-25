@@ -1015,7 +1015,9 @@ if(box.bottom > 480){
 
     selectedText.y -=
     box.bottom - 480;
+       
 
+        }
 
         }
 
