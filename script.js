@@ -363,19 +363,23 @@ titleBtn.addEventListener(
 
     if(titleText){
 
-        texts = texts.filter(
-            t => t !== titleText
-        );
+    const newText =
+    prompt(
+        "输入主标题",
+        titleText.content
+    );
 
-        titleText = null;
+    if(newText !== null){
 
-        selectedText = null;
-
-        draw();
-
-        return;
+        titleText.content = newText;
 
     }
+
+    draw();
+
+    return;
+
+}
 
     // 不存在 → 创建
 
