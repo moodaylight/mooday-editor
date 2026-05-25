@@ -2,6 +2,8 @@ const canvas = document.getElementById("canvas");
 const ctx = canvas.getContext("2d");
 
 const upload = document.getElementById("upload");
+const uploadBtn =
+document.getElementById("uploadBtn");
 const addTextBtn = document.getElementById("addText");
 const textInput = document.getElementById("textInput");
 const colorPicker =
@@ -315,7 +317,11 @@ function updateLayerPanel(){
 // =====================
 // 上传图片
 // =====================
+uploadBtn.onclick = ()=>{
 
+    upload.click();
+
+};
 upload.addEventListener("change",(e)=>{
 
     const file = e.target.files[0];
