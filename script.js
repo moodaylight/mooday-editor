@@ -815,7 +815,7 @@ canvas.addEventListener("touchstart",(e)=>{
     // 点击文字
 
 if(clickedText){
-
+moved = false;
     selectedText = clickedText;
 
     imageSelected = false;
@@ -829,9 +829,19 @@ if(clickedText){
     draggingImage = false;
 // 长按进入编辑
 
+let moved = false;
+
 longPressTimer = setTimeout(()=>{
 
-    alert("长按成功");
+    if(!moved){
+
+        textInput.style.display = "block";
+
+        textInput.value = clickedText.content;
+
+        textInput.focus();
+
+    }
 
 },600);
   
@@ -881,7 +891,7 @@ canvas.addEventListener("touchmove",(e)=>{
         // 文字
       
         // 移动时取消长按
-
+      moved = true;
         if(draggingText && selectedText){
       selectedText.x = x - textOffsetX
        selectedText.y = y - textOffsetY
