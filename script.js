@@ -844,13 +844,11 @@ if(clickedText){
 
     draggingImage = false;
 
-    let moved = false;
-
     // 长按进入编辑
 
     longPressTimer = setTimeout(()=>{
 
-        if(!moved){
+       if(draggingText){
 
             textInput.style.display = "block";
 
@@ -861,14 +859,6 @@ if(clickedText){
         }
 
     },600);
-
-    // 记录是否移动
-
-    canvas.addEventListener("touchmove",()=>{
-
-        moved = true;
-
-    },{ once:true });
 
     draw();
 
