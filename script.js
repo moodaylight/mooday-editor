@@ -820,7 +820,7 @@ if(clickedText){
 
     imageSelected = false;
 
-   draggingText = false;
+    draggingText = true;
 
     textOffsetX = x - clickedText.x;
 
