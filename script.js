@@ -831,11 +831,7 @@ if(clickedText){
 
 longPressTimer = setTimeout(()=>{
 
-    textInput.style.display = "block";
-
-    textInput.value = clickedText.content;
-
-    textInput.focus();
+    alert("长按成功");
 
 },600);
   
