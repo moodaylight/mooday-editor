@@ -830,7 +830,7 @@ canvas.addEventListener("touchstart",(e)=>{
 
     // 点击文字
 
-iif(clickedText){
+if(clickedText){
 
     selectedText = clickedText;
 
