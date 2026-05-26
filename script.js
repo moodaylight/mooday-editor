@@ -16,8 +16,8 @@ document.getElementById("subTitleBtn");
 // =====================
 
 let image = new Image();
-
 image.src = "default.png";
+let lastTapText = null;
 image.onload = function(){
 
     // =====================
@@ -828,18 +828,31 @@ if(clickedText){
 
     draggingImage = false;
 
-    textInput.style.display = "block";
+    // 双击进入编辑
 
-    textInput.value = clickedText.content;
+    if(lastTapText === clickedText){
 
-    textInput.focus();
+        textInput.style.display = "block";
+
+        textInput.value = clickedText.content;
+
+        textInput.focus();
+
+    }
+
+    lastTapText = clickedText;
+
+    setTimeout(()=>{
+
+        lastTapText = null;
+
+    },300);
 
     draw();
 
     return;
 
 }
-
     // 点击空白
 
 imageSelected = true;
