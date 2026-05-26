@@ -886,7 +886,6 @@ canvas.addEventListener("touchmove",(e)=>{
       
         // 移动时取消长按
 
-clearTimeout(longPressTimer);
         if(draggingText && selectedText){
       selectedText.x = x - textOffsetX
        selectedText.y = y - textOffsetY
