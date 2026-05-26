@@ -619,7 +619,23 @@ imgY = Math.max(
         visibleH,
         18
     );
+// =====================
+// 可编辑区域边框
+// =====================
 
+ctx.strokeStyle = "rgba(255,255,255,0.35)";
+
+ctx.lineWidth = 1.5;
+
+roundRect(
+    visibleX,
+    visibleY,
+    visibleW,
+    visibleH,
+    18
+);
+
+ctx.stroke();
     ctx.clip();
 
 // =====================
