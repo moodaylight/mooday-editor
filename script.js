@@ -106,6 +106,7 @@ let lightMode = 0;
 
 let draggingText = false;
 let draggingImage = false;
+let longPressTimer;
 let dragOffsetX = 0;
 let dragOffsetY = 0;
 let textOffsetX = 0;
@@ -826,10 +827,18 @@ if(clickedText){
     textOffsetY = y - clickedText.y;
 
     draggingImage = false;
+// 长按进入编辑
 
-    // 双击进入编辑
+longPressTimer = setTimeout(()=>{
 
-   
+    textInput.style.display = "block";
+
+    textInput.value = clickedText.content;
+
+    textInput.focus();
+
+},600);
+  
     draw();
 
     return;
@@ -855,10 +864,8 @@ draw();
 
 });
 
-// =====================
-// Touch Move
-// =====================
-
+// 取消长按
+clearTimeout(longPressTimer);
 canvas.addEventListener("touchmove",(e)=>{
 
     e.preventDefault();
@@ -1036,7 +1043,7 @@ textInput.addEventListener("input",()=>{
 
 canvas.addEventListener("touchend",()=>{
 
-
+clearTimeout(longPressTimer);
     draggingText = false;
 
     draggingImage = false;
