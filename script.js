@@ -41,7 +41,6 @@ image.onload = function(){
 
     const outerH =
     canvas.height - marginX * 2;
-
     // =====================
     // 可视区域比例
     // =====================
@@ -878,7 +877,6 @@ canvas.addEventListener("touchmove",(e)=>{
 
         // 文字
 // 移动时取消长按
-clearTimeout(pressTimer);
        clearTimeout(pressTimer);
         if(draggingText && selectedText){
       selectedText.x = x - textOffsetX
