@@ -830,24 +830,7 @@ if(clickedText){
 
     // 双击进入编辑
 
-    if(lastTapText === clickedText){
-
-        textInput.style.display = "block";
-
-        textInput.value = clickedText.content;
-
-        textInput.focus();
-
-    }
-
-    lastTapText = clickedText;
-
-    setTimeout(()=>{
-
-        lastTapText = null;
-
-    },300);
-
+   
     draw();
 
     return;
@@ -894,7 +877,9 @@ canvas.addEventListener("touchmove",(e)=>{
         const y = touch.clientY - rect.top;
 
         // 文字
-
+// 移动时取消长按
+clearTimeout(pressTimer);
+       clearTimeout(pressTimer);
         if(draggingText && selectedText){
       selectedText.x = x - textOffsetX
        selectedText.y = y - textOffsetY
@@ -1053,12 +1038,13 @@ textInput.addEventListener("input",()=>{
 
 canvas.addEventListener("touchend",()=>{
 
+    clearTimeout(pressTimer);
+
     draggingText = false;
 
     draggingImage = false;
 
 });
-
 // =====================
 // 初始化
 // =====================
