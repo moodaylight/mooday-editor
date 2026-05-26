@@ -865,7 +865,7 @@ draw();
 });
 
 // 取消长按
-clearTimeout(longPressTimer);
+
 canvas.addEventListener("touchmove",(e)=>{
 
     e.preventDefault();
@@ -883,8 +883,10 @@ canvas.addEventListener("touchmove",(e)=>{
         const y = touch.clientY - rect.top;
 
         // 文字
-// 移动时取消长按
-       
+      
+        // 移动时取消长按
+
+clearTimeout(longPressTimer);
         if(draggingText && selectedText){
       selectedText.x = x - textOffsetX
        selectedText.y = y - textOffsetY
