@@ -818,42 +818,31 @@ canvas.addEventListener("touchstart",(e)=>{
 
     // 点击文字
 
-    if(clickedText){
+if(clickedText){
 
-        selectedText = clickedText;
-setTimeout(()=>{
+    selectedText = clickedText;
 
-    const newText = prompt(
-        "编辑文字",
-        clickedText.content
-    );
+    imageSelected = false;
 
-    if(newText !== null){
+    draggingText = true;
 
-        clickedText.content = newText;
+    textOffsetX = x - clickedText.x;
 
-        draw();
+    textOffsetY = y - clickedText.y;
 
-    }
+    draggingImage = false;
 
-},10);
-        imageSelected = false;
+    textInput.style.display = "block";
 
-        draggingText = true;
+    textInput.value = clickedText.content;
 
-        textOffsetX = x - clickedText.x;
-        textOffsetY = y - clickedText.y;
-        draggingImage = false;
+    textInput.focus();
 
-        textInput.value = clickedText.content;
+    draw();
 
-        draw();
+    return;
 
-       
-
-        return;
-
-    }
+}
 
     // 点击空白
 
@@ -1038,6 +1027,17 @@ if(box.bottom > 480){
 
 });
 
+textInput.addEventListener("input",()=>{
+
+    if(selectedText){
+
+        selectedText.content = textInput.value;
+
+        draw();
+
+    }
+
+});
 // =====================
 // Touch End
 // =====================
