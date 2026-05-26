@@ -363,21 +363,17 @@ titleBtn.addEventListener(
 
     if(titleText){
 
-    const newText =
-    prompt(
-        "输入主标题",
-        titleText.content
-    );
+ selectedText = titleText;
 
-    if(newText !== null){
+textInput.style.display = "block";
 
-        clickedText.content = newText;
+textInput.value = titleText.content;
+
+textInput.focus();
+
 draw();
-    }
 
-
-    return;
-
+return;  
 }
 
     // 不存在 → 创建
@@ -824,7 +820,7 @@ if(clickedText){
 
     imageSelected = false;
 
-    draggingText = true;
+   draggingText = false;
 
     textOffsetX = x - clickedText.x;
 
