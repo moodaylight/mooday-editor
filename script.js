@@ -1,3 +1,7 @@
+// script.js
+// 主入口文件
+// 初始化
+// 启动编辑器
 const canvas = document.getElementById("canvas");
 const ctx = canvas.getContext("2d");
 
