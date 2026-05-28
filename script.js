@@ -470,41 +470,7 @@ subTitleBtn.addEventListener(
 
 });
 
-// =====================
-// 灯光切换
-// =====================
 
-const lightNames = [
-    "白光",
-    "暖光",
-    "日光",
-    "镜子"
-];
-
-lightModeBtn.innerText =
-lightNames[lightMode];
-
-lightModeBtn.addEventListener(
-"click",
-()=>{
-
-    lightMode++;
-
-    if(lightMode > 3){
-
-        lightMode = 0;
-
-    }
-
-    lightModeBtn.innerText =
-    lightNames[lightMode];
-
-    draw();
-
-});
-// =====================
-// 绘制
-// =====================
 
 
 
