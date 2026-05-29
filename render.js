@@ -303,6 +303,30 @@ ctx.restore();
     });
 
 }
+function drawPhotoFrame(){
+
+    ctx.strokeStyle =
+    "rgba(255,255,255,0.35)";
+
+    ctx.lineWidth = 1.5;
+
+    const photoW = 260;
+    const photoH = 406;
+
+    const photoX =
+    (canvas.width - photoW) / 2;
+
+    const photoY =
+    (canvas.height - photoH) / 2;
+
+    ctx.strokeRect(
+        photoX,
+        photoY,
+        photoW,
+        photoH
+    );
+
+}
 
 function drawFrame(){
 
