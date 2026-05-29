@@ -111,8 +111,7 @@ let imageSelected = false;
 
 let lightMode = 0;
 let productType = "photo";
-// 拖动状态
-
+lightModeBtn.innerText = "照片成功";
 let draggingText = false;
 let draggingImage = false;
 let longPressTimer;
@@ -798,7 +797,7 @@ mirrorBtn.addEventListener(
 ()=>{
 alert("魔镜按钮");
     productType = "mirror";
-
+lightModeBtn.innerText = "魔镜成功";
     lightModeBtn.style.display =
     "block";
 
