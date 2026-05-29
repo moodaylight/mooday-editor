@@ -12,7 +12,6 @@ const lightModeBtn =
 document.getElementById("lightModeBtn");
 const photoBtn =
 document.getElementById("photoBtn");
-
 const mirrorBtn =
 document.getElementById("mirrorBtn");
 const titleBtn =
