@@ -307,7 +307,7 @@ function drawPhotoFrame(){
     ctx.lineWidth = 1.5;
 
     const photoW = 260;
-    const photoH = 406;
+    const photoH = 390;
 
     const photoX =
     (canvas.width - photoW) / 2;
