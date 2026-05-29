@@ -12,7 +12,36 @@ function draw(){
         drawFrame();
 
     }
-   
+   if(productType === "photo"){
+
+    ctx.strokeStyle =
+    "rgba(255,255,255,0.35)";
+
+    ctx.lineWidth = 1.5;
+
+    const marginX = 20;
+    const marginTop = 10;
+
+    const photoW =
+    canvas.width - marginX * 2;
+
+    const photoH =
+    photoW * 1.5;
+
+    const photoX =
+    marginX;
+
+    const photoY =
+    (canvas.height - photoH) / 2;
+
+    ctx.strokeRect(
+        photoX,
+        photoY,
+        photoW,
+        photoH
+    );
+
+}
     // 图片
 
    if(image){
