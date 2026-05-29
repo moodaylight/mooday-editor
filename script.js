@@ -824,7 +824,20 @@ previewBtn.onclick = ()=>{
 
 printBtn.onclick = ()=>{
 
-    printBtn.innerText =
-    "打印成功";
+    draw();
+
+    const link =
+    document.createElement("a");
+
+    link.download =
+    "4x6-print.jpg";
+
+    link.href =
+    canvas.toDataURL(
+        "image/jpeg",
+        1.0
+    );
+
+    link.click();
 
 };
