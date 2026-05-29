@@ -106,7 +106,7 @@ let imageSelected = false;
 // =====================
 
 let lightMode = 0;
-let productType = "mirror";
+let productType = "photo";
 // 拖动状态
 
 let draggingText = false;
