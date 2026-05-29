@@ -21,9 +21,7 @@ const subTitleBtn =
 document.getElementById("subTitleBtn");
 const previewBtn =
 document.getElementById("previewBtn");
-// =====================
-// 数据
-// =====================
+
 
 let image = new Image();
 image.src = "default.png";
