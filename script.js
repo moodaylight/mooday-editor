@@ -857,6 +857,4 @@ previewBtn.onclick = ()=>{
 
 };
 
-    link.click();
 
-};
