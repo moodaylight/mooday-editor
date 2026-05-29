@@ -780,10 +780,8 @@ clearTimeout(longPressTimer);
 draw();
 console.log(photoBtn);
 console.log(mirrorBtn);
-photoBtn.addEventListener(
-"click",
-()=>{
-alert("照片按钮");
+photoBtn.onclick = ()=>{
+
     productType = "photo";
 
     lightModeBtn.style.display =
@@ -791,17 +789,4 @@ alert("照片按钮");
 
     draw();
 
-});
-
-mirrorBtn.addEventListener(
-"click",
-()=>{
-alert("魔镜按钮");
-    productType = "mirror";
-lightModeBtn.innerText = "魔镜成功";
-    lightModeBtn.style.display =
-    "block";
-
-    draw();
-
-});
+};
