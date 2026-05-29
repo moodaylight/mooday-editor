@@ -3,6 +3,10 @@
 // draw()
 // drawFrame()
 // 画布渲染
+let exportVisibleX = 0;
+let exportVisibleY = 0;
+let exportVisibleW = 0;
+let exportVisibleH = 0;
 function draw(){
 
     ctx.clearRect(0,0,canvas.width,canvas.height);
@@ -95,7 +99,10 @@ if(productType === "photo"){
 
     const visibleY =
     marginTop + (outerH - visibleH) / 2;
-
+exportVisibleX = visibleX;
+exportVisibleY = visibleY;
+exportVisibleW = visibleW;
+exportVisibleH = visibleH;
     // =====================
     // 图片真实尺寸
     // =====================
