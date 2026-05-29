@@ -19,6 +19,8 @@ const titleBtn =
 document.getElementById("titleBtn");
 const subTitleBtn =
 document.getElementById("subTitleBtn");
+const previewBtn =
+document.getElementById("previewBtn");
 // =====================
 // 数据
 // =====================
@@ -798,5 +800,23 @@ mirrorBtn.onclick = ()=>{
     "block";
 
     draw();
+
+};
+
+previewBtn.onclick = ()=>{
+
+    const link =
+    document.createElement("a");
+
+    link.download =
+    "mooday-photo.jpg";
+
+    link.href =
+    canvas.toDataURL(
+        "image/jpeg",
+        1.0
+    );
+
+    link.click();
 
 };
