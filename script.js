@@ -803,41 +803,21 @@ mirrorBtn.onclick = ()=>{
 
 previewBtn.onclick = ()=>{
 
-    const exportCanvas =
-    document.createElement("canvas");
+draw();
 
-    exportCanvas.width = 1200;
+const link =
+document.createElement("a");
 
-    exportCanvas.height = 1800;
+link.download =
+"4x6-photo.jpg";
 
-    const exportCtx =
-    exportCanvas.getContext("2d");
+link.href =
+canvas.toDataURL(
+    "image/jpeg",
+    1.0
+);
 
-    exportCtx.fillStyle =
-    "#ffffff";
-
-    exportCtx.fillRect(
-        0,
-        0,
-        1200,
-        1800
-    );
-
-    exportCtx.drawImage(
-
-        image,
-
-        0,
-        0,
-        image.width,
-        image.height,
-
-        0,
-        0,
-        1200,
-        1800
-
-    );
+link.click();
 
     const link =
     document.createElement("a");
