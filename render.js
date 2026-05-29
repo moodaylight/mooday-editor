@@ -22,17 +22,14 @@ function draw(){
     const marginX = 20;
     const marginTop = 10;
 
-    const photoW =
-    canvas.width - marginX * 2;
+    const photoW = 260;
+const photoH = 406;
 
-    const photoH =
-    photoW * 1.5;
+const photoX =
+(canvas.width - photoW) / 2;
 
-    const photoX =
-    marginX;
-
-    const photoY =
-    (canvas.height - photoH) / 2;
+const photoY =
+(canvas.height - photoH) / 2;
 
     ctx.strokeRect(
         photoX,
