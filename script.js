@@ -805,17 +805,57 @@ mirrorBtn.onclick = ()=>{
 
 previewBtn.onclick = ()=>{
 
+    const exportCanvas =
+    document.createElement("canvas");
+
+    exportCanvas.width = 1200;
+
+    exportCanvas.height = 1800;
+
+    const exportCtx =
+    exportCanvas.getContext("2d");
+
+    exportCtx.fillStyle =
+    "#ffffff";
+
+    exportCtx.fillRect(
+        0,
+        0,
+        1200,
+        1800
+    );
+
+    exportCtx.drawImage(
+
+        image,
+
+        0,
+        0,
+        image.width,
+        image.height,
+
+        0,
+        0,
+        1200,
+        1800
+
+    );
+
     const link =
     document.createElement("a");
 
     link.download =
-    "mooday-photo.jpg";
+    "4x6-photo.jpg";
 
     link.href =
-    canvas.toDataURL(
+    exportCanvas.toDataURL(
         "image/jpeg",
         1.0
     );
+
+    link.click();
+
+};
 
     link.click();
 
