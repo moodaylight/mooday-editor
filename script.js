@@ -826,6 +826,31 @@ printBtn.onclick = ()=>{
 
     draw();
 
+    const exportCanvas =
+    document.createElement("canvas");
+
+    exportCanvas.width = 1200;
+    exportCanvas.height = 1800;
+
+    const exportCtx =
+    exportCanvas.getContext("2d");
+
+    exportCtx.drawImage(
+
+        canvas,
+
+        exportVisibleX,
+        exportVisibleY,
+        exportVisibleW,
+        exportVisibleH,
+
+        0,
+        0,
+        1200,
+        1800
+
+    );
+
     const link =
     document.createElement("a");
 
@@ -833,7 +858,7 @@ printBtn.onclick = ()=>{
     "4x6-print.jpg";
 
     link.href =
-    canvas.toDataURL(
+    exportCanvas.toDataURL(
         "image/jpeg",
         1.0
     );
