@@ -783,7 +783,7 @@ draw();
 photoBtn.addEventListener(
 "click",
 ()=>{
-
+alert("照片按钮");
     productType = "photo";
 
     lightModeBtn.style.display =
@@ -796,7 +796,7 @@ photoBtn.addEventListener(
 mirrorBtn.addEventListener(
 "click",
 ()=>{
-
+alert("魔镜按钮");
     productType = "mirror";
 
     lightModeBtn.style.display =
