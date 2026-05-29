@@ -106,9 +106,7 @@ let subTitleText = null;
 // 当前是否选中图片
 
 let imageSelected = false;
-// =====================
-// 灯光模式
-// =====================
+
 
 let lightMode = 0;
 let productType = "photo";
