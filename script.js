@@ -779,3 +779,29 @@ clearTimeout(longPressTimer);
 });
 
 draw();
+
+photoBtn.addEventListener(
+"click",
+()=>{
+
+    productType = "photo";
+
+    lightModeBtn.style.display =
+    "none";
+
+    draw();
+
+});
+
+mirrorBtn.addEventListener(
+"click",
+()=>{
+
+    productType = "mirror";
+
+    lightModeBtn.style.display =
+    "block";
+
+    draw();
+
+});
