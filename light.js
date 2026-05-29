@@ -10,6 +10,11 @@ const lightNames = [
     "镜子"
 ];
 
+if(productType === "photo"){
+
+    lightModeBtn.style.display = "none";
+
+}
 lightModeBtn.innerText =
 lightNames[lightMode];
 
