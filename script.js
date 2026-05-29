@@ -778,7 +778,8 @@ clearTimeout(longPressTimer);
 });
 
 draw();
-
+console.log(photoBtn);
+console.log(mirrorBtn);
 photoBtn.addEventListener(
 "click",
 ()=>{
