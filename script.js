@@ -21,7 +21,8 @@ const subTitleBtn =
 document.getElementById("subTitleBtn");
 const previewBtn =
 document.getElementById("previewBtn");
-
+const printBtn =
+document.getElementById("printBtn");
 
 let image = new Image();
 image.src = "default.png";
@@ -818,5 +819,12 @@ previewBtn.onclick = ()=>{
     );
 
     link.click();
+
+};
+
+printBtn.onclick = ()=>{
+
+    printBtn.innerText =
+    "打印成功";
 
 };
