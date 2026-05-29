@@ -19,7 +19,7 @@ if(productType === "photo"){
 }
     // 图片
 
-   if(image){
+if(image){
 
     // =====================
     // 真实尺寸
