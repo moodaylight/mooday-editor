@@ -780,10 +780,9 @@ clearTimeout(longPressTimer);
 draw();
 console.log(photoBtn);
 console.log(mirrorBtn);
-<button
-id="photoBtn"
-onclick="document.body.style.background='red'">
+<button id="photoBtn">
 照片111
+</button>
 </button>
 mirrorBtn.onclick = ()=>{
 
