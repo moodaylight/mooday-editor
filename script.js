@@ -777,16 +777,26 @@ clearTimeout(longPressTimer);
 
 });
 
-draw();
-console.log(photoBtn);
-console.log(mirrorBtn);
-<button id="photoBtn">
-照片111
-</button>
-</button>
+ddraw();
+
+photoBtn.onclick = ()=>{
+
+    productType = "photo";
+
+    lightModeBtn.style.display =
+    "none";
+
+    draw();
+
+};
+
 mirrorBtn.onclick = ()=>{
 
-    document.body.style.background =
-    "blue";
+    productType = "mirror";
+
+    lightModeBtn.style.display =
+    "block";
+
+    draw();
 
 };
