@@ -803,21 +803,7 @@ mirrorBtn.onclick = ()=>{
 
 previewBtn.onclick = ()=>{
 
-draw();
-
-const link =
-document.createElement("a");
-
-link.download =
-"4x6-photo.jpg";
-
-link.href =
-canvas.toDataURL(
-    "image/jpeg",
-    1.0
-);
-
-link.click();
+    draw();
 
     const link =
     document.createElement("a");
@@ -826,7 +812,7 @@ link.click();
     "4x6-photo.jpg";
 
     link.href =
-    exportCanvas.toDataURL(
+    canvas.toDataURL(
         "image/jpeg",
         1.0
     );
@@ -834,5 +820,3 @@ link.click();
     link.click();
 
 };
-
-
