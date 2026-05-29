@@ -790,3 +790,13 @@ photoBtn.onclick = ()=>{
     draw();
 
 };
+mirrorBtn.onclick = ()=>{
+
+    productType = "mirror";
+
+    lightModeBtn.style.display =
+    "block";
+
+    draw();
+
+};
