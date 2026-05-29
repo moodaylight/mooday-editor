@@ -781,12 +781,22 @@ draw();
 
 photoBtn.onclick = ()=>{
 
-    photoBtn.innerText = "点到了";
+    productType = "photo";
+
+    lightModeBtn.style.display =
+    "none";
+
+    draw();
 
 };
 
 mirrorBtn.onclick = ()=>{
 
-    mirrorBtn.innerText = "点到了";
+    productType = "mirror";
+
+    lightModeBtn.style.display =
+    "block";
+
+    draw();
 
 };
