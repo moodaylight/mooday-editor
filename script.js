@@ -777,7 +777,7 @@ clearTimeout(longPressTimer);
 
 });
 
-ddraw();
+draw();
 
 photoBtn.onclick = ()=>{
 
