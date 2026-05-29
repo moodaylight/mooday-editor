@@ -21,7 +21,7 @@ if(productType === "photo"){
     drawPhotoFrame();
 
 }
-    // 图片
+ // 图片
 
 if(image){
 
