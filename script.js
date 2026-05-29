@@ -782,21 +782,13 @@ console.log(photoBtn);
 console.log(mirrorBtn);
 photoBtn.onclick = ()=>{
 
-    productType = "photo";
-
-    lightModeBtn.style.display =
-    "none";
-
-    draw();
+    document.body.style.background =
+    "red";
 
 };
 mirrorBtn.onclick = ()=>{
 
-    productType = "mirror";
-
-    lightModeBtn.style.display =
-    "block";
-
-    draw();
+    document.body.style.background =
+    "blue";
 
 };
