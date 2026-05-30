@@ -102,9 +102,15 @@ if(productType === "photo"){
 
     // 自动居中
 
-    imgX = canvas.width / 2;
+imgX = canvas.width / 2;
 
-    imgY = canvas.height / 2;
+imgY =
+10 +
+(
+(canvas.height - 40)
+/
+2
+);
 
     draw();
 
