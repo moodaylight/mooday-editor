@@ -1029,6 +1029,7 @@ exportCtx.drawImage(
 
 };
 let templateLongPressTimer;
+let templateLongPressed = false;
 moodBtn.onclick = ()=>{
 
     moodMode++;
@@ -1062,6 +1063,14 @@ moodBtn.onclick = ()=>{
 
 templateBtn.onclick = ()=>{
 
+    if(templateLongPressed){
+
+        templateLongPressed = false;
+
+        return;
+
+    }
+
     templateCategory++;
 
     if(
@@ -1084,12 +1093,16 @@ templateBtn.addEventListener(
 "touchstart",
 ()=>{
 
+    templateLongPressed = false;
+
     templateLongPressTimer =
     setTimeout(()=>{
 
-templateDrawer.classList.add(
-"show"
-);
+        templateLongPressed = true;
+
+        templateDrawer.classList.add(
+            "show"
+        );
 
     },700);
 
