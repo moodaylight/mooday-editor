@@ -824,23 +824,7 @@ previewBtn.onclick = ()=>{
 };
 
 printBtn.onclick = ()=>{
-alert(
 
-"imgX=" + imgX +
-
-"\nimgY=" + imgY +
-
-"\nimgScale=" + imgScale +
-
-"\nimageW=" + originalImage.width +
-
-"\nimageH=" + originalImage.height +
-
-"\nvisibleW=" + exportVisibleW +
-
-"\nvisibleH=" + exportVisibleH
-
-);
     draw();
 
     const exportCanvas =
@@ -852,21 +836,49 @@ alert(
     const exportCtx =
     exportCanvas.getContext("2d");
 
-    exportCtx.drawImage(
+const cropW =
+exportVisibleW / imgScale;
 
-        canvas,
+const cropH =
+exportVisibleH / imgScale;
 
-        exportVisibleX,
-        exportVisibleY,
-        exportVisibleW,
-        exportVisibleH,
+const sx =
+(originalImage.width / 2)
+-
+cropW / 2
+-
+(
+(imgX - canvas.width / 2)
+/
+imgScale
+);
 
-        0,
-        0,
-        1200,
-        1800
+const sy =
+(originalImage.height / 2)
+-
+cropH / 2
+-
+(
+(imgY - canvas.height / 2)
+/
+imgScale
+);
 
-    );
+exportCtx.drawImage(
+
+    originalImage,
+
+    sx,
+    sy,
+    cropW,
+    cropH,
+
+    0,
+    0,
+    1200,
+    1800
+
+);
 
     const link =
     document.createElement("a");
