@@ -468,23 +468,25 @@ return;
 // 副标题
 // =====================
 
-if(subTitleText){
+subTitleBtn.addEventListener(
+"click",
+()=>{
 
-    selectedText = subTitleText;
+    if(subTitleText){
 
-    textInput.style.display = "block";
+        selectedText = subTitleText;
 
-    textInput.value = subTitleText.content;
+        textInput.style.display = "block";
 
-    textInput.focus();
+        textInput.value = subTitleText.content;
 
-    draw();
+        textInput.focus();
 
-    return;
+        draw();
 
-}
+        return;
 
-    // 不存在 → 创建
+    }
 
     const text = {
 
