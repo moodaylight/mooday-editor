@@ -133,7 +133,7 @@ let subTitleText = null;
 
 let imageSelected = false;
 
-
+let productType = "photo";
 let lightMode = 0;
 lightModeBtn.innerText = "灯光";
 let draggingText = false;
@@ -958,4 +958,4 @@ exportCtx.drawImage(
 
 };
 
-;
+
