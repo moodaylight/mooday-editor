@@ -822,7 +822,15 @@ previewBtn.onclick = ()=>{
     link.click();
 
 };
+console.log("imgX =", imgX);
+console.log("imgY =", imgY);
+console.log("imgScale =", imgScale);
 
+console.log("imageW =", image.width);
+console.log("imageH =", image.height);
+
+console.log("visibleW =", exportVisibleW);
+console.log("visibleH =", exportVisibleH);
 printBtn.onclick = ()=>{
 
     draw();
