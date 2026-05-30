@@ -26,6 +26,10 @@ const printBtn =
 document.getElementById("printBtn");
 const templateBtn =
 document.getElementById("templateBtn");
+const templateDrawer =
+document.getElementById(
+"templateDrawer"
+);
 let image = new Image();
 let originalImage = null;
 image.src = "default.png";
@@ -1065,8 +1069,9 @@ templateBtn.addEventListener(
     templateLongPressTimer =
     setTimeout(()=>{
 
- templateBtn.innerText =
-"长按成功";
+templateDrawer.classList.add(
+"show"
+);
 
     },700);
 
@@ -1088,6 +1093,26 @@ document.addEventListener(
 (e)=>{
 
     e.preventDefault();
+
+}
+);
+document.addEventListener(
+"click",
+(e)=>{
+
+    if(
+        !templateDrawer.contains(
+            e.target
+        )
+        &&
+        e.target !== templateBtn
+    ){
+
+        templateDrawer.classList.remove(
+            "show"
+        );
+
+    }
 
 }
 );
