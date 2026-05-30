@@ -97,8 +97,8 @@ if(productType === "photo"){
     const scaleY =
     visibleH / image.height;
 
-    imgScale =
-    Math.max(scaleX, scaleY);
+imgScale =
+Math.max(scaleX, scaleY) * 1.05;
 
     // 自动居中
 
