@@ -98,7 +98,7 @@ if(productType === "photo"){
     visibleH / image.height;
 
 imgScale =
-Math.max(scaleX, scaleY) * 1.05;
+Math.max(scaleX, scaleY) * 1.1;
 
     // 自动居中
 
