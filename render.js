@@ -185,7 +185,7 @@ ctx.translate(imgX,imgY);
 if(moodMode === 1){
 
     ctx.filter =
-    "brightness(105%) contrast(105%) saturate(110%)";
+    "grayscale(100%)";
 
 }else{
 
