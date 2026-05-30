@@ -212,7 +212,7 @@ ctx.drawImage(
 if(moodMode === 1){
 
     ctx.fillStyle =
-    "rgba(255,210,120,0.12)";
+    "rgba(255,210,120,0.18)";
 
     ctx.fillRect(
 
