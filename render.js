@@ -129,15 +129,15 @@ exportVisibleH = visibleH;
     const maxY =
     visibleY + h / 2;
 
-    imgX = Math.max(
+   imgX = Math.max(
     minX,
     Math.min(maxX, imgX)
 );
 
-// imgY = Math.max(
-//     minY,
-//     Math.min(maxY, imgY)
-// );
+imgY = Math.max(
+    minY,
+    Math.min(maxY, imgY)
+);
     // =====================
     // 裁切区域
     // =====================
