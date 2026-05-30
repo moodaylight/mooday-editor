@@ -22,8 +22,10 @@ const previewBtn =
 document.getElementById("previewBtn");
 const printBtn =
 document.getElementById("printBtn");
-
+const testHdBtn =
+document.getElementById("testHdBtn");
 let image = new Image();
+let originalImage = null;
 image.src = "default.png";
 let lastTapText = null;
 image.onload = function(){
@@ -266,11 +268,13 @@ upload.addEventListener("change",(e)=>{
 
     const reader = new FileReader();
 
-    reader.onload = function(event){
+reader.onload = function(event){
 
-        image = new Image();
+    image = new Image();
 
-        image.onload = function(){
+    originalImage = image;
+
+    image.onload = function(){
 
             imgX = canvas.width / 2;
 
@@ -861,5 +865,23 @@ printBtn.onclick = ()=>{
     );
 
     link.click();
+
+};
+
+testHdBtn.onclick = ()=>{
+
+    if(!originalImage){
+
+        alert("没有图片");
+
+        return;
+
+    }
+
+    alert(
+        originalImage.width +
+        " × " +
+        originalImage.height
+    );
 
 };
