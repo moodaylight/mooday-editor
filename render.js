@@ -182,7 +182,7 @@ ctx.translate(imgX,imgY);
 // 氛围系统
 // =====================
 
-if(moodMode === 1){
+if(true){
 
     ctx.filter =
     "grayscale(100%)";
