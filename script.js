@@ -1096,6 +1096,77 @@ document.addEventListener(
 
 }
 );
+function applyTemplate(index){
+
+    const tpl =
+    familyTemplates[index];
+
+    if(!titleText){
+
+        titleText = {
+
+            content:tpl.title,
+
+            x:canvas.width/2,
+
+            y:140,
+
+            size:32,
+
+            rotation:0,
+
+            color:"#ffffff",
+
+            glow:0
+
+        };
+
+        texts.push(titleText);
+
+    }else{
+
+        titleText.content =
+        tpl.title;
+
+    }
+
+    if(!subTitleText){
+
+        subTitleText = {
+
+            content:tpl.subTitle,
+
+            x:canvas.width/2,
+
+            y:460,
+
+            size:20,
+
+            rotation:0,
+
+            color:"#ffffff",
+
+            glow:0
+
+        };
+
+        texts.push(subTitleText);
+
+    }else{
+
+        subTitleText.content =
+        tpl.subTitle;
+
+    }
+
+    templateDrawer.classList.remove(
+        "show"
+    );
+
+    draw();
+
+}
+
 document.addEventListener(
 "click",
 (e)=>{
