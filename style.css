@@ -462,3 +462,23 @@ input[type="color"]::-webkit-color-swatch-wrapper{
     padding:0;
 
 }
+
+button{
+
+    -webkit-touch-callout:none;
+
+    -webkit-user-select:none;
+
+    user-select:none;
+
+}
+
+canvas{
+
+    -webkit-touch-callout:none;
+
+    -webkit-user-select:none;
+
+    user-select:none;
+
+}
