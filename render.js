@@ -240,6 +240,37 @@ if(moodMode === 1){
     );
 
 }
+ 
+ if(moodMode === 3){
+
+    ctx.fillStyle =
+    "rgba(220,230,240,0.12)";
+
+    ctx.fillRect(
+
+        -w / 2,
+        -h / 2,
+        w,
+        h
+
+    );
+
+}   
+if(moodMode === 4){
+
+    ctx.fillStyle =
+    "rgba(120,180,255,0.10)";
+
+    ctx.fillRect(
+
+        -w / 2,
+        -h / 2,
+        w,
+        h
+
+    );
+
+}
     ctx.filter = "none";
 // =====================
 // 暖光
