@@ -1121,15 +1121,13 @@ let currentTemplates =
 familyTemplates;
 
 if(
-    templateBtn.innerText ===
-    "情侣"
+    templateCategory === 2
 ){
 
     currentTemplates =
     coupleTemplates;
 
 }
-
 const tpl =
 currentTemplates[index];
 
