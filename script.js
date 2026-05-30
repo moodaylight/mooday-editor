@@ -123,7 +123,7 @@ let imgY = 0;
 let imgScale = 1;
 let imgRotation = 0;
 
-// 文字
+ // 文字
 
 let texts = [];
 let selectedTextIndex = -1;
