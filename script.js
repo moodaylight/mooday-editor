@@ -22,8 +22,7 @@ const previewBtn =
 document.getElementById("previewBtn");
 const printBtn =
 document.getElementById("printBtn");
-const testHdBtn =
-document.getElementById("testHdBtn");
+
 let image = new Image();
 let originalImage = null;
 image.src = "default.png";
@@ -710,7 +709,7 @@ if(box.bottom > 480){
     imgX = x - dragOffsetX;
 
     imgY = y - dragOffsetY;
-    console.log("图片正在移动");
+    
 }
 
         draw();
@@ -960,20 +959,4 @@ exportCtx.drawImage(
 
 };
 
-testHdBtn.onclick = ()=>{
-
-    if(!originalImage){
-
-        alert("没有图片");
-
-        return;
-
-    }
-
-    alert(
-        originalImage.width +
-        " × " +
-        originalImage.height
-    );
-
-};
+;
