@@ -134,10 +134,10 @@ exportVisibleH = visibleH;
     Math.min(maxX, imgX)
 );
 
-imgY = Math.max(
-    minY,
-    Math.min(maxY, imgY)
-);
+// imgY = Math.max(
+//     minY,
+//     Math.min(maxY, imgY)
+// );
     // =====================
     // 裁切区域
     // =====================
