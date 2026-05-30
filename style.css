@@ -482,40 +482,52 @@ canvas{
     user-select:none;
 
 }
+
 #templateDrawer{
 
     position:fixed;
 
-    left:0;
+    left:12px;
 
-    bottom:-300px;
+    right:12px;
 
-    width:100%;
+    bottom:-220px;
 
-    background:#ffffff;
+    height:180px;
 
-    border-top-left-radius:20px;
+    background:#111;
 
-    border-top-right-radius:20px;
+    color:white;
 
-    transition:0.3s;
+    border-radius:24px;
 
-    z-index:999;
+    transition:0.25s;
 
-    padding:20px;
+    z-index:9999;
+
+    padding:15px;
+
+    box-sizing:border-box;
+
+    box-shadow:
+    0 -10px 40px
+    rgba(0,0,0,0.5);
 
 }
 
 #templateDrawer.show{
 
-    bottom:0;
+    bottom:12px;
 
 }
-
 .drawer-item{
 
-    padding:15px;
+    padding:12px;
 
-    border-bottom:1px solid #ddd;
+    color:white;
+
+    border-bottom:
+    1px solid
+    rgba(255,255,255,0.08);
 
 }
