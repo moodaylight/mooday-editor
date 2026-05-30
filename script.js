@@ -827,6 +827,15 @@ textInput.addEventListener("input",()=>{
     }
 
 });
+
+textInput.addEventListener(
+"blur",
+()=>{
+
+    textInput.style.display = "none";
+
+}
+);
 // =====================
 // Touch End
 // =====================
