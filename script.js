@@ -822,6 +822,8 @@ previewBtn.onclick = ()=>{
     link.click();
 
 };
+
+printBtn.onclick = ()=>{
 alert(
 
 "imgX=" + imgX +
@@ -839,8 +841,6 @@ alert(
 "\nvisibleH=" + exportVisibleH
 
 );
-printBtn.onclick = ()=>{
-
     draw();
 
     const exportCanvas =
