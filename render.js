@@ -9,6 +9,7 @@ let exportVisibleW = 0;
 let exportVisibleH = 0;
 function draw(){
 
+alert("render.js 已更新");
     ctx.clearRect(0,0,canvas.width,canvas.height);
    
     if(productType === "mirror"){
