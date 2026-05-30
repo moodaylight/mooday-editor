@@ -793,7 +793,7 @@ if(productType === "photo"){
 
     imgScale =
     Math.max(imgScale, minScale);
-    alert(productType);
+    
 }
 
         draw();
