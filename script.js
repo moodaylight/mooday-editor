@@ -1165,7 +1165,7 @@ function applyTemplate(index){
 }
 
 document.addEventListener(
-"click",
+"touchstart",
 (e)=>{
 
     if(
