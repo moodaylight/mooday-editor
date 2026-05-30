@@ -1114,20 +1114,24 @@ document.addEventListener(
 
 }
 );
+
+function applyTemplate(index){
+
 let currentTemplates =
 familyTemplates;
 
 if(
-    templateCategories[
-        templateCategory
-    ] === "情侣"
+    templateBtn.innerText ===
+    "情侣"
 ){
 
     currentTemplates =
     coupleTemplates;
 
 }
-function applyTemplate(index){
+
+const tpl =
+currentTemplates[index];
 
 const tpl =
 currentTemplates[index];
