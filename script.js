@@ -1065,9 +1065,8 @@ templateBtn.addEventListener(
     templateLongPressTimer =
     setTimeout(()=>{
 
-        console.log(
-            "模板长按成功"
-        );
+ templateBtn.innerText =
+"长按成功";
 
     },700);
 
