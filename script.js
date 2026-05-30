@@ -24,7 +24,8 @@ const moodBtn =
 document.getElementById("moodBtn");
 const printBtn =
 document.getElementById("printBtn");
-
+const templateBtn =
+document.getElementById("templateBtn");
 let image = new Image();
 let originalImage = null;
 image.src = "default.png";
@@ -138,6 +139,25 @@ let imageSelected = false;
 let productType = "photo";
 let lightMode = 0;
 let moodMode = 0;
+let templateCategory = 0;
+
+const templateCategories = [
+
+    "模板",
+
+    "家庭",
+
+    "情侣",
+
+    "宝宝",
+
+    "生日",
+
+    "毕业",
+
+    "旅行"
+
+];
 lightModeBtn.innerText = "灯光";
 let draggingText = false;
 let draggingImage = false;
@@ -994,5 +1014,26 @@ moodBtn.onclick = ()=>{
     moods[moodMode];
 
     draw();
+
+};
+
+templateBtn.onclick = ()=>{
+
+    templateCategory++;
+
+    if(
+        templateCategory >=
+        templateCategories.length
+    ){
+
+        templateCategory = 0;
+
+    }
+
+    templateBtn.innerText =
+
+    templateCategories[
+        templateCategory
+    ];
 
 };
