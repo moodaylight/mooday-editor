@@ -1159,10 +1159,7 @@ function applyTemplate(index){
 
     }
 
-    templateDrawer.classList.remove(
-        "show"
-    );
-
+    
     draw();
 
 }
