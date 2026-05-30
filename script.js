@@ -166,6 +166,24 @@ const familyTemplates = [
     }
 
 ];
+const coupleTemplates = [
+
+    {
+        title:"You & Me",
+        subTitle:"Every Moment Matters"
+    },
+
+    {
+        title:"Our Story",
+        subTitle:"Continues"
+    },
+
+    {
+        title:"Forever",
+        subTitle:"Starts Today"
+    }
+
+];
 const templateCategories = [
 
     "模板",
