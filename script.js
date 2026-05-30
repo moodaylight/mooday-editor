@@ -135,8 +135,7 @@ let imageSelected = false;
 
 
 let lightMode = 0;
-let productType = "photo";
-lightModeBtn.innerText = "照片成功";
+lightModeBtn.innerText = "灯光";
 let draggingText = false;
 let draggingImage = false;
 let longPressTimer;
