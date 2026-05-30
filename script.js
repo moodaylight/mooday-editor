@@ -99,7 +99,15 @@ if(productType === "photo"){
 
     imgScale =
     Math.max(scaleX, scaleY);
+alert(
 
+"scaleX=" + scaleX +
+
+"\nscaleY=" + scaleY +
+
+"\nimgScale=" + imgScale
+
+);
     // 自动居中
 
     imgX = canvas.width / 2;
