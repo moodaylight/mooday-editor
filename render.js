@@ -224,7 +224,23 @@ if(moodMode === 1){
     );
 
 }    
-ctx.filter = "none";
+
+    if(moodMode === 2){
+
+    ctx.fillStyle =
+    "rgba(30,40,60,0.12)";
+
+    ctx.fillRect(
+
+        -w / 2,
+        -h / 2,
+        w,
+        h
+
+    );
+
+}
+    ctx.filter = "none";
 // =====================
 // 暖光
 // =====================
