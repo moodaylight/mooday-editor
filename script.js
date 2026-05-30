@@ -30,6 +30,20 @@ const templateDrawer =
 document.getElementById(
 "templateDrawer"
 );
+const templateItem0 =
+document.getElementById(
+"templateItem0"
+);
+
+const templateItem1 =
+document.getElementById(
+"templateItem1"
+);
+
+const templateItem2 =
+document.getElementById(
+"templateItem2"
+);
 let image = new Image();
 let originalImage = null;
 image.src = "default.png";
