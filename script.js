@@ -830,9 +830,9 @@ alert(
 
 "\nimgScale=" + imgScale +
 
-"\nimageW=" + image.width +
+"\nimageW=" + originalImage.width +
 
-"\nimageH=" + image.height +
+"\nimageH=" + originalImage.height +
 
 "\nvisibleW=" + exportVisibleW +
 
