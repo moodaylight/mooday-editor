@@ -482,3 +482,40 @@ canvas{
     user-select:none;
 
 }
+#templateDrawer{
+
+    position:fixed;
+
+    left:0;
+
+    bottom:-300px;
+
+    width:100%;
+
+    background:#ffffff;
+
+    border-top-left-radius:20px;
+
+    border-top-right-radius:20px;
+
+    transition:0.3s;
+
+    z-index:999;
+
+    padding:20px;
+
+}
+
+#templateDrawer.show{
+
+    bottom:0;
+
+}
+
+.drawer-item{
+
+    padding:15px;
+
+    border-bottom:1px solid #ddd;
+
+}
