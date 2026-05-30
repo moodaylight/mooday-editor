@@ -736,12 +736,31 @@ if(box.bottom > 480){
     // 最小缩放限制（防露白）
     // =====================
 
-    const frameWidth = 12;
-    const frameHeight = 17.5;
+let frameWidth;
+let frameHeight;
 
-    const visibleWidth = 9.8;
-    const visibleHeight = 15.3;
+let visibleWidth;
+let visibleHeight;
 
+if(productType === "mirror"){
+
+    frameWidth = 12;
+    frameHeight = 17.5;
+
+    visibleWidth = 9.8;
+    visibleHeight = 15.3;
+
+}
+
+if(productType === "photo"){
+
+    frameWidth = 4;
+    frameHeight = 6;
+
+    visibleWidth = 4;
+    visibleHeight = 6;
+
+}
     const marginX = 20;
 
     const outerW =
@@ -774,7 +793,7 @@ if(box.bottom > 480){
 
     imgScale =
     Math.max(imgScale, minScale);
-
+    alert(productType);
 }
 
         draw();
