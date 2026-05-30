@@ -1114,10 +1114,23 @@ document.addEventListener(
 
 }
 );
+let currentTemplates =
+familyTemplates;
+
+if(
+    templateCategories[
+        templateCategory
+    ] === "情侣"
+){
+
+    currentTemplates =
+    coupleTemplates;
+
+}
 function applyTemplate(index){
 
-    const tpl =
-    familyTemplates[index];
+const tpl =
+currentTemplates[index];
 
     if(!titleText){
 
