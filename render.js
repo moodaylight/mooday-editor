@@ -177,15 +177,38 @@ ctx.stroke();
 // =====================
 
 ctx.translate(imgX,imgY);
+
+// =====================
+// 氛围系统
+// =====================
+
+if(moodMode === 1){
+
+    ctx.filter =
+    "brightness(105%) contrast(105%) saturate(110%)";
+
+}else{
+
+    ctx.filter = "none";
+
+}
+
 if(lightMode !== 3){
+
 ctx.drawImage(
+
     image,
+
     -w / 2,
     -h / 2,
     w,
     h
+
 );
+
 }
+
+ctx.filter = "none";
 // =====================
 // 暖光
 // =====================
