@@ -468,27 +468,21 @@ return;
 // 副标题
 // =====================
 
-subTitleBtn.addEventListener(
-"click",
-()=>{
+if(subTitleText){
 
-    // 已存在 → 删除
+    selectedText = subTitleText;
 
-    if(subTitleText){
+    textInput.style.display = "block";
 
-        texts = texts.filter(
-            t => t !== subTitleText
-        );
+    textInput.value = subTitleText.content;
 
-        subTitleText = null;
+    textInput.focus();
 
-        selectedText = null;
+    draw();
 
-        draw();
+    return;
 
-        return;
-
-    }
+}
 
     // 不存在 → 创建
 
