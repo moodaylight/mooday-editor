@@ -1133,9 +1133,6 @@ if(
 const tpl =
 currentTemplates[index];
 
-const tpl =
-currentTemplates[index];
-
     if(!titleText){
 
         titleText = {
