@@ -9,7 +9,7 @@ let exportVisibleW = 0;
 let exportVisibleH = 0;
 function draw(){
 
-alert("render.js 已更新");
+
     ctx.clearRect(0,0,canvas.width,canvas.height);
    
     if(productType === "mirror"){
@@ -209,6 +209,21 @@ ctx.drawImage(
 
 }
 
+if(moodMode === 1){
+
+    ctx.fillStyle =
+    "rgba(255,210,120,0.12)";
+
+    ctx.fillRect(
+
+        -w / 2,
+        -h / 2,
+        w,
+        h
+
+    );
+
+}    
 ctx.filter = "none";
 // =====================
 // 暖光
