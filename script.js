@@ -140,7 +140,28 @@ let productType = "photo";
 let lightMode = 0;
 let moodMode = 0;
 let templateCategory = 0;
+let templateMode = false;
 
+let familyTemplateIndex = 0;
+
+const familyTemplates = [
+
+    {
+        title:"Home",
+        subTitle:"Where Love Lives"
+    },
+
+    {
+        title:"The Best Moments",
+        subTitle:"Are Together"
+    },
+
+    {
+        title:"Together",
+        subTitle:"Every Day"
+    }
+
+];
 const templateCategories = [
 
     "模板",
@@ -985,7 +1006,7 @@ exportCtx.drawImage(
     link.click();
 
 };
-
+let templateLongPressTimer;
 moodBtn.onclick = ()=>{
 
     moodMode++;
@@ -1037,7 +1058,32 @@ templateBtn.onclick = ()=>{
     ];
 
 };
+templateBtn.addEventListener(
+"touchstart",
+()=>{
 
+    templateLongPressTimer =
+    setTimeout(()=>{
+
+        console.log(
+            "模板长按成功"
+        );
+
+    },700);
+
+}
+);
+
+templateBtn.addEventListener(
+"touchend",
+()=>{
+
+    clearTimeout(
+        templateLongPressTimer
+    );
+
+}
+);
 document.addEventListener(
 "contextmenu",
 (e)=>{
