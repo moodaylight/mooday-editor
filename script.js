@@ -20,6 +20,8 @@ const subTitleBtn =
 document.getElementById("subTitleBtn");
 const previewBtn =
 document.getElementById("previewBtn");
+const moodBtn =
+document.getElementById("moodBtn");
 const printBtn =
 document.getElementById("printBtn");
 
@@ -135,6 +137,7 @@ let imageSelected = false;
 
 let productType = "photo";
 let lightMode = 0;
+let moodMode = 0;
 lightModeBtn.innerText = "灯光";
 let draggingText = false;
 let draggingImage = false;
@@ -958,4 +961,33 @@ exportCtx.drawImage(
 
 };
 
+moodBtn.onclick = ()=>{
 
+    moodMode++;
+
+    if(moodMode > 4){
+
+        moodMode = 0;
+
+    }
+
+    const moods = [
+
+        "原片",
+
+        "暖光记忆",
+
+        "电影时刻",
+
+        "静谧生活",
+
+        "旅行日记"
+
+    ];
+
+    moodBtn.innerText =
+    moods[moodMode];
+
+    draw();
+
+};
