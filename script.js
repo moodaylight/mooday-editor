@@ -231,11 +231,15 @@ const birthdayTemplates = [
         text3:"愿未来的每一天都像今天一样闪闪发光"
     },
 
-    {
-        title:"祝福",
-        subTitle:"把最好的祝愿送给最特别的你",
-        text3:"愿所有美好都如约而至"
-    },
+   {
+    title:"祝福",
+
+    subTitle:
+    "把最好的祝愿\n送给最特别的你",
+
+    text3:
+    "愿所有美好\n都如约而至"
+}
 
     {
         title:"快乐时光",
