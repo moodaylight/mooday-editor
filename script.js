@@ -1229,13 +1229,13 @@ currentTemplates[index];
 
     if(!titleText){
 
-        titleText = {
+titleText = {
 
-            content:tpl.title,
+    content:tpl.title,
 
-            x:canvas.width/2,
+    x:220,
 
-            y:140,
+    y:120,
 
             size:32,
 
@@ -1258,13 +1258,13 @@ currentTemplates[index];
 
     if(!subTitleText){
 
-        subTitleText = {
+subTitleText = {
 
-            content:tpl.subTitle,
+    content:tpl.subTitle,
 
-            x:canvas.width/2,
+    x:90,
 
-            y:460,
+    y:380,
 
             size:20,
 
@@ -1286,14 +1286,13 @@ currentTemplates[index];
     }
 if(!thirdText){
 
-    thirdText = {
+thirdText = {
 
-        content:tpl.text3,
+    content:tpl.text3,
 
-        x:canvas.width/2,
+    x:240,
 
-        y:500,
-
+    y:460,
         size:14,
 
         rotation:0,
