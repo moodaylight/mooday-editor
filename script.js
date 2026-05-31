@@ -405,22 +405,22 @@ function getTextBounds(text){
         left:
         text.x -
         maxWidth / 2 -
-        10,
+        0,
 
         right:
         text.x +
         maxWidth / 2 +
-        10,
+        0,
 
         top:
         text.y -
         totalHeight / 2 -
-        10,
+        0,
 
         bottom:
         text.y +
         totalHeight / 2 +
-        10
+        0
 
     };
 
