@@ -566,8 +566,8 @@ function drawFrame(){
     // 外框尺寸
     // =====================
 
-    const outerX = marginX;
-    const outerY = marginTop;
+const outerX = marginX;
+const outerY = marginTop + 10;
 
     const outerW =
     canvas.width - marginX * 2;
