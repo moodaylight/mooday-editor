@@ -371,23 +371,59 @@ function getTextBounds(text){
 
     ctx.save();
 
-    ctx.font = `${text.size}px sans-serif`;
+    ctx.font =
+    `${text.size}px sans-serif`;
 
-    const width = ctx.measureText(text.content).width;
+    const lines =
+    String(
+        text.content || ""
+    ).split("\n");
+
+    let maxWidth = 0;
+
+    lines.forEach(line=>{
+
+        const w =
+        ctx.measureText(line).width;
+
+        if(w > maxWidth){
+
+            maxWidth = w;
+
+        }
+
+    });
+
+    const totalHeight =
+    lines.length *
+    (text.size + 6);
 
     ctx.restore();
 
     return {
 
-    left: text.x - width / 2 - 10,
+        left:
+        text.x -
+        maxWidth / 2 -
+        10,
 
-    right: text.x + width / 2 + 10,
+        right:
+        text.x +
+        maxWidth / 2 +
+        10,
 
-    top: text.y - text.size / 2 - 10,
+        top:
+        text.y -
+        totalHeight / 2 -
+        10,
 
-    bottom: text.y + text.size / 2 + 10
+        bottom:
+        text.y +
+        totalHeight / 2 +
+        10
 
-};
+    };
+
 }
 
 // =====================
