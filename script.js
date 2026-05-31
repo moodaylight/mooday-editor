@@ -19,6 +19,8 @@ const titleBtn =
 document.getElementById("titleBtn");
 const subTitleBtn =
 document.getElementById("subTitleBtn");
+const decoBtn =
+document.getElementById("decoBtn");
 const previewBtn =
 document.getElementById("previewBtn");
 const moodBtn =
@@ -744,7 +746,23 @@ subTitleBtn.addEventListener(
 
 });
 
+decoBtn.onclick = ()=>{
 
+    decorations.push({
+
+        content:"☀",
+
+        x:200,
+
+        y:200,
+
+        size:28
+
+    });
+
+    draw();
+
+};
 
 
 
