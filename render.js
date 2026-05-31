@@ -372,13 +372,29 @@ ctx.restore();
 
         ctx.save();
 
-        ctx.translate(text.x,text.y);
+ctx.translate(
 
-        ctx.rotate(text.rotation * Math.PI / 180);
+    text.x || 0,
 
-        ctx.font = `${text.size}px sans-serif`;
+    text.y || 0
 
-        ctx.fillStyle = text.color;
+);
+
+ctx.rotate(
+
+    (text.rotation || 0)
+
+    * Math.PI / 180
+
+);
+
+ctx.font =
+
+`${text.size || 20}px sans-serif`;
+
+ctx.fillStyle =
+
+text.color || "#ffffff";
 
                   
         ctx.textAlign = "center";
