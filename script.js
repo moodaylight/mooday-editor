@@ -11,7 +11,8 @@ document.getElementById("uploadBtn");
 const lightModeBtn =
 document.getElementById("lightModeBtn");
 const photoBtn =
-document.getElementById("photoBtn");subTitleText = {
+document.getElementById("photoBtn");
+
 const mirrorBtn =
 document.getElementById("mirrorBtn");
 const titleBtn =
