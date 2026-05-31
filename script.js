@@ -1292,7 +1292,34 @@ if(
     currentTemplates =
     babyTemplates;
 
-}const tpl =
+}
+ if(
+    templateCategory === 4
+){
+
+    currentTemplates =
+    birthdayTemplates;
+
+}
+
+if(
+    templateCategory === 5
+){
+
+    currentTemplates =
+    graduationTemplates;
+
+}
+
+if(
+    templateCategory === 6
+){
+
+    currentTemplates =
+    travelTemplates;
+
+}  
+    const tpl =
 currentTemplates[index];
 
     if(!titleText){
