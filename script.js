@@ -198,6 +198,25 @@ const coupleTemplates = [
     }
 
 ];
+
+const babyTemplates = [
+
+    {
+        title:"成长",
+        subTitle:"只有一次"
+    },
+
+    {
+        title:"童年",
+        subTitle:"闪闪发光"
+    },
+
+    {
+        title:"梦想",
+        subTitle:"从这里开始"
+    }
+
+];
 const templateCategories = [
 
     "模板",
