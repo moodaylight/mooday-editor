@@ -1237,7 +1237,7 @@ titleText = {
 
     y:120,
 
-            size:32,
+            size:36,
 
             rotation:0,
 
@@ -1266,7 +1266,7 @@ subTitleText = {
 
     y:380,
 
-            size:20,
+            size:14,
 
             rotation:0,
 
@@ -1293,7 +1293,7 @@ thirdText = {
     x:240,
 
     y:460,
-        size:14,
+        size:20,
 
         rotation:0,
 
