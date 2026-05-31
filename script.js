@@ -11,7 +11,7 @@ document.getElementById("uploadBtn");
 const lightModeBtn =
 document.getElementById("lightModeBtn");
 const photoBtn =
-document.getElementById("photoBtn");
+document.getElementById("photoBtn");subTitleText = {
 const mirrorBtn =
 document.getElementById("mirrorBtn");
 const titleBtn =
@@ -1497,7 +1497,7 @@ thirdText = {
 
     x:280,
 
-    y:450,
+    y:440,
 
     size:18,
 
