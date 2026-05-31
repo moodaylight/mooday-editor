@@ -393,11 +393,60 @@ function getTextBounds(text){
     ctx.font =
     `${text.size}px sans-serif`;
 
-    const lines =
-    String(
-        text.content || ""
-    ).split("\n");
+let lines = [];
 
+String(
+    text.content || ""
+)
+.split("\n")
+.forEach(part=>{
+
+    let maxChars = 8;
+
+    if(text === titleText){
+
+        maxChars = 12;
+
+    }
+
+    if(text === subTitleText){
+
+        maxChars = 8;
+
+    }
+
+    if(text === thirdText){
+
+        maxChars = 10;
+
+    }
+
+    if(part.length <= maxChars){
+
+        lines.push(part);
+
+    }else{
+
+        for(
+            let i = 0;
+            i < part.length;
+            i += maxChars
+        ){
+
+            lines.push(
+
+                part.substring(
+                    i,
+                    i + maxChars
+                )
+
+            );
+
+        }
+
+    }
+
+});
     let maxWidth = 0;
 
     lines.forEach(line=>{
