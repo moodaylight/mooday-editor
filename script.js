@@ -150,6 +150,21 @@ let imgRotation = 0;
 
 let texts = [];
 let decorations = [];
+let decoIndex = 0;
+
+const decoList = [
+
+    "☀",
+
+    "🌼",
+
+    "♥",
+
+    "✨",
+
+    "✦"
+
+];
 let selectedTextIndex = -1;
 let selectedText = null;
 let titleText = null;
@@ -750,7 +765,8 @@ decoBtn.onclick = ()=>{
 
     decorations.push({
 
-        content:"☀",
+        content:
+        decoList[decoIndex],
 
         x:200,
 
@@ -759,6 +775,17 @@ decoBtn.onclick = ()=>{
         size:28
 
     });
+
+    decoIndex++;
+
+    if(
+        decoIndex >=
+        decoList.length
+    ){
+
+        decoIndex = 0;
+
+    }
 
     draw();
 
