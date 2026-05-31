@@ -1284,8 +1284,35 @@ currentTemplates[index];
         tpl.subTitle;
 
     }
+if(!thirdText){
 
-    
+    thirdText = {
+
+        content:tpl.text3,
+
+        x:canvas.width/2,
+
+        y:500,
+
+        size:14,
+
+        rotation:0,
+
+        color:"#ffffff",
+
+        glow:0
+
+    };
+
+    texts.push(thirdText);
+
+}else{
+
+    thirdText.content =
+    tpl.text3;
+
+}
+
     draw();
 
 }
