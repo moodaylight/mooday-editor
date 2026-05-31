@@ -1242,7 +1242,44 @@ if(templateCategory === 3){
     "梦想";
 
 }
-        
+ if(templateCategory === 4){
+
+    templateItem0.innerText =
+    "生日";
+
+    templateItem1.innerText =
+    "祝福";
+
+    templateItem2.innerText =
+    "快乐时光";
+
+}
+
+if(templateCategory === 5){
+
+    templateItem0.innerText =
+    "青春";
+
+    templateItem1.innerText =
+    "启程";
+
+    templateItem2.innerText =
+    "未来可期";
+
+}
+
+if(templateCategory === 6){
+
+    templateItem0.innerText =
+    "远方";
+
+    templateItem1.innerText =
+    "风景";
+
+    templateItem2.innerText =
+    "回忆";
+
+}       
         templateDrawer.classList.add(
             "show"
         );
