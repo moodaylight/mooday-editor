@@ -396,10 +396,31 @@ ctx.fillStyle =
 
 text.color || "#ffffff";
 
-                  
-        ctx.textAlign = "center";
+ctx.textAlign = "center";
 
-        ctx.textBaseline = "middle";
+ctx.textBaseline = "middle";
+
+// 文案宽度限制
+
+let maxChars = 8;
+
+if(text === titleText){
+
+    maxChars = 12;
+
+}
+
+if(text === subTitleText){
+
+    maxChars = 8;
+
+}
+
+if(text === thirdText){
+
+    maxChars = 10;
+
+}
         
     let lines = [];
 
@@ -409,7 +430,7 @@ String(
 .split("\n")
 .forEach(part=>{
 
-    if(part.length <= 8){
+    if(part.length <= maxChars){
 
         lines.push(part);
 
@@ -418,14 +439,14 @@ String(
         for(
             let i = 0;
             i < part.length;
-            i += 8
+            i += maxChars
         ){
 
             lines.push(
 
                 part.substring(
                     i,
-                    i + 8
+                    i + maxChars
                 )
 
             );
@@ -433,7 +454,6 @@ String(
         }
 
     }
-
 });
 
 lines.forEach((line,index)=>{
