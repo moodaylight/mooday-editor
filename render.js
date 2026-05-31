@@ -415,7 +415,7 @@ lines.forEach((line,index)=>{
         0,
 
         index *
-        (text.size + 6)
+((text.size || 20) + 6)
 
     );
 
