@@ -1438,10 +1438,19 @@ titleText = {
 
     content:tpl.title,
 
-    x:100,
+    x: exportVisibleX + 30,
 
-    y:100,
+    y: exportVisibleY + 20,
 
+    size:30,
+
+    rotation:0,
+
+    color:"#ffffff",
+
+    glow:0
+
+};
             size:30,
 
             rotation:0,
@@ -1467,9 +1476,19 @@ subTitleText = {
 
     content:tpl.subTitle,
 
-    x:80,
+    x: exportVisibleX + 10,
 
-    y:200,
+    y: exportVisibleY + exportVisibleH - 30,
+
+    size:13,
+
+    rotation:0,
+
+    color:"#ffffff",
+
+    glow:0
+
+};
 
             size:13,
 
@@ -1495,9 +1514,19 @@ thirdText = {
 
     content:tpl.text3,
 
-    x:260,
+    x: exportVisibleX + exportVisibleW - 10,
 
-    y:400,
+    y: exportVisibleY + exportVisibleH - 10,
+
+    size:18,
+
+    rotation:0,
+
+    color:"#ffffff",
+
+    glow:0
+
+};
         size:18,
 
         rotation:0,
