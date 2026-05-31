@@ -201,8 +201,139 @@ const coupleTemplates = [
 ];
 
 const babyTemplates = [
+const birthdayTemplates = [
 
     {
+        title:"生日",
+
+        subTitle:
+        "今天属于你\n愿快乐如期而至",
+
+        text3:
+        "愿未来的每一天\n都像今天一样闪闪发光"
+    },
+
+    {
+        title:"祝福",
+
+        subTitle:
+        "把最好的祝愿\n送给最特别的你",
+
+        text3:
+        "愿所有美好\n都如约而至"
+    },
+
+    {
+        title:"快乐时光",
+
+        subTitle:
+        "把笑容留在今天\n把幸福带向未来",
+
+        text3:
+        "生日快乐\n愿梦想一直发光"
+    }
+
+];
+const graduationTemplates = [
+
+    {
+        title:"青春",
+
+        subTitle:
+        "故事不会结束\n只是换个地方继续",
+
+        text3:
+        "愿此去前程似锦\n归来仍是少年"
+    },
+
+    {
+        title:"启程",
+
+        subTitle:
+        "带着梦想出发\n向更远的地方前进",
+
+        text3:
+        "新的旅程\n现在开始"
+    },
+
+    {
+        title:"未来可期",
+
+        subTitle:
+        "那些努力过的日子\n终将开花结果",
+
+        text3:
+        "愿未来一路有光"
+    }
+
+];   
+const graduationTemplates = [
+
+    {
+        title:"青春",
+
+        subTitle:
+        "故事不会结束\n只是换个地方继续",
+
+        text3:
+        "愿此去前程似锦\n归来仍是少年"
+    },
+
+    {
+        title:"启程",
+
+        subTitle:
+        "带着梦想出发\n向更远的地方前进",
+
+        text3:
+        "新的旅程\n现在开始"
+    },
+
+    {
+        title:"未来可期",
+
+        subTitle:
+        "那些努力过的日子\n终将开花结果",
+
+        text3:
+        "愿未来一路有光"
+    }
+
+];
+const travelTemplates = [
+
+    {
+        title:"远方",
+
+        subTitle:
+        "每一次出发\n都是新的遇见",
+
+        text3:
+        "把风景留在眼里\n把故事留在心里"
+    },
+
+    {
+        title:"风景",
+
+        subTitle:
+        "世界很大\n脚步不要停下",
+
+        text3:
+        "愿每一段路\n都有值得收藏的回忆"
+    },
+
+    {
+        title:"回忆",
+
+        subTitle:
+        "后来想起的\n都是当时的风景",
+
+        text3:
+        "把时光装进行囊\n慢慢珍藏"
+    }
+
+];
+{
         title:"成长",
         subTitle:"只有一次",
         text3:"请慢一点长大"
