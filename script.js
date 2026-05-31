@@ -1132,7 +1132,45 @@ templateBtn.addEventListener(
     setTimeout(()=>{
 
         templateLongPressed = true;
+if(templateCategory === 1){
 
+    templateItem0.innerText =
+    "家的模样";
+
+    templateItem1.innerText =
+    "温暖时光";
+
+    templateItem2.innerText =
+    "陪伴";
+
+}
+
+if(templateCategory === 2){
+
+    templateItem0.innerText =
+    "You & Me";
+
+    templateItem1.innerText =
+    "Our Story";
+
+    templateItem2.innerText =
+    "Forever";
+
+}
+
+if(templateCategory === 3){
+
+    templateItem0.innerText =
+    "成长";
+
+    templateItem1.innerText =
+    "童年";
+
+    templateItem2.innerText =
+    "梦想";
+
+}
+        
         templateDrawer.classList.add(
             "show"
         );
