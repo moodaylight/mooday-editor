@@ -59,7 +59,7 @@ if(productType === "photo"){
     // =====================
 
     const marginX = 20;
-    const marginTop = 10;
+    const marginTop = 20;
 
     // =====================
     // 外框尺寸
