@@ -424,9 +424,7 @@ lines.forEach((line,index)=>{
         ctx.restore();
 
     });
-ctx.restore();
 
-});
 
 decorations.forEach(item=>{
 
