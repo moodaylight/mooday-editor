@@ -1174,7 +1174,15 @@ if(
     coupleTemplates;
 
 }
-const tpl =
+
+if(
+    templateCategory === 3
+){
+
+    currentTemplates =
+    babyTemplates;
+
+}const tpl =
 currentTemplates[index];
 
     if(!titleText){
