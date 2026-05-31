@@ -401,10 +401,40 @@ text.color || "#ffffff";
 
         ctx.textBaseline = "middle";
         
-     const lines =
+    let lines = [];
+
 String(
     text.content || ""
-).split("\n");
+)
+.split("\n")
+.forEach(part=>{
+
+    if(part.length <= 8){
+
+        lines.push(part);
+
+    }else{
+
+        for(
+            let i = 0;
+            i < part.length;
+            i += 8
+        ){
+
+            lines.push(
+
+                part.substring(
+                    i,
+                    i + 8
+                )
+
+            );
+
+        }
+
+    }
+
+});
 
 lines.forEach((line,index)=>{
 
