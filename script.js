@@ -203,17 +203,20 @@ const babyTemplates = [
 
     {
         title:"成长",
-        subTitle:"只有一次"
+        subTitle:"只有一次",
+        text3:"请慢一点长大"
     },
 
     {
         title:"童年",
-        subTitle:"闪闪发光"
+        subTitle:"闪闪发光",
+        text3:"把快乐装进每一天"
     },
 
     {
         title:"梦想",
-        subTitle:"从这里开始"
+        subTitle:"从这里开始",
+        text3:"未来正在向你招手"
     }
 
 ];
