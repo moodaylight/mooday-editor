@@ -128,13 +128,7 @@ Math.max(scaleX, scaleY);
 imgX = canvas.width / 2;
 
 imgY =
-10 +
-(
-(canvas.height - 40)
-/
-2
-);
-
+canvas.height / 2;
     draw();
 
 }
