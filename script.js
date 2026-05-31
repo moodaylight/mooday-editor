@@ -1451,16 +1451,7 @@ titleText = {
     glow:0
 
 };
-            size:30,
-
-            rotation:0,
-
-            color:"#ffffff",
-
-            glow:0
-
-        };
-
+    
         texts.push(titleText);
 
     }else{
@@ -1490,16 +1481,7 @@ subTitleText = {
 
 };
 
-            size:13,
-
-            rotation:0,
-
-            color:"#ffffff",
-
-            glow:0
-
-        };
-
+           
         texts.push(subTitleText);
 
     }else{
@@ -1527,15 +1509,7 @@ thirdText = {
     glow:0
 
 };
-        size:18,
-
-        rotation:0,
-
-        color:"#ffffff",
-
-        glow:0
-
-    };
+        
 
     texts.push(thirdText);
 
