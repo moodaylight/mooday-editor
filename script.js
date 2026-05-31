@@ -147,6 +147,7 @@ let imgRotation = 0;
  // 文字
 
 let texts = [];
+let decorations = [];
 let selectedTextIndex = -1;
 let selectedText = null;
 let titleText = null;
