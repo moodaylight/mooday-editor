@@ -1495,9 +1495,9 @@ thirdText = {
 
     content:tpl.text3,
 
-    x: exportVisibleX + exportVisibleW - 10,
+    x:260,
 
-    y: exportVisibleY + exportVisibleH - 10,
+    y:430,
 
     size:18,
 
