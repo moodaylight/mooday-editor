@@ -386,7 +386,9 @@ ctx.restore();
         ctx.textBaseline = "middle";
         
      const lines =
-text.content.split("\n");
+String(
+    text.content || ""
+).split("\n");
 
 lines.forEach((line,index)=>{
 
