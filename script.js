@@ -1495,9 +1495,9 @@ thirdText = {
 
     content:tpl.text3,
 
-    x:300,
+    x:260,
 
-    y:430,
+    y:400,
         size:18,
 
         rotation:0,
