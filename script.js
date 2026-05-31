@@ -239,7 +239,7 @@ const birthdayTemplates = [
 
     text3:
     "愿所有美好\n都如约而至"
-}
+},
 
     {
         title:"快乐时光",
