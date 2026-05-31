@@ -385,7 +385,23 @@ ctx.restore();
 
         ctx.textBaseline = "middle";
         
-        ctx.fillText(text.content,0,0);
+     const lines =
+text.content.split("\n");
+
+lines.forEach((line,index)=>{
+
+    ctx.fillText(
+
+        line,
+
+        0,
+
+        index *
+        (text.size + 6)
+
+    );
+
+});
 
         ctx.restore();
 
