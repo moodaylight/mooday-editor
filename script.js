@@ -167,40 +167,56 @@ const familyTemplates = [
 
     {
         title:"Home",
-        subTitle:"Where Love Lives"
+
+        subTitle:"Where Love Lives",
+
+        text3:"Together\nEvery Day"
     },
 
     {
         title:"The Best Moments",
-        subTitle:"Are Together"
+
+        subTitle:"Are Together",
+
+        text3:"Family Makes\nLife Beautiful"
     },
 
     {
         title:"Together",
-        subTitle:"Every Day"
+
+        subTitle:"Every Day",
+
+        text3:"The Warmest\nPlace Is Home"
     }
 
 ];
-
 const coupleTemplates = [
 
     {
         title:"You & Me",
-        subTitle:"Every Moment Matters"
+
+        subTitle:"Every Moment Matters",
+
+        text3:"Love Is In\nThe Little Things"
     },
 
     {
         title:"Our Story",
-        subTitle:"Continues"
+
+        subTitle:"Continues",
+
+        text3:"Every Day\nA New Memory"
     },
 
     {
         title:"Forever",
-        subTitle:"Starts Today"
+
+        subTitle:"Starts Today",
+
+        text3:"With You\nBy My Side"
     }
 
 ];
-
 const babyTemplates = [
 
     {
