@@ -834,41 +834,38 @@ canvas.addEventListener("touchmove",(e)=>{
        const box = getTextBounds(selectedText);
 
 // 左边界
-
-if(box.left < 48){
+if(box.left < 10){
 
     selectedText.x +=
-    48 - box.left;
+    10 - box.left;
 
 }
 
 // 右边界
-
-if(box.right > 312){
+if(box.right > canvas.width - 10){
 
     selectedText.x -=
-    box.right - 312;
+    box.right -
+    (canvas.width - 10);
 
 }
 
 // 上边界
-
-if(box.top < 45){
+if(box.top < 10){
 
     selectedText.y +=
-    45 - box.top;
+    10 - box.top;
 
 }
 
 // 下边界
-
-if(box.bottom > 480){
+if(box.bottom > canvas.height - 10){
 
     selectedText.y -=
-    box.bottom - 480;
-       
+    box.bottom -
+    (canvas.height - 10);
 
-        }
+}
 
         }
 
