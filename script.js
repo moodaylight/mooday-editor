@@ -1438,9 +1438,9 @@ titleText = {
 
     content:tpl.title,
 
-    x:130,
+    x:110,
 
-    y:90,
+    y:60,
     size:30,
 
     rotation:0,
@@ -1468,7 +1468,7 @@ subTitleText = {
 
     x:80,
 
-    y:430,
+    y:460,
 
     size:13,
 
@@ -1495,9 +1495,9 @@ thirdText = {
 
     content:tpl.text3,
 
-    x:260,
+    x:280,
 
-    y:430,
+    y:450,
 
     size:18,
 
