@@ -424,7 +424,41 @@ lines.forEach((line,index)=>{
         ctx.restore();
 
     });
+ctx.restore();
 
+});
+
+decorations.forEach(item=>{
+
+    ctx.save();
+
+    ctx.font =
+    `${item.size}px sans-serif`;
+
+    ctx.fillStyle =
+    "#ffffff";
+
+    ctx.textAlign =
+    "center";
+
+    ctx.textBaseline =
+    "middle";
+
+    ctx.fillText(
+
+        item.content,
+
+        item.x,
+
+        item.y
+
+    );
+
+    ctx.restore();
+
+});
+
+}
 }
 function drawPhotoFrame(){
 
