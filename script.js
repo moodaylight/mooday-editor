@@ -462,9 +462,17 @@ String(
 
     });
 
-    const totalHeight =
-    lines.length *
-    (text.size + 6);
+const totalHeight =
+
+(lines.length - 1)
+
+*
+
+(text.size + 6)
+
++
+
+text.size;
 
     ctx.restore();
 
