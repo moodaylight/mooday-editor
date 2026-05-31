@@ -457,7 +457,6 @@ decorations.forEach(item=>{
 });
 
 }
-}
 function drawPhotoFrame(){
 
     ctx.strokeStyle =
