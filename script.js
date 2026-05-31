@@ -1438,10 +1438,9 @@ titleText = {
 
     content:tpl.title,
 
-    x: exportVisibleX + 30,
+    x:130,
 
-    y: exportVisibleY + 20,
-
+    y:90,
     size:30,
 
     rotation:0,
@@ -1467,9 +1466,9 @@ subTitleText = {
 
     content:tpl.subTitle,
 
-    x: exportVisibleX + 10,
+    x:80,
 
-    y: exportVisibleY + exportVisibleH - 30,
+    y:430,
 
     size:13,
 
