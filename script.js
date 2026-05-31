@@ -833,37 +833,57 @@ canvas.addEventListener("touchmove",(e)=>{
        selectedText.y = y - textOffsetY
        const box = getTextBounds(selectedText);
 
+const LIMIT = 10;
+
 // 左边界
-if(box.left < 10){
+if(box.left < exportVisibleX + LIMIT){
 
     selectedText.x +=
-    10 - box.left;
+    (exportVisibleX + LIMIT) - box.left;
 
 }
 
 // 右边界
-if(box.right > canvas.width - 10){
+if(
+    box.right >
+    exportVisibleX +
+    exportVisibleW -
+    LIMIT
+){
 
     selectedText.x -=
     box.right -
-    (canvas.width - 10);
+    (
+        exportVisibleX +
+        exportVisibleW -
+        LIMIT
+    );
 
 }
 
 // 上边界
-if(box.top < 10){
+if(box.top < exportVisibleY + LIMIT){
 
     selectedText.y +=
-    10 - box.top;
+    (exportVisibleY + LIMIT) - box.top;
 
 }
 
 // 下边界
-if(box.bottom > canvas.height - 10){
+if(
+    box.bottom >
+    exportVisibleY +
+    exportVisibleH -
+    LIMIT
+){
 
     selectedText.y -=
     box.bottom -
-    (canvas.height - 10);
+    (
+        exportVisibleY +
+        exportVisibleH -
+        LIMIT
+    );
 
 }
 
