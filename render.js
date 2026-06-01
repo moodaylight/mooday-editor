@@ -480,6 +480,14 @@ String(
     }
 });
 
+const totalHeight =
+
+(lines.length - 1)
+
+*
+
+((text.size || 20) + 6);
+
 lines.forEach((line,index)=>{
 
     ctx.fillText(
@@ -489,7 +497,11 @@ lines.forEach((line,index)=>{
         0,
 
         index *
-((text.size || 20) + 6)
+        ((text.size || 20) + 6)
+
+        -
+
+        totalHeight / 2
 
     );
 
