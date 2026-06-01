@@ -981,7 +981,8 @@ canvas.addEventListener("touchmove",(e)=>{
         if(draggingText && selectedText){
       selectedText.x = x - textOffsetX
        selectedText.y = y - textOffsetY
-       selectedText.rx =
+       
+            selectedText.rx =
 
 (
 selectedText.x -
