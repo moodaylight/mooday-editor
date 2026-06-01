@@ -1054,7 +1054,23 @@ if(
     );
 
 }
+selectedText.rx =
 
+(
+selectedText.x -
+exportVisibleX
+)
+/
+exportVisibleW;
+
+selectedText.ry =
+
+(
+selectedText.y -
+exportVisibleY
+)
+/
+exportVisibleH;
         }
 
         // 图片
