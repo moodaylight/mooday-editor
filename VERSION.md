@@ -1,4 +1,34 @@
 # VERSION
+v0.9.6
+
+完成：
+
+✓ Relative Position V1
+
+新增：
+
+* titleText 支持 rx、ry
+* subTitleText 支持 rx、ry
+* thirdText 支持 rx、ry
+
+功能：
+
+* 拖动文字时自动记录 rx、ry
+* render.js 根据 rx、ry 自动计算 x、y
+* 文字开始跟随 VisibleArea 比例变化
+* 照片模式与魔镜模式切换时，文字位置同步跟随
+
+已验证：
+
+* 文字跟随可视区域移动
+* 固定 XY 架构开始升级为 Relative Position 架构
+
+待优化：
+
+* 比例换算精度优化
+* SafeArea 统一边界系统（10px）
+* 文字边界框定位替代中心点定位
+
 v0.9.5
 
 新增：
