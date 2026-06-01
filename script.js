@@ -981,7 +981,24 @@ canvas.addEventListener("touchmove",(e)=>{
         if(draggingText && selectedText){
       selectedText.x = x - textOffsetX
        selectedText.y = y - textOffsetY
-       const box = getTextBounds(selectedText);
+       selectedText.rx =
+
+(
+selectedText.x -
+exportVisibleX
+)
+/
+exportVisibleW;
+
+selectedText.ry =
+
+(
+selectedText.y -
+exportVisibleY
+)
+/
+exportVisibleH;
+            const box = getTextBounds(selectedText);
 
 const LIMIT = 10;
 
