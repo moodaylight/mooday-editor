@@ -309,6 +309,27 @@ Safe Area
 文字与装饰保持在 SafeArea 内。
 
 禁止依赖固定 XY 坐标。
+
+## 十二、MOODAY 坐标系统
+
+Frame
+↓
+VisibleArea
+↓
+SafeArea
+↓
+Relative Position (rx, ry)
+↓
+Render
+
+原则：
+
+1. 不再依赖固定 x、y 坐标
+2. 文字、装饰使用 rx、ry 相对坐标
+3. 切换规格时自动按比例适配
+4. SafeArea 四边统一保留 10px 边距
+5. 所有元素禁止拖出 SafeArea
+
 状态：
 
 正式确认。
