@@ -369,7 +369,31 @@ ctx.restore();
     // 文字
 
     texts.forEach(text=>{
+if(
 
+            text.rx !== undefined &&
+
+            text.ry !== undefined
+
+        ){
+
+            text.x =
+
+            exportVisibleX +
+
+            exportVisibleW *
+
+            text.rx;
+
+            text.y =
+
+            exportVisibleY +
+
+            exportVisibleH *
+
+            text.ry;
+
+        }
         ctx.save();
 
 ctx.translate(
