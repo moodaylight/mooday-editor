@@ -1265,6 +1265,8 @@ photoBtn.onclick = ()=>{
         Math.max(scaleX, scaleY);
 
     }
+
+    draw();
 texts.forEach(text=>{
 
     const box =
@@ -1365,10 +1367,8 @@ texts.forEach(text=>{
     exportVisibleH;
 
 });
-    draw();
-
 };
-
+draw();
 mirrorBtn.onclick = ()=>{
 
     productType = "mirror";
@@ -1410,6 +1410,10 @@ mirrorBtn.onclick = ()=>{
         Math.max(scaleX, scaleY);
 
     }
+
+    draw();
+
+
 texts.forEach(text=>{
 
     const box =
@@ -1510,8 +1514,8 @@ texts.forEach(text=>{
     exportVisibleH;
 
 });
-    draw();
 
+draw();
 };
 
 previewBtn.onclick = ()=>{
