@@ -1606,6 +1606,10 @@ titleText = {
 
     content:tpl.title,
 
+    rx:0.30,
+
+    ry:0.10,
+
     x:
     exportVisibleX +
     exportVisibleW * 0.30,
@@ -1639,6 +1643,10 @@ subTitleText = {
 
     content:tpl.subTitle,
 
+    rx:0.20,
+
+    ry:0.82,
+
     x:
     exportVisibleX +
     exportVisibleW * 0.20,
@@ -1670,6 +1678,10 @@ if(!thirdText){
 thirdText = {
 
     content:tpl.text3,
+
+    rx:0.78,
+
+    ry:0.78,
 
     x:
     exportVisibleX +
