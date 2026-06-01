@@ -1197,6 +1197,41 @@ photoBtn.onclick = ()=>{
     lightModeBtn.style.display =
     "none";
 
+    if(image){
+
+        const frameWidth = 4;
+        const frameHeight = 6;
+
+        const visibleWidth = 4;
+        const visibleHeight = 6;
+
+        const marginX = 20;
+
+        const outerW =
+        canvas.width - marginX * 2;
+
+        const outerH =
+        canvas.height - marginX * 2;
+
+        const visibleW =
+        outerW *
+        (visibleWidth / frameWidth);
+
+        const visibleH =
+        outerH *
+        (visibleHeight / frameHeight);
+
+        const scaleX =
+        visibleW / image.width;
+
+        const scaleY =
+        visibleH / image.height;
+
+        imgScale =
+        Math.max(scaleX, scaleY);
+
+    }
+
     draw();
 
 };
@@ -1207,6 +1242,41 @@ mirrorBtn.onclick = ()=>{
 
     lightModeBtn.style.display =
     "block";
+
+    if(image){
+
+        const frameWidth = 12;
+        const frameHeight = 17.5;
+
+        const visibleWidth = 9.8;
+        const visibleHeight = 15.3;
+
+        const marginX = 20;
+
+        const outerW =
+        canvas.width - marginX * 2;
+
+        const outerH =
+        canvas.height - marginX * 2;
+
+        const visibleW =
+        outerW *
+        (visibleWidth / frameWidth);
+
+        const visibleH =
+        outerH *
+        (visibleHeight / frameHeight);
+
+        const scaleX =
+        visibleW / image.width;
+
+        const scaleY =
+        visibleH / image.height;
+
+        imgScale =
+        Math.max(scaleX, scaleY);
+
+    }
 
     draw();
 
