@@ -2024,8 +2024,8 @@ if(!leftBottomText){
 
 leftBottomText = {
 
-    content:"成长\n只有一次",
-
+    content:
+tpl.leftBottom || "",
     rx:0.08,
 
     ry:0.72,
