@@ -1,5 +1,23 @@
 # MOODAY Editor
+V1.1 Layout 1 定版
 
+主标题
+rx:0.07 ry:0.10 size:28
+
+左下标题
+rx:0.04 ry:0.82 size:14
+
+左下说明
+rx:0.06 ry:0.89 size:10
+
+右下标题
+rx:0.66 ry:0.85 size:16
+
+右下说明
+rx:0.60 ry:0.95 size:12
+
+状态：
+已定版
 ## V1.0 Stable
 
 日期：2026-06-03
