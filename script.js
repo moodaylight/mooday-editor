@@ -1928,17 +1928,17 @@ titleText = {
 
     content:tpl.title,
 
-    rx:0.30,
+    rx:0.08,
 
-    ry:0.10,
+    ry:0.12,
     align:"left",
     x:
     exportVisibleX +
-    exportVisibleW * 0.30,
+    exportVisibleW * 0.08,
 
     y:
     exportVisibleY +
-    exportVisibleH * 0.10,
+    exportVisibleH * 0.12,
 
     size:30,
 
@@ -2000,17 +2000,17 @@ thirdText = {
 
     content:tpl.text3,
 
-    rx:0.55,
+    rx:0.58,
 
-    ry:0.68,
+    ry:0.66,
     align:"left",
     x:
     exportVisibleX +
-    exportVisibleW * 0.55,
+    exportVisibleW * 0.58,
 
     y:
     exportVisibleY +
-    exportVisibleH * 0.68,
+    exportVisibleH * 0.66,
 
     size:16,
 
@@ -2039,7 +2039,7 @@ leftBottomText = {
     "성장은\n단 한 번뿐이야",
     rx:0.08,
 
-    ry:0.72,
+    ry:0.70,
 
     align:"left",
 
@@ -2049,7 +2049,7 @@ leftBottomText = {
 
     y:
     exportVisibleY +
-    exportVisibleH * 0.72,
+    exportVisibleH * 0.70,
 
     size:14,
 
