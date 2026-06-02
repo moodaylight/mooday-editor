@@ -2002,6 +2002,16 @@ thirdText = {
     glow:0
 
 };
+        
+
+    texts.push(thirdText);
+
+}else{
+
+    thirdText.content =
+    tpl.text3;
+
+}
 if(!leftBottomText){
 
 leftBottomText = {
@@ -2034,17 +2044,7 @@ leftBottomText = {
 
 texts.push(leftBottomText);
 
-}        
-
-    texts.push(thirdText);
-
-}else{
-
-    thirdText.content =
-    tpl.text3;
-
 }
-
 // 先计算可视区域
 
 draw();
