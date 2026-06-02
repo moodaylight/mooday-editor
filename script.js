@@ -2056,7 +2056,39 @@ leftBottomText = {
 texts.push(leftBottomText);
 
 }
-// 先计算可视区域
+if(!rightSubText){
+
+rightSubText = {
+
+    content:"慢慢长大",
+
+    rx:0.55,
+
+    ry:0.88,
+
+    align:"left",
+
+    x:
+    exportVisibleX +
+    exportVisibleW * 0.55,
+
+    y:
+    exportVisibleY +
+    exportVisibleH * 0.88,
+
+    size:12,
+
+    rotation:0,
+
+    color:"#ffffff",
+
+    glow:0
+
+};
+
+texts.push(rightSubText);
+
+}
 
 draw();
 
