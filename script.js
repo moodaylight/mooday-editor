@@ -405,7 +405,7 @@ String(
 
     if(text === subTitleText){
 
-        maxChars = 8;
+        maxChars = 14;
 
     }
 
