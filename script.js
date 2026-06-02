@@ -161,9 +161,13 @@ const decoList = [
 ];
 let selectedTextIndex = -1;
 let selectedText = null;
+
 let titleText = null;
 let subTitleText = null;
 let thirdText = null;
+
+let leftBottomText = null;
+let rightSubText = null;
 // 当前是否选中图片
 
 let imageSelected = false;
