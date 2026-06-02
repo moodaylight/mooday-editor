@@ -606,7 +606,8 @@ decorations.forEach(item=>{
 
 });
 }
-function drawPhotoFrame(){
+}
+    function drawPhotoFrame(){
 
     ctx.strokeStyle =
     "rgba(255,255,255,0.35)";
