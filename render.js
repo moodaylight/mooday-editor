@@ -425,9 +425,8 @@ ctx.textAlign = "center";
 ctx.textBaseline = "middle";
 
 // 文案宽度限制
-if(text === subTitleText){
 
-let maxChars = 14;
+let maxChars = 8;
 
 if(text === titleText){
 
