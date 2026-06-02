@@ -207,7 +207,7 @@ if(
 
         &&
 
-        lightMode > 0
+        lightMode !== 0
 
     )
 
