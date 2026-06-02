@@ -207,7 +207,7 @@ if(
 
         &&
 
-        lightMode !== 0
+        lightMode !== 3
 
     )
 
@@ -390,7 +390,7 @@ if(
     (
         productType === "mirror"
         &&
-        lightMode !== 0
+        lightMode !== 3
     )
 ){
     texts.forEach(text=>{
