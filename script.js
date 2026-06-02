@@ -237,9 +237,13 @@ const coupleTemplates = [
 const babyTemplates = [
 
     {
-        title:"成长",
-        subTitle:"只有一次",
-        text3:"请慢一点长大"
+        title:"햇살 가득한\n추억 한 장",
+
+        subTitle:
+        "빛을 따라 자란,\n우리의 모든 순간들",
+
+        text3:
+        "모든 순간이\n너의 빛나는\n미래로 이어질 거야"
     },
 
     {
@@ -2031,7 +2035,8 @@ if(!leftBottomText){
 
 leftBottomText = {
 
-   content:"언제나\n함께",
+    content:
+    "성장은\n단 한 번뿐이야\n\n지금 이 순간을\n오래도록 기억해요",
     rx:0.08,
 
     ry:0.72,
@@ -2063,7 +2068,8 @@ if(!rightSubText){
 
 rightSubText = {
 
-    content:"Family",
+    content:
+    "오늘도, 내일도\n사랑해",
 
     rx:0.55,
 
