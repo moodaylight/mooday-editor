@@ -1918,7 +1918,7 @@ titleText = {
     rx:0.30,
 
     ry:0.10,
-
+    align:"left",
     x:
     exportVisibleX +
     exportVisibleW * 0.30,
@@ -1955,7 +1955,7 @@ subTitleText = {
     rx:0.20,
 
     ry:0.82,
-
+    align:"left",
     x:
     exportVisibleX +
     exportVisibleW * 0.20,
@@ -1991,7 +1991,7 @@ thirdText = {
     rx:0.78,
 
     ry:0.78,
-
+    align:"left",
     x:
     exportVisibleX +
     exportVisibleW * 0.78,
