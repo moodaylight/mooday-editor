@@ -454,11 +454,68 @@ String(
 .split("\n")
 .forEach(part=>{
 
-    if(part.length <= maxChars){
+if(part.length <= maxChars){
 
-        lines.push(part);
+    lines.push(part);
 
-    }else{
+}else{
+
+    // 英文按单词换行
+
+    if(/[a-zA-Z]/.test(part)){
+
+        const words =
+        part.split(" ");
+
+        let currentLine = "";
+
+        words.forEach(word=>{
+
+            const testLine =
+
+            (
+                currentLine +
+                " " +
+                word
+            ).trim();
+
+            if(
+                testLine.length <= maxChars
+            ){
+
+                currentLine =
+                testLine;
+
+            }else{
+
+                if(currentLine){
+
+                    lines.push(
+                        currentLine
+                    );
+
+                }
+
+                currentLine =
+                word;
+
+            }
+
+        });
+
+        if(currentLine){
+
+            lines.push(
+                currentLine
+            );
+
+        }
+
+    }
+
+    // 中文按字数换行
+
+    else{
 
         for(
             let i = 0;
@@ -478,6 +535,8 @@ String(
         }
 
     }
+
+}
 });
 
 const totalHeight =
