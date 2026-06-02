@@ -415,23 +415,93 @@ String(
 
     }
 
-    if(part.length <= maxChars){
+if(part.length <= maxChars){
 
-        lines.push(part);
+    lines.push(part);
 
-    }else{
+}else{
+
+    // 英文
+
+    if(/[a-zA-Z]/.test(part)){
+
+        const words =
+        part.split(" ");
+
+        let currentLine = "";
+
+        words.forEach(word=>{
+
+            if(
+
+                (
+                    currentLine +
+                    " " +
+                    word
+                ).trim().length
+
+                <=
+
+                maxChars
+
+            ){
+
+                currentLine =
+
+                (
+                    currentLine +
+                    " " +
+                    word
+                ).trim();
+
+            }else{
+
+                if(currentLine){
+
+                    lines.push(
+                        currentLine
+                    );
+
+                }
+
+                currentLine = word;
+
+            }
+
+        });
+
+        if(currentLine){
+
+            lines.push(
+                currentLine
+            );
+
+        }
+
+    }
+
+    // 中文
+
+    else{
 
         for(
+
             let i = 0;
+
             i < part.length;
+
             i += maxChars
+
         ){
 
             lines.push(
 
                 part.substring(
+
                     i,
+
                     i + maxChars
+
                 )
 
             );
@@ -439,6 +509,8 @@ String(
         }
 
     }
+
+}
 
 });
     let maxWidth = 0;
