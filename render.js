@@ -442,7 +442,7 @@ if(text === subTitleText){
 
 if(text === thirdText){
 
-    maxChars = 10;
+    maxChars = 14;
 
 }
         
