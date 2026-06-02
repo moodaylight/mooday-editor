@@ -1439,8 +1439,9 @@ texts.forEach(text=>{
     exportVisibleH;
 
 });
-};
 draw();
+};
+
 mirrorBtn.onclick = ()=>{
 
     productType = "mirror";
