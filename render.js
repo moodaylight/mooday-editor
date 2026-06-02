@@ -436,7 +436,7 @@ if(text === titleText){
 
 if(text === subTitleText){
 
-    maxChars = 8;
+    maxChars = 14;
 
 }
 
