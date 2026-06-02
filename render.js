@@ -367,9 +367,11 @@ ctx.restore();
 
 } 
 
-    // 文字
+// 文字
 
-    texts.forEach(text=>{
+if(lightMode !== 3){
+
+texts.forEach(text=>{
 if(
 
             text.rx !== undefined &&
@@ -604,7 +606,6 @@ decorations.forEach(item=>{
 
 });
 
-}
 function drawPhotoFrame(){
 
     ctx.strokeStyle =
