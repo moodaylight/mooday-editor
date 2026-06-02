@@ -431,7 +431,7 @@ let maxChars = 14;
 
 if(text === titleText){
 
-    maxChars = 14;
+    maxChars = 12;
 
 }
 
