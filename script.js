@@ -1915,7 +1915,10 @@ subTitleText = null;
 thirdText = null;
 
 leftBottomText = null;
-    if(!titleText){
+
+rightSubText = null;
+
+if(!titleText){
 
 titleText = {
 
