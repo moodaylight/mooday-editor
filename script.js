@@ -1951,11 +1951,11 @@ subTitleText = {
     align:"left",
     x:
     exportVisibleX +
-    exportVisibleW * 0.20,
+    exportVisibleW * 0.08,
 
     y:
     exportVisibleY +
-    exportVisibleH * 0.82,
+    exportVisibleH * 0.22,
 
     size:13,
 
@@ -1987,11 +1987,11 @@ thirdText = {
     align:"left",
     x:
     exportVisibleX +
-    exportVisibleW * 0.78,
+    exportVisibleW * 0.55,
 
     y:
     exportVisibleY +
-    exportVisibleH * 0.78,
+    exportVisibleH * 0.68,
 
     size:18,
 
