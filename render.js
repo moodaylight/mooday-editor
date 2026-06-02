@@ -195,34 +195,18 @@ if(true){
 
 }
 
-if(
+if(lightMode !== 3){
 
-    productType === "photo"
+ctx.drawImage(
 
-    ||
+    image,
 
-    (
+    -w / 2,
+    -h / 2,
+    w,
+    h
 
-        productType === "mirror"
-
-        &&
-
-        lightMode !== 3
-
-    )
-
-){
-
-    ctx.drawImage(
-
-        image,
-
-        -w / 2,
-        -h / 2,
-        w,
-        h
-
-    );
+);
 
 }
 
@@ -384,15 +368,7 @@ ctx.restore();
 } 
 
     // 文字
-if(
-    productType === "photo"
-    ||
-    (
-        productType === "mirror"
-        &&
-        lightMode !== 3
-    )
-){
+
     texts.forEach(text=>{
 if(
 
@@ -599,7 +575,6 @@ lines.forEach((line,index)=>{
 
 
 decorations.forEach(item=>{
-    
 
     ctx.save();
 
