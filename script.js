@@ -183,11 +183,11 @@ let familyTemplateIndex = 0;
 const familyTemplates = [
 
     {
-        title:"Home",
+    title:"우리 집",
 
-        subTitle:"Where Love Lives",
+    subTitle:"사랑이 머무는 곳",
 
-        text3:"Together\nEvery Day"
+    text3:"돌아갈 곳이 있다는 건\n참 따뜻한 일입니다"
     },
 
     {
@@ -2031,7 +2031,7 @@ if(!leftBottomText){
 
 leftBottomText = {
 
-    content:"成长\n只有一次",
+   content:"언제나\n함께",
     rx:0.08,
 
     ry:0.72,
@@ -2063,7 +2063,7 @@ if(!rightSubText){
 
 rightSubText = {
 
-    content:"慢慢长大",
+    content:"Family",
 
     rx:0.55,
 
