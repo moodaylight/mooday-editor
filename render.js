@@ -605,7 +605,7 @@ decorations.forEach(item=>{
     ctx.restore();
 
 });
-
+}
 function drawPhotoFrame(){
 
     ctx.strokeStyle =
