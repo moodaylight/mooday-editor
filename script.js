@@ -257,7 +257,7 @@ const birthdayTemplates = [
     {
         title:"生日",
         subTitle:"今天属于你",
-        text3:"愿未来的每一天都像今天一样闪闪发光"
+        text3:"愿未来的每一天\n都像今天一样闪闪发光"
     },
 
    {
@@ -273,7 +273,7 @@ const birthdayTemplates = [
     {
         title:"快乐时光",
         subTitle:"把笑容留在今天",
-        text3:"把幸福带向未来"
+        text3:"把幸福留在此刻\n把快乐带向未来"
     }
 
 ];
@@ -283,13 +283,13 @@ const graduationTemplates = [
     {
         title:"青春",
         subTitle:"故事不会结束",
-        text3:"只是换个地方继续"
+        text3:"故事不会结束\n只是换个地方继续"
     },
 
     {
         title:"启程",
         subTitle:"带着梦想出发",
-        text3:"向更远的地方前进"
+        text3:"带着梦想出发\n向更远的地方前进"
     },
 
     {
@@ -305,13 +305,13 @@ const travelTemplates = [
     {
         title:"远方",
         subTitle:"每一次出发",
-        text3:"都是新的遇见"
+        text3:"每一次出发\n都是新的遇见"
     },
 
     {
         title:"风景",
         subTitle:"世界很大",
-        text3:"脚步不要停下"
+       text3:"世界很大\n脚步不要停下"
     },
 
     {
