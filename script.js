@@ -542,30 +542,24 @@ text.size;
 
     ctx.restore();
 
-    return {
+return {
 
-        left:
-        text.x -
-        maxWidth / 2 -
-        0,
+    left:
+    text.x,
 
-        right:
-        text.x +
-        maxWidth / 2 +
-        0,
+    right:
+    text.x +
+    maxWidth,
 
-        top:
-        text.y -
-        totalHeight / 2 -
-        0,
+    top:
+    text.y -
+    totalHeight / 2,
 
-        bottom:
-        text.y +
-        totalHeight / 2 +
-        0
+    bottom:
+    text.y +
+    totalHeight / 2
 
-    };
-
+};
 }
 
 // =====================
