@@ -420,7 +420,9 @@ ctx.fillStyle =
 
 text.color || "#ffffff";
 
-ctx.textAlign = "center";
+ctx.textAlign =
+
+text.align || "left";
 
 ctx.textBaseline = "middle";
 
