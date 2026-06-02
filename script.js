@@ -1966,7 +1966,7 @@ subTitleText = {
     content:tpl.subTitle,
 
     rx:0.06,
-    ry:0.95,
+    ry:0.88,
     align:"left",
     x:
     exportVisibleX +
@@ -1974,7 +1974,7 @@ subTitleText = {
 
     y:
     exportVisibleY +
-    exportVisibleH * 0.95,
+    exportVisibleH * 0.88,
 
     size:10,
 
@@ -2039,7 +2039,7 @@ leftBottomText = {
     "성장은\n단 한 번뿐이야",
     rx:0.04,
 
-    ry:0.87,
+    ry:0.80,
 
     align:"left",
 
@@ -2049,7 +2049,7 @@ leftBottomText = {
 
     y:
     exportVisibleY +
-    exportVisibleH * 0.87,
+    exportVisibleH * 0.80,
 
     size:14,
 
@@ -2071,7 +2071,7 @@ rightSubText = {
     content:
     "오늘도, 내일도\n사랑해",
 
-    rx:0.68,
+    rx:0.60,
 
     ry:0.95,
 
@@ -2079,7 +2079,7 @@ rightSubText = {
 
     x:
     exportVisibleX +
-    exportVisibleW * 0.68,
+    exportVisibleW * 0.60,
 
     y:
     exportVisibleY +
