@@ -240,7 +240,7 @@ const babyTemplates = [
         title:"햇살 가득한\n추억 한 장",
 
         subTitle:
-        "빛을 따라 자란,\n우리의 모든 순간들",
+        "지금 이 순간을\n오래도록 기억해요",
 
         text3:
         "모든 순간이\n너의 빛나는\n미래로 이어질 거야"
@@ -1976,7 +1976,7 @@ subTitleText = {
     exportVisibleY +
     exportVisibleH * 0.22,
 
-    size:13,
+    size:10,
 
     rotation:0,
 
@@ -2012,7 +2012,7 @@ thirdText = {
     exportVisibleY +
     exportVisibleH * 0.68,
 
-    size:18,
+    size:16,
 
     rotation:0,
 
@@ -2036,7 +2036,7 @@ if(!leftBottomText){
 leftBottomText = {
 
     content:
-    "성장은\n단 한 번뿐이야\n\n지금 이 순간을\n오래도록 기억해요",
+    "성장은\n단 한 번뿐이야",
     rx:0.08,
 
     ry:0.72,
@@ -2051,7 +2051,7 @@ leftBottomText = {
     exportVisibleY +
     exportVisibleH * 0.72,
 
-    size:16,
+    size:14,
 
     rotation:0,
 
