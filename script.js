@@ -2020,7 +2020,106 @@ thirdText = {
 
 }
 
-    draw();
+// 先计算可视区域
+
+draw();
+
+// 自动执行一次边界校正
+
+texts.forEach(text=>{
+
+    const box =
+    getTextBounds(text);
+
+    const LIMIT = 10;
+
+    if(
+        box.left <
+        exportVisibleX + LIMIT
+    ){
+
+        text.x +=
+        (
+            exportVisibleX +
+            LIMIT
+        )
+        -
+        box.left;
+
+    }
+
+    if(
+        box.right >
+        exportVisibleX +
+        exportVisibleW -
+        LIMIT
+    ){
+
+        text.x -=
+        box.right
+        -
+        (
+            exportVisibleX +
+            exportVisibleW -
+            LIMIT
+        );
+
+    }
+
+    if(
+        box.top <
+        exportVisibleY + LIMIT
+    ){
+
+        text.y +=
+        (
+            exportVisibleY +
+            LIMIT
+        )
+        -
+        box.top;
+
+    }
+
+    if(
+        box.bottom >
+        exportVisibleY +
+        exportVisibleH -
+        LIMIT
+    ){
+
+        text.y -=
+        box.bottom
+        -
+        (
+            exportVisibleY +
+            exportVisibleH -
+            LIMIT
+        );
+
+    }
+
+    text.rx =
+
+    (
+        text.x -
+        exportVisibleX
+    )
+    /
+    exportVisibleW;
+
+    text.ry =
+
+    (
+        text.y -
+        exportVisibleY
+    )
+    /
+    exportVisibleH;
+
+});
+
+draw();
 
 }
 
