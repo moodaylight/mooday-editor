@@ -1946,9 +1946,8 @@ subTitleText = {
 
     content:tpl.subTitle,
 
-    rx:0.20,
-
-    ry:0.82,
+    rx:0.08,
+    ry:0.22,
     align:"left",
     x:
     exportVisibleX +
@@ -1982,9 +1981,9 @@ thirdText = {
 
     content:tpl.text3,
 
-    rx:0.78,
+    rx:0.55,
 
-    ry:0.78,
+    ry:0.68,
     align:"left",
     x:
     exportVisibleX +
@@ -2003,7 +2002,39 @@ thirdText = {
     glow:0
 
 };
-        
+if(!leftBottomText){
+
+leftBottomText = {
+
+    content:"成长\n只有一次",
+
+    rx:0.08,
+
+    ry:0.72,
+
+    align:"left",
+
+    x:
+    exportVisibleX +
+    exportVisibleW * 0.08,
+
+    y:
+    exportVisibleY +
+    exportVisibleH * 0.72,
+
+    size:16,
+
+    rotation:0,
+
+    color:"#ffffff",
+
+    glow:0
+
+};
+
+texts.push(leftBottomText);
+
+}        
 
     texts.push(thirdText);
 
