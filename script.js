@@ -1902,7 +1902,15 @@ if(
 }  
     const tpl =
 currentTemplates[index];
+texts = [];
 
+titleText = null;
+
+subTitleText = null;
+
+thirdText = null;
+
+leftBottomText = null;
     if(!titleText){
 
 titleText = {
