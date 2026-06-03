@@ -2115,8 +2115,7 @@ layout.titleRy,
 
 subTitleText = {
 
-    content:tpl.subTitle,
-
+    content:tpl.leftDesc,
 rx:layout.leftDescRx,
 ry:layout.leftDescRy,
     align:"left",
@@ -2143,15 +2142,15 @@ layout.leftDescRy,
 
     }else{
 
-        subTitleText.content =
-        tpl.subTitle;
+subTitleText.content =
+tpl.leftDesc;
 
     }
 if(!thirdText){
 
 thirdText = {
 
-    content:tpl.text3,
+    content:tpl.rightTitle,
 
 rx:layout.rightTitleRx,
 ry:layout.rightTitleRy,
@@ -2181,15 +2180,14 @@ layout.rightTitleRy,
 }else{
 
     thirdText.content =
-    tpl.text3;
-
+tpl.rightTitle;
 }
 if(!leftBottomText){
 
 leftBottomText = {
 
-    content:
-    "성장은\n단 한 번뿐이야",
+   content:
+tpl.leftTitle,
 rx:layout.leftTitleRx,
 ry:layout.leftTitleRy,
 
@@ -2222,8 +2220,8 @@ if(!rightSubText){
 
 rightSubText = {
 
-    content:
-    "오늘도, 내일도\n사랑해",
+content:
+tpl.rightDesc,
 
 rx:layout.rightDescRx,
 ry:layout.rightDescRy,
