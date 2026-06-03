@@ -2128,12 +2128,12 @@ ry:layout.rightTitleRy,
     x:
     exportVisibleX +
     exportVisibleW *
-layout.rightTitleRx
+layout.rightTitleRx,
 
     y:
     exportVisibleY +
     exportVisibleH *
-layout.rightTitleRy
+layout.rightTitleRy,
     size:16,
 
     rotation:0,
@@ -2167,12 +2167,12 @@ ry:layout.leftTitleRy,
     x:
     exportVisibleX +
     exportVisibleW *
-layout.leftTitleRx
+layout.leftTitleRx,
 
     y:
     exportVisibleY +
     exportVisibleH *
-layout.leftTitleRy
+layout.leftTitleRy,
 
     size:14,
 
@@ -2201,11 +2201,11 @@ ry:layout.rightDescRy,
     x:
     exportVisibleX +
     exportVisibleW *
-layout.rightDescRx
+layout.rightDescRx,
     y:
     exportVisibleY +
     exportVisibleH *
-layout.rightDescRy
+layout.rightDescRy,
     size:12,
 
     rotation:0,
