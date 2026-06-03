@@ -325,27 +325,45 @@ rightDesc:"오늘도 사랑해"
 
 const birthdayTemplates = [
 
-    {
-        title:"生日",
-        subTitle:"今天属于你",
-        text3:"愿未来的每一天\n都像今天一样闪闪发光"
-    },
+{
+    title:"생일",
 
-   {
-    title:"祝福",
+    subTitle:"오늘은 당신의 날",
 
-    subTitle:
-    "把最好的祝愿\n送给最特别的你",
-
-    text3:
-    "愿所有美好\n都如约而至"
+    text3:"미래의 매일이\n오늘처럼 반짝이길"
 },
 
-    {
-        title:"快乐时光",
-        subTitle:"把笑容留在今天",
-        text3:"把幸福留在此刻\n把快乐带向未来"
-    }
+{
+    title:"축하",
+
+    subTitle:"특별한 당신에게",
+
+    text3:"행복한 순간이\n가득하길 바라요"
+},
+
+{
+    title:"소원",
+
+    subTitle:"마음속 깊은 곳에",
+
+    text3:"바라는 모든 일이\n이루어지길"
+},
+
+{
+    title:"행복",
+
+    subTitle:"웃음 가득한 하루",
+
+    text3:"오늘의 기쁨이\n오래도록 이어지길"
+},
+
+{
+    title:"빛나는 하루",
+
+    subTitle:"가장 특별한 오늘",
+
+    text3:"소중한 기억으로\n남겨두세요"
+}
 
 ];
 
