@@ -1744,67 +1744,14 @@ printBtn.onclick = ()=>{
 
     draw();
 
-    const exportCanvas =
-    document.createElement("canvas");
-
-    exportCanvas.width = 1200;
-    exportCanvas.height = 1800;
-
-    const exportCtx =
-    exportCanvas.getContext("2d");
-
-const cropW =
-exportVisibleW / imgScale;
-
-const cropH =
-exportVisibleH / imgScale;
-
-const sx =
-(originalImage.width / 2)
--
-cropW / 2
--
-(
-(imgX - canvas.width / 2)
-/
-imgScale
-);
-
-const sy =
-(originalImage.height / 2)
--
-cropH / 2
--
-(
-(imgY - canvas.height / 2)
-/
-imgScale
-);
-
-exportCtx.drawImage(
-
-    originalImage,
-
-    sx,
-    sy,
-    cropW,
-    cropH,
-
-    0,
-    0,
-    1200,
-    1800
-
-);
-
     const link =
     document.createElement("a");
 
     link.download =
-    "4x6-print.jpg";
+    "mooday.jpg";
 
     link.href =
-    exportCanvas.toDataURL(
+    canvas.toDataURL(
         "image/jpeg",
         1.0
     );
