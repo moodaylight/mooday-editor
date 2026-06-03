@@ -2015,22 +2015,35 @@ let layout = layouts.layout1;
 
 if(index === 0){
 
-layout = layouts.layout1;
+    layout = layouts.layout1;
 
 }
 
 if(index === 1){
 
-layout = layouts.layout2;
+    layout = layouts.layout2;
 
 }
 
 if(index === 2){
 
-layout = layouts.layout3;
+    layout = layouts.layout3;
 
-}    
-    const tpl =
+}
+
+if(index === 3){
+
+    layout = layouts.layout4;
+
+}
+
+if(index === 4){
+
+    layout = layouts.layout5;
+
+}
+
+const tpl =
 currentTemplates[index];
 texts = [];
 
