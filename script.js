@@ -1853,14 +1853,20 @@ if(templateCategory === 2){
 
 if(templateCategory === 3){
 
-    templateItem0.innerText =
-    "成长";
+templateItem0.innerText =
+"成长";
 
-    templateItem1.innerText =
-    "童年";
+templateItem1.innerText =
+"幸福";
 
-    templateItem2.innerText =
-    "梦想";
+templateItem2.innerText =
+"时光";
+
+templateItem3.innerText =
+"成长日记";
+
+templateItem4.innerText =
+"未来";
 
 }
  if(templateCategory === 4){
