@@ -385,45 +385,89 @@ const birthdayTemplates = [
 
 const graduationTemplates = [
 
-    {
-        title:"青春",
-        subTitle:"故事不会结束",
-        text3:"故事不会结束\n只是换个地方继续"
-    },
+{
+    title:"청춘",
 
-    {
-        title:"启程",
-        subTitle:"带着梦想出发",
-        text3:"带着梦想出发\n向更远的地方前进"
-    },
+    subTitle:"이야기는 끝나지 않아",
 
-    {
-        title:"未来可期",
-        subTitle:"那些努力过的日子",
-        text3:"终将开花结果"
-    }
+    text3:"이야기는 끝나지 않아\n다른 곳에서 이어질 뿐"
+},
+
+{
+    title:"출발",
+
+    subTitle:"꿈을 안고 떠나는",
+
+    text3:"꿈을 안고 떠나는\n더 먼 곳을 향해"
+},
+
+{
+    title:"미래",
+
+    subTitle:"기대되는 내일",
+
+    text3:"노력한 모든 날들이\n빛을 발할 거야"
+},
+
+{
+    title:"새로운 시작",
+
+    subTitle:"한 장의 졸업장",
+
+    text3:"끝이 아닌\n새로운 시작이야"
+},
+
+{
+    title:"기억",
+
+    subTitle:"함께한 시간",
+
+    text3:"소중한 추억은\n언제나 마음속에"
+}
 
 ];
 
 const travelTemplates = [
 
-    {
-        title:"远方",
-        subTitle:"每一次出发",
-        text3:"每一次出发\n都是新的遇见"
-    },
+{
+    title:"여행",
 
-    {
-        title:"风景",
-        subTitle:"世界很大",
-       text3:"世界很大\n脚步不要停下"
-    },
+    subTitle:"새로운 출발",
 
-    {
-        title:"回忆",
-        subTitle:"后来想起的",
-        text3:"都是当时的风景"
-    }
+    text3:"모든 여행은\n새로운 만남의 시작"
+},
+
+{
+    title:"풍경",
+
+    subTitle:"세상은 넓어",
+
+    text3:"눈앞의 풍경이\n추억이 되는 순간"
+},
+
+{
+    title:"추억",
+
+    subTitle:"기억 속에 남는",
+
+    text3:"언제나 다시 떠올릴\n소중한 시간"
+},
+
+{
+    title:"발걸음",
+
+    subTitle:"길 위의 이야기",
+
+    text3:"한 걸음마다\n새로운 이야기가 있어"
+},
+
+{
+    title:"새로운 만남",
+
+    subTitle:"설레는 순간",
+
+    text3:"낯선 곳에서\n특별한 인연을 만나다"
+}
 
 ];
 
