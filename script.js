@@ -261,7 +261,7 @@ const coupleTemplates = [
 ];
 const babyTemplates = [
 
-   {
+{
 title:"햇살 가득한\n추억 한 장",
 
 leftTitle:"성장은\n단 한 번뿐이야.",
@@ -272,6 +272,54 @@ rightTitle:"모든 순간이\n너의 빛나는\n미래로 이어질 거야.",
 
 rightDesc:"오늘도, 내일도\n사랑해"
 },
+
+{
+title:"작은 손에 담긴\n큰 행복",
+
+leftTitle:"웃음은\n가장 예쁜 선물",
+
+leftDesc:"매일매일 새로운\n기적이 자라나요",
+
+rightTitle:"너의 하루하루가\n소중한 추억이 돼",
+
+rightDesc:"언제나 널 응원해"
+},
+
+{
+title:"반짝이는\n우리의 시간",
+
+leftTitle:"오늘의 미소가\n내일의 힘이 돼",
+
+leftDesc:"세상에서 가장\n빛나는 순간",
+
+rightTitle:"사랑으로 자라는\n작은 이야기",
+
+rightDesc:"항상 행복하길"
+},
+
+{
+title:"사랑으로 채운\n성장 일기",
+
+leftTitle:"지금 이 모습도\n소중한 선물",
+
+leftDesc:"한 걸음 한 걸음\n함께 걸어가요",
+
+rightTitle:"모든 순간이\n특별한 기억이야",
+
+rightDesc:"언제까지나 사랑해"
+},
+
+{
+title:"눈부신 오늘,\n빛나는 내일",
+
+leftTitle:"작은 꿈이\n큰 희망이 돼",
+
+leftDesc:"너의 미래를\n응원할게",
+
+rightTitle:"행복한 기억들이\n가득 쌓여가길",
+
+rightDesc:"오늘도 사랑해"
+}
 
 ];
 
