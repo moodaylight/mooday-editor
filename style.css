@@ -552,25 +552,28 @@ canvas{
 position:fixed;
 
 left:50%;
-top:50%;
 
-transform:
-translate(-50%,-50%);
+bottom:0;
 
-width:280px;
+top:auto;
 
-padding:16px;
+transform:translateX(-50%);
+
+width:100%;
+
+max-width:430px;
+
+padding:12px;
 
 background:#3a3a3a;
 
-border-radius:14px;
+border-radius:20px 20px 0 0;
 
 display:none;
 
 z-index:9999;
 
-box-shadow:
-0 4px 18px rgba(0,0,0,0.35);
+box-sizing:border-box;
 
 }
 
@@ -604,20 +607,28 @@ margin-bottom:12px;
 
 }
 
-#fontBtn,
-#colorBtn{
+#editorTools{
 
-width:100%;
+display:grid;
+
+grid-template-columns:
+1fr 1fr 1fr;
+
+gap:8px;
+
+margin-top:10px;
+
+}
+
+#editorTools button{
 
 height:42px;
 
 border:none;
 
-border-radius:8px;
+border-radius:10px;
 
-margin-top:8px;
-
-font-size:16px;
+font-size:14px;
 
 }
 
