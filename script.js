@@ -1973,13 +1973,13 @@ leftTitleRx:0.04,
 leftTitleRy:0.74,
 
 leftDescRx:0.04,
-leftDescRy:0.84,
+leftDescRy:0.79,
 
 rightTitleRx:0.66,
 rightTitleRy:0.76,
 
 rightDescRx:0.66,
-rightDescRy:0.88
+rightDescRy:0.81
 
 },
 layout3:{
@@ -1991,16 +1991,15 @@ leftTitleRx:0.04,
 leftTitleRy:0.76,
 
 leftDescRx:0.04,
-leftDescRy:0.86,
+leftDescRy:0.81,
 
 rightTitleRx:0.72,
 rightTitleRy:0.60,
 
 rightDescRx:0.72,
-rightDescRy:0.70
+rightDescRy:0.65
 
 },
-
 layout4:{
 
 titleRx:0.28,
@@ -2010,13 +2009,13 @@ leftTitleRx:0.04,
 leftTitleRy:0.55,
 
 leftDescRx:0.04,
-leftDescRy:0.67,
+leftDescRy:0.60,
 
 rightTitleRx:0.72,
 rightTitleRy:0.82,
 
 rightDescRx:0.72,
-rightDescRy:0.92
+rightDescRy:0.87
 
 },
 layout5:{
@@ -2028,13 +2027,13 @@ leftTitleRx:0.04,
 leftTitleRy:0.78,
 
 leftDescRx:0.04,
-leftDescRy:0.90,
+leftDescRy:0.83,
 
 rightTitleRx:0.70,
 rightTitleRy:0.56,
 
 rightDescRx:0.70,
-rightDescRy:0.68
+rightDescRy:0.61
 
 }
 
