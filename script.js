@@ -2569,7 +2569,7 @@ colorBtn.onclick = ()=>{
 
     if(
         colorPanel.style.display
-        === "block"
+        === "flex"
     ){
 
         colorPanel.style.display =
@@ -2578,7 +2578,7 @@ colorBtn.onclick = ()=>{
     }else{
 
         colorPanel.style.display =
-        "block";
+        "flex";
 
     }
 
