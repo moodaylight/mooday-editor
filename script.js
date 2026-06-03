@@ -2255,7 +2255,24 @@ titleText = {
 
     content:tpl.title,
 
-    ...
+    rx:layout.titleRx,
+    ry:layout.titleRy,
+
+    align:"left",
+
+    x:
+    exportVisibleX +
+    exportVisibleW *
+    layout.titleRx,
+
+    y:
+    exportVisibleY +
+    exportVisibleH *
+    layout.titleRy,
+
+    size:28,
+
+    rotation:0,
 
     color:"#ffffff",
 
@@ -2600,6 +2617,11 @@ document
             draw();
 
         }
+
+    };
+
+});
+
 document
 .querySelectorAll(
 ".fontItem"
@@ -2617,9 +2639,6 @@ document
 
         }
 
-    };
-
-});
     };
 
 });
