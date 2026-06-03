@@ -664,3 +664,30 @@ border:2px solid rgba(
 cursor:pointer;
 
 }
+#editorMenuArea{
+
+height:50px;
+
+display:flex;
+
+align-items:center;
+
+justify-content:center;
+
+color:white;
+
+font-size:15px;
+
+border-bottom:
+1px solid rgba(
+255,
+255,
+255,
+0.1
+);
+
+margin-bottom:8px;
+
+overflow:hidden;
+
+}
