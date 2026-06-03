@@ -2575,10 +2575,19 @@ colorBtn.onclick = ()=>{
         colorPanel.style.display =
         "none";
 
+        editorMenuArea.innerText =
+        "텍스트 편집";
+
     }else{
 
         colorPanel.style.display =
         "flex";
+
+        fontPanel.style.display =
+        "none";
+
+        editorMenuArea.innerText =
+        "색상 선택";
 
     }
 
@@ -2593,10 +2602,19 @@ fontBtn.onclick = ()=>{
         fontPanel.style.display =
         "none";
 
+        editorMenuArea.innerText =
+        "텍스트 편집";
+
     }else{
 
         fontPanel.style.display =
         "block";
+
+        colorPanel.style.display =
+        "none";
+
+        editorMenuArea.innerText =
+        "글꼴 선택";
 
     }
 
