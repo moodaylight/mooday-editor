@@ -2566,7 +2566,24 @@ colorBtn.onclick = ()=>{
     }
 
 };
+fontBtn.onclick = ()=>{
 
+    if(
+        fontPanel.style.display
+        === "block"
+    ){
+
+        fontPanel.style.display =
+        "none";
+
+    }else{
+
+        fontPanel.style.display =
+        "block";
+
+    }
+
+};
 document
 .querySelectorAll(
 ".colorItem"
@@ -2583,7 +2600,26 @@ document
             draw();
 
         }
+document
+.querySelectorAll(
+".fontItem"
+)
+.forEach(btn=>{
 
+    btn.onclick = ()=>{
+
+        if(selectedText){
+
+            selectedText.font =
+            btn.dataset.font;
+
+            draw();
+
+        }
+
+    };
+
+});
     };
 
 });
