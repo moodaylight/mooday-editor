@@ -70,6 +70,10 @@ const colorBtn =
 document.getElementById(
 "colorBtn"
 );
+const colorPanel =
+document.getElementById(
+"colorPanel"
+);
 let image = new Image();
 let originalImage = null;
 image.src = "default.png";
@@ -2555,3 +2559,42 @@ editorInput.addEventListener(
 
 }
 );
+colorBtn.onclick = ()=>{
+
+    if(
+        colorPanel.style.display
+        === "block"
+    ){
+
+        colorPanel.style.display =
+        "none";
+
+    }else{
+
+        colorPanel.style.display =
+        "block";
+
+    }
+
+};
+
+document
+.querySelectorAll(
+".colorItem"
+)
+.forEach(btn=>{
+
+    btn.onclick = ()=>{
+
+        if(selectedText){
+
+            selectedText.color =
+            btn.dataset.color;
+
+            draw();
+
+        }
+
+    };
+
+});
