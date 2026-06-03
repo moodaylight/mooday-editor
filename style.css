@@ -628,20 +628,37 @@ margin-top:10px;
 
 }
 
-.colorItem{
+#colorPanel{
 
-width:100%;
+display:none;
 
-height:38px;
+margin-top:10px;
 
-margin-top:6px;
+display:flex;
 
-border:none;
+flex-wrap:wrap;
 
-border-radius:8px;
+gap:10px;
 
-font-size:15px;
+justify-content:center;
 
-font-weight:bold;
+}
+
+.colorDot{
+
+width:32px;
+
+height:32px;
+
+border-radius:50%;
+
+border:2px solid rgba(
+255,
+255,
+255,
+0.35
+);
+
+cursor:pointer;
 
 }
