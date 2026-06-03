@@ -1,4 +1,16 @@
 # MOODAY Editor
+VERSION.md
+
+V1.1
+
+✓ Layout1
+✓ Layout2
+✓ Layout3
+✓ Layout4
+✓ Layout5
+
+模板系统结构确定
+
 V1.1 Layout 1 定版
 
 主标题
