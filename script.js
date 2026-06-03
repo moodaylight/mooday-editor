@@ -413,19 +413,19 @@ const travelTemplates = [
 
 const templateCategories = [
 
-    "模板",
+    "템플릿",
 
-    "家庭",
+    "가족",
 
-    "情侣",
+    "커플",
 
-    "宝宝",
+    "아기",
 
-    "生日",
+    "생일",
 
-    "毕业",
+    "졸업",
 
-    "旅行"
+    "여행"
 
 ];
 lightModeBtn.innerText = "灯光";
@@ -1778,19 +1778,19 @@ moodBtn.onclick = ()=>{
 
     }
 
-    const moods = [
+   const moods = [
 
-        "原片",
+    "원본",
 
-        "暖光记忆",
+    "따뜻한 기억",
 
-        "电影时刻",
+    "영화 같은 순간",
 
-        "静谧生活",
+    "고요한 일상",
 
-        "旅行日记"
+    "여행 기록"
 
-    ];
+];
 
     moodBtn.innerText =
     moods[moodMode];
