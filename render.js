@@ -417,9 +417,9 @@ ctx.rotate(
 
 ctx.font =
 
-`${text.size || 20}px ${
-    text.font || "sans-serif"
-}`;
+`${text.size || 20}px "${
+    text.font || "Nanum Gothic"
+}"`;
 
 ctx.fillStyle =
 
