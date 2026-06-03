@@ -255,43 +255,63 @@ rightDesc:"언제나 마음속에\n남아있어요"
 const coupleTemplates = [
 
 {
-    title:"우리",
+title:"우리",
 
-    subTitle:"함께라서 더 특별해",
+leftTitle:"너와 나",
 
-    text3:"당신과 함께한\n모든 순간이 소중해"
+leftDesc:"함께라서 더욱\n특별한 시간",
+
+rightTitle:"사랑은\n매일 자라나",
+
+rightDesc:"당신과 함께라면\n언제나 행복해"
 },
 
 {
-    title:"사랑",
+title:"사랑",
 
-    subTitle:"마음을 전하는 시간",
+leftTitle:"마음을 담아",
 
-    text3:"사랑은 작은 순간에도\n깃들어 있어요"
+leftDesc:"작은 순간들도\n소중한 기억",
+
+rightTitle:"우리의 이야기",
+
+rightDesc:"오늘도 사랑하고\n내일도 사랑해"
 },
 
 {
-    title:"동행",
+title:"동행",
 
-    subTitle:"같은 길을 걷는 우리",
+leftTitle:"같은 길을",
 
-    text3:"서로의 곁에서\n함께 나아가요"
+leftDesc:"함께 걷는다는 건\n참 행복한 일",
+
+rightTitle:"언제나 곁에",
+
+rightDesc:"서로의 힘이 되어\n함께 나아가요"
 },
 
 {
-    title:"함께",
+title:"함께",
 
-    subTitle:"가장 행복한 이유",
+leftTitle:"가장 좋은 순간",
 
-    text3:"당신이 있어서\n오늘도 웃을 수 있어"
+leftDesc:"당신과 함께한\n모든 시간",
+
+rightTitle:"소중한 기억",
+
+rightDesc:"우리의 하루가\n추억이 됩니다"
 },
 
 {
-    title:"소중한 순간",
+title:"소중한 순간",
 
-    subTitle:"기억하고 싶은 오늘",
+leftTitle:"기억하고 싶은",
 
-    text3:"우리의 이야기는\n계속 이어질 거야"
+leftDesc:"오늘의 설렘을\n오래 간직해요",
+
+rightTitle:"영원히",
+
+rightDesc:"우리의 이야기는\n계속됩니다"
 }
 
 ];
@@ -362,43 +382,63 @@ rightDesc:"오늘도 사랑해"
 const birthdayTemplates = [
 
 {
-    title:"생일",
+title:"생일",
 
-    subTitle:"오늘은 당신의 날",
+leftTitle:"오늘은 특별한 날",
 
-    text3:"미래의 매일이\n오늘처럼 반짝이길"
+leftDesc:"행복이 가득한\n하루가 되길",
+
+rightTitle:"축하해",
+
+rightDesc:"웃음이 가득한\n생일 보내세요"
 },
 
 {
-    title:"축하",
+title:"축하",
 
-    subTitle:"특별한 당신에게",
+leftTitle:"진심을 담아",
 
-    text3:"행복한 순간이\n가득하길 바라요"
+leftDesc:"소중한 당신에게\n전하는 마음",
+
+rightTitle:"행복한 하루",
+
+rightDesc:"좋은 일만 가득하길"
 },
 
 {
-    title:"소원",
+title:"소원",
 
-    subTitle:"마음속 깊은 곳에",
+leftTitle:"마음속 깊이",
 
-    text3:"바라는 모든 일이\n이루어지길"
+leftDesc:"간직한 꿈들이\n이루어지길",
+
+rightTitle:"빛나는 미래",
+
+rightDesc:"언제나 응원할게요"
 },
 
 {
-    title:"행복",
+title:"행복",
 
-    subTitle:"웃음 가득한 하루",
+leftTitle:"웃음 가득",
 
-    text3:"오늘의 기쁨이\n오래도록 이어지길"
+leftDesc:"오늘의 기쁨이\n오래 이어지길",
+
+rightTitle:"소중한 사람",
+
+rightDesc:"늘 행복하세요"
 },
 
 {
-    title:"빛나는 하루",
+title:"빛나는 하루",
 
-    subTitle:"가장 특별한 오늘",
+leftTitle:"가장 특별한 오늘",
 
-    text3:"소중한 기억으로\n남겨두세요"
+leftDesc:"잊지 못할\n추억을 남겨요",
+
+rightTitle:"축복",
+
+rightDesc:"모든 순간이\n반짝이길"
 }
 
 ];
