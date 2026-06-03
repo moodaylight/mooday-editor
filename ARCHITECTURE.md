@@ -1,4 +1,21 @@
 # MOODAY 编辑器核心架构原则
+模板系统
+
+applyTemplate(index)
+
+0 → layout1
+1 → layout2
+2 → layout3
+3 → layout4
+4 → layout5
+
+五块文字结构
+
+titleText
+leftBottomText
+subTitleText
+thirdText
+rightSubText
 
 # 2026-06-01 正式确认
 
