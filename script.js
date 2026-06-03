@@ -1840,51 +1840,57 @@ templateBtn.addEventListener(
 if(templateCategory === 1){
 
     templateItem0.innerText =
-"家的模样";
+    "우리 집";
 
-templateItem1.innerText =
-"温暖时光";
+    templateItem1.innerText =
+    "따뜻한 시간";
 
-templateItem2.innerText =
-"陪伴";
+    templateItem2.innerText =
+    "함께";
 
-templateItem3.innerText =
-"幸福时刻";
+    templateItem3.innerText =
+    "행복한 순간";
 
-templateItem4.innerText =
-"我们的家";
+    templateItem4.innerText =
+    "우리의 이야기";
 
 }
 
 if(templateCategory === 2){
 
     templateItem0.innerText =
-    "You & Me";
+    "우리";
 
     templateItem1.innerText =
-    "Our Story";
+    "사랑";
 
     templateItem2.innerText =
-    "Forever";
+    "동행";
+
+    templateItem3.innerText =
+    "함께";
+
+    templateItem4.innerText =
+    "소중한 순간";
 
 }
 
 if(templateCategory === 3){
 
-templateItem0.innerText =
-"成长";
+    templateItem0.innerText =
+    "성장";
 
-templateItem1.innerText =
-"幸福";
+    templateItem1.innerText =
+    "행복";
 
-templateItem2.innerText =
-"时光";
+    templateItem2.innerText =
+    "미소";
 
-templateItem3.innerText =
-"成长日记";
+    templateItem3.innerText =
+    "추억";
 
-templateItem4.innerText =
-"未来";
+    templateItem4.innerText =
+    "사랑";
 
 }
 if(templateCategory === 4){
