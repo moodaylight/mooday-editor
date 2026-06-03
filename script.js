@@ -2092,11 +2092,11 @@ ry:layout.leftDescRy,
     x:
     exportVisibleX +
     exportVisibleW *
-layout.leftDescRx
+layout.leftDescRx,
     y:
     exportVisibleY +
     exportVisibleH *
-layout.leftDescRy
+layout.leftDescRy,
 
     size:10,
 
