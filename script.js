@@ -47,6 +47,15 @@ const templateItem2 =
 document.getElementById(
 "templateItem2"
 );
+const templateItem3 =
+document.getElementById(
+"templateItem3"
+);
+
+const templateItem4 =
+document.getElementById(
+"templateItem4"
+);
 let image = new Image();
 let originalImage = null;
 image.src = "default.png";
