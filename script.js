@@ -2197,16 +2197,16 @@ titleRx:0.07,
 titleRy:0.10,
 
 leftTitleRx:0.04,
-leftTitleRy:0.82,
+leftTitleRy:0.78,
 
 leftDescRx:0.06,
-leftDescRy:0.89,
+leftDescRy:0.91,
 
 rightTitleRx:0.66,
-rightTitleRy:0.85,
+rightTitleRy:0.80,
 
 rightDescRx:0.60,
-rightDescRy:0.95
+rightDescRy:0.97
 
 },
 
@@ -2216,70 +2216,73 @@ titleRx:0.55,
 titleRy:0.10,
 
 leftTitleRx:0.04,
-leftTitleRy:0.74,
+leftTitleRy:0.70,
 
 leftDescRx:0.04,
-leftDescRy:0.79,
+leftDescRy:0.83,
 
 rightTitleRx:0.66,
-rightTitleRy:0.76,
+rightTitleRy:0.72,
 
 rightDescRx:0.66,
-rightDescRy:0.81
+rightDescRy:0.85
 
 },
+
 layout3:{
 
 titleRx:0.28,
 titleRy:0.08,
 
 leftTitleRx:0.04,
-leftTitleRy:0.76,
+leftTitleRy:0.72,
 
 leftDescRx:0.04,
-leftDescRy:0.81,
+leftDescRy:0.85,
 
 rightTitleRx:0.72,
-rightTitleRy:0.60,
+rightTitleRy:0.56,
 
 rightDescRx:0.72,
-rightDescRy:0.65
+rightDescRy:0.69
 
 },
+
 layout4:{
 
 titleRx:0.28,
 titleRy:0.08,
 
 leftTitleRx:0.04,
-leftTitleRy:0.55,
+leftTitleRy:0.51,
 
 leftDescRx:0.04,
-leftDescRy:0.60,
+leftDescRy:0.64,
 
 rightTitleRx:0.72,
-rightTitleRy:0.82,
+rightTitleRy:0.78,
 
 rightDescRx:0.72,
-rightDescRy:0.87
+rightDescRy:0.91
 
 },
+
 layout5:{
 
 titleRx:0.15,
 titleRy:0.08,
 
 leftTitleRx:0.04,
-leftTitleRy:0.78,
+leftTitleRy:0.74,
 
 leftDescRx:0.04,
-leftDescRy:0.83,
+leftDescRy:0.87,
 
 rightTitleRx:0.70,
-rightTitleRy:0.56,
+rightTitleRy:0.52,
 
 rightDescRx:0.70,
-rightDescRy:0.61
+rightDescRy:0.65
 
 }
 
