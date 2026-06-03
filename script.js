@@ -446,43 +446,63 @@ rightDesc:"모든 순간이\n반짝이길"
 const graduationTemplates = [
 
 {
-    title:"청춘",
+title:"청춘",
 
-    subTitle:"이야기는 끝나지 않아",
+leftTitle:"빛나던 시간",
 
-    text3:"이야기는 끝나지 않아\n다른 곳에서 이어질 뿐"
+leftDesc:"함께한 모든 날들이\n소중한 추억",
+
+rightTitle:"이야기는\n끝나지 않아",
+
+rightDesc:"다른 곳에서\n계속 이어질 뿐"
 },
 
 {
-    title:"출발",
+title:"출발",
 
-    subTitle:"꿈을 안고 떠나는",
+leftTitle:"새로운 시작",
 
-    text3:"꿈을 안고 떠나는\n더 먼 곳을 향해"
+leftDesc:"꿈을 안고\n첫걸음을 내딛다",
+
+rightTitle:"더 넓은 세상",
+
+rightDesc:"설레는 미래가\n기다리고 있어"
 },
 
 {
-    title:"미래",
+title:"미래",
 
-    subTitle:"기대되는 내일",
+leftTitle:"노력한 시간",
 
-    text3:"노력한 모든 날들이\n빛을 발할 거야"
+leftDesc:"흘린 땀과 눈물이\n빛이 되는 순간",
+
+rightTitle:"기대되는 내일",
+
+rightDesc:"모든 꿈이\n이루어지길"
 },
 
 {
-    title:"새로운 시작",
+title:"새로운 시작",
 
-    subTitle:"한 장의 졸업장",
+leftTitle:"졸업은",
 
-    text3:"끝이 아닌\n새로운 시작이야"
+leftDesc:"끝이 아니라\n새로운 시작",
+
+rightTitle:"한 걸음 더",
+
+rightDesc:"더 멀리\n나아가 보자"
 },
 
 {
-    title:"기억",
+title:"기억",
 
-    subTitle:"함께한 시간",
+leftTitle:"함께한 친구들",
 
-    text3:"소중한 추억은\n언제나 마음속에"
+leftDesc:"언제나 마음속에\n남아있는 추억",
+
+rightTitle:"소중한 순간",
+
+rightDesc:"영원히 잊지 않을게"
 }
 
 ];
@@ -490,43 +510,63 @@ const graduationTemplates = [
 const travelTemplates = [
 
 {
-    title:"여행",
+title:"여행",
 
-    subTitle:"새로운 출발",
+leftTitle:"새로운 출발",
 
-    text3:"모든 여행은\n새로운 만남의 시작"
+leftDesc:"모든 여행은\n설렘으로 시작돼",
+
+rightTitle:"길 위의 이야기",
+
+rightDesc:"한 걸음마다\n새로운 추억"
 },
 
 {
-    title:"풍경",
+title:"풍경",
 
-    subTitle:"세상은 넓어",
+leftTitle:"눈앞의 아름다움",
 
-    text3:"눈앞의 풍경이\n추억이 되는 순간"
+leftDesc:"지금 이 순간을\n마음에 담아요",
+
+rightTitle:"세상은 넓어",
+
+rightDesc:"아직 가야 할\n곳이 많아"
 },
 
 {
-    title:"추억",
+title:"추억",
 
-    subTitle:"기억 속에 남는",
+leftTitle:"기억 속 풍경",
 
-    text3:"언제나 다시 떠올릴\n소중한 시간"
+leftDesc:"언제나 다시\n떠올릴 수 있는",
+
+rightTitle:"소중한 시간",
+
+rightDesc:"그날의 감동을\n간직해요"
 },
 
 {
-    title:"발걸음",
+title:"발걸음",
 
-    subTitle:"길 위의 이야기",
+leftTitle:"멈추지 않는",
 
-    text3:"한 걸음마다\n새로운 이야기가 있어"
+leftDesc:"새로운 길을\n향한 도전",
+
+rightTitle:"설레는 순간",
+
+rightDesc:"여행은 언제나\n즐거워"
 },
 
 {
-    title:"새로운 만남",
+title:"새로운 만남",
 
-    subTitle:"설레는 순간",
+leftTitle:"낯선 곳에서",
 
-    text3:"낯선 곳에서\n특별한 인연을 만나다"
+leftDesc:"새로운 인연과\n새로운 이야기",
+
+rightTitle:"특별한 기억",
+
+rightDesc:"여행이 준\n가장 큰 선물"
 }
 
 ];
