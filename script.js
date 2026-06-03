@@ -1908,6 +1908,128 @@ if(
     travelTemplates;
 
 }  
+// =====================
+// Layout系统
+// =====================
+
+const layouts = {
+
+layout1:{
+
+titleRx:0.07,
+titleRy:0.10,
+
+leftTitleRx:0.04,
+leftTitleRy:0.82,
+
+leftDescRx:0.06,
+leftDescRy:0.89,
+
+rightTitleRx:0.66,
+rightTitleRy:0.85,
+
+rightDescRx:0.60,
+rightDescRy:0.95
+
+},
+
+layout2:{
+
+titleRx:0.07,
+titleRy:0.10,
+
+leftTitleRx:0.04,
+leftTitleRy:0.90,
+
+leftDescRx:0.06,
+leftDescRy:0.96,
+
+rightTitleRx:0.62,
+rightTitleRy:0.66,
+
+rightDescRx:0.62,
+rightDescRy:0.78
+
+},
+
+layout3:{
+
+titleRx:0.07,
+titleRy:0.10,
+
+leftTitleRx:0.04,
+leftTitleRy:0.35,
+
+leftDescRx:0.06,
+leftDescRy:0.45,
+
+rightTitleRx:0.62,
+rightTitleRy:0.82,
+
+rightDescRx:0.62,
+rightDescRy:0.92
+
+},
+
+layout4:{
+
+titleRx:0.07,
+titleRy:0.10,
+
+leftTitleRx:0.04,
+leftTitleRy:0.72,
+
+leftDescRx:0.04,
+leftDescRy:0.88,
+
+rightTitleRx:0.60,
+rightTitleRy:0.78,
+
+rightDescRx:0.60,
+rightDescRy:0.92
+
+},
+
+layout5:{
+
+titleRx:0.07,
+titleRy:0.10,
+
+leftTitleRx:0.04,
+leftTitleRy:0.80,
+
+leftDescRx:0.04,
+leftDescRy:0.92,
+
+rightTitleRx:0.70,
+rightTitleRy:0.68,
+
+rightDescRx:0.70,
+rightDescRy:0.84
+
+}
+
+};
+
+let layout = layouts.layout1;
+
+if(index === 0){
+
+layout = layouts.layout1;
+
+}
+
+if(index === 1){
+
+layout = layouts.layout2;
+
+}
+
+if(index === 2){
+
+layout = layouts.layout3;
+
+}    
     const tpl =
 currentTemplates[index];
 texts = [];
@@ -1928,18 +2050,17 @@ titleText = {
 
     content:tpl.title,
 
-    rx:0.07,
-
-    ry:0.10,
+rx:layout.titleRx,
+ry:layout.titleRy,
     align:"left",
-    x:
-    exportVisibleX +
-    exportVisibleW * 0.07,
-
-    y:
-    exportVisibleY +
-    exportVisibleH * 0.10,
-
+x:
+exportVisibleX +
+exportVisibleW *
+layout.titleRx,
+y:
+exportVisibleY +
+exportVisibleH *
+layout.titleRy,
     size:28,
 
     rotation:0,
@@ -1965,16 +2086,17 @@ subTitleText = {
 
     content:tpl.subTitle,
 
-    rx:0.06,
-    ry:0.89,
+rx:layout.leftDescRx,
+ry:layout.leftDescRy,
     align:"left",
     x:
     exportVisibleX +
-    exportVisibleW * 0.06,
-
+    exportVisibleW *
+layout.leftDescRx
     y:
     exportVisibleY +
-    exportVisibleH * 0.89,
+    exportVisibleH *
+layout.leftDescRy
 
     size:10,
 
@@ -2000,18 +2122,18 @@ thirdText = {
 
     content:tpl.text3,
 
-    rx:0.66,
-
-    ry:0.85,
+rx:layout.rightTitleRx,
+ry:layout.rightTitleRy,
     align:"left",
     x:
     exportVisibleX +
-    exportVisibleW * 0.66,
+    exportVisibleW *
+layout.rightTitleRx
 
     y:
     exportVisibleY +
-    exportVisibleH * 0.85,
-
+    exportVisibleH *
+layout.rightTitleRy
     size:16,
 
     rotation:0,
@@ -2037,19 +2159,20 @@ leftBottomText = {
 
     content:
     "성장은\n단 한 번뿐이야",
-    rx:0.04,
-
-    ry:0.82,
+rx:layout.leftTitleRx,
+ry:layout.leftTitleRy,
 
     align:"left",
 
     x:
     exportVisibleX +
-    exportVisibleW * 0.04,
+    exportVisibleW *
+layout.leftTitleRx
 
     y:
     exportVisibleY +
-    exportVisibleH * 0.82,
+    exportVisibleH *
+layout.leftTitleRy
 
     size:14,
 
@@ -2071,20 +2194,18 @@ rightSubText = {
     content:
     "오늘도, 내일도\n사랑해",
 
-    rx:0.60,
-
-    ry:0.95,
-
+rx:layout.rightDescRx,
+ry:layout.rightDescRy,
     align:"left",
 
     x:
     exportVisibleX +
-    exportVisibleW * 0.60,
-
+    exportVisibleW *
+layout.rightDescRx
     y:
     exportVisibleY +
-    exportVisibleH * 0.95,
-
+    exportVisibleH *
+layout.rightDescRy
     size:12,
 
     rotation:0,
