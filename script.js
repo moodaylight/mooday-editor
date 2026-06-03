@@ -183,11 +183,11 @@ let familyTemplateIndex = 0;
 const familyTemplates = [
 
     {
-    title:"우리 집",
+        title:"우리 집",
 
-    subTitle:"사랑이 머무는 곳",
+        subTitle:"사랑이 머무는 곳",
 
-    text3:"돌아갈 곳이 있다는 건\n참 따뜻한 일입니다"
+        text3:"돌아갈 곳이 있다는 건\n참 따뜻한 일입니다"
     },
 
     {
@@ -204,6 +204,22 @@ const familyTemplates = [
         subTitle:"Every Day",
 
         text3:"The Warmest\nPlace Is Home"
+    },
+
+    {
+        title:"Family",
+
+        subTitle:"Always Here",
+
+        text3:"행복은\n함께하는\n순간 속에"
+    },
+
+    {
+        title:"Home",
+
+        subTitle:"Our Story",
+
+        text3:"가족과 함께한\n모든 시간이\n소중한 추억"
     }
 
 ];
@@ -1759,13 +1775,19 @@ templateBtn.addEventListener(
 if(templateCategory === 1){
 
     templateItem0.innerText =
-    "家的模样";
+"家的模样";
 
-    templateItem1.innerText =
-    "温暖时光";
+templateItem1.innerText =
+"温暖时光";
 
-    templateItem2.innerText =
-    "陪伴";
+templateItem2.innerText =
+"陪伴";
+
+templateItem3.innerText =
+"幸福时刻";
+
+templateItem4.innerText =
+"我们的家";
 
 }
 
