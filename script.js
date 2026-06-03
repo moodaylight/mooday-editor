@@ -1889,31 +1889,60 @@ templateItem4.innerText =
 }
 if(templateCategory === 4){
 
+    templateItem0.innerText =
+    "생일";
+
+    templateItem1.innerText =
+    "축하";
+
+    templateItem2.innerText =
+    "소원";
+
+    templateItem3.innerText =
+    "행복";
+
+    templateItem4.innerText =
+    "빛나는 하루";
+
+}
+
 if(templateCategory === 5){
 
     templateItem0.innerText =
-    "青春";
+    "청춘";
 
     templateItem1.innerText =
-    "启程";
+    "출발";
 
     templateItem2.innerText =
-    "未来可期";
+    "미래";
+
+    templateItem3.innerText =
+    "새로운 시작";
+
+    templateItem4.innerText =
+    "기억";
 
 }
 
 if(templateCategory === 6){
 
     templateItem0.innerText =
-    "远方";
+    "여행";
 
     templateItem1.innerText =
-    "风景";
+    "풍경";
 
     templateItem2.innerText =
-    "回忆";
+    "추억";
 
-}       
+    templateItem3.innerText =
+    "발걸음";
+
+    templateItem4.innerText =
+    "새로운 만남";
+
+}
         templateDrawer.classList.add(
             "show"
         );
