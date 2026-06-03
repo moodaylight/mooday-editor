@@ -191,45 +191,65 @@ let familyTemplateIndex = 0;
 
 const familyTemplates = [
 
-    {
-        title:"우리 집",
+{
+title:"우리 집",
 
-        subTitle:"사랑이 머무는 곳",
+leftTitle:"사랑이 머무는 곳",
 
-        text3:"돌아갈 곳이 있다는 건\n참 따뜻한 일입니다"
-    },
+leftDesc:"가족과 함께하는\n따뜻한 시간",
 
-    {
-        title:"The Best Moments",
+rightTitle:"행복은\n함께하는 순간",
 
-        subTitle:"Are Together",
+rightDesc:"우리의 이야기는\n계속 이어집니다"
+},
 
-        text3:"Family Makes\nLife Beautiful"
-    },
+{
+title:"따뜻한 시간",
 
-    {
-        title:"Together",
+leftTitle:"소중한 하루",
 
-        subTitle:"Every Day",
+leftDesc:"언제나 곁에 있는\n가족의 사랑",
 
-        text3:"The Warmest\nPlace Is Home"
-    },
+rightTitle:"웃음 가득한\n우리 집",
 
-    {
-        title:"Family",
+rightDesc:"평범한 오늘도\n특별한 추억"
+},
 
-        subTitle:"Always Here",
+{
+title:"함께",
 
-        text3:"행복은\n함께하는\n순간 속에"
-    },
+leftTitle:"같은 공간",
 
-    {
-        title:"Home",
+leftDesc:"같은 마음으로\n함께 걸어가요",
 
-        subTitle:"Our Story",
+rightTitle:"가족이라는\n이름 아래",
 
-        text3:"가족과 함께한\n모든 시간이\n소중한 추억"
-    }
+rightDesc:"모든 순간이\n행복입니다"
+},
+
+{
+title:"행복한 순간",
+
+leftTitle:"오늘의 웃음",
+
+leftDesc:"가장 아름다운\n기억이 됩니다",
+
+rightTitle:"소중한 사람들",
+
+rightDesc:"늘 함께여서\n감사합니다"
+},
+
+{
+title:"우리의 이야기",
+
+leftTitle:"사랑으로 채운",
+
+leftDesc:"우리 가족의\n소중한 기록",
+
+rightTitle:"따뜻한 기억",
+
+rightDesc:"언제나 마음속에\n남아있어요"
+}
 
 ];
 const coupleTemplates = [
