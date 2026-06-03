@@ -417,7 +417,9 @@ ctx.rotate(
 
 ctx.font =
 
-`${text.size || 20}px sans-serif`;
+`${text.size || 20}px ${
+    text.font || "sans-serif"
+}`;
 
 ctx.fillStyle =
 
