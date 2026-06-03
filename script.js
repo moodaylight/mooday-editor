@@ -51,6 +51,25 @@ const templateItem4 =
 document.getElementById(
 "templateItem4"
 );
+const textEditorPanel =
+document.getElementById(
+"textEditorPanel"
+);
+
+const editorInput =
+document.getElementById(
+"editorInput"
+);
+
+const fontBtn =
+document.getElementById(
+"fontBtn"
+);
+
+const colorBtn =
+document.getElementById(
+"colorBtn"
+);
 let image = new Image();
 let originalImage = null;
 image.src = "default.png";
@@ -1120,17 +1139,17 @@ if(clickedText){
 
     longPressTimer = setTimeout(()=>{
 
-       if(draggingText){
+    if(draggingText){
 
-            textInput.style.display = "block";
+        textEditorPanel.style.display =
+        "block";
 
-            textInput.value = clickedText.content;
+        editorInput.value =
+        clickedText.content;
 
-            textInput.focus();
+    }
 
-        }
-
-    },600);
+},600);
 
     draw();
 
@@ -2516,6 +2535,21 @@ document.addEventListener(
         templateDrawer.classList.remove(
             "show"
         );
+
+    }
+
+}
+);
+editorInput.addEventListener(
+"input",
+()=>{
+
+    if(selectedText){
+
+        selectedText.content =
+        editorInput.value;
+
+        draw();
 
     }
 
