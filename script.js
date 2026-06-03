@@ -12,13 +12,8 @@ const lightModeBtn =
 document.getElementById("lightModeBtn");
 const photoBtn =
 document.getElementById("photoBtn");
-
 const mirrorBtn =
 document.getElementById("mirrorBtn");
-const titleBtn =
-document.getElementById("titleBtn");
-const subTitleBtn =
-document.getElementById("subTitleBtn");
 const decoBtn =
 document.getElementById("decoBtn");
 const previewBtn =
@@ -1016,116 +1011,7 @@ Math.max(scaleX, scaleY);
 
 });
 
-// =====================
-// 主标题
-// =====================
 
-titleBtn.addEventListener(
-"click",
-()=>{
-
-    // 已存在 → 删除
-
-    if(titleText){
-
- selectedText = titleText;
-
-textInput.style.display = "block";
-
-textInput.value = titleText.content;
-
-textInput.focus();
-
-draw();
-
-return;  
-}
-
-    // 不存在 → 创建
-
-    const text = {
-
-        content: "主标题",
-
-        x: canvas.width / 2,
-
-        y: 140,
-
-        size: 32,
-
-        rotation: 0,
-
-        color: "#ffffff",
-
-        glow: 0
-
-    };
-
-    texts.push(text);
-
-    titleText = text;
-
-    selectedText = text;
-
-    imageSelected = false;
-
-    draw();
-
-});
-
-// =====================
-// 副标题
-// =====================
-
-subTitleBtn.addEventListener(
-"click",
-()=>{
-
-    if(subTitleText){
-
-        selectedText = subTitleText;
-
-        textInput.style.display = "block";
-
-        textInput.value = subTitleText.content;
-
-        textInput.focus();
-
-        draw();
-
-        return;
-
-    }
-
-    const text = {
-
-        content: "副标题",
-
-        x: canvas.width / 2,
-
-        y: 460,
-
-        size: 20,
-
-        rotation: 0,
-
-        color: "#ffffff",
-
-        glow: 0
-
-    };
-
-    texts.push(text);
-
-    subTitleText = text;
-
-    selectedText = text;
-
-    imageSelected = false;
-
-    draw();
-
-});
 
 decoBtn.onclick = ()=>{
 
