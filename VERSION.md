@@ -1,5 +1,23 @@
 # MOODAY Editor
 VERSION.md
+V1.5
+
+新增
+
+- Layout4
+- Layout5
+- templateItem3
+- templateItem4
+
+优化
+
+- templateDrawer 高度调整
+- drawer-item 间距调整
+
+修复
+
+- 镜子模式覆盖图片
+- 模板抽屉遮挡打印按钮
 
 V1.1
 
