@@ -2255,24 +2255,13 @@ titleText = {
 
     content:tpl.title,
 
-rx:layout.titleRx,
-ry:layout.titleRy,
-    align:"left",
-x:
-exportVisibleX +
-exportVisibleW *
-layout.titleRx,
-y:
-exportVisibleY +
-exportVisibleH *
-layout.titleRy,
-    size:28,
-
-    rotation:0,
+    ...
 
     color:"#ffffff",
 
-    glow:0
+    glow:0,
+
+    font:"sans-serif"
 
 };
     
