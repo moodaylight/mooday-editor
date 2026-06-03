@@ -261,27 +261,17 @@ const coupleTemplates = [
 ];
 const babyTemplates = [
 
-    {
-        title:"햇살 가득한\n추억 한 장",
+   {
+title:"햇살 가득한\n추억 한 장",
 
-        subTitle:
-        "지금 이 순간을\n오래도록 기억해요",
+leftTitle:"성장은\n단 한 번뿐이야.",
 
-        text3:
-        "모든 순간이\n너의 빛나는\n미래로 이어질 거야"
-    },
+leftDesc:"지금 이 순간을\n오래도록 기억해요",
 
-    {
-        title:"童年",
-        subTitle:"闪闪发光",
-        text3:"把快乐装进每一天"
-    },
+rightTitle:"모든 순간이\n너의 빛나는\n미래로 이어질 거야.",
 
-    {
-        title:"梦想",
-        subTitle:"从这里开始",
-        text3:"未来正在向你招手"
-    }
+rightDesc:"오늘도, 내일도\n사랑해"
+},
 
 ];
 
