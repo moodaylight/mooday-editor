@@ -234,29 +234,45 @@ const familyTemplates = [
 ];
 const coupleTemplates = [
 
-    {
-        title:"You & Me",
+{
+    title:"우리",
 
-        subTitle:"Every Moment Matters",
+    subTitle:"함께라서 더 특별해",
 
-        text3:"Love Is In\nThe Little Things"
-    },
+    text3:"당신과 함께한\n모든 순간이 소중해"
+},
 
-    {
-        title:"Our Story",
+{
+    title:"사랑",
 
-        subTitle:"Continues",
+    subTitle:"마음을 전하는 시간",
 
-        text3:"Every Day\nA New Memory"
-    },
+    text3:"사랑은 작은 순간에도\n깃들어 있어요"
+},
 
-    {
-        title:"Forever",
+{
+    title:"동행",
 
-        subTitle:"Starts Today",
+    subTitle:"같은 길을 걷는 우리",
 
-        text3:"With You\nBy My Side"
-    }
+    text3:"서로의 곁에서\n함께 나아가요"
+},
+
+{
+    title:"함께",
+
+    subTitle:"가장 행복한 이유",
+
+    text3:"당신이 있어서\n오늘도 웃을 수 있어"
+},
+
+{
+    title:"소중한 순간",
+
+    subTitle:"기억하고 싶은 오늘",
+
+    text3:"우리의 이야기는\n계속 이어질 거야"
+}
 
 ];
 const babyTemplates = [
