@@ -2603,19 +2603,20 @@ fontBtn.onclick = ()=>{
 };
 document
 .querySelectorAll(
-".colorItem"
+".colorDot"
 )
-.forEach(btn=>{
+.forEach(dot=>{
 
-    btn.onclick = ()=>{
+    dot.onclick = ()=>{
 
         if(selectedText){
 
             selectedText.color =
-            btn.dataset.color;
+            dot.dataset.color;
 
             draw();
-
+colorPanel.style.display =
+"none";
         }
 
     };
