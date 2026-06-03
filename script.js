@@ -1887,18 +1887,7 @@ templateItem4.innerText =
 "未来";
 
 }
- if(templateCategory === 4){
-
-    templateItem0.innerText =
-    "生日";
-
-    templateItem1.innerText =
-    "祝福";
-
-    templateItem2.innerText =
-    "快乐时光";
-
-}
+if(templateCategory === 4){
 
 if(templateCategory === 5){
 
