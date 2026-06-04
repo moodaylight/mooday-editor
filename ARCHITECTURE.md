@@ -1,3 +1,45 @@
+# 项目结构
+
+index.html
+
+页面结构
+
+style.css
+
+界面样式
+
+script.js
+
+主逻辑入口
+
+render.js
+
+画布渲染
+
+text.js
+
+文字系统
+
+image.js
+
+图片系统
+
+light.js
+
+灯光系统
+
+state.js
+
+状态管理
+
+touch.js
+
+触摸交互
+
+config.js
+
+配置文件
+
 # MOODAY 编辑器核心架构原则
 模板系统
 
