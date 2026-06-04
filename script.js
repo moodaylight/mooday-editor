@@ -2607,6 +2607,21 @@ editorInput.addEventListener(
 }
 );
 colorBtn.onclick = ()=>{
+
+    colorPanel.style.display =
+    "flex";
+
+    fontPanel.style.display =
+    "none";
+
+    sizePanel.style.display =
+    "none";
+
+    strokePanel.style.display =
+    "none";
+
+};
+
 sizeBtn.onclick = ()=>{
 
     sizePanel.style.display =
