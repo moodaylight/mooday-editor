@@ -2629,6 +2629,39 @@ sizeBtn.onclick = ()=>{
     }
 
 };
+sizeMinus.onclick = ()=>{
+
+    if(!selectedText) return;
+
+    selectedText.size =
+    Math.max(
+        8,
+        (selectedText.size || 28) - 2
+    );
+
+    sizeValue.innerText =
+    selectedText.size;
+
+    draw();
+
+};
+
+sizePlus.onclick = ()=>{
+
+    if(!selectedText) return;
+
+    selectedText.size =
+    Math.min(
+        120,
+        (selectedText.size || 28) + 2
+    );
+
+    sizeValue.innerText =
+    selectedText.size;
+
+    draw();
+
+};
 fontBtn.onclick = ()=>{
 
     fontPanel.style.display =
