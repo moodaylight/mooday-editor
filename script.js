@@ -2677,6 +2677,9 @@ strokeBtn.onclick = ()=>{
     strokePanel.style.display =
     "flex";
 
+    shadowPanel.style.display =
+    "none";
+
     fontPanel.style.display =
     "none";
 
@@ -2703,6 +2706,44 @@ strokeOn.onclick = ()=>{
     if(!selectedText) return;
 
     selectedText.stroke = true;
+
+    draw();
+
+};
+shadowBtn.onclick = ()=>{
+
+    shadowPanel.style.display =
+    "flex";
+
+    strokePanel.style.display =
+    "none";
+
+    fontPanel.style.display =
+    "none";
+
+    colorPanel.style.display =
+    "none";
+
+    sizePanel.style.display =
+    "none";
+
+};
+
+shadowOff.onclick = ()=>{
+
+    if(!selectedText) return;
+
+    selectedText.shadow = false;
+
+    draw();
+
+};
+
+shadowOn.onclick = ()=>{
+
+    if(!selectedText) return;
+
+    selectedText.shadow = true;
 
     draw();
 
