@@ -556,6 +556,30 @@ const totalHeight =
 
 lines.forEach((line,index)=>{
 
+if(text.shadow){
+
+    ctx.shadowColor =
+    "rgba(0,0,0,0.5)";
+
+    ctx.shadowBlur = 8;
+
+    ctx.shadowOffsetX = 2;
+
+    ctx.shadowOffsetY = 2;
+
+}else{
+
+    ctx.shadowColor =
+    "transparent";
+
+    ctx.shadowBlur = 0;
+
+    ctx.shadowOffsetX = 0;
+
+    ctx.shadowOffsetY = 0;
+
+}
+
 if(text.stroke){
 
     ctx.strokeStyle =
