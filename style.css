@@ -750,3 +750,27 @@ font-size:14px;
 border-radius:8px;
 
 }
+#shadowPanel{
+
+display:none;
+
+align-items:center;
+
+justify-content:center;
+
+gap:12px;
+
+}
+
+#shadowOff,
+#shadowOn{
+
+width:80px;
+
+height:36px;
+
+font-size:14px;
+
+border-radius:8px;
+
+}
