@@ -126,6 +126,21 @@ document.getElementById(
 "strokeOn"
 );
 
+const shadowOff =
+document.getElementById(
+"shadowOff"
+);
+
+const shadowOn =
+document.getElementById(
+"shadowOn"
+);
+
+const shadowPanel =
+document.getElementById(
+"shadowPanel"
+);
+
 let image = new Image();
 let originalImage = null;
 image.src = "default.png";
