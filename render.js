@@ -423,7 +423,13 @@ ctx.font =
 
 ctx.fillStyle =
 
+ctx.fillStyle =
+
 text.color || "#ffffff";
+
+ctx.globalAlpha =
+
+text.opacity ?? 1;
 
 ctx.textAlign =
 
