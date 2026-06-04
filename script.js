@@ -2575,7 +2575,7 @@ colorBtn.onclick = ()=>{
         colorPanel.style.display =
         "none";
 
-        editorMenuArea.innerText =
+        menuTitle.innerText =
         "텍스트 편집";
 
     }else{
@@ -2586,7 +2586,7 @@ colorBtn.onclick = ()=>{
         fontPanel.style.display =
         "none";
 
-        editorMenuArea.innerText =
+       menuTitle.innerText =
         "색상 선택";
 
     }
@@ -2602,7 +2602,7 @@ fontBtn.onclick = ()=>{
         fontPanel.style.display =
         "none";
 
-        editorMenuArea.innerText =
+        menuTitle.innerText =
         "텍스트 편집";
 
     }else{
@@ -2613,7 +2613,7 @@ fontBtn.onclick = ()=>{
         colorPanel.style.display =
         "none";
 
-        editorMenuArea.innerText =
+        menuTitle.innerText =
         "글꼴 선택";
 
     }
