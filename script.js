@@ -111,11 +111,6 @@ document.getElementById(
 "strokeBtn"
 );
 
-const strokeBtn =
-document.getElementById(
-"strokeBtn"
-);
-
 const strokePanel =
 document.getElementById(
 "strokePanel"
