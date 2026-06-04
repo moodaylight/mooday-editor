@@ -556,7 +556,14 @@ const totalHeight =
 
 lines.forEach((line,index)=>{
 
-    ctx.fillText(
+if(text.stroke){
+
+    ctx.strokeStyle =
+    "#000000";
+
+    ctx.lineWidth = 3;
+
+    ctx.strokeText(
 
         line,
 
@@ -570,6 +577,23 @@ lines.forEach((line,index)=>{
         totalHeight / 2
 
     );
+
+}
+
+ctx.fillText(
+
+    line,
+
+    0,
+
+    index *
+    ((text.size || 20) + 6)
+
+    -
+
+    totalHeight / 2
+
+);
 
 });
 
