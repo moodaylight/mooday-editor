@@ -2604,6 +2604,25 @@ colorBtn.onclick = ()=>{
     "none";
 
 };
+sizeBtn.onclick = ()=>{
+
+    sizePanel.style.display =
+    "flex";
+
+    fontPanel.style.display =
+    "none";
+
+    colorPanel.style.display =
+    "none";
+
+    if(selectedText){
+
+        sizeValue.innerText =
+        selectedText.size || 28;
+
+    }
+
+};
 fontBtn.onclick = ()=>{
 
     fontPanel.style.display =
