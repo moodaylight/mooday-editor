@@ -2666,6 +2666,12 @@ colorBtn.onclick = ()=>{
     strokePanel.style.display =
     "none";
 
+    shadowPanel.style.display =
+    "none";
+
+    opacityPanel.style.display =
+    "none";
+
 };
 
 sizeBtn.onclick = ()=>{
@@ -2682,6 +2688,12 @@ sizeBtn.onclick = ()=>{
     strokePanel.style.display =
     "none";
 
+    shadowPanel.style.display =
+    "none";
+
+    opacityPanel.style.display =
+    "none";
+
     if(selectedText){
 
         sizeValue.innerText =
@@ -2693,23 +2705,6 @@ sizeBtn.onclick = ()=>{
 
 
 strokeBtn.onclick = ()=>{
-
-    strokePanel.style.display =
-    "flex";
-
-    shadowPanel.style.display =
-    "none";
-
-    fontPanel.style.display =
-    "none";
-
-    colorPanel.style.display =
-    "none";
-
-    sizePanel.style.display =
-    "none";
-
-};
 
 strokeOff.onclick = ()=>{
 
@@ -2734,6 +2729,9 @@ shadowBtn.onclick = ()=>{
 
     shadowPanel.style.display =
     "flex";
+
+    opacityPanel.style.display =
+    "none";
 
     strokePanel.style.display =
     "none";
