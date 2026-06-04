@@ -73,10 +73,37 @@ const colorBtn =
 document.getElementById(
 "colorBtn"
 );
+
 const colorPanel =
 document.getElementById(
 "colorPanel"
 );
+
+const sizeBtn =
+document.getElementById(
+"sizeBtn"
+);
+
+const sizePanel =
+document.getElementById(
+"sizePanel"
+);
+
+const sizeMinus =
+document.getElementById(
+"sizeMinus"
+);
+
+const sizePlus =
+document.getElementById(
+"sizePlus"
+);
+
+const sizeValue =
+document.getElementById(
+"sizeValue"
+);
+
 let image = new Image();
 let originalImage = null;
 image.src = "default.png";
