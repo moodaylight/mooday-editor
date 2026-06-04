@@ -584,6 +584,10 @@ lines.forEach((line,index)=>{
 
     }
 
+    ctx.globalAlpha =
+
+    text.opacity ?? 1;
+
     if(text.stroke){
 
         ctx.strokeStyle =
