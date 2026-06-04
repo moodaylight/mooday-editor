@@ -106,7 +106,15 @@ const sizeValue =
 document.getElementById(
 "sizeValue"
 );
+const strokeBtn =
+document.getElementById(
+"strokeBtn"
+);
 
+const strokePanel =
+document.getElementById(
+"strokePanel"
+);
 let image = new Image();
 let originalImage = null;
 image.src = "default.png";
@@ -2621,15 +2629,7 @@ sizeBtn.onclick = ()=>{
     }
 
 };
-const strokeBtn =
-document.getElementById(
-"strokeBtn"
-);
 
-const strokePanel =
-document.getElementById(
-"strokePanel"
-);
 
 strokeBtn.onclick = ()=>{
 
