@@ -2592,19 +2592,18 @@ document
 )
 .forEach(dot=>{
 
-    dot.onclick = ()=>{
+dot.onclick = ()=>{
 
-        if(selectedText){
+    if(selectedText){
 
-            selectedText.color =
-            dot.dataset.color;
+        selectedText.color =
+        dot.dataset.color;
 
-            draw();
-colorPanel.style.display =
-"none";
-        }
+        draw();
 
-    };
+    }
+
+};
 
 });
 
