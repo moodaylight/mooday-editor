@@ -2589,8 +2589,8 @@ colorBtn.onclick = ()=>{
         fontPanel.style.display =
         "none";
 
-       menuTitle.innerText =
-        "색상 선택";
+menuTitle.style.display =
+"none";
 
     }
 
@@ -2605,8 +2605,11 @@ fontBtn.onclick = ()=>{
         fontPanel.style.display =
         "none";
 
-        menuTitle.innerText =
-        "텍스트 편집";
+menuTitle.style.display =
+"block";
+
+menuTitle.innerText =
+"텍스트 편집";
 
     }else{
 
@@ -2616,8 +2619,8 @@ fontBtn.onclick = ()=>{
         colorPanel.style.display =
         "none";
 
-        menuTitle.innerText =
-        "글꼴 선택";
+menuTitle.style.display =
+"none";
 
     }
 
