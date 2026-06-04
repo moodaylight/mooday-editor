@@ -2570,52 +2570,20 @@ editorInput.addEventListener(
 );
 colorBtn.onclick = ()=>{
 
-    if(
-        colorPanel.style.display
-        === "flex"
-    ){
+    colorPanel.style.display =
+    "flex";
 
-        colorPanel.style.display =
-        "none";
-
-
-
-    }else{
-
-        colorPanel.style.display =
-        "flex";
-
-        fontPanel.style.display =
-        "none";
-
-
-
-    }
+    fontPanel.style.display =
+    "none";
 
 };
 fontBtn.onclick = ()=>{
 
-    if(
-        fontPanel.style.display
-        === "block"
-    ){
+    fontPanel.style.display =
+    "flex";
 
-        fontPanel.style.display =
-        "none";
-
-
-
-
-    }else{
-
-        fontPanel.style.display =
-        "block";
-
-        colorPanel.style.display =
-        "none";
-
-
-    }
+    colorPanel.style.display =
+    "none";
 
 };
 document
