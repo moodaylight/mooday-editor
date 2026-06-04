@@ -423,10 +423,6 @@ ctx.font =
 
 ctx.fillStyle =
 
-ctx.fillStyle =
-
-ctx.fillStyle =
-
 text.color || "#ffffff";
 
 ctx.textAlign =
@@ -629,12 +625,9 @@ lines.forEach((line,index)=>{
 
 });
 
-});
-
         ctx.restore();
 
     });
-
 
 decorations.forEach(item=>{
 
