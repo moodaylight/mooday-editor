@@ -73,7 +73,10 @@ const colorBtn =
 document.getElementById(
 "colorBtn"
 );
-
+const fontPanel =
+document.getElementById(
+"fontPanel"
+);
 const colorPanel =
 document.getElementById(
 "colorPanel"
@@ -2603,6 +2606,9 @@ colorBtn.onclick = ()=>{
     fontPanel.style.display =
     "none";
 
+    sizePanel.style.display =
+    "none";
+
 };
 sizeBtn.onclick = ()=>{
 
@@ -2629,6 +2635,9 @@ fontBtn.onclick = ()=>{
     "flex";
 
     colorPanel.style.display =
+    "none";
+
+    sizePanel.style.display =
     "none";
 
 };
