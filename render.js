@@ -560,29 +560,29 @@ lines.forEach((line,index)=>{
 
     text.opacity ?? 1;
 
-    if(text.shadow){
+if(text.shadow){
 
-        ctx.shadowColor =
-        "rgba(0,0,0,0.5)";
+    ctx.shadowColor =
+    "rgba(255,0,0,1)";
 
-        ctx.shadowBlur = 8;
+    ctx.shadowBlur = 20;
 
-        ctx.shadowOffsetX = 2;
+    ctx.shadowOffsetX = 0;
 
-        ctx.shadowOffsetY = 2;
+    ctx.shadowOffsetY = 0;
 
-    }else{
+}else{
 
-        ctx.shadowColor =
-        "transparent";
+    ctx.shadowColor =
+    "transparent";
 
-        ctx.shadowBlur = 0;
+    ctx.shadowBlur = 0;
 
-        ctx.shadowOffsetX = 0;
+    ctx.shadowOffsetX = 0;
 
-        ctx.shadowOffsetY = 0;
+    ctx.shadowOffsetY = 0;
 
-    }
+}
 
     ctx.globalAlpha =
 
