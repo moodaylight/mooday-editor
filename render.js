@@ -425,11 +425,9 @@ ctx.fillStyle =
 
 ctx.fillStyle =
 
+ctx.fillStyle =
+
 text.color || "#ffffff";
-
-ctx.globalAlpha =
-
-text.opacity ?? 1;
 
 ctx.textAlign =
 
@@ -562,38 +560,59 @@ const totalHeight =
 
 lines.forEach((line,index)=>{
 
-if(text.shadow){
+    ctx.globalAlpha =
 
-    ctx.shadowColor =
-    "rgba(0,0,0,0.5)";
+    text.opacity ?? 1;
 
-    ctx.shadowBlur = 8;
+    if(text.shadow){
 
-    ctx.shadowOffsetX = 2;
+        ctx.shadowColor =
+        "rgba(0,0,0,0.5)";
 
-    ctx.shadowOffsetY = 2;
+        ctx.shadowBlur = 8;
 
-}else{
+        ctx.shadowOffsetX = 2;
 
-    ctx.shadowColor =
-    "transparent";
+        ctx.shadowOffsetY = 2;
 
-    ctx.shadowBlur = 0;
+    }else{
 
-    ctx.shadowOffsetX = 0;
+        ctx.shadowColor =
+        "transparent";
 
-    ctx.shadowOffsetY = 0;
+        ctx.shadowBlur = 0;
 
-}
+        ctx.shadowOffsetX = 0;
 
-if(text.stroke){
+        ctx.shadowOffsetY = 0;
 
-    ctx.strokeStyle =
-    "#000000";
+    }
 
-    ctx.lineWidth = 3;
+    if(text.stroke){
 
-    ctx.strokeText(
+        ctx.strokeStyle =
+        "#000000";
+
+        ctx.lineWidth = 3;
+
+        ctx.strokeText(
+
+            line,
+
+            0,
+
+            index *
+            ((text.size || 20) + 6)
+
+            -
+
+            totalHeight / 2
+
+        );
+
+    }
+
+    ctx.fillText(
 
         line,
 
@@ -608,22 +627,7 @@ if(text.stroke){
 
     );
 
-}
-
-ctx.fillText(
-
-    line,
-
-    0,
-
-    index *
-    ((text.size || 20) + 6)
-
-    -
-
-    totalHeight / 2
-
-);
+});
 
 });
 
