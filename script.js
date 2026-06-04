@@ -2706,6 +2706,26 @@ sizeBtn.onclick = ()=>{
 
 strokeBtn.onclick = ()=>{
 
+    strokePanel.style.display =
+    "flex";
+
+    shadowPanel.style.display =
+    "none";
+
+    opacityPanel.style.display =
+    "none";
+
+    fontPanel.style.display =
+    "none";
+
+    colorPanel.style.display =
+    "none";
+
+    sizePanel.style.display =
+    "none";
+
+};
+
 strokeOff.onclick = ()=>{
 
     if(!selectedText) return;
