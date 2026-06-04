@@ -60,7 +60,10 @@ const editorInput =
 document.getElementById(
 "editorInput"
 );
-
+const menuTitle =
+document.getElementById(
+"menuTitle"
+);
 const fontBtn =
 document.getElementById(
 "fontBtn"
