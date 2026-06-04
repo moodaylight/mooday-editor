@@ -141,6 +141,26 @@ document.getElementById(
 "shadowPanel"
 );
 
+const opacityPanel =
+document.getElementById(
+"opacityPanel"
+);
+
+const opacityMinus =
+document.getElementById(
+"opacityMinus"
+);
+
+const opacityPlus =
+document.getElementById(
+"opacityPlus"
+);
+
+const opacityValue =
+document.getElementById(
+"opacityValue"
+);
+
 let image = new Image();
 let originalImage = null;
 image.src = "default.png";
