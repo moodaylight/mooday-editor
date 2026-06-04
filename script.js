@@ -111,10 +111,26 @@ document.getElementById(
 "strokeBtn"
 );
 
+const strokeBtn =
+document.getElementById(
+"strokeBtn"
+);
+
 const strokePanel =
 document.getElementById(
 "strokePanel"
 );
+
+const strokeOff =
+document.getElementById(
+"strokeOff"
+);
+
+const strokeOn =
+document.getElementById(
+"strokeOn"
+);
+
 let image = new Image();
 let originalImage = null;
 image.src = "default.png";
@@ -2659,6 +2675,26 @@ strokeBtn.onclick = ()=>{
 
     sizePanel.style.display =
     "none";
+
+};
+
+strokeOff.onclick = ()=>{
+
+    if(!selectedText) return;
+
+    selectedText.stroke = false;
+
+    draw();
+
+};
+
+strokeOn.onclick = ()=>{
+
+    if(!selectedText) return;
+
+    selectedText.stroke = true;
+
+    draw();
 
 };
 sizeMinus.onclick = ()=>{
