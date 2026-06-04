@@ -2599,17 +2599,6 @@ editorInput.addEventListener(
 }
 );
 colorBtn.onclick = ()=>{
-
-    colorPanel.style.display =
-    "flex";
-
-    fontPanel.style.display =
-    "none";
-
-    sizePanel.style.display =
-    "none";
-
-};
 sizeBtn.onclick = ()=>{
 
     sizePanel.style.display =
@@ -2621,12 +2610,40 @@ sizeBtn.onclick = ()=>{
     colorPanel.style.display =
     "none";
 
+    strokePanel.style.display =
+    "none";
+
     if(selectedText){
 
         sizeValue.innerText =
         selectedText.size || 28;
 
     }
+
+};
+const strokeBtn =
+document.getElementById(
+"strokeBtn"
+);
+
+const strokePanel =
+document.getElementById(
+"strokePanel"
+);
+
+strokeBtn.onclick = ()=>{
+
+    strokePanel.style.display =
+    "flex";
+
+    fontPanel.style.display =
+    "none";
+
+    colorPanel.style.display =
+    "none";
+
+    sizePanel.style.display =
+    "none";
 
 };
 sizeMinus.onclick = ()=>{
@@ -2673,7 +2690,11 @@ fontBtn.onclick = ()=>{
     sizePanel.style.display =
     "none";
 
+    strokePanel.style.display =
+    "none";
+
 };
+
 document
 .querySelectorAll(
 ".colorDot"
