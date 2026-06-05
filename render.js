@@ -573,7 +573,7 @@ if(text.shadow){
     (0.5 * alpha) +
     ")";
 
-    ctx.shadowBlur = 1;
+    ctx.shadowBlur = 10;
     ctx.shadowOffsetX = 2;
 
     ctx.shadowOffsetY = 2;
