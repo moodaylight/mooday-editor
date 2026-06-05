@@ -591,7 +591,7 @@ if(text.shadow){
     ctx.strokeStyle =
     `rgba(0,0,0,${alpha})`;
 
-    ctx.lineWidth = 3;
+    ctx.lineWidth = 8;
 
     ctx.strokeText(
 
