@@ -884,7 +884,7 @@ const outerY = marginTop + 10;
 
 function roundRect(x,y,w,h,r){
 
-    ctx.beginPath();
+ ctx.beginPath();
 
     ctx.moveTo(x+r,y);
 
