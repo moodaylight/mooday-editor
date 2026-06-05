@@ -575,11 +575,11 @@ if(text.shadow){
         ${0.25 * alpha}
     )`;
 
-    ctx.shadowBlur = 20;
+    ctx.shadowBlur = 0;
 
-    ctx.shadowOffsetX = 8;
+    ctx.shadowOffsetX = 3;
 
-    ctx.shadowOffsetY = 8;
+    ctx.shadowOffsetY = 3;
 
 }else{
 
