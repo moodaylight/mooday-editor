@@ -608,6 +608,11 @@ if(text.stroke){
 
     ctx.lineWidth = 3;
 
+    ctx.shadowColor = "transparent";
+    ctx.shadowBlur = 0;
+    ctx.shadowOffsetX = 0;
+    ctx.shadowOffsetY = 0;
+
     ctx.strokeText(
 
         line,
@@ -622,12 +627,23 @@ if(text.stroke){
         totalHeight / 2
 
     );
-/* 新增这4行 */
 
-ctx.shadowColor = "transparent";
-ctx.shadowBlur = 0;
-ctx.shadowOffsetX = 0;
-ctx.shadowOffsetY = 0;
+}
+
+if(text.shadow){
+
+    const alpha =
+    text.opacity ?? 1;
+
+    ctx.shadowColor =
+    `rgba(0,0,0,${0.5 * alpha})`;
+
+    ctx.shadowBlur = 3;
+
+    ctx.shadowOffsetX = 2;
+
+    ctx.shadowOffsetY = 2;
+
 }
 
 ctx.fillText(
