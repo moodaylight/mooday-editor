@@ -555,7 +555,10 @@ const totalHeight =
 ((text.size || 20) + 6);
 
 lines.forEach((line,index)=>{
-
+console.log(
+    "opacity=",
+    text.opacity
+);
     ctx.globalAlpha =
 
     text.opacity ?? 1;
