@@ -622,15 +622,13 @@ if(text.stroke){
         totalHeight / 2
 
     );
-
-}
-
 /* 新增这4行 */
 
 ctx.shadowColor = "transparent";
 ctx.shadowBlur = 0;
 ctx.shadowOffsetX = 0;
 ctx.shadowOffsetY = 0;
+}
 
 ctx.fillText(
 
