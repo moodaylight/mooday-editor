@@ -557,9 +557,7 @@ const totalHeight =
 lines.forEach((line,index)=>{
 
 ctx.globalAlpha =
-
-(text.opacity ?? 1) * 0.5;
-
+text.opacity ?? 1;
 if(text.shadow){
 
     const alpha =
@@ -595,9 +593,7 @@ if(text.shadow){
 }
 
 ctx.globalAlpha =
-
-(text.opacity ?? 1) * 0.5;
-
+text.opacity ?? 1;
     if(text.stroke){
 
         ctx.strokeStyle =
