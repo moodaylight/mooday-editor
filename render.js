@@ -583,15 +583,32 @@ if(text.shadow){
 
 }else{
 
-    ctx.shadowColor =
-    "transparent";
+   if(text.stroke){
 
-    ctx.shadowBlur = 0;
+    const alpha =
+    text.opacity ?? 1;
 
-    ctx.shadowOffsetX = 0;
+    ctx.strokeStyle =
+    `rgba(0,0,0,${alpha})`;
 
-    ctx.shadowOffsetY = 0;
+    ctx.lineWidth = 3;
 
+    ctx.strokeText(
+
+        line,
+
+        0,
+
+        index *
+        ((text.size || 20) + 6)
+
+        -
+
+        totalHeight / 2
+
+    );
+
+}
 }
 
     ctx.globalAlpha =
