@@ -562,8 +562,18 @@ lines.forEach((line,index)=>{
 
 if(text.shadow){
 
+    const alpha =
+
+    text.opacity ?? 1;
+
     ctx.shadowColor =
-    "rgba(0,0,0,0.5)";
+
+    `rgba(
+        0,
+        0,
+        0,
+        ${0.5 * alpha}
+    )`;
 
     ctx.shadowBlur = 8;
 
@@ -588,29 +598,31 @@ if(text.shadow){
 
     text.opacity ?? 1;
 
-ctx.fillText(
+    if(text.stroke){
 
-    line,
+        ctx.strokeStyle =
+        "#000000";
 
-    0,
+        ctx.lineWidth = 3;
 
-    index *
-    ((text.size || 20) + 6)
+        ctx.strokeText(
 
-    -
+            line,
 
-    totalHeight / 2
+            0,
 
-);
+            index *
+            ((text.size || 20) + 6)
 
-if(text.stroke){
+            -
 
-    ctx.strokeStyle =
-    "#000000";
+            totalHeight / 2
 
-    ctx.lineWidth = 3;
+        );
 
-    ctx.strokeText(
+    }
+
+    ctx.fillText(
 
         line,
 
@@ -624,8 +636,6 @@ if(text.stroke){
         totalHeight / 2
 
     );
-
-}
 
 });
 
