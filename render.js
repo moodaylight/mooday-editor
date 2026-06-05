@@ -600,8 +600,11 @@ if(text.shadow){
 
     if(text.stroke){
 
-        ctx.strokeStyle =
-        "#000000";
+        const alpha =
+text.opacity ?? 1;
+
+ctx.strokeStyle =
+`rgba(0,0,0,${alpha})`;
 
         ctx.lineWidth = 3;
 
