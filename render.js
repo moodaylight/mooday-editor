@@ -598,34 +598,17 @@ if(text.shadow){
 
     text.opacity ?? 1;
 
-    if(text.stroke){
+if(text.stroke){
 
-        const alpha =
-text.opacity ?? 1;
+    const alpha =
+    text.opacity ?? 1;
 
-ctx.strokeStyle =
-`rgba(0,0,0,${alpha})`;
+    ctx.strokeStyle =
+    `rgba(0,0,0,${alpha})`;
 
-        ctx.lineWidth = 3;
+    ctx.lineWidth = 3;
 
-        ctx.strokeText(
-
-            line,
-
-            0,
-
-            index *
-            ((text.size || 20) + 6)
-
-            -
-
-            totalHeight / 2
-
-        );
-
-    }
-
-    ctx.fillText(
+    ctx.strokeText(
 
         line,
 
@@ -639,6 +622,30 @@ ctx.strokeStyle =
         totalHeight / 2
 
     );
+
+}
+
+/* 新增这4行 */
+
+ctx.shadowColor = "transparent";
+ctx.shadowBlur = 0;
+ctx.shadowOffsetX = 0;
+ctx.shadowOffsetY = 0;
+
+ctx.fillText(
+
+    line,
+
+    0,
+
+    index *
+    ((text.size || 20) + 6)
+
+    -
+
+    totalHeight / 2
+
+);
 
 });
 
