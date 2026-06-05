@@ -588,44 +588,13 @@ if(text.shadow){
 
     text.opacity ?? 1;
 
-    if(text.stroke){
+ctx.fillText(...);
 
-        ctx.strokeStyle =
-        "#000000";
+if(text.stroke){
 
-        ctx.lineWidth = 3;
+    ctx.strokeText(...);
 
-        ctx.strokeText(
-
-            line,
-
-            0,
-
-            index *
-            ((text.size || 20) + 6)
-
-            -
-
-            totalHeight / 2
-
-        );
-
-    }
-
-    ctx.fillText(
-
-        line,
-
-        0,
-
-        index *
-        ((text.size || 20) + 6)
-
-        -
-
-        totalHeight / 2
-
-    );
+}
 
 });
 
