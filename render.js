@@ -572,14 +572,14 @@ if(text.shadow){
         0,
         0,
         0,
-        ${0.5 * alpha}
+        ${0.25 * alpha}
     )`;
 
-    ctx.shadowBlur = 4;
+    ctx.shadowBlur = 6;
 
-    ctx.shadowOffsetX = 2;
+    ctx.shadowOffsetX = 3;
 
-    ctx.shadowOffsetY = 2;
+    ctx.shadowOffsetY = 3;
 
 }else{
 
