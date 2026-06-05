@@ -588,11 +588,42 @@ if(text.shadow){
 
     text.opacity ?? 1;
 
-ctx.fillText(...);
+ctx.fillText(
+
+    line,
+
+    0,
+
+    index *
+    ((text.size || 20) + 6)
+
+    -
+
+    totalHeight / 2
+
+);
 
 if(text.stroke){
 
-    ctx.strokeText(...);
+    ctx.strokeStyle =
+    "#000000";
+
+    ctx.lineWidth = 3;
+
+    ctx.strokeText(
+
+        line,
+
+        0,
+
+        index *
+        ((text.size || 20) + 6)
+
+        -
+
+        totalHeight / 2
+
+    );
 
 }
 
