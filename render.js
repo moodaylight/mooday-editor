@@ -581,35 +581,7 @@ if(text.shadow){
 
     ctx.shadowOffsetY = 2;
 
-}else{
 
-   if(text.stroke){
-
-    const alpha =
-    text.opacity ?? 1;
-
-    ctx.strokeStyle =
-    `rgba(0,0,0,${alpha})`;
-
-    ctx.lineWidth = 8;
-
-    ctx.strokeText(
-
-        line,
-
-        0,
-
-        index *
-        ((text.size || 20) + 6)
-
-        -
-
-        totalHeight / 2
-
-    );
-
-}
-}
 
     ctx.globalAlpha =
 
