@@ -421,11 +421,9 @@ ctx.font =
     text.font || "Nanum Gothic"
 }"`;
 
-const alpha =
-text.opacity ?? 1;
-
 ctx.fillStyle =
-`rgba(255,255,255,${alpha})`;
+
+text.color || "#ffffff";
 
 ctx.textAlign =
 
@@ -557,23 +555,28 @@ const totalHeight =
 ((text.size || 20) + 6);
 
 lines.forEach((line,index)=>{
-console.log(
-    "opacity=",
-    text.opacity
-);
-ctx.globalAlpha = 1;
+
+    ctx.globalAlpha =
+
+    text.opacity ?? 1;
 
 if(text.shadow){
 
     const alpha =
+
     text.opacity ?? 1;
 
     ctx.shadowColor =
-    "rgba(0,0,0," +
-    (0.5 * alpha) +
-    ")";
 
-    ctx.shadowBlur = 10;
+    `rgba(
+        0,
+        0,
+        0,
+        ${0.5 * alpha}
+    )`;
+
+    ctx.shadowBlur = 8;
+
     ctx.shadowOffsetX = 2;
 
     ctx.shadowOffsetY = 2;
