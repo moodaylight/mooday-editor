@@ -583,23 +583,16 @@ lines.forEach((line,index)=>{
 if(text.shadow){
 
     const alpha =
-
     text.opacity ?? 1;
 
     ctx.shadowColor =
+    `rgba(0,0,0,${0.35 * alpha})`;
 
-    `rgba(
-        0,
-        0,
-        0,
-        ${0.25 * alpha}
-    )`;
+    ctx.shadowBlur = 10;
 
-    ctx.shadowBlur = 0;
+    ctx.shadowOffsetX = 4;
 
-    ctx.shadowOffsetX = 3;
-
-    ctx.shadowOffsetY = 3;
+    ctx.shadowOffsetY = 4;
 
 }else{
 
