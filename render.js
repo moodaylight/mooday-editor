@@ -424,9 +424,6 @@ ctx.font =
 const alpha =
 text.opacity ?? 1;
 
-const alpha =
-text.opacity ?? 1;
-
 const color =
 text.color || "#ffffff";
 
