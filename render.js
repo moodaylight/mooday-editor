@@ -600,6 +600,12 @@ if(text.stroke){
 
     ctx.lineWidth = 3;
 
+    // 描边永远不带阴影
+    ctx.shadowColor = "transparent";
+    ctx.shadowBlur = 0;
+    ctx.shadowOffsetX = 0;
+    ctx.shadowOffsetY = 0;
+
     ctx.strokeText(
 
         line,
@@ -617,10 +623,26 @@ if(text.stroke){
 
 }
 
-ctx.shadowColor = "transparent";
-ctx.shadowBlur = 0;
-ctx.shadowOffsetX = 0;
-ctx.shadowOffsetY = 0;
+if(text.shadow){
+
+    const alpha =
+    text.opacity ?? 1;
+
+    ctx.shadowColor =
+    `rgba(0,0,0,${0.25 * alpha})`;
+
+    ctx.shadowBlur = 6;
+    ctx.shadowOffsetX = 3;
+    ctx.shadowOffsetY = 3;
+
+}else{
+
+    ctx.shadowColor = "transparent";
+    ctx.shadowBlur = 0;
+    ctx.shadowOffsetX = 0;
+    ctx.shadowOffsetY = 0;
+
+}
 
 ctx.fillText(
 
