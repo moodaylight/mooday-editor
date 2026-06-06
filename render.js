@@ -424,11 +424,31 @@ ctx.font =
 const alpha =
 text.opacity ?? 1;
 
-ctx.fillStyle =
+const alpha =
+text.opacity ?? 1;
+
+const color =
 text.color || "#ffffff";
 
-ctx.globalAlpha =
-alpha;
+if(color.startsWith("#")){
+
+    const r =
+    parseInt(color.slice(1,3),16);
+
+    const g =
+    parseInt(color.slice(3,5),16);
+
+    const b =
+    parseInt(color.slice(5,7),16);
+
+    ctx.fillStyle =
+    `rgba(${r},${g},${b},${alpha})`;
+
+}else{
+
+    ctx.fillStyle = color;
+
+}
 
 ctx.textAlign =
 
@@ -561,9 +581,7 @@ const totalHeight =
 
 lines.forEach((line,index)=>{
 
-    ctx.globalAlpha =
-
-    text.opacity ?? 1;
+    ctx.globalAlpha = 1;
 
 if(text.shadow){
 
@@ -591,10 +609,7 @@ if(text.shadow){
 
 }
 
- ctx.globalAlpha =
-
-    text.opacity ?? 1;
-
+ ctx.globalAlpha = 1;
 if(text.stroke){
 
     const alpha =
