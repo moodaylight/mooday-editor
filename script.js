@@ -1253,6 +1253,20 @@ imageSelected = true;
 
 selectedText = null;
 
+textEditorPanel.style.display = "none";
+
+fontPanel.style.display = "none";
+
+colorPanel.style.display = "none";
+
+sizePanel.style.display = "none";
+
+strokePanel.style.display = "none";
+
+shadowPanel.style.display = "none";
+
+opacityPanel.style.display = "none";
+   
 draggingImage = true;
 
 draggingText = false;
