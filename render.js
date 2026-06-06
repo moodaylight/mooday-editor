@@ -421,9 +421,11 @@ ctx.font =
     text.font || "Nanum Gothic"
 }"`;
 
-ctx.fillStyle =
+const alpha =
+text.opacity ?? 1;
 
-text.color || "#ffffff";
+ctx.fillStyle =
+`rgba(255,255,255,${alpha})`;
 
 ctx.textAlign =
 
