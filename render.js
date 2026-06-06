@@ -611,7 +611,7 @@ if(text.shadow){
 }
 }
 
-    ctx.globalAlpha =
+ ctx.globalAlpha =
 
     text.opacity ?? 1;
 
