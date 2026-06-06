@@ -1130,9 +1130,9 @@ decoBtn.onclick = ()=>{
         content:
         decoList[decoIndex],
 
-        x:200,
+x:200 + decoIndex * 20,
 
-        y:200,
+y:200 + decoIndex * 20,
 
         size:28
 
