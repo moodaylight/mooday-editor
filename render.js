@@ -585,14 +585,14 @@ if(text.shadow){
     const alpha =
     text.opacity ?? 1;
 
-    ctx.shadowColor =
-`rgba(0,0,0,${0.45 * alpha})`;
+ctx.shadowColor =
+`rgba(0,0,0,${0.60 * alpha})`;
 
-ctx.shadowBlur = 16;
+ctx.shadowBlur = 20;
 
-ctx.shadowOffsetX = 6;
+ctx.shadowOffsetX = 8;
 
-ctx.shadowOffsetY = 6;
+ctx.shadowOffsetY = 8;;
 
 }else{
 
