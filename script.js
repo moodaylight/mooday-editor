@@ -2876,11 +2876,40 @@ sizePlus.onclick = ()=>{
 
     if(!selectedText) return;
 
+    const oldSize =
+    selectedText.size || 28;
+
     selectedText.size =
-    Math.min(
-        120,
-        (selectedText.size || 28) + 2
-    );
+    oldSize + 2;
+
+    const box =
+    getTextBounds(selectedText);
+
+    const LIMIT = 10;
+
+    if(
+
+        box.left < exportVisibleX + LIMIT ||
+
+        box.right >
+        exportVisibleX +
+        exportVisibleW -
+        LIMIT ||
+
+        box.top < exportVisibleY + LIMIT ||
+
+        box.bottom >
+        exportVisibleY +
+        exportVisibleH -
+        LIMIT
+
+    ){
+
+        // 超出边界
+        selectedText.size =
+        oldSize;
+
+    }
 
     sizeValue.innerText =
     selectedText.size;
