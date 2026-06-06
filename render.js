@@ -586,13 +586,13 @@ if(text.shadow){
     text.opacity ?? 1;
 
     ctx.shadowColor =
-    `rgba(0,0,0,${0.35 * alpha})`;
+`rgba(0,0,0,${0.45 * alpha})`;
 
-    ctx.shadowBlur = 10;
+ctx.shadowBlur = 16;
 
-    ctx.shadowOffsetX = 4;
+ctx.shadowOffsetX = 6;
 
-    ctx.shadowOffsetY = 4;
+ctx.shadowOffsetY = 6;
 
 }else{
 
