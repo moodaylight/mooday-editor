@@ -425,7 +425,10 @@ const alpha =
 text.opacity ?? 1;
 
 ctx.fillStyle =
-`rgba(255,255,255,${alpha})`;
+text.color || "#ffffff";
+
+ctx.globalAlpha =
+alpha;
 
 ctx.textAlign =
 
