@@ -693,7 +693,12 @@ const templateCategories = [
     "여행"
 
 ];
-lightModeBtn.innerText = "조명모드";
+if(lightModeBtn){
+
+    lightModeBtn.innerText =
+    "조명모드";
+
+}
 let draggingText = false;
 let draggingImage = false;
 let longPressTimer;
