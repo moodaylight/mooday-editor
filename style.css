@@ -78,7 +78,7 @@ canvas{
 
     max-width:430px;
 
-    height:645px;
+   aspect-ratio:2/3;
 
     background:
     linear-gradient(
