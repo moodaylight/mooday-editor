@@ -3167,4 +3167,8 @@ function selectProduct(type){
         "editorPage"
     ).style.display = "flex";
 
+    resizeCanvas();
+
+    draw();
+
 }
