@@ -3173,6 +3173,18 @@ function selectProduct(type){
 
     }
 
+    if(type === "frame"){
+
+        photoBtn.click();
+
+    }
+
+    if(type === "idcard"){
+
+        photoBtn.click();
+
+    }
+
     if(type === "mirror"){
 
         mirrorBtn.click();
