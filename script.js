@@ -3146,3 +3146,18 @@ bannerDesc.innerText =
 banners[bannerIndex].desc;
 
 },4000);
+let currentProduct = null;
+
+function selectProduct(type){
+
+    currentProduct = type;
+
+    document.getElementById(
+        "homePage"
+    ).style.display = "none";
+
+    document.getElementById(
+        "editorPage"
+    ).style.display = "flex";
+
+}
