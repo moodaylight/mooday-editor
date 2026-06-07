@@ -5,6 +5,13 @@ MOODAY UI样式
 布局
 手机适配
 */
+html{
+
+    background:#050505;
+
+    overflow:hidden;
+
+}
 body{
 
     margin:0;
