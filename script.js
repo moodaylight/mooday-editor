@@ -3099,25 +3099,25 @@ document.getElementById("bannerDesc");
 const banners = [
 
 {
-img:"images/banner1.jpg",
+img:"banner1.jpg",
 title:"MOODAY 魔镜灯光画",
 desc:"珍藏每一个重要时刻"
 },
 
 {
-img:"images/banner2.jpg",
+img:"banner2.jpg",
 title:"桌面灯光画",
 desc:"陪伴每一天"
 },
 
 {
-img:"images/banner3.jpg",
+img:"banner3.jpg",
 title:"韩系相框照片",
 desc:"成长只有一次"
 },
 
 {
-img:"images/banner4.jpg",
+img:"banner4.jpg",
 title:"证件照打印",
 desc:"简单快速专业"
 }
