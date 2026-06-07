@@ -3157,6 +3157,8 @@ function selectProduct(type){
 
     currentProduct = type;
 
+    productType = type;
+
     document.getElementById(
         "homePage"
     ).style.display = "none";
