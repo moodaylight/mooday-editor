@@ -17,24 +17,32 @@ if(productType === "photo"){
 
 }
 */
-lightModeBtn.innerText =
-lightNames[lightMode];
-
-lightModeBtn.addEventListener(
-"click",
-()=>{
-
-    lightMode++;
-
-    if(lightMode > 3){
-
-        lightMode = 0;
-
-    }
+if(lightModeBtn){
 
     lightModeBtn.innerText =
     lightNames[lightMode];
 
-    draw();
+}
 
-});
+if(lightModeBtn){
+
+    lightModeBtn.addEventListener(
+    "click",
+    ()=>{
+
+        lightMode++;
+
+        if(lightMode > 3){
+
+            lightMode = 0;
+
+        }
+
+        lightModeBtn.innerText =
+        lightNames[lightMode];
+
+        draw();
+
+    });
+
+}
