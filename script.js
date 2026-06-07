@@ -3087,3 +3087,62 @@ document
     };
 
 });
+const bannerImg =
+document.getElementById("bannerImg");
+
+const bannerTitle =
+document.getElementById("bannerTitle");
+
+const bannerDesc =
+document.getElementById("bannerDesc");
+
+const banners = [
+
+{
+img:"images/banner1.jpg",
+title:"MOODAY 魔镜灯光画",
+desc:"珍藏每一个重要时刻"
+},
+
+{
+img:"images/banner2.jpg",
+title:"桌面灯光画",
+desc:"陪伴每一天"
+},
+
+{
+img:"images/banner3.jpg",
+title:"韩系相框照片",
+desc:"成长只有一次"
+},
+
+{
+img:"images/banner4.jpg",
+title:"证件照打印",
+desc:"简单快速专业"
+}
+
+];
+
+let bannerIndex = 0;
+
+setInterval(()=>{
+
+bannerIndex++;
+
+if(
+bannerIndex >= banners.length
+){
+bannerIndex = 0;
+}
+
+bannerImg.src =
+banners[bannerIndex].img;
+
+bannerTitle.innerText =
+banners[bannerIndex].title;
+
+bannerDesc.innerText =
+banners[bannerIndex].desc;
+
+},4000);
