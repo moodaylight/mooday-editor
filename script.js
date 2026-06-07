@@ -3167,6 +3167,22 @@ function selectProduct(type){
         "editorPage"
     ).style.display = "flex";
 
+    if(type === "photo"){
+
+        lightMode = 0;
+
+        lightModeBtn.style.display =
+        "none";
+
+    }
+
+    if(type === "mirror"){
+
+        lightModeBtn.style.display =
+        "block";
+
+    }
+
     resizeCanvas();
 
     draw();
