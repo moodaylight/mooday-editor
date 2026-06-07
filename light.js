@@ -3,6 +3,7 @@
 // 暖光
 // 白光
 // 镜子模式
+
 const lightNames = [
     "백색",
     "전구색",
@@ -10,21 +11,14 @@ const lightNames = [
     "거울 모드"
 ];
 
-/*
-if(productType === "photo"){
-
-    lightModeBtn.style.display = "none";
-
-}
-*/
-if(lightModeBtn){
+if(
+typeof lightModeBtn !== "undefined"
+&&
+lightModeBtn
+){
 
     lightModeBtn.innerText =
     lightNames[lightMode];
-
-}
-
-if(lightModeBtn){
 
     lightModeBtn.addEventListener(
     "click",
