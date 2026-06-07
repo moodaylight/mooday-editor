@@ -10,11 +10,13 @@ const lightNames = [
     "거울 모드"
 ];
 
+/*
 if(productType === "photo"){
 
     lightModeBtn.style.display = "none";
 
 }
+*/
 lightModeBtn.innerText =
 lightNames[lightMode];
 
