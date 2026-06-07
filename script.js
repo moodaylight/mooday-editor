@@ -3157,8 +3157,6 @@ function selectProduct(type){
 
     currentProduct = type;
 
-    productType = type;
-
     document.getElementById(
         "homePage"
     ).style.display = "none";
@@ -3167,24 +3165,18 @@ function selectProduct(type){
         "editorPage"
     ).style.display = "flex";
 
+    resizeCanvas();
+
     if(type === "photo"){
 
-        lightMode = 0;
-
-        lightModeBtn.style.display =
-        "none";
+        photoBtn.click();
 
     }
 
     if(type === "mirror"){
 
-        lightModeBtn.style.display =
-        "block";
+        mirrorBtn.click();
 
     }
-
-    resizeCanvas();
-
-    draw();
 
 }
