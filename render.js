@@ -59,8 +59,8 @@ if(productType === "photo"){
     // 外边距
     // =====================
 
-    const marginX = 20;
-    const marginTop = 20;
+    const marginX = 8;
+    const marginTop = 8;
 
     // =====================
     // 外框尺寸
