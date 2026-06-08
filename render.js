@@ -753,15 +753,15 @@ function drawFrame(){
     // 外框尺寸
     // =====================
 
-const outerH = canvas.height;
+const outerW = canvas.width;
 
-const outerW =
-outerH * frameWidth / frameHeight;
+const outerH =
+outerW * frameHeight / frameWidth;
 
-const outerY = 0;
+const outerX = 0;
 
-const outerX =
-(canvas.width - outerW) / 2;
+const outerY =
+(canvas.height - outerH) / 2;
     // =====================
     // 可视区域比例
     // =====================
