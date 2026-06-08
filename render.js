@@ -760,9 +760,7 @@ outerW * frameHeight / frameWidth;
 
 const outerX = 0;
 
-const outerY =
-(canvas.height - outerH) / 2;
-
+const outerY = 0;
     // =====================
     // 可视区域比例
     // =====================
