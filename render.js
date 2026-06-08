@@ -713,8 +713,8 @@ decorations.forEach(item=>{
 
     ctx.lineWidth = 1.5;
 
-    const photoW = 260;
-    const photoH = 390;
+const photoW = canvas.width * 0.85;
+const photoH = photoW * 1.5;
 
     const photoX =
     (canvas.width - photoW) / 2;
