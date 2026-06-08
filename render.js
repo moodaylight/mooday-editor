@@ -740,8 +740,8 @@ function drawFrame(){
     const frameWidth = 12;
     const frameHeight = 17.5;
 
-    const visibleWidth = 9.8;
-    const visibleHeight = 15.3;
+    const visibleWidth = 11.2;
+    const visibleHeight = 16.8;
 
     // =====================
     // 边框真实结构
