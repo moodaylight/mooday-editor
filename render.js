@@ -746,8 +746,8 @@ function drawFrame(){
     // 外边距
     // =====================
 
-    const marginX = 20;
-    const marginTop = 10;
+    const marginX = 0;
+    const marginTop = 0;
 
     // =====================
     // 外框尺寸
