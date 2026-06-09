@@ -132,6 +132,53 @@ canvas{
 
 }
 /* =========================
+动态参数栏
+========================= */
+
+#statusPanel{
+
+    width:calc(100vw - 20px);
+
+    max-width:650px;
+
+    margin:10px auto;
+
+    min-height:52px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:flex-start;
+
+    padding:0 12px;
+
+    box-sizing:border-box;
+
+    border-radius:16px;
+
+    background:rgba(255,255,255,0.05);
+
+    border:1px solid rgba(255,255,255,0.08);
+
+    backdrop-filter:blur(20px);
+
+}
+
+#statusContent{
+
+    display:flex;
+
+    gap:8px;
+
+    flex-wrap:wrap;
+
+    color:white;
+
+    font-size:14px;
+
+}
+/* =========================
 输入框
 ========================= */
 
