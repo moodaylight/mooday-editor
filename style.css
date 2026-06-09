@@ -1130,4 +1130,46 @@ BottomPanel
     padding:2px 0 6px 0;
 
 }
+/* =====================================
+Landscape V2
+===================================== */
 
+@media screen and (orientation:landscape){
+
+    .app{
+
+        flex-direction:row;
+
+        align-items:flex-start;
+
+    }
+
+    #editorContainer{
+
+        flex:0 0 auto;
+
+    }
+
+    #bottomPanel{
+
+        flex:1;
+
+        max-width:260px;
+
+        min-width:260px;
+
+        height:100vh;
+
+        justify-content:flex-start;
+
+        padding-top:10px;
+
+    }
+
+    .controls{
+
+        grid-template-columns:repeat(2,1fr);
+
+    }
+
+}
