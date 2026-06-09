@@ -236,14 +236,15 @@ if(productType === "photo"){
 
 imgScale =
 Math.max(scaleX, scaleY);
-imgScale *= 1.2;
-    // 自动居中
+
+// 自动居中
 
 imgX = canvas.width / 2;
 
 imgY =
 canvas.height / 2;
-    draw();
+
+draw();
 
 }
 // 图片
