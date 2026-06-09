@@ -9,7 +9,9 @@ html{
 
     background:#050505;
 
-    overflow:hidden;
+    overflow-x:hidden;
+
+    overflow-y:auto;
 
 }
 body{
@@ -21,6 +23,8 @@ body{
     font-family:sans-serif;
 
     overflow-x:hidden;
+
+    overflow-y:auto;
 
     background:
 
