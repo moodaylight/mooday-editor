@@ -236,7 +236,7 @@ if(productType === "photo"){
 
 imgScale =
 Math.max(scaleX, scaleY);
-
+imgScale *= 1.2;
     // 自动居中
 
 imgX = canvas.width / 2;
