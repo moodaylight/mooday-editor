@@ -88,32 +88,38 @@ rel="stylesheet">
     </div>
 
 </div>
-<div
-class="canvas-wrap"
-id="editorPage"
-style="display:none;">
+<div id="editorContainer">
 
-    <canvas id="canvas"></canvas>
+    <div
+    class="canvas-wrap"
+    id="editorPage"
+    style="display:none;">
 
-</div>
+        <canvas id="canvas"></canvas>
 
-<div id="statusPanel">
-
-    <div id="statusContent">
-
-    <button
-    class="optionChip activeOption"
-    data-type="default">
-
-        상품 옵션 선택
-
-    </button>
+    </div>
 
 </div>
 
-</div>
+<div id="bottomPanel">
 
-<div class="controls">
+    <div id="statusPanel">
+
+        <div id="statusContent">
+
+            <button
+            class="optionChip activeOption"
+            data-type="default">
+
+                상품 옵션 선택
+
+            </button>
+
+        </div>
+
+    </div>
+
+    <div class="controls">
 
 <button id="uploadBtn">
 업로드
@@ -138,6 +144,10 @@ style="display:none;">
 <button id="submitBtn">
 주문하기
 </button>
+
+</div>
+
+    </div>
 
 </div>
 
