@@ -753,12 +753,19 @@ function drawFrame(){
     // 外框尺寸
     // =====================
 
-const outerW = canvas.width;
+const baseSize =
+Math.min(
+    canvas.width,
+    canvas.height
+);
+
+const outerW =
+baseSize * 0.95;
 
 const outerH =
 outerW * frameHeight / frameWidth;
-
-const outerX = 0;
+const outerX =
+(canvas.width - outerW) / 2;
 
 const outerY =
 (canvas.height - outerH) / 2;
