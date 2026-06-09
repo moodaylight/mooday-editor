@@ -1107,15 +1107,12 @@ BottomPanel
 
     width:100%;
 
-    flex:0 0 auto;
+    min-height:70vh;
 
 }
-
 #bottomPanel{
 
     width:100%;
-
-    flex:1;
 
     display:flex;
 
@@ -1125,6 +1122,4 @@ BottomPanel
 
     box-sizing:border-box;
 
-    padding:2px 0 6px 0;
-
-}
+    padding:2px 0
