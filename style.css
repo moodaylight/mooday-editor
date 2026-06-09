@@ -110,9 +110,7 @@ Canvas区域
 
 canvas{
 
-    width:100vw;
-
-    max-width:650px;
+    width:min(100vw,650px);
 
     aspect-ratio:2/3;
     background:
@@ -142,7 +140,7 @@ canvas{
     backdrop-filter:blur(20px);
 
     position:relative;
-
+max-height:calc(100vh - 180px);
 }
 /* =========================
 控制区
