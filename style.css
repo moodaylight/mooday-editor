@@ -128,7 +128,41 @@ canvas{
 
     gap:10px;
 
-    padding:10px 0;
+    padding:10px;
+
+    box-sizing:border-box;
+
+}
+
+/* =========================
+竖屏
+2行 × 3列
+========================= */
+
+@media (orientation:portrait){
+
+.controls{
+
+    grid-template-columns:
+    repeat(3,1fr);
+
+}
+
+}
+
+/* =========================
+横屏
+3行 × 2列
+========================= */
+
+@media (orientation:landscape){
+
+.controls{
+
+    grid-template-columns:
+    repeat(2,1fr);
+
+}
 
 }
 /* =========================
