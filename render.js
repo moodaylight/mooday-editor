@@ -694,21 +694,20 @@ decorations.forEach(item=>{
 });
 }
 }
-    function drawPhotoFrame(){
+function drawPhotoFrame(){
+
+    const photoW = canvas.width;
+
+    const photoH = canvas.height;
+
+    const photoX = 0;
+
+    const photoY = 0;
 
     ctx.strokeStyle =
     "rgba(255,255,255,0.35)";
 
     ctx.lineWidth = 1.5;
-
-const photoW = canvas.width * 0.85;
-const photoH = photoW * 1.5;
-
-    const photoX =
-    (canvas.width - photoW) / 2;
-
-    const photoY =
-    (canvas.height - photoH) / 2;
 
     ctx.strokeRect(
         photoX,
