@@ -197,7 +197,7 @@ if(productType === "photo"){
 
 }
 
-    const marginX = 20;
+    const marginX = 0;
 
     // =====================
     // 外框尺寸
