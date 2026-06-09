@@ -1118,3 +1118,84 @@ BottomPanel
     padding:2px 0 6px 0;
 
 }
+/* =====================================
+Landscape Mode
+===================================== */
+
+@media screen and (orientation:landscape){
+
+    .app{
+
+        display:flex;
+
+        flex-direction:row;
+
+        width:100vw;
+
+        height:100vh;
+
+        overflow:hidden;
+
+    }
+
+    #editorContainer{
+
+        flex:1;
+
+        height:100vh;
+
+        display:flex;
+
+        align-items:center;
+
+        justify-content:center;
+
+    }
+
+    #bottomPanel{
+
+        width:280px;
+
+        min-width:280px;
+
+        max-width:280px;
+
+        height:100vh;
+
+        display:flex;
+
+        flex-direction:column;
+
+        justify-content:flex-start;
+
+        padding:10px;
+
+        box-sizing:border-box;
+
+    }
+
+    #statusPanel{
+
+        width:100%;
+
+        min-height:60px;
+
+        margin-bottom:10px;
+
+    }
+
+    .controls{
+
+        display:grid;
+
+        grid-template-columns:repeat(2,1fr);
+
+        grid-template-rows:repeat(3,1fr);
+
+        gap:8px;
+
+        width:100%;
+
+    }
+
+}
