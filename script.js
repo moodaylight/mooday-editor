@@ -3162,7 +3162,15 @@ function selectProduct(type){
     ).style.display = "none";
 
     document.getElementById(
+        "editorContainer"
+    ).style.display = "block";
+
+    document.getElementById(
         "editorPage"
+    ).style.display = "flex";
+
+    document.getElementById(
+        "bottomPanel"
     ).style.display = "flex";
 
     resizeCanvas();
