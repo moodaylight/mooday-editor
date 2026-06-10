@@ -163,5 +163,8 @@ canvas.addEventListener(
 
     e.preventDefault();
 
+    const rect =
+    canvas.getBoundingClientRect();
+
 });
 }
