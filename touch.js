@@ -46,3 +46,10 @@ function startImageDrag(x,y){
     dragOffsetY = y - imgY;
 
 }
+function moveImage(x,y){
+
+    imgX = x - dragOffsetX;
+
+    imgY = y - dragOffsetY;
+
+}
