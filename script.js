@@ -2733,3 +2733,4 @@ function selectProduct(type){
 
 }
 bindTextEvents();
+bindTouchEvents();
