@@ -163,6 +163,9 @@ document.getElementById(
 
 
 let lastTapText = null;
+// =====================
+// IMAGE MODULE START
+// =====================
 image.onload = function(){
 
     // =====================
@@ -238,7 +241,9 @@ canvas.height / 2;
 draw();
 
 }
-
+// =====================
+// IMAGE MODULE END
+// =====================
  // 文字
 
 let texts = [];
