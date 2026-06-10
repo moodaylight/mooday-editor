@@ -157,5 +157,11 @@ function bindTouchEvents(){
         handleTouchEnd();
 
     });
+canvas.addEventListener(
+"touchstart",
+(e)=>{
 
+    e.preventDefault();
+
+});
 }
