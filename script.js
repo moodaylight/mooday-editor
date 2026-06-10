@@ -797,69 +797,18 @@ function resizeCanvas(){
 
         imgY = canvas.height / 2;
 
-        let frameWidth;
-        let frameHeight;
-
-        let visibleWidth;
-        let visibleHeight;
-
-        if(productType === "mirror"){
-
-            frameWidth = 12;
-            frameHeight = 17.5;
-
-            visibleWidth = 9.8;
-            visibleHeight = 15.3;
-
-        }
-
-        if(productType === "photo"){
-
-            frameWidth = 4;
-            frameHeight = 6;
-
-            visibleWidth = 4;
-            visibleHeight = 6;
-
-        }
-
-        const marginX = 20;
-
-        const outerW =
-        canvas.width - marginX * 2;
-
-        const outerH =
-        canvas.height - marginX * 2;
-
-        const visibleRatioX =
-        visibleWidth / frameWidth;
-
-        const visibleRatioY =
-        visibleHeight / frameHeight;
-
-        const visibleW =
-        outerW * visibleRatioX;
-
-        const visibleH =
-        outerH * visibleRatioY;
-
-        const scaleX =
-        visibleW / image.width;
-
-        const scaleY =
-        visibleH / image.height;
-
-        imgScale =
-        Math.max(scaleX, scaleY);
+        fitImageCover();
 
     }
 
     draw();
 
 }
+
 resizeCanvas();
 
 window.addEventListener("resize", resizeCanvas);
+
 
 // =====================
 // 获取文字真实区域
@@ -1156,66 +1105,7 @@ reader.onload = function(event){
 // 可视区域真实尺寸
 // =====================
 
-let frameWidth;
-let frameHeight;
 
-let visibleWidth;
-let visibleHeight;
-
-if(productType === "mirror"){
-
-    frameWidth = 12;
-    frameHeight = 17.5;
-
-    visibleWidth = 9.8;
-    visibleHeight = 15.3;
-
-}
-
-if(productType === "photo"){
-
-    frameWidth = 4;
-    frameHeight = 6;
-
-    visibleWidth = 4;
-    visibleHeight = 6;
-
-}
-// =====================
-// Canvas边距
-// =====================
-
-const marginX = 20;
-
-// =====================
-// 外框尺寸
-// =====================
-
-const outerW =
-canvas.width - marginX * 2;
-
-const outerH =
-canvas.height - marginX * 2;
-
-// =====================
-// 可视区域比例
-// =====================
-
-const visibleRatioX =
-visibleWidth / frameWidth;
-
-const visibleRatioY =
-visibleHeight / frameHeight;
-
-// =====================
-// 可视区域像素大小
-// =====================
-
-const visibleW =
-outerW * visibleRatioX;
-
-const visibleH =
-outerH * visibleRatioY;
 
 // =====================
 // Cover算法
@@ -1739,36 +1629,7 @@ photoBtn.onclick = ()=>{
 
     if(image){
 
-        const frameWidth = 4;
-        const frameHeight = 6;
-
-        const visibleWidth = 4;
-        const visibleHeight = 6;
-
-        const marginX = 20;
-
-        const outerW =
-        canvas.width - marginX * 2;
-
-        const outerH =
-        canvas.height - marginX * 2;
-
-        const visibleW =
-        outerW *
-        (visibleWidth / frameWidth);
-
-        const visibleH =
-        outerH *
-        (visibleHeight / frameHeight);
-
-        const scaleX =
-        visibleW / image.width;
-
-        const scaleY =
-        visibleH / image.height;
-
-        imgScale =
-        Math.max(scaleX, scaleY);
+fitImageCover();
 
     }
 
