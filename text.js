@@ -174,3 +174,8 @@ function getTextBounds(text){
     };
 
 }
+function hideTextInput(){
+
+    textInput.style.display = "none";
+
+}
