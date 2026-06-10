@@ -1273,13 +1273,7 @@ if(productType === "photo"){
 // =====================
 textInput.addEventListener("input",()=>{
 
-    if(selectedText){
-
-        selectedText.content = textInput.value;
-
-        draw();
-
-    }
+    updateSelectedText();
 
 });
 
