@@ -168,3 +168,16 @@ canvas.addEventListener(
 
 });
 }
+function getTouchPosition(touch,rect){
+
+    return {
+
+        x:
+        touch.clientX - rect.left,
+
+        y:
+        touch.clientY - rect.top
+
+    };
+
+}
