@@ -1133,12 +1133,9 @@ exportVisibleH;
 
         if(draggingImage && imageSelected){
 
-    imgX = x - dragOffsetX;
+    moveImage(x,y);
 
-    imgY = y - dragOffsetY;
-    
 }
-
         draw();
 
     }
