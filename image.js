@@ -1,5 +1,21 @@
-// image.js
+// =====================
 // 图片系统
-// 上传
-// 缩放
-// 图片边界限制
+// =====================
+
+let image = new Image();
+
+let originalImage = null;
+
+image.src = "default.png";
+
+// =====================
+// 图片状态
+// =====================
+
+let imgX = 0;
+
+let imgY = 0;
+
+let imgScale = 1;
+
+let imgRotation = 0;
