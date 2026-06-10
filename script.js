@@ -1018,9 +1018,7 @@ reader.onload = function(event){
 
     image.onload = function(){
 
-            imgX = canvas.width / 2;
-
-            imgY = canvas.height / 2;
+resetImagePosition();
 
             // =====================
 // 可视区域真实尺寸
