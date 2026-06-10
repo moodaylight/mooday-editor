@@ -1280,7 +1280,7 @@ textInput.addEventListener(
 "blur",
 ()=>{
 
-    hideTextInput();
+    handleTextBlur();
 
 }
 );
