@@ -237,3 +237,14 @@ function removeSelectedText(){
     clearSelectedText();
 
 }
+function handleDeleteKey(){
+
+    if(selectedText){
+
+        removeSelectedText();
+
+        draw();
+
+    }
+
+}
