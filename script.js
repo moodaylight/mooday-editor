@@ -1287,7 +1287,7 @@ textInput.addEventListener(
 "blur",
 ()=>{
 
-    textInput.style.display = "none";
+    hideTextInput();
 
 }
 );
@@ -1338,12 +1338,11 @@ textInput.addEventListener(
             rightSubText = null;
         }
 
-        selectedText = null;
+selectedText = null;
 
-        textInput.style.display =
-        "none";
+hideTextInput();
 
-        draw();
+draw();
 
     }
 
