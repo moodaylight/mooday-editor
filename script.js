@@ -1273,10 +1273,9 @@ if(productType === "photo"){
 // =====================
 textInput.addEventListener("input",()=>{
 
-    updateSelectedText();
+    handleTextInput();
 
 });
-
 textInput.addEventListener(
 "blur",
 ()=>{
