@@ -1096,9 +1096,8 @@ y:200 + decoIndex * 20,
 };
 
 
-
 // =====================
-// Touch Start
+// TOUCH MODULE START
 // =====================
 
 canvas.addEventListener("touchstart",(e)=>{
@@ -1547,7 +1546,9 @@ clearTimeout(longPressTimer);
     draggingImage = false;
 
 });
-
+// =====================
+// TOUCH MODULE END
+// =====================
 draw();
 
 photoBtn.onclick = ()=>{
