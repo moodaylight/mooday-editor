@@ -148,3 +148,14 @@ function handleTouchEnd(){
     stopDragging();
 
 }
+function bindTouchEvents(){
+
+    canvas.addEventListener(
+    "touchend",
+    ()=>{
+
+        handleTouchEnd();
+
+    });
+
+}
