@@ -60,3 +60,24 @@ function moveText(x,y){
     selectedText.y = y - textOffsetY;
 
 }
+function updateTextRelativePosition(){
+
+    selectedText.rx =
+
+    (
+    selectedText.x -
+    exportVisibleX
+    )
+    /
+    exportVisibleW;
+
+    selectedText.ry =
+
+    (
+    selectedText.y -
+    exportVisibleY
+    )
+    /
+    exportVisibleH;
+
+}
