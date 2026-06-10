@@ -1037,26 +1037,10 @@ canvas.addEventListener("touchmove",(e)=>{
         if(draggingText && selectedText){
             moveText(x,y);
        
-            selectedText.rx =
+updateTextRelativePosition();
+        const box = getTextBounds(selectedText);
 
-(
-selectedText.x -
-exportVisibleX
-)
-/
-exportVisibleW;
-
-selectedText.ry =
-
-(
-selectedText.y -
-exportVisibleY
-)
-/
-exportVisibleH;
-            const box = getTextBounds(selectedText);
-
-const LIMIT = 10;
+        const LIMIT = 10;
 
 // 左边界
 if(box.left < exportVisibleX + LIMIT){
@@ -1109,23 +1093,7 @@ if(
     );
 
 }
-selectedText.rx =
-
-(
-selectedText.x -
-exportVisibleX
-)
-/
-exportVisibleW;
-
-selectedText.ry =
-
-(
-selectedText.y -
-exportVisibleY
-)
-/
-exportVisibleH;
+updateTextRelativePosition();
         }
 
         // 图片
