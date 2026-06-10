@@ -53,3 +53,10 @@ function moveImage(x,y){
     imgY = y - dragOffsetY;
 
 }
+function moveText(x,y){
+
+    selectedText.x = x - textOffsetX;
+
+    selectedText.y = y - textOffsetY;
+
+}
