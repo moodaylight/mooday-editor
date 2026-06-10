@@ -1006,15 +1006,7 @@ if(clickedText){
 
 selectImageMode();
    
-draggingImage = true;
-
-draggingText = false;
-
-dragOffsetX = x - imgX;
-
-dragOffsetY = y - imgY;
-
-
+startImageDrag(x,y);
 
 draw();    
 
