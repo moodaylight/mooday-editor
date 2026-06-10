@@ -1273,7 +1273,8 @@ if(productType === "photo"){
 
 canvas.addEventListener("touchend",()=>{
 
-clearTimeout(longPressTimer);
+    clearLongPress();
+
     draggingText = false;
 
     draggingImage = false;
