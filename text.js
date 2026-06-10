@@ -253,3 +253,8 @@ function handleTextInput(){
     updateSelectedText();
 
 }
+function handleTextBlur(){
+
+    hideTextInput();
+
+}
