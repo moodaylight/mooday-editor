@@ -1008,6 +1008,9 @@ uploadBtn.onclick = ()=>{
     upload.click();
 
 };
+// =====================
+// IMAGE UPLOAD START
+// =====================
 upload.addEventListener("change",(e)=>{
 
     const file = e.target.files[0];
@@ -1058,7 +1061,9 @@ fitImageCover();
 
 });
 
-
+// =====================
+// IMAGE UPLOAD END
+// =====================
 
 decoBtn.onclick = ()=>{
 
