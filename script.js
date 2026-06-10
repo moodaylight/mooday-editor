@@ -1166,9 +1166,7 @@ if(productType === "photo"){
 
 canvas.addEventListener("touchend",()=>{
 
-    clearLongPress();
-
-    stopDragging();
+    handleTouchEnd();
 
 });
 // =====================
