@@ -238,73 +238,7 @@ canvas.height / 2;
 draw();
 
 }
-// 图片
 
-
-// =====================
-// 图片自动铺满（唯一入口）
-// =====================
-
-function fitImageCover(){
-
-    if(!image) return;
-
-    let frameWidth;
-    let frameHeight;
-
-    let visibleWidth;
-    let visibleHeight;
-
-    if(productType === "mirror"){
-
-        frameWidth = 12;
-        frameHeight = 17.5;
-
-        visibleWidth = 9.8;
-        visibleHeight = 15.3;
-
-    }
-
-    if(productType === "photo"){
-
-        frameWidth = 4;
-        frameHeight = 6;
-
-        visibleWidth = 4;
-        visibleHeight = 6;
-
-    }
-
-    const marginX = 20;
-
-    const outerW =
-    canvas.width - marginX * 2;
-
-    const outerH =
-    canvas.height - marginX * 2;
-
-    const visibleRatioX =
-    visibleWidth / frameWidth;
-
-    const visibleRatioY =
-    visibleHeight / frameHeight;
-
-    const visibleW =
-    outerW * visibleRatioX;
-
-    const visibleH =
-    outerH * visibleRatioY;
-
-    const scaleX =
-    visibleW / image.width;
-
-    const scaleY =
-    visibleH / image.height;
-
-    imgScale =
-    Math.max(scaleX, scaleY);
-
-}
  // 文字
 
 let texts = [];
