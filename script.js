@@ -1042,57 +1042,10 @@ updateTextRelativePosition();
 
        const LIMIT = getTextDragLimit();
 
-// 左边界
-if(box.left < exportVisibleX + LIMIT){
-
-    selectedText.x +=
-    (exportVisibleX + LIMIT) - box.left;
-
-}
-
-// 右边界
-if(
-    box.right >
-    exportVisibleX +
-    exportVisibleW -
+keepTextInsideBounds(
+    box,
     LIMIT
-){
-
-    selectedText.x -=
-    box.right -
-    (
-        exportVisibleX +
-        exportVisibleW -
-        LIMIT
-    );
-
-}
-
-// 上边界
-if(box.top < exportVisibleY + LIMIT){
-
-    selectedText.y +=
-    (exportVisibleY + LIMIT) - box.top;
-
-}
-
-// 下边界
-if(
-    box.bottom >
-    exportVisibleY +
-    exportVisibleH -
-    LIMIT
-){
-
-    selectedText.y -=
-    box.bottom -
-    (
-        exportVisibleY +
-        exportVisibleH -
-        LIMIT
-    );
-
-}
+);
 updateTextRelativePosition();
         }
 
