@@ -773,7 +773,7 @@ let initialRotationAngle = 0;
 let initialTextSize = 0;
 let initialTextRotation = 0;
 
-let initialImageScale = 1;
+
 
 // =====================
 // 画布大小
