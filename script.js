@@ -1269,43 +1269,7 @@ if(productType === "photo"){
 
 });
 // =====================
-// TEXT MODULE START
-// =====================
-textInput.addEventListener("input",()=>{
 
-    handleTextInput();
-
-});
-textInput.addEventListener(
-"blur",
-()=>{
-
-    handleTextBlur();
-
-}
-);
-textInput.addEventListener(
-"keydown",
-(e)=>{
-
-    // 输入 DELETE 删除
-
-if(
-    e.key === "Delete"
-){
-
-    handleDeleteKey();
-
-}
-
-}
-);
-// =====================
-// TEXT MODULE END
-// =====================
-// =====================
-// Touch End
-// =====================
 
 canvas.addEventListener("touchend",()=>{
 
