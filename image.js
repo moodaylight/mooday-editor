@@ -21,3 +21,5 @@ let imgScale = 1;
 let imgRotation = 0;
 
 let imageSelected = false;
+
+let initialImageScale = 1;
