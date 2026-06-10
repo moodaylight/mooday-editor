@@ -1275,9 +1275,7 @@ canvas.addEventListener("touchend",()=>{
 
     clearLongPress();
 
-    draggingText = false;
-
-    draggingImage = false;
+    stopDragging();
 
 });
 // =====================
