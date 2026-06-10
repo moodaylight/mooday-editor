@@ -1164,11 +1164,7 @@ if(productType === "photo"){
 // =====================
 
 
-canvas.addEventListener("touchend",()=>{
 
-    handleTouchEnd();
-
-});
 // =====================
 // TOUCH MODULE END
 // =====================
