@@ -81,3 +81,8 @@ function updateTextRelativePosition(){
     exportVisibleH;
 
 }
+function getTextDragLimit(){
+
+    return 10;
+
+}
