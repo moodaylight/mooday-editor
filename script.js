@@ -1040,7 +1040,7 @@ canvas.addEventListener("touchmove",(e)=>{
 updateTextRelativePosition();
         const box = getTextBounds(selectedText);
 
-        const LIMIT = 10;
+       const LIMIT = getTextDragLimit();
 
 // 左边界
 if(box.left < exportVisibleX + LIMIT){
