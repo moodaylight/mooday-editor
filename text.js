@@ -248,3 +248,8 @@ function handleDeleteKey(){
     }
 
 }
+function handleTextInput(){
+
+    updateSelectedText();
+
+}
