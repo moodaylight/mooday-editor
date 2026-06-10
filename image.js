@@ -84,3 +84,10 @@ function fitImageCover(){
     Math.max(scaleX, scaleY);
 
 }
+function resetImagePosition(){
+
+    imgX = canvas.width / 2;
+
+    imgY = canvas.height / 2;
+
+}
