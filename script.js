@@ -2878,3 +2878,4 @@ function selectProduct(type){
     }
 
 }
+bindTextEvents();
