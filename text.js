@@ -258,3 +258,36 @@ function handleTextBlur(){
     hideTextInput();
 
 }
+function bindTextEvents(){
+
+    textInput.addEventListener("input",()=>{
+
+        handleTextInput();
+
+    });
+
+    textInput.addEventListener(
+    "blur",
+    ()=>{
+
+        handleTextBlur();
+
+    }
+    );
+
+    textInput.addEventListener(
+    "keydown",
+    (e)=>{
+
+        if(
+            e.key === "Delete"
+        ){
+
+            handleDeleteKey();
+
+        }
+
+    }
+    );
+
+}
