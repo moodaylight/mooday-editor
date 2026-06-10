@@ -161,9 +161,7 @@ document.getElementById(
 "opacityValue"
 );
 
-let image = new Image();
-let originalImage = null;
-image.src = "default.png";
+
 let lastTapText = null;
 image.onload = function(){
 
@@ -249,11 +247,7 @@ draw();
 }
 // 图片
 
-let imgX = 0;
-let imgY = 0;
 
-let imgScale = 1;
-let imgRotation = 0;
 // =====================
 // 图片自动铺满（唯一入口）
 // =====================
