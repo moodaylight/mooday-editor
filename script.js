@@ -1035,8 +1035,7 @@ canvas.addEventListener("touchmove",(e)=>{
         // 移动时取消长按
     
         if(draggingText && selectedText){
-      selectedText.x = x - textOffsetX
-       selectedText.y = y - textOffsetY
+            moveText(x,y);
        
             selectedText.rx =
 
