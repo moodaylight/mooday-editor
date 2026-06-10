@@ -226,14 +226,7 @@ if(productType === "photo"){
     // Cover算法
     // =====================
 
-    const scaleX =
-    visibleW / image.width;
-
-    const scaleY =
-    visibleH / image.height;
-
-imgScale =
-Math.max(scaleX, scaleY);
+fitImageCover();
 
 // 自动居中
 
