@@ -342,7 +342,7 @@ let leftBottomText = null;
 let rightSubText = null;
 // 当前是否选中图片
 
-let imageSelected = false;
+
 
 let productType = "photo";
 let lightMode = 0;
