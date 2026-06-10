@@ -1291,17 +1291,13 @@ textInput.addEventListener(
 
     // 输入 DELETE 删除
 
-    if(
-        e.key === "Delete"
-        &&
-        selectedText
-    ){
+if(
+    e.key === "Delete"
+){
 
-removeSelectedText();
+    handleDeleteKey();
 
-draw();
-
-    }
+}
 
 }
 );
