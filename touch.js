@@ -141,3 +141,10 @@ function keepTextInsideBounds(box,LIMIT){
     }
 
 }
+function handleTouchEnd(){
+
+    clearLongPress();
+
+    stopDragging();
+
+}
