@@ -35,3 +35,14 @@ function selectImageMode(){
     opacityPanel.style.display = "none";
 
 }
+function startImageDrag(x,y){
+
+    draggingImage = true;
+
+    draggingText = false;
+
+    dragOffsetX = x - imgX;
+
+    dragOffsetY = y - imgY;
+
+}
