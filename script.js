@@ -1454,7 +1454,9 @@ if(productType === "photo"){
     }
 
 });
-
+// =====================
+// TEXT MODULE START
+// =====================
 textInput.addEventListener("input",()=>{
 
     if(selectedText){
@@ -1533,7 +1535,9 @@ textInput.addEventListener(
 
 }
 );
-
+// =====================
+// TEXT MODULE END
+// =====================
 // =====================
 // Touch End
 // =====================
