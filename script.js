@@ -916,8 +916,6 @@ y:200 + decoIndex * 20,
 
 canvas.addEventListener("touchstart",(e)=>{
 
-const rect = canvas.getBoundingClientRect();
-
     // 双指初始化
 
     if(e.touches.length === 2){
