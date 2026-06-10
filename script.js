@@ -738,9 +738,8 @@ window.addEventListener("resize", resizeCanvas);
 // =====================
 
 // =====================
-// 获取文字真实区域
+// TEXT BOUNDS START
 // =====================
-
 function getTextBounds(text){
 
     ctx.save();
@@ -922,6 +921,9 @@ return {
 
 };
 }
+// =====================
+// TEXT BOUNDS END
+// =====================
 
 // =====================
 // 是否点中文字
