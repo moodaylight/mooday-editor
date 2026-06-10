@@ -1332,9 +1332,7 @@ textInput.addEventListener(
             rightSubText = null;
         }
 
-selectedText = null;
-
-hideTextInput();
+clearSelectedText();
 
 draw();
 
