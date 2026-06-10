@@ -1002,25 +1002,9 @@ if(clickedText){
     return;
 
 }
-    // 点击空白
+// 点击空白
 
-imageSelected = true;
-
-selectedText = null;
-
-textEditorPanel.style.display = "none";
-
-fontPanel.style.display = "none";
-
-colorPanel.style.display = "none";
-
-sizePanel.style.display = "none";
-
-strokePanel.style.display = "none";
-
-shadowPanel.style.display = "none";
-
-opacityPanel.style.display = "none";
+selectImageMode();
    
 draggingImage = true;
 
