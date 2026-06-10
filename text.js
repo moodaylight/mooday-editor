@@ -179,3 +179,14 @@ function hideTextInput(){
     textInput.style.display = "none";
 
 }
+function updateSelectedText(){
+
+    if(selectedText){
+
+        selectedText.content = textInput.value;
+
+        draw();
+
+    }
+
+}
