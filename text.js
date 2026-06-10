@@ -190,3 +190,10 @@ function updateSelectedText(){
     }
 
 }
+function clearSelectedText(){
+
+    selectedText = null;
+
+    hideTextInput();
+
+}
