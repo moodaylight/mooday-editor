@@ -197,3 +197,43 @@ function clearSelectedText(){
     hideTextInput();
 
 }
+function removeSelectedText(){
+
+    texts =
+    texts.filter(
+        t=>t!==selectedText
+    );
+
+    if(
+        selectedText === titleText
+    ){
+        titleText = null;
+    }
+
+    if(
+        selectedText === subTitleText
+    ){
+        subTitleText = null;
+    }
+
+    if(
+        selectedText === thirdText
+    ){
+        thirdText = null;
+    }
+
+    if(
+        selectedText === leftBottomText
+    ){
+        leftBottomText = null;
+    }
+
+    if(
+        selectedText === rightSubText
+    ){
+        rightSubText = null;
+    }
+
+    clearSelectedText();
+
+}
