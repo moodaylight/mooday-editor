@@ -707,11 +707,9 @@ let initialTextSize = 0;
 let initialTextRotation = 0;
 
 
-
 // =====================
-// 画布大小
+// CANVAS RESIZE START
 // =====================
-
 function resizeCanvas(){
 
     canvas.width = canvas.offsetWidth;
@@ -735,7 +733,9 @@ function resizeCanvas(){
 resizeCanvas();
 
 window.addEventListener("resize", resizeCanvas);
-
+// =====================
+// CANVAS RESIZE END
+// =====================
 
 // =====================
 // 获取文字真实区域
