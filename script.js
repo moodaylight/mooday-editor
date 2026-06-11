@@ -914,41 +914,13 @@ y:200 + decoIndex * 20,
 // TOUCH MODULE START
 // =====================
 
-canvas.addEventListener("touchstart",(e)=>{
-const rect =
-canvas.getBoundingClientRect();
-    // 双指初始化
+if(e.touches.length === 2){
 
-    if(e.touches.length === 2){
+    initializePinchGesture(e);
 
-        initialPinchDistance = getDistance(
+    return;
 
-            e.touches[0],
-
-            e.touches[1]
-
-        );
-
-        initialRotationAngle = getAngle(
-
-            e.touches[0],
-
-            e.touches[1]
-
-        );
-
-        
-
-        if(imageSelected){
-
-            initialImageScale = imgScale;
-
-
-        }
-
-        return;
-
-    }
+}
 
     // 单指
 
