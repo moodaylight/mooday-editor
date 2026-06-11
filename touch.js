@@ -252,3 +252,31 @@ function selectImageForEdit(){
     "none";
 
 }
+function initializePinchGesture(e){
+
+    initialPinchDistance =
+    getDistance(
+
+        e.touches[0],
+
+        e.touches[1]
+
+    );
+
+    initialRotationAngle =
+    getAngle(
+
+        e.touches[0],
+
+        e.touches[1]
+
+    );
+
+    if(imageSelected){
+
+        initialImageScale =
+        imgScale;
+
+    }
+
+}
