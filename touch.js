@@ -199,3 +199,28 @@ function openTextEditor(clickedText){
     clickedText.content;
 
 }
+function selectTextForDrag(
+    clickedText,
+    x,
+    y
+){
+
+    selectedText =
+    clickedText;
+
+    imageSelected =
+    false;
+
+    draggingText =
+    true;
+
+    textOffsetX =
+    x - clickedText.x;
+
+    textOffsetY =
+    y - clickedText.y;
+
+    draggingImage =
+    false;
+
+}
