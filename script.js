@@ -980,7 +980,7 @@ if(clickedText){
 
     // 长按进入编辑
 
-    longPressTimer = setTimeout(()=>{
+startLongPress(()=>{
 
     if(draggingText){
 
@@ -992,7 +992,7 @@ if(clickedText){
 
     }
 
-},600);
+});
 
     draw();
 
