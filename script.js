@@ -984,14 +984,11 @@ startLongPress(()=>{
 
     if(draggingText){
 
-        textEditorPanel.style.display =
-        "block";
+    openTextEditor(
+        clickedText
+    );
 
-        editorInput.value =
-        clickedText.content;
-
-    }
-
+}
 });
 
     draw();
