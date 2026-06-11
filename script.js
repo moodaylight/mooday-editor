@@ -913,7 +913,12 @@ y:200 + decoIndex * 20,
 // =====================
 // TOUCH MODULE START
 // =====================
+canvas.addEventListener("touchstart",(e)=>{
 
+    e.preventDefault();
+
+    const rect =
+    canvas.getBoundingClientRect();
 if(e.touches.length === 2){
 
     initializePinchGesture(e);
