@@ -181,3 +181,12 @@ function getTouchPosition(touch,rect){
     };
 
 }
+function startLongPress(callback){
+
+    longPressTimer =
+    setTimeout(
+        callback,
+        600
+    );
+
+}
