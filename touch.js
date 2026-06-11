@@ -190,3 +190,12 @@ function startLongPress(callback){
     );
 
 }
+function openTextEditor(clickedText){
+
+    textEditorPanel.style.display =
+    "block";
+
+    editorInput.value =
+    clickedText.content;
+
+}
