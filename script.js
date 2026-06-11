@@ -966,17 +966,11 @@ canvas.getBoundingClientRect();
 
 if(clickedText){
 
-    selectedText = clickedText;
-
-    imageSelected = false;
-
-    draggingText = true;
-
-    textOffsetX = x - clickedText.x;
-
-    textOffsetY = y - clickedText.y;
-
-    draggingImage = false;
+selectTextForDrag(
+    clickedText,
+    x,
+    y
+);
 
     // 长按进入编辑
 
