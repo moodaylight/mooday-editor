@@ -404,6 +404,8 @@ function handleTouchMove(e){
 
         }
 
+        draw();
+
     }
 
 }
