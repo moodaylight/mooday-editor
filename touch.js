@@ -436,5 +436,13 @@ if(e.touches.length === 2){
     currentAngle -
     initialRotationAngle;
 
+    if(imageSelected){
+
+        imgScale =
+        initialImageScale *
+        scale;
+
+    }
+
 }
 }
