@@ -280,3 +280,19 @@ function initializePinchGesture(e){
     }
 
 }
+function handleTouchStart(e){
+
+    e.preventDefault();
+
+    const rect =
+    canvas.getBoundingClientRect();
+
+    if(e.touches.length === 2){
+
+        initializePinchGesture(e);
+
+        return;
+
+    }
+
+}
