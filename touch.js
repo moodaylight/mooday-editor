@@ -392,6 +392,18 @@ function handleTouchMove(e){
 
         }
 
+        if(
+            draggingImage &&
+            imageSelected
+        ){
+
+            moveImage(
+                x,
+                y
+            );
+
+        }
+
     }
 
 }
