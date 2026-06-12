@@ -437,3 +437,4 @@ if(e.touches.length === 2){
     initialRotationAngle;
 
 }
+}
