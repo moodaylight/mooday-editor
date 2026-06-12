@@ -432,4 +432,8 @@ if(e.touches.length === 2){
     currentDistance /
     initialPinchDistance;
 
+    const rotation =
+    currentAngle -
+    initialRotationAngle;
+
 }
