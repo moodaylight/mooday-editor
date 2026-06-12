@@ -436,7 +436,7 @@ if(e.touches.length === 2){
     currentAngle -
     initialRotationAngle;
 
-             if(imageSelected){
+              if(imageSelected){
 
         imgScale =
         initialImageScale *
@@ -467,6 +467,16 @@ if(e.touches.length === 2){
             visibleHeight = 6;
 
         }
+
+        const marginX = 20;
+
+        const outerW =
+        canvas.width -
+        marginX * 2;
+
+        const outerH =
+        canvas.height -
+        marginX * 2;
 
     }
 
