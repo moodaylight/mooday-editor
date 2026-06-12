@@ -419,6 +419,15 @@ function handleTouchMove(e){
 
         );
 
+        const currentAngle =
+        getAngle(
+
+            e.touches[0],
+
+            e.touches[1]
+
+        );
+
     }
 
 }
