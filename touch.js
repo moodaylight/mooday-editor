@@ -505,7 +505,7 @@ if(e.touches.length === 2){
 
         );
 
-        imgScale =
+               imgScale =
         Math.max(
             imgScale,
             minScale
@@ -513,5 +513,8 @@ if(e.touches.length === 2){
 
     }
 
+    draw();
+
 }
+
 }
