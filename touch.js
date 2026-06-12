@@ -375,6 +375,11 @@ function handleTouchMove(e){
 
             updateTextRelativePosition();
 
+            const box =
+            getTextBounds(
+                selectedText
+            );
+
         }
 
     }
