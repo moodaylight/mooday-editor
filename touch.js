@@ -486,13 +486,24 @@ if(e.touches.length === 2){
         visibleHeight /
         frameHeight;
 
-        const visibleW =
+               const visibleW =
         outerW *
         visibleRatioX;
 
         const visibleH =
         outerH *
         visibleRatioY;
+
+        const minScale =
+        Math.max(
+
+            visibleW /
+            image.width,
+
+            visibleH /
+            image.height
+
+        );
 
     }
 
