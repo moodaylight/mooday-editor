@@ -2471,4 +2471,3 @@ function selectProduct(type){
 
 }
 
-bindTouchEvents();
