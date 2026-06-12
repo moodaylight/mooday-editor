@@ -373,6 +373,8 @@ function handleTouchMove(e){
                 y
             );
 
+            updateTextRelativePosition();
+
         }
 
     }
