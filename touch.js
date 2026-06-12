@@ -388,6 +388,8 @@ function handleTouchMove(e){
                 LIMIT
             );
 
+            updateTextRelativePosition();
+
         }
 
     }
