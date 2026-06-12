@@ -494,7 +494,7 @@ if(e.touches.length === 2){
         outerH *
         visibleRatioY;
 
-        const minScale =
+                const minScale =
         Math.max(
 
             visibleW /
@@ -503,6 +503,12 @@ if(e.touches.length === 2){
             visibleH /
             image.height
 
+        );
+
+        imgScale =
+        Math.max(
+            imgScale,
+            minScale
         );
 
     }
