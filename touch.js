@@ -345,3 +345,11 @@ function handleTouchStart(e){
     return;
 
 }
+function handleTouchMove(e){
+
+    e.preventDefault();
+
+    const rect =
+    canvas.getBoundingClientRect();
+
+}
