@@ -408,26 +408,28 @@ function handleTouchMove(e){
 
     }
 
-    if(e.touches.length === 2){
+if(e.touches.length === 2){
 
-        const currentDistance =
-        getDistance(
+    const currentDistance =
+    getDistance(
 
-            e.touches[0],
+        e.touches[0],
 
-            e.touches[1]
+        e.touches[1]
 
-        );
+    );
 
-        const currentAngle =
-        getAngle(
+    const currentAngle =
+    getAngle(
 
-            e.touches[0],
+        e.touches[0],
 
-            e.touches[1]
+        e.touches[1]
 
-        );
+    );
 
-    }
+    const scale =
+    currentDistance /
+    initialPinchDistance;
 
 }
