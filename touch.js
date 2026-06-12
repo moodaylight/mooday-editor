@@ -516,3 +516,4 @@ if(e.touches.length === 2){
 }
 
 }
+bindTouchEvents();
