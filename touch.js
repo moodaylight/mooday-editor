@@ -380,6 +380,9 @@ function handleTouchMove(e){
                 selectedText
             );
 
+            const LIMIT =
+            getTextDragLimit();
+
         }
 
     }
