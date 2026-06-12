@@ -333,4 +333,11 @@ function handleTouchStart(e){
 
     }
 
+    selectImageMode();
+
+    startImageDrag(
+        x,
+        y
+    );
+
 }
