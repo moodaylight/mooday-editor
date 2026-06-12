@@ -307,4 +307,14 @@ function handleTouchStart(e){
     const clickedText =
     getTopText(x,y);
 
+    if(clickedText){
+
+        selectTextForDrag(
+            clickedText,
+            x,
+            y
+        );
+
+    }
+
 }
