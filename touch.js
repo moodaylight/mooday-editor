@@ -408,4 +408,17 @@ function handleTouchMove(e){
 
     }
 
+    if(e.touches.length === 2){
+
+        const currentDistance =
+        getDistance(
+
+            e.touches[0],
+
+            e.touches[1]
+
+        );
+
+    }
+
 }
