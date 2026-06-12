@@ -352,4 +352,17 @@ function handleTouchMove(e){
     const rect =
     canvas.getBoundingClientRect();
 
+    if(e.touches.length === 1){
+
+        const touch =
+        e.touches[0];
+
+        const x =
+        touch.clientX - rect.left;
+
+        const y =
+        touch.clientY - rect.top;
+
+    }
+
 }
