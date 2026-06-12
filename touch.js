@@ -436,11 +436,17 @@ if(e.touches.length === 2){
     currentAngle -
     initialRotationAngle;
 
-    if(imageSelected){
+       if(imageSelected){
 
         imgScale =
         initialImageScale *
         scale;
+
+        let frameWidth;
+        let frameHeight;
+
+        let visibleWidth;
+        let visibleHeight;
 
     }
 
