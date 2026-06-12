@@ -383,6 +383,11 @@ function handleTouchMove(e){
             const LIMIT =
             getTextDragLimit();
 
+            keepTextInsideBounds(
+                box,
+                LIMIT
+            );
+
         }
 
     }
