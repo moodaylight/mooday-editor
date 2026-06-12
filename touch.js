@@ -478,13 +478,21 @@ if(e.touches.length === 2){
         canvas.height -
         marginX * 2;
 
-        const visibleRatioX =
+               const visibleRatioX =
         visibleWidth /
         frameWidth;
 
         const visibleRatioY =
         visibleHeight /
         frameHeight;
+
+        const visibleW =
+        outerW *
+        visibleRatioX;
+
+        const visibleH =
+        outerH *
+        visibleRatioY;
 
     }
 
