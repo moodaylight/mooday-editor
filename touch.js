@@ -340,4 +340,6 @@ function handleTouchStart(e){
         y
     );
 
+    draw();
+
 }
