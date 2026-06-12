@@ -151,22 +151,20 @@ function handleTouchEnd(){
 function bindTouchEvents(){
 
     canvas.addEventListener(
+    "touchstart",
+    handleTouchStart
+    );
+
+    canvas.addEventListener(
+    "touchmove",
+    handleTouchMove
+    );
+
+    canvas.addEventListener(
     "touchend",
-    ()=>{
+    handleTouchEnd
+    );
 
-        handleTouchEnd();
-
-    });
-canvas.addEventListener(
-"touchstart",
-(e)=>{
-
-    e.preventDefault();
-
-    const rect =
-    canvas.getBoundingClientRect();
-
-});
 }
 function getTouchPosition(touch,rect){
 
