@@ -315,6 +315,18 @@ function handleTouchStart(e){
             y
         );
 
+        startLongPress(()=>{
+
+            if(draggingText){
+
+                openTextEditor(
+                    clickedText
+                );
+
+            }
+
+        });
+
     }
 
 }
