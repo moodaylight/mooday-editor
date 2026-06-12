@@ -363,6 +363,18 @@ function handleTouchMove(e){
         const y =
         touch.clientY - rect.top;
 
+        if(
+            draggingText &&
+            selectedText
+        ){
+
+            moveText(
+                x,
+                y
+            );
+
+        }
+
     }
 
 }
