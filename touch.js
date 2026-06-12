@@ -436,7 +436,7 @@ if(e.touches.length === 2){
     currentAngle -
     initialRotationAngle;
 
-          if(imageSelected){
+             if(imageSelected){
 
         imgScale =
         initialImageScale *
@@ -455,6 +455,16 @@ if(e.touches.length === 2){
 
             visibleWidth = 9.8;
             visibleHeight = 15.3;
+
+        }
+
+        if(productType === "photo"){
+
+            frameWidth = 4;
+            frameHeight = 6;
+
+            visibleWidth = 4;
+            visibleHeight = 6;
 
         }
 
