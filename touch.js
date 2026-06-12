@@ -436,7 +436,7 @@ if(e.touches.length === 2){
     currentAngle -
     initialRotationAngle;
 
-       if(imageSelected){
+          if(imageSelected){
 
         imgScale =
         initialImageScale *
@@ -447,6 +447,16 @@ if(e.touches.length === 2){
 
         let visibleWidth;
         let visibleHeight;
+
+        if(productType === "mirror"){
+
+            frameWidth = 12;
+            frameHeight = 17.5;
+
+            visibleWidth = 9.8;
+            visibleHeight = 15.3;
+
+        }
 
     }
 
