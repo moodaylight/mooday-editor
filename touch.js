@@ -237,10 +237,7 @@ function selectImageForEdit(){
 
     imageSelected = true;
 
-    selectedText = null;
-
-    textEditorPanel.style.display =
-    "none";
+    clearSelectedText();
 
     fontPanel.style.display =
     "none";
