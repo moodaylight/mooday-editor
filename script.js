@@ -2258,10 +2258,8 @@ function selectProduct(type){
     currentProduct = type;
     currentConfig =
     PRODUCTS[type];
-    console.log(
-currentConfig.buttons
-);
-    document.getElementById(
+   
+ document.getElementById(
         "homePage"
     ).style.display = "none";
 
