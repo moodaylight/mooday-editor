@@ -52,6 +52,16 @@ function updateButtons(){
 
     if(!currentConfig) return;
 
+    uploadBtn.innerText =
+    buttonMap[
+        currentConfig.buttons[0]
+    ] || "-";
+
+    clarityBtn.innerText =
+    buttonMap[
+        currentConfig.buttons[1]
+    ] || "-";
+
     moodBtn.innerText =
     buttonMap[
         currentConfig.buttons[2]
