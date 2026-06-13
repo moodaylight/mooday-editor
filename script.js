@@ -48,6 +48,15 @@ const buttonMap = {
     submit:"주문하기"
 
 };
+function updateButtons(){
+
+    if(!currentConfig) return;
+
+    console.log(
+        currentConfig
+    );
+
+}
 const templateDrawer =
 document.getElementById(
 "templateDrawer"
@@ -2258,7 +2267,7 @@ function selectProduct(type){
     currentProduct = type;
     currentConfig =
     PRODUCTS[type];
-   
+   updateButtons();
  document.getElementById(
         "homePage"
     ).style.display = "none";
