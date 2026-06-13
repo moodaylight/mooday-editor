@@ -839,33 +839,21 @@ reader.onload = function(event){
 
     originalImage = image;
 
-    image.onload = function(){
+image.onload = function(){
 
-resetImagePosition();
+    fitImageCover();
 
-            // =====================
-// 可视区域真实尺寸
-// =====================
+    resetImagePosition();
 
+    imgRotation = 0;
 
+    imageSelected = true;
 
-// =====================
-// Cover算法
-// =====================
+    selectedText = null;
 
-fitImageCover();
+    draw();
 
-            imgRotation = 0;
-
-            imageSelected = true;
-
-            selectedText = null;
-
-            draw();
-
-            
-
-        };
+};
 
         image.src = event.target.result;
 
