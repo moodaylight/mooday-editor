@@ -531,11 +531,45 @@ if(e.touches.length === 2){
 
         );
 
-               imgScale =
-        Math.max(
-            imgScale,
-            minScale
-        );
+imgScale =
+Math.max(
+    imgScale,
+    minScale
+);
+
+const currentCenterX =
+
+(
+    e.touches[0].clientX +
+    e.touches[1].clientX
+)
+/ 2;
+
+const currentCenterY =
+
+(
+    e.touches[0].clientY +
+    e.touches[1].clientY
+)
+/ 2;
+
+imgX =
+
+initialImgX +
+
+(
+    currentCenterX -
+    initialPinchCenterX
+);
+
+imgY =
+
+initialImgY +
+
+(
+    currentCenterY -
+    initialPinchCenterY
+);
 
     }
 
