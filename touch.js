@@ -224,6 +224,16 @@ function selectTextForDrag(
     draggingImage =
     false;
 
+    if(
+        textEditorPanel.style.display
+        === "block"
+    ){
+
+        editorInput.value =
+        clickedText.content;
+
+    }
+
 }
 function selectImageForEdit(){
 
