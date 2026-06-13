@@ -867,16 +867,18 @@ image.onload = function(){
 // IMAGE UPLOAD END
 // =====================
 
-decoBtn.onclick = ()=>{
+if(frameBtn){
+
+frameBtn.onclick = ()=>{
 
     decorations.push({
 
         content:
         decoList[decoIndex],
 
-x:200 + decoIndex * 20,
+        x:200 + decoIndex * 20,
 
-y:200 + decoIndex * 20,
+        y:200 + decoIndex * 20,
 
         size:28
 
@@ -896,6 +898,8 @@ y:200 + decoIndex * 20,
     draw();
 
 };
+
+}
 
 
 draw();
