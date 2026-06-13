@@ -20,8 +20,6 @@ function selectImageMode(){
 
     clearSelectedText();
 
-    textEditorPanel.style.display = "none";
-
     fontPanel.style.display = "none";
 
     colorPanel.style.display = "none";
