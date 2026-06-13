@@ -565,23 +565,25 @@ const currentCenterY =
 )
 / 2;
 
+const scaleRatio =
+
+imgScale /
+
+initialImageScale;
+
 imgX =
 
-initialImgX +
+currentCenterX -
 
-(
-    currentCenterX -
-    initialPinchCenterX
-);
+pinchOffsetX *
+scaleRatio;
 
 imgY =
 
-initialImgY +
+currentCenterY -
 
-(
-    currentCenterY -
-    initialPinchCenterY
-);
+pinchOffsetY *
+scaleRatio;
 
     }
 
