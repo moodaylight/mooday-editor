@@ -54,13 +54,13 @@ function fitImageCover(){
 
     }
 
-    const marginX = 20;
+const marginX = 0;
 
-    const outerW =
-    canvas.width - marginX * 2;
+const outerW =
+canvas.width - marginX * 2;
 
-    const outerH =
-    canvas.height - marginX * 2;
+const outerH =
+canvas.height - marginX * 2;
 
     const visibleRatioX =
     visibleWidth / frameWidth;
