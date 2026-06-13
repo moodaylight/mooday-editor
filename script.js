@@ -25,6 +25,29 @@ const submitBtn =
 document.getElementById("submitBtn");
 const posterBtn =
 document.getElementById("posterBtn");
+const buttonMap = {
+
+    upload:"업로드",
+
+    clarity:"선명도",
+
+    mood:"분위기",
+
+    frame:"프레임",
+
+    text:"문자",
+
+    background:"배경",
+
+    poster:"포스터",
+
+    light:"조명",
+
+    preview:"미리보기",
+
+    submit:"주문하기"
+
+};
 const templateDrawer =
 document.getElementById(
 "templateDrawer"
