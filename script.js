@@ -89,7 +89,20 @@ function updateButtons(){
     buttonMap[
         currentConfig.buttons[5]
     ] || "-";
+posterBtn.innerText =
+buttonMap[
+    currentConfig.buttons[6]
+] || "-";
 
+previewBtn.innerText =
+buttonMap[
+    currentConfig.buttons[7]
+] || "-";
+
+submitBtn.innerText =
+buttonMap[
+    currentConfig.buttons[8]
+] || "-";
 } 
 const templateDrawer =
 document.getElementById(
