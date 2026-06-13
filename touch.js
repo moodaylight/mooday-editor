@@ -294,16 +294,28 @@ function initializePinchGesture(e){
     )
     / 2;
 
-    initialImgX = imgX;
+initialImgX = imgX;
 
-    initialImgY = imgY;
+initialImgY = imgY;
 
-    if(imageSelected){
+pinchOffsetX =
 
-        initialImageScale =
-        imgScale;
+initialPinchCenterX -
 
-    }
+imgX;
+
+pinchOffsetY =
+
+initialPinchCenterY -
+
+imgY;
+
+if(imageSelected){
+
+    initialImageScale =
+    imgScale;
+
+}
 
 }
 function handleTouchStart(e){
