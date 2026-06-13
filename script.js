@@ -25,6 +25,14 @@ const submitBtn =
 document.getElementById("submitBtn");
 const posterBtn =
 document.getElementById("posterBtn");
+const textBtn =
+document.getElementById("textBtn");
+
+const backgroundBtn =
+document.getElementById("backgroundBtn");
+
+const clarityBtn =
+document.getElementById("clarityBtn");
 const buttonMap = {
 
     upload:"업로드",
