@@ -176,7 +176,10 @@ function getTextBounds(text){
 }
 function hideTextInput(){
 
-    textInput.style.display = "none";
+    textEditorPanel.style.display =
+    "none";
+
+    editorInput.value = "";
 
 }
 function updateSelectedText(){
