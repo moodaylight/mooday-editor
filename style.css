@@ -20,6 +20,8 @@ html{
 
     overflow-y:auto;
 
+    overscroll-behavior:none;
+
 }
 body{
 
