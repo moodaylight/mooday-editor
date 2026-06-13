@@ -75,7 +75,22 @@ function updateButtons(){
         currentConfig.buttons[2]
     ] || "-";
 
-}
+    frameBtn.innerText =
+    buttonMap[
+        currentConfig.buttons[3]
+    ] || "-";
+
+    textBtn.innerText =
+    buttonMap[
+        currentConfig.buttons[4]
+    ] || "-";
+
+    backgroundBtn.innerText =
+    buttonMap[
+        currentConfig.buttons[5]
+    ] || "-";
+
+} 
 const templateDrawer =
 document.getElementById(
 "templateDrawer"
