@@ -199,6 +199,8 @@ function clearSelectedText(){
 
     hideTextInput();
 
+    editorInput.value = "";
+
 }
 function removeSelectedText(){
 
