@@ -231,6 +231,8 @@ max-height:calc(100vh - 180px);
     box-sizing:border-box;
 
     padding:0 10px;
+    
+    margin:4px 0;
 
 }
 
