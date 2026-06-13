@@ -179,8 +179,6 @@ function hideTextInput(){
     textEditorPanel.style.display =
     "none";
 
-    editorInput.value = "";
-
 }
 
 function clearSelectedText(){
