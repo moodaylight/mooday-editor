@@ -16,8 +16,5 @@ let pinchOffsetX = 0;
 
 let pinchOffsetY = 0;
 
-let currentProduct =
-"photo";
-
 let currentConfig =
 null;
