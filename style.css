@@ -52,7 +52,13 @@ body{
     #050505;
 
 }
+#homePage,
+#editorContainer,
+#bottomPanel{
 
+    touch-action:pan-y;
+
+}
 .app{
 
     width:100%;
