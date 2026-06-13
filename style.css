@@ -117,7 +117,7 @@ Canvas区域
 
 canvas{
 
-    width:min(100vw,650px);
+ width:min(100%,650px);
 
     aspect-ratio:2/3;
     background:
