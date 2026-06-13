@@ -34,9 +34,11 @@ body{
     overflow-x:hidden;
 
     overflow-y:auto;
-    
+
     overscroll-behavior:none;
-    
+
+    touch-action:pan-y;
+
     background:
 
     radial-gradient(
