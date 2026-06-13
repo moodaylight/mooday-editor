@@ -11,3 +11,7 @@ let initialPinchCenterY = 0;
 let initialImgX = 0;
 
 let initialImgY = 0;
+
+let pinchOffsetX = 0;
+
+let pinchOffsetY = 0;
