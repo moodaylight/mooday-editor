@@ -278,6 +278,26 @@ function initializePinchGesture(e){
 
     );
 
+    initialPinchCenterX =
+
+    (
+        e.touches[0].clientX +
+        e.touches[1].clientX
+    )
+    / 2;
+
+    initialPinchCenterY =
+
+    (
+        e.touches[0].clientY +
+        e.touches[1].clientY
+    )
+    / 2;
+
+    initialImgX = imgX;
+
+    initialImgY = imgY;
+
     if(imageSelected){
 
         initialImageScale =
