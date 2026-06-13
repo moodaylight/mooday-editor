@@ -2233,7 +2233,8 @@ let currentProduct = null;
 function selectProduct(type){
 
     currentProduct = type;
-
+    currentConfig =
+    PRODUCTS[type];
     document.getElementById(
         "homePage"
     ).style.display = "none";
