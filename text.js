@@ -182,17 +182,7 @@ function hideTextInput(){
     editorInput.value = "";
 
 }
-function updateSelectedText(){
 
-    if(selectedText){
-
-        selectedText.content = textInput.value;
-
-        draw();
-
-    }
-
-}
 function clearSelectedText(){
 
     selectedText = null;
@@ -253,46 +243,4 @@ function handleDeleteKey(){
     }
 
 }
-function handleTextInput(){
 
-    updateSelectedText();
-
-}
-function handleTextBlur(){
-
-    hideTextInput();
-
-}
-function bindTextEvents(){
-
-    textInput.addEventListener("input",()=>{
-
-        handleTextInput();
-
-    });
-
-    textInput.addEventListener(
-    "blur",
-    ()=>{
-
-        handleTextBlur();
-
-    }
-    );
-
-    textInput.addEventListener(
-    "keydown",
-    (e)=>{
-
-        if(
-            e.key === "Delete"
-        ){
-
-            handleDeleteKey();
-
-        }
-
-    }
-    );
-
-}
