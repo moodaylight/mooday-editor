@@ -52,9 +52,10 @@ function updateButtons(){
 
     if(!currentConfig) return;
 
-    console.log(
-        currentConfig
-    );
+    moodBtn.innerText =
+    buttonMap[
+        currentConfig.buttons[2]
+    ] || "-";
 
 }
 const templateDrawer =
