@@ -190,6 +190,9 @@ function startLongPress(callback){
 }
 function openTextEditor(clickedText){
 
+    selectedText =
+    clickedText;
+
     textEditorPanel.style.display =
     "block";
 
