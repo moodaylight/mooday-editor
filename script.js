@@ -15,16 +15,16 @@ const photoBtn =
 document.getElementById("photoBtn");
 const mirrorBtn =
 document.getElementById("mirrorBtn");
-const decoBtn =
-document.getElementById("decoBtn");
+const frameBtn =
+document.getElementById("frameBtn");
 const previewBtn =
 document.getElementById("previewBtn");
 const moodBtn =
 document.getElementById("moodBtn");
-const printBtn =
-document.getElementById("printBtn");
-const templateBtn =
-document.getElementById("templateBtn");
+const submitBtn =
+document.getElementById("submitBtn");
+const posterBtn =
+document.getElementById("posterBtn");
 const templateDrawer =
 document.getElementById(
 "templateDrawer"
@@ -1190,25 +1190,7 @@ previewBtn.onclick = ()=>{
 
 };
 
-printBtn.onclick = ()=>{
 
-    draw();
-
-    const link =
-    document.createElement("a");
-
-    link.download =
-    "mooday.jpg";
-
-    link.href =
-    canvas.toDataURL(
-        "image/jpeg",
-        1.0
-    );
-
-    link.click();
-
-};
 let templateLongPressTimer;
 let templateLongPressed = false;
 moodBtn.onclick = ()=>{
@@ -1242,175 +1224,8 @@ moodBtn.onclick = ()=>{
 
 };
 
-templateBtn.onclick = ()=>{
 
-    if(templateLongPressed){
 
-        templateLongPressed = false;
-
-        return;
-
-    }
-
-    templateCategory++;
-
-    if(
-        templateCategory >=
-        templateCategories.length
-    ){
-
-        templateCategory = 0;
-
-    }
-
-    templateBtn.innerText =
-
-    templateCategories[
-        templateCategory
-    ];
-
-};
-templateBtn.addEventListener(
-"touchstart",
-()=>{
-
-    templateLongPressed = false;
-
-    templateLongPressTimer =
-    setTimeout(()=>{
-
-        templateLongPressed = true;
-if(templateCategory === 1){
-
-    templateItem0.innerText =
-    "우리 집";
-
-    templateItem1.innerText =
-    "따뜻한 시간";
-
-    templateItem2.innerText =
-    "함께";
-
-    templateItem3.innerText =
-    "행복한 순간";
-
-    templateItem4.innerText =
-    "우리의 이야기";
-
-}
-
-if(templateCategory === 2){
-
-    templateItem0.innerText =
-    "우리";
-
-    templateItem1.innerText =
-    "사랑";
-
-    templateItem2.innerText =
-    "동행";
-
-    templateItem3.innerText =
-    "함께";
-
-    templateItem4.innerText =
-    "소중한 순간";
-
-}
-
-if(templateCategory === 3){
-
-    templateItem0.innerText =
-    "성장";
-
-    templateItem1.innerText =
-    "행복";
-
-    templateItem2.innerText =
-    "미소";
-
-    templateItem3.innerText =
-    "추억";
-
-    templateItem4.innerText =
-    "사랑";
-
-}
-if(templateCategory === 4){
-
-    templateItem0.innerText =
-    "생일";
-
-    templateItem1.innerText =
-    "축하";
-
-    templateItem2.innerText =
-    "소원";
-
-    templateItem3.innerText =
-    "행복";
-
-    templateItem4.innerText =
-    "빛나는 하루";
-
-}
-
-if(templateCategory === 5){
-
-    templateItem0.innerText =
-    "청춘";
-
-    templateItem1.innerText =
-    "출발";
-
-    templateItem2.innerText =
-    "미래";
-
-    templateItem3.innerText =
-    "새로운 시작";
-
-    templateItem4.innerText =
-    "기억";
-
-}
-
-if(templateCategory === 6){
-
-    templateItem0.innerText =
-    "여행";
-
-    templateItem1.innerText =
-    "풍경";
-
-    templateItem2.innerText =
-    "추억";
-
-    templateItem3.innerText =
-    "발걸음";
-
-    templateItem4.innerText =
-    "새로운 만남";
-
-}
-        templateDrawer.classList.add(
-            "show"
-        );
-
-    },700);
-
-}
-);
-
-templateBtn.addEventListener(
-"touchend",
-()=>{
-
-    clearTimeout(
-        templateLongPressTimer
-    );
-
-}
-);
 document.addEventListener(
 "contextmenu",
 (e)=>{
