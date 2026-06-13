@@ -1234,7 +1234,15 @@ document.addEventListener(
 
 }
 );
+document.addEventListener(
+    "touchmove",
+    function(e){
 
+        e.preventDefault();
+
+    },
+    { passive:false }
+);
 function applyTemplate(index){
 
 let currentTemplates =
