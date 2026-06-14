@@ -41,19 +41,35 @@ const buttonMap = {
 
     mood:"분위기",
 
+    mood1:"분위기1",
+
+    mood2:"분위기2",
+
+    mood3:"분위기3",
+
+    mood4:"분위기4",
+
     frame:"프레임",
 
     text:"문자",
 
     background:"배경",
 
-    poster:"포스터",
+    style:"스타일",
 
     light:"조명",
 
+    optimize:"보정",
+
+    adjust:"조절",
+
     preview:"미리보기",
 
-    submit:"주문하기"
+    submit:"주문하기",
+
+    download:"다운로드",
+
+    home:"홈"
 
 };
 function updateButtons(){
