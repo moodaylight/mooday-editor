@@ -133,26 +133,33 @@ mirror:{
     ]
 
 },
-    avatar:{
+avatar:{
 
-        name:"프로필",
+    name:"프로필",
 
-        ratio:"1:1",
+    ratio:"1:1",
 
-        buttons:[
+    options:[
 
-            "upload",
-            "background",
-            "style",
+        "정사각형",
 
-            "adjust",
-            "download",
-            "home"
+        "원형"
 
-        ]
+    ],
 
-    },
+    buttons:[
 
+        "upload",
+        "style",
+        "background",
+
+        "adjust",
+        "download",
+        "home"
+
+    ]
+
+},
     wallpaper:{
 
         name:"휴대폰 배경화면",
