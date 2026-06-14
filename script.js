@@ -76,49 +76,52 @@ function updateButtons(){
 
     if(!currentConfig) return;
 
-    uploadBtn.innerText =
-    buttonMap[
-        currentConfig.buttons[0]
-    ] || "-";
+    const buttons = [
 
-    clarityBtn.innerText =
-    buttonMap[
-        currentConfig.buttons[1]
-    ] || "-";
+        uploadBtn,
 
-    moodBtn.innerText =
-    buttonMap[
-        currentConfig.buttons[2]
-    ] || "-";
+        clarityBtn,
 
-    frameBtn.innerText =
-    buttonMap[
-        currentConfig.buttons[3]
-    ] || "-";
+        moodBtn,
 
-    textBtn.innerText =
-    buttonMap[
-        currentConfig.buttons[4]
-    ] || "-";
+        frameBtn,
 
-    backgroundBtn.innerText =
-    buttonMap[
-        currentConfig.buttons[5]
-    ] || "-";
-posterBtn.innerText =
-buttonMap[
-    currentConfig.buttons[6]
-] || "-";
+        textBtn,
 
-previewBtn.innerText =
-buttonMap[
-    currentConfig.buttons[7]
-] || "-";
+        backgroundBtn,
 
-submitBtn.innerText =
-buttonMap[
-    currentConfig.buttons[8]
-] || "-";
+        posterBtn,
+
+        previewBtn,
+
+        submitBtn
+
+    ];
+
+    buttons.forEach(
+    (btn,index)=>{
+
+        if(
+            currentConfig.buttons[index]
+        ){
+
+            btn.style.display =
+            "block";
+
+            btn.innerText =
+            buttonMap[
+                currentConfig.buttons[index]
+            ] || "-";
+
+        }else{
+
+            btn.style.display =
+            "none";
+
+        }
+
+    });
+
 } 
 const templateDrawer =
 document.getElementById(
