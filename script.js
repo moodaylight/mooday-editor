@@ -125,7 +125,7 @@ if(action === "home"){
 
 }
 
-if(action === "upload"){
+else if(action === "upload"){
 
     btn.onclick = ()=>{
 
@@ -135,20 +135,136 @@ if(action === "upload"){
 
 }
 
-if(action === "mood"){
+else if(action === "mood"){
 
     btn.onclick =
     moodBtn.onclick;
 
 }
 
-if(action === "preview"){
+else if(action === "preview"){
 
-    btn.onclick =
-    previewBtn.onclick;
+    btn.onclick = ()=>{
+
+        alert(
+            "미리보기 준비중"
+        );
+
+    };
 
 }
 
+else if(action === "light"){
+
+    btn.onclick = ()=>{
+
+        lightModeBtn.click();
+
+    };
+
+}
+
+else if(action === "text"){
+
+    btn.onclick = ()=>{
+
+        textBtn.click();
+
+    };
+
+}
+
+else if(action === "background"){
+
+    btn.onclick = ()=>{
+
+        backgroundBtn.click();
+
+    };
+
+}
+
+else if(action === "frame"){
+
+    btn.onclick = ()=>{
+
+        frameBtn.click();
+
+    };
+
+}
+
+else if(action === "style"){
+
+    btn.onclick = ()=>{
+
+        alert(
+            "스타일 기능 준비중"
+        );
+
+    };
+
+}
+
+else if(action === "optimize"){
+
+    btn.onclick = ()=>{
+
+        alert(
+            "자동 보정 준비중"
+        );
+
+    };
+
+}
+
+else if(action === "adjust"){
+
+    btn.onclick = ()=>{
+
+        alert(
+            "조절 기능 준비중"
+        );
+
+    };
+
+}
+
+else if(action === "submit"){
+
+    btn.onclick = ()=>{
+
+        alert(
+            "주문 기능 준비중"
+        );
+
+    };
+
+}
+
+else if(action === "download"){
+
+    btn.onclick = ()=>{
+
+        draw();
+
+        const link =
+        document.createElement("a");
+
+        link.download =
+        "image.jpg";
+
+        link.href =
+        canvas.toDataURL(
+            "image/jpeg",
+            1.0
+        );
+
+        link.click();
+
+    };
+
+}
 if(action === "light"){
 
     btn.onclick = ()=>{
