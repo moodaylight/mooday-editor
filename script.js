@@ -114,8 +114,6 @@ function updateButtons(){
             buttonMap[
                 currentConfig.buttons[index]
             ] || "-";
-btn.onclick = null;
-
 if(
     currentConfig.buttons[index]
     === "home"
