@@ -1,3 +1,49 @@
+2026-06-14
+# MOODAY Architecture
+
+当前架构：
+
+Home
+｜
+├─ 普通照片
+├─ 相框照片
+├─ 证件照
+├─ 魔镜灯光画
+├─ 头像
+└─ 手机壁纸
+
+↓
+
+Product Config
+
+↓
+
+Editor
+
+↓
+
+Button System
+
+↓
+
+Feature Modules
+
+模块规划：
+
+upload
+clarity
+frame
+mood
+text
+style
+light
+background
+optimize
+adjust
+preview
+submit
+download
+home
 2026-0607
 编辑器架构
 
