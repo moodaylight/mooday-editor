@@ -160,28 +160,31 @@ avatar:{
     ]
 
 },
-    wallpaper:{
+wallpaper:{
 
-        name:"휴대폰 배경화면",
+    name:"휴대폰 배경화면",
 
-        ratio:"9:16",
+    ratio:"9:16",
 
-        buttons:[
+    options:[
 
-            "upload",
-            "clarity",
-            "mood",
+        "9:16"
 
-            "frame",
-            "text",
-            "style",
+    ],
 
-            "preview",
-            "download",
-            "home"
+    buttons:[
 
-        ]
+        "upload",
+        "clarity",
+        "mood",
 
-    }
+        "text",
+        "style",
+        "preview",
 
-};
+        "download",
+        "home"
+
+    ]
+
+}
