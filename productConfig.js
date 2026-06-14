@@ -17,8 +17,8 @@ const PRODUCTS = {
             "mood3",
 
             "mood4",
-            "mood5",
-            "mood6"
+            "submit",
+            "home"
 
         ]
 
@@ -38,11 +38,11 @@ const PRODUCTS = {
 
             "frame",
             "text",
-            "background",
+            "style",
 
-            "poster",
             "preview",
-            "submit"
+            "submit",
+            "home"
 
         ]
 
@@ -57,16 +57,12 @@ const PRODUCTS = {
         buttons:[
 
             "upload",
-            "clarity",
             "background",
+            "optimize",
 
-            "size",
-            "guide",
-            "text",
-
-            "preview",
-            "save",
-            "submit"
+            "adjust",
+            "submit",
+            "home"
 
         ]
 
@@ -85,12 +81,56 @@ const PRODUCTS = {
             "frame",
 
             "text",
-            "background",
-            "poster",
-
+            "style",
             "light",
+
             "preview",
-            "submit"
+            "submit",
+            "home"
+
+        ]
+
+    },
+
+    avatar:{
+
+        name:"프로필",
+
+        ratio:"1:1",
+
+        buttons:[
+
+            "upload",
+            "background",
+            "style",
+
+            "adjust",
+            "download",
+            "home"
+
+        ]
+
+    },
+
+    wallpaper:{
+
+        name:"휴대폰 배경화면",
+
+        ratio:"9:16",
+
+        buttons:[
+
+            "upload",
+            "clarity",
+            "mood",
+
+            "frame",
+            "text",
+            "style",
+
+            "preview",
+            "download",
+            "home"
 
         ]
 
