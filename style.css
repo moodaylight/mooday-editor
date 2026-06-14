@@ -1106,6 +1106,8 @@ Option Chips
 
     border:none;
 
+    flex-shrink:0;
+   
     border-radius:999px;
 
     background:#181818;
