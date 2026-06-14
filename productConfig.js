@@ -5,7 +5,11 @@ photo:{
     name:"일반 사진",
 
     ratio:"2:3",
+    options:[
 
+        "4×6"
+
+    ],
     buttons:[
 
         "upload",
@@ -84,13 +88,10 @@ idcard:{
     buttons:[
 
         "upload",
-        "clarity",
         "background",
-
         "optimize",
         "adjust",
         "submit",
-
         "home"
 
     ]
@@ -178,9 +179,10 @@ wallpaper:{
         "mood",
 
         "text",
+        "frame",
         "style",
+        
         "preview",
-
         "download",
         "home"
 
