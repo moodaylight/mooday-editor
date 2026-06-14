@@ -1086,9 +1086,15 @@ Option Chips
 
     display:flex;
 
-    flex-wrap:wrap;
+    flex-wrap:nowrap;
 
     gap:8px;
+
+    overflow-x:auto;
+
+    overflow-y:hidden;
+
+    scrollbar-width:none;
 
 }
 
