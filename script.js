@@ -137,13 +137,74 @@ if(action === "upload"){
 
 if(action === "mood"){
 
-    btn.onclick = moodBtn.onclick;
+    btn.onclick =
+    moodBtn.onclick;
 
 }
 
 if(action === "preview"){
 
-    btn.onclick = previewBtn.onclick;
+    btn.onclick =
+    previewBtn.onclick;
+
+}
+
+if(action === "light"){
+
+    btn.onclick = ()=>{
+
+        lightModeBtn.click();
+
+    };
+
+}
+
+if(action === "text"){
+
+    btn.onclick = ()=>{
+
+        textBtn.click();
+
+    };
+
+}
+
+if(action === "background"){
+
+    btn.onclick = ()=>{
+
+        backgroundBtn.click();
+
+    };
+
+}
+
+if(action === "frame"){
+
+    btn.onclick = ()=>{
+
+        frameBtn.click();
+
+    };
+
+}
+
+if(action === "submit"){
+
+    btn.onclick = ()=>{
+
+        alert(
+            "주문 기능 준비중"
+        );
+
+    };
+
+}
+
+if(action === "download"){
+
+    btn.onclick =
+    previewBtn.onclick;
 
 }
         }else{
