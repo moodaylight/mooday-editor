@@ -114,13 +114,36 @@ function updateButtons(){
             buttonMap[
                 currentConfig.buttons[index]
             ] || "-";
-if(
-    currentConfig.buttons[index]
-    === "home"
-){
+const action =
+currentConfig.buttons[index];
 
-    btn.onclick =
-    goHome;
+btn.onclick = null;
+
+if(action === "home"){
+
+    btn.onclick = goHome;
+
+}
+
+if(action === "upload"){
+
+    btn.onclick = ()=>{
+
+        upload.click();
+
+    };
+
+}
+
+if(action === "mood"){
+
+    btn.onclick = moodBtn.onclick;
+
+}
+
+if(action === "preview"){
+
+    btn.onclick = previewBtn.onclick;
 
 }
         }else{
