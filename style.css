@@ -244,19 +244,19 @@ max-height:calc(100vh - 180px);
 
     align-items:center;
 
-    justify-content:center;
-
     gap:8px;
-
-    width:100%;
 
     overflow-x:auto;
 
     overflow-y:hidden;
 
-    white-space:nowrap;
+    flex-wrap:nowrap;
 
     scrollbar-width:none;
+
+    width:max-content;
+
+    min-width:100%;
 
 }
 /* =========================
