@@ -226,13 +226,15 @@ max-height:calc(100vh - 180px);
 
     align-items:center;
 
-    justify-content:flex-start;
+    justify-content:center;
 
     box-sizing:border-box;
 
     padding:0 10px;
-    
+
     margin:4px 0;
+
+    overflow:hidden;
 
 }
 
@@ -240,13 +242,21 @@ max-height:calc(100vh - 180px);
 
     display:flex;
 
+    align-items:center;
+
+    justify-content:center;
+
     gap:8px;
 
-    flex-wrap:wrap;
+    width:100%;
 
-    color:white;
+    overflow-x:auto;
 
-    font-size:14px;
+    overflow-y:hidden;
+
+    white-space:nowrap;
+
+    scrollbar-width:none;
 
 }
 /* =========================
@@ -1087,11 +1097,13 @@ Option Chips
 
 .optionChip{
 
+    min-width:100px;
+
+    height:34px;
+
     border:none;
 
     border-radius:999px;
-
-    padding:8px 14px;
 
     background:#181818;
 
@@ -1100,6 +1112,8 @@ Option Chips
     font-size:14px;
 
     cursor:pointer;
+
+    flex-shrink:0;
 
 }
 
