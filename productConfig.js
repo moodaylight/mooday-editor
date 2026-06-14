@@ -20,74 +20,119 @@ photo:{
 
 },
 
-    frame:{
+frame:{
 
-        name:"액자 사진",
+    name:"액자 사진",
 
-        ratio:"2:3",
+    ratio:"2:3",
 
-        buttons:[
+    options:[
 
-            "upload",
-            "clarity",
-            "mood",
+        "프레임1",
 
-            "frame",
-            "text",
-            "style",
+        "프레임2",
 
-            "preview",
-            "submit",
-            "home"
+        "프레임3",
 
-        ]
+        "프레임4"
 
-    },
+    ],
 
-    idcard:{
+    buttons:[
 
-        name:"증명사진",
+        "upload",
+        "clarity",
+        "mood",
 
-        ratio:"2:3",
+        "frame",
+        "text",
+        "style",
 
-        buttons:[
+        "preview",
+        "submit",
+        "home"
 
-            "upload",
-            "background",
-            "optimize",
+    ]
 
-            "adjust",
-            "submit",
-            "home"
+},
 
-        ]
+idcard:{
 
-    },
+    name:"증명사진",
 
-    mirror:{
+    ratio:"2:3",
 
-        name:"매직미러",
+    options:[
+       
+        "한국 여권",
+       
+        "한국 증명사진",
+        
+        "중국 여권",
 
-        ratio:"12:17.5",
+        "한국 비자",
+        
+        "중국 신분증",
 
-        buttons:[
+        "중국 1인치",
 
-            "upload",
-            "clarity",
-            "frame",
+        "중국 2인치",
 
-            "text",
-            "style",
-            "light",
+        "미국 비자"
 
-            "preview",
-            "submit",
-            "home"
+    ],
 
-        ]
+    buttons:[
 
-    },
+        "upload",
+        "clarity",
+        "background",
 
+        "optimize",
+        "adjust",
+        "submit",
+
+        "home"
+
+    ]
+
+},
+
+mirror:{
+
+    name:"매직미러",
+
+    ratio:"12:17.5",
+
+    options:[
+
+        "세로 거치형",
+
+        "가로 거치형",
+
+        "세로 받침형",
+
+        "가로 받침형"
+
+    ],
+
+    buttons:[
+
+        "upload",
+        "clarity",
+        "text",
+
+        "frame",
+        "style",
+        "light",
+
+        "preview",
+        "submit",
+        "home"
+
+    ]
+
+},
     avatar:{
 
         name:"프로필",
