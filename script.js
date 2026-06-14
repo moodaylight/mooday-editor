@@ -133,6 +133,51 @@ if(
     });
 
 } 
+function updateOptions(){
+
+    const statusContent =
+    document.getElementById(
+        "statusContent"
+    );
+
+    if(
+        !currentConfig ||
+        !currentConfig.options
+    ){
+        return;
+    }
+
+    statusContent.innerHTML = "";
+
+    currentConfig.options.forEach(
+    (option,index)=>{
+
+        const btn =
+        document.createElement(
+            "button"
+        );
+
+        btn.className =
+        "optionChip";
+
+        if(index === 0){
+
+            btn.classList.add(
+                "activeOption"
+            );
+
+        }
+
+        btn.innerText =
+        option;
+
+        statusContent.appendChild(
+            btn
+        );
+
+    });
+
+}
 const templateDrawer =
 document.getElementById(
 "templateDrawer"
@@ -2344,7 +2389,8 @@ function selectProduct(type){
     currentConfig =
     PRODUCTS[type];
    updateButtons();
- document.getElementById(
+   updateOptions();
+    document.getElementById(
         "homePage"
     ).style.display = "none";
 
