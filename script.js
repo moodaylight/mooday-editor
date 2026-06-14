@@ -39,6 +39,8 @@ const buttonMap = {
 
     clarity:"선명도",
 
+    enhance:"원클릭 보정",
+    
     mood:"분위기",
 
     mood1:"분위기1",
