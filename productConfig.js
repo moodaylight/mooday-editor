@@ -1,28 +1,24 @@
 const PRODUCTS = {
 
-    photo:{
+photo:{
 
-        name:"일반 사진",
+    name:"일반 사진",
 
-        ratio:"2:3",
+    ratio:"2:3",
 
-        buttons:[
+    buttons:[
 
-            "upload",
-            "clarity",
-            "frame",
+        "upload",
+        "enhance",
+        "mood",
 
-            "mood1",
-            "mood2",
-            "mood3",
+        "frame",
+        "submit",
+        "home"
 
-            "mood4",
-            "submit",
-            "home"
+    ]
 
-        ]
-
-    },
+},
 
     frame:{
 
