@@ -254,10 +254,7 @@ max-height:calc(100vh - 180px);
 
     scrollbar-width:none;
 
-    width:max-content;
-
-    min-width:100%;
-
+   
 }
 /* =========================
 输入框
@@ -1097,7 +1094,7 @@ Option Chips
 
 .optionChip{
 
-    min-width:100px;
+    min-width:90px;
 
     height:34px;
 
