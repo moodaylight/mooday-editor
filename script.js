@@ -81,248 +81,172 @@ function updateButtons(){
     const buttons = [
 
         uploadBtn,
-
         clarityBtn,
-
         moodBtn,
-
         frameBtn,
-
         textBtn,
-
         backgroundBtn,
-
         posterBtn,
-
         previewBtn,
-
         submitBtn
 
     ];
 
-    buttons.forEach(
-    (btn,index)=>{
+    buttons.forEach((btn,index)=>{
 
-        if(
-            currentConfig.buttons[index]
-        ){
+        const action =
+        currentConfig.buttons[index];
+
+        if(action){
 
             btn.style.display =
             "block";
 
             btn.innerText =
-            buttonMap[
-                currentConfig.buttons[index]
-            ] || "-";
-const action =
-currentConfig.buttons[index];
+            buttonMap[action] || "-";
 
-btn.onclick = null;
+            btn.onclick = null;
 
-if(action === "home"){
+            if(action === "home"){
 
-    btn.onclick = goHome;
+                btn.onclick = goHome;
 
-}
+            }
 
-else if(action === "upload"){
+            else if(action === "upload"){
 
-    btn.onclick = ()=>{
+                btn.onclick = ()=>{
 
-        upload.click();
+                    upload.click();
 
-    };
+                };
 
-}
+            }
 
-else if(action === "mood"){
+            else if(action === "mood"){
 
-    btn.onclick =
-    moodBtn.onclick;
+                btn.onclick = ()=>{
 
-}
+                    moodBtn.click();
 
-else if(action === "preview"){
+                };
 
-    btn.onclick = ()=>{
+            }
 
-        alert(
-            "미리보기 준비중"
-        );
+            else if(action === "frame"){
 
-    };
+                btn.onclick = ()=>{
 
-}
+                    frameBtn.click();
 
-else if(action === "light"){
+                };
 
-    btn.onclick = ()=>{
+            }
 
-        lightModeBtn.click();
+            else if(action === "text"){
 
-    };
+                btn.onclick = ()=>{
 
-}
+                    textBtn.click();
 
-else if(action === "text"){
+                };
 
-    btn.onclick = ()=>{
+            }
 
-        textBtn.click();
+            else if(action === "background"){
 
-    };
+                btn.onclick = ()=>{
 
-}
+                    backgroundBtn.click();
 
-else if(action === "background"){
+                };
 
-    btn.onclick = ()=>{
+            }
 
-        backgroundBtn.click();
+            else if(action === "light"){
 
-    };
+                btn.onclick = ()=>{
 
-}
+                    alert(
+                    "조명 기능 준비중"
+                    );
 
-else if(action === "frame"){
+                };
 
-    btn.onclick = ()=>{
+            }
 
-        frameBtn.click();
+            else if(action === "style"){
 
-    };
+                btn.onclick = ()=>{
 
-}
+                    alert(
+                    "스타일 기능 준비중"
+                    );
 
-else if(action === "style"){
+                };
 
-    btn.onclick = ()=>{
+            }
 
-        alert(
-            "스타일 기능 준비중"
-        );
+            else if(action === "optimize"){
 
-    };
+                btn.onclick = ()=>{
 
-}
+                    alert(
+                    "자동 보정 준비중"
+                    );
 
-else if(action === "optimize"){
+                };
 
-    btn.onclick = ()=>{
+            }
 
-        alert(
-            "자동 보정 준비중"
-        );
+            else if(action === "adjust"){
 
-    };
+                btn.onclick = ()=>{
 
-}
+                    alert(
+                    "조절 기능 준비중"
+                    );
 
-else if(action === "adjust"){
+                };
 
-    btn.onclick = ()=>{
+            }
 
-        alert(
-            "조절 기능 준비중"
-        );
+            else if(action === "preview"){
 
-    };
+                btn.onclick = ()=>{
 
-}
+                    alert(
+                    "미리보기 준비중"
+                    );
 
-else if(action === "submit"){
+                };
 
-    btn.onclick = ()=>{
+            }
 
-        alert(
-            "주문 기능 준비중"
-        );
+            else if(action === "submit"){
 
-    };
+                btn.onclick = ()=>{
 
-}
+                    alert(
+                    "제출 완료"
+                    );
 
-else if(action === "download"){
+                };
 
-    btn.onclick = ()=>{
+            }
 
-        draw();
+            else if(action === "download"){
 
-        const link =
-        document.createElement("a");
+                btn.onclick = ()=>{
 
-        link.download =
-        "image.jpg";
+                    alert(
+                    "다운로드 기능 준비중"
+                    );
 
-        link.href =
-        canvas.toDataURL(
-            "image/jpeg",
-            1.0
-        );
+                };
 
-        link.click();
+            }
 
-    };
-
-}
-if(action === "light"){
-
-    btn.onclick = ()=>{
-
-        lightModeBtn.click();
-
-    };
-
-}
-
-if(action === "text"){
-
-    btn.onclick = ()=>{
-
-        textBtn.click();
-
-    };
-
-}
-
-if(action === "background"){
-
-    btn.onclick = ()=>{
-
-        backgroundBtn.click();
-
-    };
-
-}
-
-if(action === "frame"){
-
-    btn.onclick = ()=>{
-
-        frameBtn.click();
-
-    };
-
-}
-
-if(action === "submit"){
-
-    btn.onclick = ()=>{
-
-        alert(
-            "주문 기능 준비중"
-        );
-
-    };
-
-}
-
-if(action === "download"){
-
-    btn.onclick =
-    previewBtn.onclick;
-
-}
         }else{
 
             btn.style.display =
@@ -332,7 +256,7 @@ if(action === "download"){
 
     });
 
-} 
+}
 function updateOptions(){
 
     const statusContent =
