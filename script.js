@@ -123,45 +123,29 @@ function updateButtons(){
 
             }
 
-            else if(action === "mood"){
+else if(action === "mood"){
 
-                btn.onclick = ()=>{
+    btn.onclick = moodBtn.onclick;
 
-                    moodBtn.click();
+}
 
-                };
+else if(action === "frame"){
 
-            }
+    btn.onclick = frameBtn.onclick;
 
-            else if(action === "frame"){
+}
 
-                btn.onclick = ()=>{
+else if(action === "text"){
 
-                    frameBtn.click();
+    btn.onclick = textBtn.onclick;
 
-                };
+}
 
-            }
+else if(action === "background"){
 
-            else if(action === "text"){
+    btn.onclick = backgroundBtn.onclick;
 
-                btn.onclick = ()=>{
-
-                    textBtn.click();
-
-                };
-
-            }
-
-            else if(action === "background"){
-
-                btn.onclick = ()=>{
-
-                    backgroundBtn.click();
-
-                };
-
-            }
+}
 
             else if(action === "light"){
 
