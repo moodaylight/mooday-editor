@@ -33,47 +33,7 @@ document.getElementById("backgroundBtn");
 
 const clarityBtn =
 document.getElementById("clarityBtn");
-const buttonMap = {
 
-    upload:"업로드",
-
-    clarity:"선명도",
-
-    enhance:"원클릭 보정",
-    
-    mood:"분위기",
-
-    mood1:"분위기1",
-
-    mood2:"분위기2",
-
-    mood3:"분위기3",
-
-    mood4:"분위기4",
-
-    frame:"프레임",
-
-    text:"문자",
-
-    background:"배경",
-
-    style:"스타일",
-
-    light:"조명",
-
-    optimize:"보정",
-
-    adjust:"조절",
-
-    preview:"미리보기",
-
-    submit:"주문하기",
-
-    download:"다운로드",
-
-    home:"홈"
-
-};
 function updateButtons(){
 
     if(!currentConfig) return;
@@ -102,8 +62,8 @@ function updateButtons(){
             btn.style.display =
             "block";
 
-            btn.innerText =
-            buttonMap[action] || "-";
+           btn.innerText =
+           BUTTON_LABELS[action] || "-";
 
             btn.onclick = null;
 
