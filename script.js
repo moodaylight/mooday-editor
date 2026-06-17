@@ -27,7 +27,13 @@ const posterBtn =
 document.getElementById("posterBtn");
 const textBtn =
 document.getElementById("textBtn");
+textBtn.onclick = ()=>{
 
+    templateDrawer.classList.toggle(
+        "show"
+    );
+
+};
 const backgroundBtn =
 document.getElementById("backgroundBtn");
 
