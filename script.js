@@ -1586,7 +1586,10 @@ function selectProduct(type){
     currentConfig =
     PRODUCTS[type];
    updateButtons();
-   updateOptions();
+   console.log(
+currentConfig.buttons
+);
+    updateOptions();
     document.getElementById(
         "homePage"
     ).style.display = "none";
