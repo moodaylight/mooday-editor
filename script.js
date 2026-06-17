@@ -27,11 +27,7 @@ const posterBtn =
 document.getElementById("posterBtn");
 const textBtn =
 document.getElementById("textBtn");
-textBtn.onclick = ()=>{
 
-    alert("文字按钮已点击");
-
-};
 const backgroundBtn =
 document.getElementById("backgroundBtn");
 
