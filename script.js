@@ -1074,7 +1074,7 @@ document.addEventListener(
             e.target
         )
         &&
-        e.target !== templateBtn
+       e.target !== textBtn
     ){
 
         templateDrawer.classList.remove(
