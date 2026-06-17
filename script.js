@@ -101,7 +101,11 @@ else if(action === "frame"){
 
 else if(action === "text"){
 
-    btn.onclick = textBtn.onclick;
+    btn.onclick = ()=>{
+
+        alert("文字按钮成功绑定");
+
+    };
 
 }
 
