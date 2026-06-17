@@ -475,3 +475,10 @@ texts.forEach(text=>{
 draw();
 
 }
+textBtn.onclick = ()=>{
+
+    templateDrawer.classList.toggle(
+        "show"
+    );
+
+};
