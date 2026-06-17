@@ -29,9 +29,7 @@ const textBtn =
 document.getElementById("textBtn");
 textBtn.onclick = ()=>{
 
-    templateDrawer.classList.toggle(
-        "show"
-    );
+    alert("文字按钮已点击");
 
 };
 const backgroundBtn =
