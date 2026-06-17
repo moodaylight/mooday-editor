@@ -103,7 +103,9 @@ else if(action === "text"){
 
     btn.onclick = ()=>{
 
-        alert("文字按钮成功绑定");
+        templateDrawer.classList.toggle(
+            "show"
+        );
 
     };
 
