@@ -55,3 +55,22 @@ function selectProduct(type){
     }
 
 }
+function goHome(){
+
+    document.getElementById(
+        "homePage"
+    ).style.display = "block";
+
+    document.getElementById(
+        "editorContainer"
+    ).style.display = "none";
+
+    document.getElementById(
+        "editorPage"
+    ).style.display = "none";
+
+    document.getElementById(
+        "bottomPanel"
+    ).style.display = "none";
+
+}
