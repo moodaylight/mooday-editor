@@ -578,75 +578,7 @@ editorInput.addEventListener(
 
 
 
-opacityBtn.onclick = ()=>{
 
-    opacityPanel.style.display =
-    "flex";
-
-    shadowPanel.style.display =
-    "none";
-
-    strokePanel.style.display =
-    "none";
-
-    fontPanel.style.display =
-    "none";
-
-    colorPanel.style.display =
-    "none";
-
-    sizePanel.style.display =
-    "none";
-
-    if(selectedText){
-
-        opacityValue.innerText =
-        Math.round(
-            (selectedText.opacity ?? 1)
-            * 100
-        );
-
-    }
-
-};
-
-opacityMinus.onclick = ()=>{
-
-    if(!selectedText) return;
-
-    selectedText.opacity =
-    Math.max(
-        0,
-        (selectedText.opacity ?? 1) - 0.1
-    );
-
-    opacityValue.innerText =
-    Math.round(
-        selectedText.opacity * 100
-    );
-
-    draw();
-
-};
-
-opacityPlus.onclick = ()=>{
-
-    if(!selectedText) return;
-
-    selectedText.opacity =
-    Math.min(
-        1,
-        (selectedText.opacity ?? 1) + 0.1
-    );
-
-    opacityValue.innerText =
-    Math.round(
-        selectedText.opacity * 100
-    );
-
-    draw();
-
-};
 
 // 长按连续缩小放大
 
