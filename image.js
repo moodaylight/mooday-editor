@@ -91,3 +91,8 @@ function resetImagePosition(){
     imgY = canvas.height / 2;
 
 }
+uploadBtn.onclick = ()=>{
+
+    upload.click();
+
+};
