@@ -407,11 +407,7 @@ function getAngle(t1,t2){
 // =====================
 // 上传图片
 // =====================
-uploadBtn.onclick = ()=>{
 
-    upload.click();
-
-};
 // =====================
 // IMAGE UPLOAD START
 // =====================
