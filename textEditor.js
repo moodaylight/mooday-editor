@@ -247,3 +247,23 @@ document
     };
 
 });
+document
+.querySelectorAll(
+".colorDot"
+)
+.forEach(dot=>{
+
+dot.onclick = ()=>{
+
+    if(selectedText){
+
+        selectedText.color =
+        dot.dataset.color;
+
+        draw();
+
+    }
+
+};
+
+});
