@@ -337,18 +337,8 @@ if(frameBtn){
 
 draw();
 
-
-
-
-
-
-
-
 let templateLongPressTimer;
 let templateLongPressed = false;
-
-
-
 
 document.addEventListener(
 "contextmenu",
@@ -358,9 +348,6 @@ document.addEventListener(
 
 }
 );
-
-
-
 document.addEventListener(
 "touchstart",
 (e)=>{
@@ -382,25 +369,7 @@ document.addEventListener(
 }
 );
 
-
-
-
-
-
-
-
-
-// 长按连续缩小放大
-
 let sizeTimer = null;
-
-// 放大
-
-
-
-
-
-
 
 const bannerImg =
 document.getElementById("bannerImg");
