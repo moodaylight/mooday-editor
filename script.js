@@ -553,26 +553,7 @@ dot.onclick = ()=>{
 
 });
 
-document
-.querySelectorAll(
-".fontItem"
-)
-.forEach(btn=>{
 
-    btn.onclick = ()=>{
-
-        if(selectedText){
-
-            selectedText.font =
-            btn.dataset.font;
-
-            draw();
-
-        }
-
-    };
-
-});
 const bannerImg =
 document.getElementById("bannerImg");
 
