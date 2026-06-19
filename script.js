@@ -398,60 +398,7 @@ function getAngle(t1,t2){
 
 }
 
-// =====================
-// 图层面板
-// =====================
 
-
-
-// =====================
-// 上传图片
-// =====================
-
-// =====================
-// IMAGE UPLOAD START
-// =====================
-upload.addEventListener("change",(e)=>{
-
-    const file = e.target.files[0];
-
-    if(!file) return;
-
-    const reader = new FileReader();
-
-reader.onload = function(event){
-
-    image = new Image();
-
-    originalImage = image;
-
-image.onload = function(){
-
-    fitImageCover();
-
-    resetImagePosition();
-
-    imgRotation = 0;
-
-    imageSelected = true;
-
-    selectedText = null;
-
-    draw();
-
-};
-
-        image.src = event.target.result;
-
-    };
-
-    reader.readAsDataURL(file);
-
-});
-
-// =====================
-// IMAGE UPLOAD END
-// =====================
 
 if(frameBtn){
 
