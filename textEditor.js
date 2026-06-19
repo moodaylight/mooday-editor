@@ -267,3 +267,90 @@ dot.onclick = ()=>{
 };
 
 });
+sizePlus.onmousedown = ()=>{
+
+    clearInterval(sizeTimer);
+
+    sizeTimer = setInterval(()=>{
+
+        sizePlus.onclick();
+
+    },150);
+
+};
+
+sizePlus.onmouseup = ()=>{
+
+    clearInterval(sizeTimer);
+
+};
+
+sizePlus.onmouseleave = ()=>{
+
+    clearInterval(sizeTimer);
+
+};
+
+// 缩小
+
+sizeMinus.onmousedown = ()=>{
+
+    clearInterval(sizeTimer);
+
+    sizeTimer = setInterval(()=>{
+
+        sizeMinus.onclick();
+
+    },150);
+
+};
+
+sizeMinus.onmouseup = ()=>{
+
+    clearInterval(sizeTimer);
+
+};
+
+sizeMinus.onmouseleave = ()=>{
+
+    clearInterval(sizeTimer);
+
+};
+
+// 手机长按
+
+sizePlus.ontouchstart = ()=>{
+
+    clearInterval(sizeTimer);
+
+    sizeTimer = setInterval(()=>{
+
+        sizePlus.onclick();
+
+    },150);
+
+};
+
+sizePlus.ontouchend = ()=>{
+
+    clearInterval(sizeTimer);
+
+};
+
+sizeMinus.ontouchstart = ()=>{
+
+    clearInterval(sizeTimer);
+
+    sizeTimer = setInterval(()=>{
+
+        sizeMinus.onclick();
+
+    },150);
+
+};
+
+sizeMinus.ontouchend = ()=>{
+
+    clearInterval(sizeTimer);
+
+};
