@@ -19,3 +19,24 @@ fontBtn.onclick = ()=>{
     "none";
 
 };
+colorBtn.onclick = ()=>{
+
+    colorPanel.style.display =
+    "flex";
+
+    fontPanel.style.display =
+    "none";
+
+    sizePanel.style.display =
+    "none";
+
+    strokePanel.style.display =
+    "none";
+
+    shadowPanel.style.display =
+    "none";
+
+    opacityPanel.style.display =
+    "none";
+
+};
