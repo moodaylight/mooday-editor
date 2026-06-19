@@ -428,21 +428,7 @@ document.addEventListener(
 
 }
 );
-editorInput.addEventListener(
-"input",
-()=>{
 
-    if(selectedText){
-
-        selectedText.content =
-        editorInput.value;
-
-        draw();
-
-    }
-
-}
-);
 
 
 
