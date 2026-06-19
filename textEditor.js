@@ -212,3 +212,18 @@ shadowOn.onclick = ()=>{
     draw();
 
 };
+editorInput.addEventListener(
+"input",
+()=>{
+
+    if(selectedText){
+
+        selectedText.content =
+        editorInput.value;
+
+        draw();
+
+    }
+
+}
+);
