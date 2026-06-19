@@ -171,3 +171,44 @@ strokeOn.onclick = ()=>{
     draw();
 
 };
+shadowBtn.onclick = ()=>{
+
+    shadowPanel.style.display =
+    "flex";
+
+    opacityPanel.style.display =
+    "none";
+
+    strokePanel.style.display =
+    "none";
+
+    fontPanel.style.display =
+    "none";
+
+    colorPanel.style.display =
+    "none";
+
+    sizePanel.style.display =
+    "none";
+
+};
+
+shadowOff.onclick = ()=>{
+
+    if(!selectedText) return;
+
+    selectedText.shadow = false;
+
+    draw();
+
+};
+
+shadowOn.onclick = ()=>{
+
+    if(!selectedText) return;
+
+    selectedText.shadow = true;
+
+    draw();
+
+};
