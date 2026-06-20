@@ -36,7 +36,12 @@ if(
 
             config.width /
             config.height;
-
+console.log(
+    currentIdPhoto,
+    config.width,
+    config.height,
+    ratio
+);
             let width =
 
             wrap.offsetWidth;
