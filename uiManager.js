@@ -208,7 +208,15 @@ function updateOptions(){
 
         btn.innerText =
         option;
+if(currentProduct === "idcard"){
 
+    btn.onclick = ()=>{
+
+        console.log(option);
+
+    };
+
+}
         statusContent.appendChild(
             btn
         );
