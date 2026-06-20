@@ -1,6 +1,5 @@
-console.log("resizeCanvas new version");
 function resizeCanvas(){
-
+console.log("resizeCanvas new version");
     const wrap =
     document.querySelector(
         ".canvas-wrap"
