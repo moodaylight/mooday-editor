@@ -213,7 +213,14 @@ if(currentProduct === "idcard"){
 
     btn.onclick = ()=>{
 
-        console.log(option);
+        currentIdPhoto =
+        option;
+
+        console.log(
+            currentIdPhoto
+        );
+
+        resizeCanvas();
 
     };
 
