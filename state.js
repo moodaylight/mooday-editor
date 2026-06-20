@@ -16,7 +16,11 @@ let pinchOffsetX = 0;
 
 let pinchOffsetY = 0;
 
+let currentProduct =
+null;
+
 let currentConfig =
 null;
 
-let currentIdPhoto = "한국 증명사진";
+let currentIdPhoto =
+"한국 증명사진";
