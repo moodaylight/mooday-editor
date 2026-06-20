@@ -1,5 +1,45 @@
 ---
 
+2026-06-20
+
+MOODAY First Refactor Milestone
+
+已完成：
+
+* utils.js 成立
+* pointInText() 迁移完成
+* getTopText() 迁移完成
+* getDistance() 迁移完成
+* getAngle() 迁移完成
+
+归位完成：
+
+* opacityBtn.onclick
+* opacityMinus.onclick
+* opacityPlus.onclick
+* textBtn.onclick
+
+模块验收：
+
+* text.js √
+* textEditor.js √
+* templateEditor.js √
+* styleEditor.js √
+* touch.js √
+
+当前状态：
+
+第一轮模块分家基本完成。
+
+下一阶段：
+
+* state.js 状态归位
+* 规格系统完善
+* Frame系统开发
+* 免费下载系统
+* 产品扩展系统
+---
+
 ## 2026-06-20
 
 本次开发内容：
