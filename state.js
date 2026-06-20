@@ -18,3 +18,5 @@ let pinchOffsetY = 0;
 
 let currentConfig =
 null;
+let currentIdPhoto =
+"korea_id";
