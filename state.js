@@ -16,9 +16,6 @@ let pinchOffsetX = 0;
 
 let pinchOffsetY = 0;
 
-let currentProduct =
-null;
-
 let currentConfig =
 null;
 
