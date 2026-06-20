@@ -1,3 +1,49 @@
+---
+
+2026-06-20 更新
+
+当前完成模块：
+
+* config.js
+* state.js
+* productEditor.js
+* productMode.js
+* image.js
+* text.js
+* textEditor.js
+* templateEditor.js
+* styleEditor.js
+* exportManager.js
+* resizeCanvas.js
+* touch.js
+* utils.js
+
+当前状态：
+
+MOODAY 编辑器第一轮模块分家完成。
+
+核心功能：
+
+* 图片上传
+* 图片拖动
+* 双指缩放
+* 模板系统
+* 灯光模式
+* 氛围模式
+* 文字编辑
+* 字体切换
+* 颜色切换
+* 字号调整
+* 描边
+* 阴影
+* 透明度
+* 保存图片
+* 预览系统
+
+开发阶段：
+
+MVP Beta
+
 2026-06-14
 --------------------------------
 
