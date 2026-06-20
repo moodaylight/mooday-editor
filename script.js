@@ -374,4 +374,4 @@ bannerDesc.innerText =
 banners[bannerIndex].desc;
 
 },4000);
-let currentProduct = null;
+
