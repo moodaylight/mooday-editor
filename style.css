@@ -98,6 +98,8 @@ body{
 
     padding:0;
 
+    overflow-y:auto;
+
 }
 /* =========================
 Canvas区域
@@ -108,6 +110,8 @@ Canvas区域
     width:100%;
 
     height:auto;
+
+    min-height:0;
 
     display:flex;
 
