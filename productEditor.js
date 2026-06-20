@@ -42,11 +42,14 @@ function selectProduct(type){
 
     }
 
-    if(type === "idcard"){
+if(type === "idcard"){
 
-        photoBtn.click();
+    currentIdPhoto =
+    "korea_id";
 
-    }
+    photoBtn.click();
+
+}
 
     if(type === "mirror"){
 
