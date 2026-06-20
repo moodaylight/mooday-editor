@@ -5,20 +5,19 @@ console.log("resizeCanvas new version");
         ".canvas-wrap"
     );
 
-    if(
-        typeof currentProduct ===
-        "undefined"
-    ){
+if(
+    !window.currentProduct
+){
 
-        canvas.width =
-        canvas.offsetWidth;
+    canvas.width =
+    canvas.offsetWidth;
 
-        canvas.height =
-        canvas.offsetHeight;
+    canvas.height =
+    canvas.offsetHeight;
 
-        return;
+    return;
 
-    }
+}
 
    if(
     typeof currentProduct !== "undefined"
