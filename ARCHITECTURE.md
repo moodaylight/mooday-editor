@@ -1,3 +1,44 @@
+---
+
+## 2026-06-20 Architecture Update
+
+新增模块：
+
+* utils.js
+
+utils.js 内容：
+
+* pointInText()
+* getTopText()
+* getDistance()
+* getAngle()
+
+模块状态：
+
+productEditor.js      √
+productMode.js        √
+uiManager.js          √
+
+image.js              √
+
+text.js               √
+textEditor.js         √
+
+templateEditor.js     √
+
+styleEditor.js        √
+
+exportManager.js      √
+
+resizeCanvas.js       √
+
+touch.js              √
+
+utils.js              √
+
+frameEditor.js        空壳（待后续开发）
+
+当前架构稳定。
 
 2026-06-14
 MOODAY
