@@ -6,7 +6,8 @@ console.log("resizeCanvas new version");
     );
 
 if(
-    !window.currentProduct
+    typeof currentProduct ===
+    "undefined"
 ){
 
     canvas.width =
@@ -20,7 +21,7 @@ if(
 }
 
 if(
-    window.currentProduct ===
+    currentProduct ===
     "idcard"
 ){
 
