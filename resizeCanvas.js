@@ -19,10 +19,9 @@ if(
 
 }
 
-   if(
-    typeof currentProduct !== "undefined"
-    &&
-    currentProduct === "idcard"
+if(
+    window.currentProduct ===
+    "idcard"
 ){
 
         const config =
