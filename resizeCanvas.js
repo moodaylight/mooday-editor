@@ -5,6 +5,21 @@ function resizeCanvas(){
         ".canvas-wrap"
     );
 
+    if(
+        typeof currentProduct ===
+        "undefined"
+    ){
+
+        canvas.width =
+        canvas.offsetWidth;
+
+        canvas.height =
+        canvas.offsetHeight;
+
+        return;
+
+    }
+
    if(
     typeof currentProduct !== "undefined"
     &&
