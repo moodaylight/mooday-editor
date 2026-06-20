@@ -34,7 +34,7 @@ function fitImageCover(){
     let visibleWidth;
     let visibleHeight;
 
-    if(productType === "mirror"){
+    if(currentProduct === "mirror"){
 
         frameWidth = 12;
         frameHeight = 17.5;
@@ -44,7 +44,13 @@ function fitImageCover(){
 
     }
 
-    if(productType === "photo"){
+    if(
+    currentProduct === "photo"
+    ||
+    currentProduct === "frame"
+    ||
+    currentProduct === "idcard"
+){
 
         frameWidth = 4;
         frameHeight = 6;
