@@ -44,7 +44,7 @@ const ID_PHOTO_CONFIG = {
         height:45
     },
 
-    "미국 여권":{
+    "미국 비자":{
         width:51,
         height:51
     }
