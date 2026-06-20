@@ -1,3 +1,38 @@
+## v0.9.1
+
+日期：
+
+2026-06-20
+
+完成：
+
+* utils.js 成立
+* pointInText() 迁移完成
+* getTopText() 迁移完成
+* getDistance() 迁移完成
+* getAngle() 迁移完成
+
+归位完成：
+
+* opacityBtn.onclick
+* opacityMinus.onclick
+* opacityPlus.onclick
+
+迁移完成：
+
+* textBtn.onclick
+  templateEditor.js → textEditor.js
+
+验收：
+
+* touch.js 检查通过
+* text.js 检查通过
+* templateEditor.js 检查通过
+
+状态：
+
+MOODAY 第一轮模块分家基本完成
+
 2026-06-14
 MOODAY
 
