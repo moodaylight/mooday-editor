@@ -50,3 +50,15 @@ function getDistance(t1,t2){
     return Math.sqrt(dx * dx + dy * dy);
 
 }
+
+function getAngle(t1,t2){
+
+    return Math.atan2(
+
+        t2.clientY - t1.clientY,
+
+        t2.clientX - t1.clientX
+
+    ) * 180 / Math.PI;
+
+}
