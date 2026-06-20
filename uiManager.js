@@ -171,6 +171,7 @@ else if(action === "background"){
     });
 
 }
+
 function updateOptions(){
 
     const statusContent =
