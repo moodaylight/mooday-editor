@@ -216,9 +216,15 @@ if(currentProduct === "idcard"){
         currentIdPhoto =
         option;
 
-        console.log(
-            currentIdPhoto
-        );
+console.log(
+    currentIdPhoto
+);
+
+console.log(
+    ID_PHOTO_CONFIG[
+        currentIdPhoto
+    ]
+);
 
         resizeCanvas();
 
