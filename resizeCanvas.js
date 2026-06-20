@@ -5,10 +5,11 @@ function resizeCanvas(){
         ".canvas-wrap"
     );
 
-    if(
-        currentProduct ===
-        "idcard"
-    ){
+   if(
+    typeof currentProduct !== "undefined"
+    &&
+    currentProduct === "idcard"
+){
 
         const config =
         ID_PHOTO_CONFIG[
