@@ -1,5 +1,57 @@
 ---
 
+MOODAY 当前开发状态（恢复用）
+
+最近完成：
+
+* utils.js 成立
+* pointInText() 迁移完成
+* getTopText() 迁移完成
+* getDistance() 迁移完成
+* getAngle() 迁移完成
+
+归位完成：
+
+* opacityBtn.onclick
+* opacityMinus.onclick
+* opacityPlus.onclick
+* textBtn.onclick
+
+已验收模块：
+
+* productEditor.js
+* productMode.js
+* uiManager.js
+* image.js
+* text.js
+* textEditor.js
+* templateEditor.js
+* styleEditor.js
+* exportManager.js
+* resizeCanvas.js
+* touch.js
+* utils.js
+
+特殊状态：
+
+* frameEditor.js 为空
+* Frame 系统暂未开发
+
+下一阶段：
+
+1. state.js 状态归位
+2. 产品规格系统
+3. Frame 系统
+4. 免费下载系统
+5. 产品提交系统
+
+当前结论：
+
+MOODAY 第一轮模块分家完成。
+项目结构稳定。
+所有核心功能测试通过。
+---
+
 2026-06-20 更新
 
 当前完成模块：
