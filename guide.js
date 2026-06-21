@@ -1,5 +1,15 @@
 function drawGuideLines(){
+const guide =
 
+GUIDE_CONFIG[
+    currentIdPhoto
+];
+
+if(!guide){
+
+    return;
+
+}
     ctx.save();
 
     ctx.strokeStyle =
