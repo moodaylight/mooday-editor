@@ -27,21 +27,42 @@ if(
     "headHeight"
 ){
 
-    topMin =
+    const minRatio =
+    guide.headMinRatio;
+
+    const maxRatio =
+    guide.headMaxRatio;
+
+    const centerY =
+
     exportVisibleY +
-    exportVisibleH * 0.12;
+    exportVisibleH / 2;
+
+    const minHeadHeight =
+
+    exportVisibleH *
+    minRatio;
+
+    const maxHeadHeight =
+
+    exportVisibleH *
+    maxRatio;
+
+    topMin =
+    centerY -
+    maxHeadHeight / 2;
 
     topMax =
-    exportVisibleY +
-    exportVisibleH * 0.16;
+    centerY -
+    minHeadHeight / 2;
 
     bottomMin =
-    exportVisibleY +
-    exportVisibleH * 0.72;
+    centerY +
+    minHeadHeight / 2;
 
     bottomMax =
-    exportVisibleY +
-    exportVisibleH * 0.76;
+    centerY +
+    maxHeadHeight / 2;
 
 }else{
 
