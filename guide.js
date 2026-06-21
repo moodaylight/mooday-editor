@@ -1,15 +1,17 @@
 function drawGuideLines(){
-const guide =
 
-GUIDE_CONFIG[
-    currentIdPhoto
-];
+    const guide =
 
-if(!guide){
+    GUIDE_CONFIG[
+        currentIdPhoto
+    ];
 
-    return;
+    if(!guide){
 
-}
+        return;
+
+    }
+
     ctx.save();
 
     ctx.strokeStyle =
@@ -17,132 +19,189 @@ if(!guide){
 
     ctx.lineWidth = 2;
 
-let topMin;
-let topMax;
-let bottomMin;
-let bottomMax;
+    let topMin;
+    let topMax;
+    let bottomMin;
+    let bottomMax;
 
-if(
-    guide.type ===
-    "headHeight"
-){
+    if(
+        guide.type ===
+        "headHeight"
+    ){
 
-    const minRatio =
-    guide.headMinRatio;
+        const minRatio =
+        guide.headMinRatio;
 
-    const maxRatio =
-    guide.headMaxRatio;
+        const maxRatio =
+        guide.headMaxRatio;
 
-    const centerY =
+        const centerY =
 
-    exportVisibleY +
-    exportVisibleH / 2;
+        exportVisibleY +
+        exportVisibleH / 2;
 
-    const minHeadHeight =
+        const minHeadHeight =
 
-    exportVisibleH *
-    minRatio;
+        exportVisibleH *
+        minRatio;
 
-    const maxHeadHeight =
+        const maxHeadHeight =
 
-    exportVisibleH *
-    maxRatio;
+        exportVisibleH *
+        maxRatio;
 
-    topMin =
-    centerY -
-    maxHeadHeight / 2;
+        topMin =
+        centerY -
+        maxHeadHeight / 2;
 
-    topMax =
-    centerY -
-    minHeadHeight / 2;
+        topMax =
+        centerY -
+        minHeadHeight / 2;
 
-    bottomMin =
-    centerY +
-    minHeadHeight / 2;
+        bottomMin =
+        centerY +
+        minHeadHeight / 2;
 
-    bottomMax =
-    centerY +
-    maxHeadHeight / 2;
+        bottomMax =
+        centerY +
+        maxHeadHeight / 2;
 
-}else{
+    }else{
 
-    topMin =
-    exportVisibleY +
-    exportVisibleH * 0.12;
+        topMin =
+        exportVisibleY +
+        exportVisibleH * 0.15;
 
-    topMax =
-    exportVisibleY +
-    exportVisibleH * 0.16;
+        topMax =
+        topMin;
 
-    bottomMin =
-    exportVisibleY +
-    exportVisibleH * 0.72;
+        bottomMin =
+        exportVisibleY +
+        exportVisibleH * 0.85;
 
-    bottomMax =
-    exportVisibleY +
-    exportVisibleH * 0.76;
+        bottomMax =
+        bottomMin;
 
-}
+    }
 
-    ctx.beginPath();
+    const centerX =
 
-    ctx.moveTo(
-        exportVisibleX,
-        topMin
-    );
-
-    ctx.lineTo(
-        exportVisibleX +
-        exportVisibleW,
-        topMin
-    );
-
-    ctx.stroke();
+    exportVisibleX +
+    exportVisibleW / 2;
 
     ctx.beginPath();
 
     ctx.moveTo(
-        exportVisibleX,
-        topMax
+        centerX,
+        exportVisibleY
     );
 
     ctx.lineTo(
-        exportVisibleX +
-        exportVisibleW,
-        topMax
+        centerX,
+        exportVisibleY +
+        exportVisibleH
     );
 
     ctx.stroke();
 
-    ctx.beginPath();
+    if(
+        guide.type ===
+        "headHeight"
+    ){
 
-    ctx.moveTo(
-        exportVisibleX,
-        bottomMin
-    );
+        ctx.beginPath();
 
-    ctx.lineTo(
-        exportVisibleX +
-        exportVisibleW,
-        bottomMin
-    );
+        ctx.moveTo(
+            exportVisibleX,
+            topMin
+        );
 
-    ctx.stroke();
+        ctx.lineTo(
+            exportVisibleX +
+            exportVisibleW,
+            topMin
+        );
 
-    ctx.beginPath();
+        ctx.stroke();
 
-    ctx.moveTo(
-        exportVisibleX,
-        bottomMax
-    );
+        ctx.beginPath();
 
-    ctx.lineTo(
-        exportVisibleX +
-        exportVisibleW,
-        bottomMax
-    );
+        ctx.moveTo(
+            exportVisibleX,
+            topMax
+        );
 
-    ctx.stroke();
+        ctx.lineTo(
+            exportVisibleX +
+            exportVisibleW,
+            topMax
+        );
+
+        ctx.stroke();
+
+        ctx.beginPath();
+
+        ctx.moveTo(
+            exportVisibleX,
+            bottomMin
+        );
+
+        ctx.lineTo(
+            exportVisibleX +
+            exportVisibleW,
+            bottomMin
+        );
+
+        ctx.stroke();
+
+        ctx.beginPath();
+
+        ctx.moveTo(
+            exportVisibleX,
+            bottomMax
+        );
+
+        ctx.lineTo(
+            exportVisibleX +
+            exportVisibleW,
+            bottomMax
+        );
+
+        ctx.stroke();
+
+    }else{
+
+        ctx.beginPath();
+
+        ctx.moveTo(
+            exportVisibleX,
+            topMin
+        );
+
+        ctx.lineTo(
+            exportVisibleX +
+            exportVisibleW,
+            topMin
+        );
+
+        ctx.stroke();
+
+        ctx.beginPath();
+
+        ctx.moveTo(
+            exportVisibleX,
+            bottomMin
+        );
+
+        ctx.lineTo(
+            exportVisibleX +
+            exportVisibleW,
+            bottomMin
+        );
+
+        ctx.stroke();
+
+    }
 
     ctx.restore();
 
