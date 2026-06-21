@@ -17,21 +17,51 @@ if(!guide){
 
     ctx.lineWidth = 2;
 
-    const topMin =
+let topMin;
+let topMax;
+let bottomMin;
+let bottomMax;
+
+if(
+    guide.type ===
+    "headHeight"
+){
+
+    topMin =
     exportVisibleY +
     exportVisibleH * 0.12;
 
-    const topMax =
+    topMax =
     exportVisibleY +
     exportVisibleH * 0.16;
 
-    const bottomMin =
+    bottomMin =
     exportVisibleY +
     exportVisibleH * 0.72;
 
-    const bottomMax =
+    bottomMax =
     exportVisibleY +
     exportVisibleH * 0.76;
+
+}else{
+
+    topMin =
+    exportVisibleY +
+    exportVisibleH * 0.12;
+
+    topMax =
+    exportVisibleY +
+    exportVisibleH * 0.16;
+
+    bottomMin =
+    exportVisibleY +
+    exportVisibleH * 0.72;
+
+    bottomMax =
+    exportVisibleY +
+    exportVisibleH * 0.76;
+
+}
 
     ctx.beginPath();
 
