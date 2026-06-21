@@ -18,9 +18,11 @@ const GUIDE_CONFIG = {
         type:"normal"
     },
 
-    "한국 비자":{
-        type:"normal"
-    },
+"한국 비자":{
+    type:"headHeight",
+    headMinRatio:0.711,
+    headMaxRatio:0.778
+},
 
     "미국 비자":{
         type:"headHeight",
