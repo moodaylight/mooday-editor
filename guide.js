@@ -55,6 +55,11 @@ if(
     currentIdPhoto ===
     "한국 비자"
 
+    ||
+
+    currentIdPhoto ===
+    "미국 비자"
+
 ){
 
     topMin =
