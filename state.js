@@ -20,5 +20,5 @@ let currentConfig =
 null;
 
 let currentIdPhoto =
-"한국 증명사진";
+"여권사진";
 let currentProduct = null;
