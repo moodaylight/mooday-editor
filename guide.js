@@ -35,86 +35,49 @@ function drawGuideLines(){
         const maxRatio =
         guide.headMaxRatio;
 
-const minHeadHeight =
+        const minHeadHeight =
 
-exportVisibleH *
-minRatio;
+        exportVisibleH *
+        minRatio;
 
-const maxHeadHeight =
+        const maxHeadHeight =
 
-exportVisibleH *
-maxRatio;
+        exportVisibleH *
+        maxRatio;
 
-if(
+        const centerY =
 
-    currentIdPhoto ===
-    "여권사진"
+        exportVisibleY +
+        exportVisibleH / 2;
 
-    ||
+        topMin =
+        centerY -
+        maxHeadHeight / 2;
 
-    currentIdPhoto ===
-    "한국 비자"
+        topMax =
+        centerY -
+        minHeadHeight / 2;
 
-    ||
+        bottomMin =
+        centerY +
+        minHeadHeight / 2;
 
-    currentIdPhoto ===
-    "미국 비자"
-
-){
-
-    topMin =
-    exportVisibleY +
-    exportVisibleH * 0.08;
-
-    topMax =
-    exportVisibleY +
-    exportVisibleH * 0.12;
-
-    bottomMin =
-    topMax +
-    minHeadHeight;
-
-    bottomMax =
-    topMin +
-    maxHeadHeight;
-
-}else{
-
-    const centerY =
-
-    exportVisibleY +
-    exportVisibleH / 2;
-
-    topMin =
-    centerY -
-    maxHeadHeight / 2;
-
-    topMax =
-    centerY -
-    minHeadHeight / 2;
-
-    bottomMin =
-    centerY +
-    minHeadHeight / 2;
-
-    bottomMax =
-    centerY +
-    maxHeadHeight / 2;
-
-}
+        bottomMax =
+        centerY +
+        maxHeadHeight / 2;
 
     }else{
 
-       topMin =
-       exportVisibleY +
-       exportVisibleH * 0.08;
+        topMin =
+        exportVisibleY +
+        exportVisibleH * 0.08;
 
         topMax =
         topMin;
 
-       bottomMin =
-       exportVisibleY +
-       exportVisibleH * 0.82;
+        bottomMin =
+        exportVisibleY +
+        exportVisibleH * 0.82;
 
         bottomMax =
         bottomMin;
