@@ -24,26 +24,84 @@ function drawGuideLines(){
     let bottomMin;
     let bottomMax;
 
-const centerY =
+    if(
+        guide.type ===
+        "headHeight"
+    ){
 
-exportVisibleY +
-exportVisibleH / 2;
+        const minRatio =
+        guide.headMinRatio;
 
-topMin =
-centerY -
-maxHeadHeight / 2;
+        const maxRatio =
+        guide.headMaxRatio;
 
-topMax =
-centerY -
-minHeadHeight / 2;
+const minHeadHeight =
 
-bottomMin =
-centerY +
-minHeadHeight / 2;
+exportVisibleH *
+minRatio;
 
-bottomMax =
-centerY +
-maxHeadHeight / 2;
+const maxHeadHeight =
+
+exportVisibleH *
+maxRatio;
+
+if(
+
+    currentIdPhoto ===
+    "여권사진"
+
+    ||
+
+    currentIdPhoto ===
+    "한국 비자"
+
+    ||
+
+    currentIdPhoto ===
+    "미국 비자"
+
+){
+
+    topMin =
+    exportVisibleY +
+    exportVisibleH * 0.08;
+
+    topMax =
+    exportVisibleY +
+    exportVisibleH * 0.12;
+
+    bottomMin =
+    topMax +
+    minHeadHeight;
+
+    bottomMax =
+    topMin +
+    maxHeadHeight;
+
+}else{
+
+    const centerY =
+
+    exportVisibleY +
+    exportVisibleH / 2;
+
+    topMin =
+    centerY -
+    maxHeadHeight / 2;
+
+    topMax =
+    centerY -
+    minHeadHeight / 2;
+
+    bottomMin =
+    centerY +
+    minHeadHeight / 2;
+
+    bottomMax =
+    centerY +
+    maxHeadHeight / 2;
+
+}
 
     }else{
 
