@@ -9,37 +9,27 @@
 
 const ID_PHOTO_CONFIG = {
 
-    "한국 증명사진":{
+    "여권사진":{
+        width:35,
+        height:45
+    },
+
+    "증명사진":{
+        width:35,
+        height:45
+    },
+
+    "반명함판":{
         width:30,
         height:40
     },
 
-    "한국 여권":{
-        width:35,
-        height:45
-    },
-
-    "중국 여권":{
-        width:33,
-        height:48
+    "명함판":{
+        width:50,
+        height:70
     },
 
     "한국 비자":{
-        width:35,
-        height:45
-    },
-
-    "중국 신분증":{
-        width:26,
-        height:32
-    },
-
-    "중국 1인치":{
-        width:28,
-        height:35
-    },
-
-    "중국 2인치":{
         width:35,
         height:45
     },
