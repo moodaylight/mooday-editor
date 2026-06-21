@@ -4,11 +4,11 @@ const GUIDE_CONFIG = {
         type:"normal"
     },
 
-    "한국 여권":{
-        type:"headHeight",
-        min:32,
-        max:36
-    },
+"한국 여권":{
+    type:"headHeight",
+    headMinRatio:0.711,
+    headMaxRatio:0.800
+},
 
     "중국 여권":{
         type:"chinaPassport"
@@ -30,10 +30,10 @@ const GUIDE_CONFIG = {
         type:"normal"
     },
 
-    "미국 비자":{
-        type:"headHeight",
-        min:25,
-        max:35
-    }
+"미국 비자":{
+    type:"headHeight",
+    headMinRatio:0.490,
+    headMaxRatio:0.686
+}
 
 };
