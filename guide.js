@@ -45,22 +45,39 @@ function drawGuideLines(){
         exportVisibleH *
         maxRatio;
 
-        topMin =
+const centerY =
+
+exportVisibleY +
+exportVisibleH / 2;
+
+topMin =
+centerY -
+maxHeadHeight / 2;
+
+topMax =
+centerY -
+minHeadHeight / 2;
+
+bottomMin =
+centerY +
+minHeadHeight / 2;
+
+bottomMax =
+centerY +
+maxHeadHeight / 2;
+const targetTop =
+
 exportVisibleY +
 exportVisibleH * 0.10;
 
-topMax =
-exportVisibleY +
-exportVisibleH * 0.14;
+const offset =
 
-bottomMin =
-topMin +
-minHeadHeight;
+topMin - targetTop;
 
-bottomMax =
-topMax +
-maxHeadHeight;
-
+topMin -= offset;
+topMax -= offset;
+bottomMin -= offset;
+bottomMax -= offset;
     }else{
 
         topMin =
