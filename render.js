@@ -692,6 +692,14 @@ decorations.forEach(item=>{
     ctx.restore();
 
 });
+if(
+    currentProduct ===
+    "idcard"
+){
+
+    drawGuideLines();
+
+}
 }
 }
 function drawPhotoFrame(){
