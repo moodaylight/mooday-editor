@@ -70,14 +70,13 @@ if(
     exportVisibleY +
     exportVisibleH * 0.12;
 
-    bottomMin =
-    topMax +
-    minHeadHeight;
+bottomMin =
+topMin +
+minHeadHeight;
 
-    bottomMax =
-    topMin +
-    maxHeadHeight;
-
+bottomMax =
+topMax +
+maxHeadHeight;
 }else{
 
     const centerY =
