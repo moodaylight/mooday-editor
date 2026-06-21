@@ -12,6 +12,25 @@ function draw(){
 
 
     ctx.clearRect(0,0,canvas.width,canvas.height);
+   if(
+    currentProduct ===
+    "idcard"
+){
+
+    ctx.fillStyle =
+    "#ffffff";
+
+    ctx.fillRect(
+
+        0,
+        0,
+
+        canvas.width,
+        canvas.height
+
+    );
+
+}
    
     if(productType === "mirror"){
 
