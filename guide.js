@@ -68,16 +68,16 @@ function drawGuideLines(){
 
     }else{
 
-        topMin =
-        exportVisibleY +
-        exportVisibleH * 0.15;
+       topMin =
+       exportVisibleY +
+       exportVisibleH * 0.08;
 
         topMax =
         topMin;
 
-        bottomMin =
-        exportVisibleY +
-        exportVisibleH * 0.85;
+       bottomMin =
+       exportVisibleY +
+       exportVisibleH * 0.82;
 
         bottomMax =
         bottomMin;
