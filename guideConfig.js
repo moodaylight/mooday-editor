@@ -1,39 +1,31 @@
 const GUIDE_CONFIG = {
 
-    "한국 증명사진":{
+    "여권사진":{
+        type:"headHeight",
+        headMinRatio:0.711,
+        headMaxRatio:0.800
+    },
+
+    "증명사진":{
         type:"normal"
     },
 
-"한국 여권":{
-    type:"headHeight",
-    headMinRatio:0.711,
-    headMaxRatio:0.800
-},
+    "반명함판":{
+        type:"normal"
+    },
 
-    "중국 여권":{
-        type:"chinaPassport"
+    "명함판":{
+        type:"normal"
     },
 
     "한국 비자":{
         type:"normal"
     },
 
-    "중국 신분증":{
-        type:"normal"
-    },
-
-    "중국 1인치":{
-        type:"normal"
-    },
-
-    "중국 2인치":{
-        type:"normal"
-    },
-
-"미국 비자":{
-    type:"headHeight",
-    headMinRatio:0.490,
-    headMaxRatio:0.686
-}
+    "미국 비자":{
+        type:"headHeight",
+        headMinRatio:0.490,
+        headMaxRatio:0.686
+    }
 
 };
