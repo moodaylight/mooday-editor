@@ -105,22 +105,13 @@ else if(action === "optimize"){
 
     btn.onclick = ()=>{
 
-        clarityLevel++;
-
-        if(
-            clarityLevel > 3
-        ){
-
-            clarityLevel = 0;
-
-        }
-
-        draw();
+        alert(
+            "보정 버튼 클릭"
+        );
 
     };
 
 }
-
             else if(action === "adjust"){
 
                 btn.onclick = ()=>{
