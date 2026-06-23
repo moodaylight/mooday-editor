@@ -258,7 +258,14 @@ else if(
 }
 
 if(lightMode !== 3){
+ctx.fillStyle = "red";
 
+ctx.fillRect(
+    0,
+    0,
+    100,
+    100
+);
 ctx.drawImage(
 
     image,
