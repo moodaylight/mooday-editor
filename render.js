@@ -250,7 +250,7 @@ else if(
 ){
 
     ctx.filter =
-    "contrast(130%) brightness(110%) saturate(120%)";
+    "blur(30px)";
 
 }
 
