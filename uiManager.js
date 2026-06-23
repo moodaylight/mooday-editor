@@ -105,16 +105,6 @@ else if(action === "optimize"){
 
     btn.onclick = ()=>{
 
-      clarityLevel++;
-
-if(
-    clarityLevel > 3
-){
-
-    clarityLevel = 0;
-
-}
-
 clarityLevel++;
 
 if(
