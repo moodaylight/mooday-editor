@@ -101,17 +101,25 @@ else if(action === "background"){
 
             }
 
-            else if(action === "optimize"){
+else if(action === "optimize"){
 
-                btn.onclick = ()=>{
+    btn.onclick = ()=>{
 
-                    alert(
-                    "자동 보정 준비중"
-                    );
+        clarityLevel++;
 
-                };
+        if(
+            clarityLevel > 3
+        ){
 
-            }
+            clarityLevel = 0;
+
+        }
+
+        draw();
+
+    };
+
+}
 
             else if(action === "adjust"){
 
