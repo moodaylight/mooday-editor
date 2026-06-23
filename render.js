@@ -218,14 +218,39 @@ ctx.translate(imgX,imgY);
 // 氛围系统
 // =====================
 
-if(true){
+if(
+    clarityLevel === 0
+){
 
     ctx.filter =
-    "grayscale(100%)";
+    "none";
 
-}else{
+}
 
-    ctx.filter = "none";
+else if(
+    clarityLevel === 1
+){
+
+    ctx.filter =
+    "contrast(110%) brightness(105%)";
+
+}
+
+else if(
+    clarityLevel === 2
+){
+
+    ctx.filter =
+    "contrast(120%) brightness(108%) saturate(110%)";
+
+}
+
+else if(
+    clarityLevel === 3
+){
+
+    ctx.filter =
+    "contrast(130%) brightness(110%) saturate(120%)";
 
 }
 
