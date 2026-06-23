@@ -115,12 +115,19 @@ if(
 
 }
 
-alert(
-    "보정 단계 : " +
-    clarityLevel
-);
+clarityLevel++;
+
+if(
+    clarityLevel > 3
+){
+
+    clarityLevel = 0;
+
+}
 
 draw();
+
+
     };
 
 }
