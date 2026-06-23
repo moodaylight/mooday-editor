@@ -22,3 +22,5 @@ null;
 let currentIdPhoto =
 "여권사진";
 let currentProduct = null;
+let currentBackground =
+"white";
