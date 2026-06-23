@@ -30,7 +30,38 @@ document.getElementById("textBtn");
 
 const backgroundBtn =
 document.getElementById("backgroundBtn");
+backgroundBtn.onclick = ()=>{
 
+    if(
+        currentBackground ===
+        "white"
+    ){
+
+        currentBackground =
+        "blue";
+
+    }
+
+    else if(
+        currentBackground ===
+        "blue"
+    ){
+
+        currentBackground =
+        "red";
+
+    }
+
+    else{
+
+        currentBackground =
+        "white";
+
+    }
+
+    draw();
+
+};
 const clarityBtn =
 document.getElementById("clarityBtn");
 
