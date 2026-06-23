@@ -406,3 +406,18 @@ banners[bannerIndex].desc;
 
 },4000);
 
+clarityBtn.onclick = ()=>{
+
+    clarityLevel++;
+
+    if(
+        clarityLevel > 3
+    ){
+
+        clarityLevel = 0;
+
+    }
+
+    draw();
+
+};
