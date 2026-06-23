@@ -24,3 +24,4 @@ let currentIdPhoto =
 let currentProduct = null;
 let currentBackground =
 "white";
+let clarityLevel = 0;
