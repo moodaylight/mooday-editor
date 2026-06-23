@@ -207,7 +207,10 @@ imgY = Math.max(
 
 ctx.strokeStyle = "rgba(255,255,255,0)";
     ctx.clip();
-
+console.log(
+    "render clarity",
+    clarityLevel
+);
 // =====================
 // 绘制图片
 // =====================
