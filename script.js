@@ -31,7 +31,7 @@ document.getElementById("textBtn");
 const backgroundBtn =
 document.getElementById("backgroundBtn");
 backgroundBtn.onclick = ()=>{
-
+alert("background");
     if(
         currentBackground ===
         "white"
