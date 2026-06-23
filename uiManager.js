@@ -105,10 +105,22 @@ else if(action === "optimize"){
 
     btn.onclick = ()=>{
 
-        alert(
-            "보정 버튼 클릭"
-        );
+      clarityLevel++;
 
+if(
+    clarityLevel > 3
+){
+
+    clarityLevel = 0;
+
+}
+
+alert(
+    "보정 단계 : " +
+    clarityLevel
+);
+
+draw();
     };
 
 }
