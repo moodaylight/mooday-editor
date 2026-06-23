@@ -12,13 +12,40 @@ function draw(){
 
 
     ctx.clearRect(0,0,canvas.width,canvas.height);
-   if(
+if(
     currentProduct ===
     "idcard"
 ){
 
-    ctx.fillStyle =
-    "#ffffff";
+    if(
+        currentBackground ===
+        "white"
+    ){
+
+        ctx.fillStyle =
+        "#ffffff";
+
+    }
+
+    else if(
+        currentBackground ===
+        "blue"
+    ){
+
+        ctx.fillStyle =
+        "#4A86E8";
+
+    }
+
+    else if(
+        currentBackground ===
+        "red"
+    ){
+
+        ctx.fillStyle =
+        "#D9534F";
+
+    }
 
     ctx.fillRect(
 
