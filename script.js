@@ -23,8 +23,8 @@ const moodBtn =
 document.getElementById("moodBtn");
 const submitBtn =
 document.getElementById("submitBtn");
-const posterBtn =
-document.getElementById("posterBtn");
+const styleBtn =
+document.getElementById("styleBtn");
 const textBtn =
 document.getElementById("textBtn");
 
