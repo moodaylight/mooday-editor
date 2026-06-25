@@ -62,7 +62,7 @@ alert("background");
     draw();
 
 };
-const clarityBtn =
+const enhanceBtn =
 document.getElementById("clarityBtn");
 
 const templateDrawer =
