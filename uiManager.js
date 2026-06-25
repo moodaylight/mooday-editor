@@ -55,7 +55,13 @@ else if(action === "mood"){
 
 else if(action === "frame"){
 
-    btn.onclick = frameBtn.onclick;
+    btn.onclick = ()=>{
+
+        alert(
+            "FRAME BUTTON"
+        );
+
+    };
 
 }
 
