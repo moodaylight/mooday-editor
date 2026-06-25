@@ -2,19 +2,19 @@ function updateButtons(){
 
     if(!currentConfig) return;
 
-    const buttons = [
+   const buttons = [
 
-        uploadBtn,
-        clarityBtn,
-        moodBtn,
-        frameBtn,
-        textBtn,
-        backgroundBtn,
-        posterBtn,
-        previewBtn,
-        submitBtn
+    uploadBtn,
+    enhanceBtn,
+    moodBtn,
+    frameBtn,
+    textBtn,
+    backgroundBtn,
+    posterBtn,
+    previewBtn,
+    submitBtn
 
-    ];
+];
 
     buttons.forEach((btn,index)=>{
 
