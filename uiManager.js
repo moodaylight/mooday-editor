@@ -76,7 +76,17 @@ else if(action === "background"){
     btn.onclick = backgroundBtn.onclick;
 
 }
+else if(action === "guide"){
 
+    btn.onclick = ()=>{
+
+        alert(
+        "증명사진 안내 준비중"
+        );
+
+    };
+
+}
             else if(action === "light"){
 
                 btn.onclick = ()=>{
@@ -101,37 +111,25 @@ else if(action === "background"){
 
             }
 
-else if(action === "optimize"){
+else if(action === "enhance"){
 
     btn.onclick = ()=>{
 
-clarityLevel++;
+        clarityLevel++;
 
-if(
-    clarityLevel > 3
-){
+        if(
+            clarityLevel > 3
+        ){
 
-    clarityLevel = 0;
+            clarityLevel = 0;
 
-}
+        }
 
-draw();
-
+        draw();
 
     };
 
 }
-            else if(action === "adjust"){
-
-                btn.onclick = ()=>{
-
-                    alert(
-                    "조절 기능 준비중"
-                    );
-
-                };
-
-            }
 
             else if(action === "preview"){
 
