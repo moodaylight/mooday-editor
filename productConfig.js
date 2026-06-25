@@ -42,21 +42,21 @@ frame:{
 
     ],
 
-    buttons:[
+buttons:[
 
-        "upload",
-        "clarity",
-        "mood",
+    "upload",
+    "enhance",
+    "mood",
 
-        "frame",
-        "text",
-        "style",
+    "text",
+    "frame",
+    "style",
 
-        "preview",
-        "submit",
-        "home"
+    "preview",
+    "submit",
+    "home"
 
-    ]
+]
 
 },
 
@@ -82,16 +82,16 @@ idcard:{
 
     ],
 
-    buttons:[
+buttons:[
 
-        "upload",
-        "background",
-        "optimize",
-        "adjust",
-        "submit",
-        "home"
+    "upload",
+    "background",
+    "enhance",
+    "guide",
+    "submit",
+    "home"
 
-    ]
+]
 
 },
 
@@ -113,21 +113,21 @@ mirror:{
 
     ],
 
-    buttons:[
+buttons:[
 
-        "upload",
-        "clarity",
-        "text",
+    "upload",
+    "enhance",
+    "text",
 
-        "frame",
-        "style",
-        "light",
+    "frame",
+    "style",
+    "light",
 
-        "preview",
-        "submit",
-        "home"
+    "preview",
+    "submit",
+    "home"
 
-    ]
+]
 
 },
 avatar:{
@@ -144,17 +144,17 @@ avatar:{
 
     ],
 
-    buttons:[
+buttons:[
 
-        "upload",
-        "style",
-        "background",
+    "upload",
+    "enhance",
+    "background",
 
-        "adjust",
-        "download",
-        "home"
+    "style",
+    "download",
+    "home"
 
-    ]
+]
 
 },
 wallpaper:{
@@ -169,21 +169,21 @@ wallpaper:{
 
     ],
 
-    buttons:[
+buttons:[
 
-        "upload",
-        "clarity",
-        "mood",
+    "upload",
+    "enhance",
+    "mood",
 
-        "text",
-        "frame",
-        "style",
-        
-        "preview",
-        "download",
-        "home"
+    "text",
+    "frame",
+    "style",
 
-    ]
+    "preview",
+    "download",
+    "home"
+
+]
 
 }
 };
