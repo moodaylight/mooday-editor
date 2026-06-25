@@ -10,7 +10,7 @@ function updateButtons(){
     frameBtn,
     textBtn,
     backgroundBtn,
-    posterBtn,
+    styleBtn,
     previewBtn,
     submitBtn
 
