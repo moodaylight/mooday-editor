@@ -1,3 +1,84 @@
+================================================
+
+【2026-06-27】
+
+================================================
+
+# MOODAY V1.0 架构确定
+
+一、项目正式进入"架构优先"开发阶段。
+
+以后所有功能开发必须先确定架构，再开始编写代码。
+
+二、所有功能模块统一采用三层架构。
+
+Config（配置层）
+
+↓
+
+Editor（逻辑层）
+
+↓
+
+Render（绘制层）
+
+三、Render 层采用模块化架构。
+
+render.js
+
+负责统一调度。
+
+各功能分别建立独立 Render 文件。
+
+例如：
+
+renderImage.js
+
+renderFrame.js
+
+renderStyle.js
+
+renderLight.js
+
+renderText.js
+
+以后新增任何绘制功能，不允许直接写入 render.js。
+
+四、State 统一管理。
+
+所有 currentXXX 状态变量统一保存在 state.js。
+
+禁止在其它文件新增全局状态变量。
+
+五、Button、Product、Module 三套系统保持独立管理。
+
+按钮管理：
+
+buttonLabels.js
+
+buttonActions.js
+
+uiManager.js
+
+产品管理：
+
+productConfig.js
+
+产品模块：
+
+Config
+
+↓
+
+Editor
+
+↓
+
+Render
+
+六、本架构作为 MOODAY V1.0 长期架构标准执行。
+
+
 ---
 
 ## 2026-06-20 Architecture Update
