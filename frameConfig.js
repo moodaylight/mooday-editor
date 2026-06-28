@@ -15,8 +15,14 @@ const FRAMES = {
 };
 frameBtn.onclick = ()=>{
 
-    alert(
-        "프레임 기능 준비중"
-    );
+    frameMode++;
+
+    if(frameMode > FRAMES.METAL){
+
+        frameMode = FRAMES.NONE;
+
+    }
+
+    draw();
 
 };
