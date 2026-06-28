@@ -408,15 +408,17 @@ banners[bannerIndex].desc;
 
 clarityBtn.onclick = ()=>{
 
+    console.log("点击前:", clarityLevel);
+
     clarityLevel++;
 
-    if(
-        clarityLevel > 3
-    ){
+    if(clarityLevel > 3){
 
         clarityLevel = 0;
 
     }
+
+    console.log("点击后:", clarityLevel);
 
     draw();
 
