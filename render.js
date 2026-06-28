@@ -218,13 +218,16 @@ ctx.restore();
 // 可编辑区域边框
 // =====================
 
-ctx.strokeStyle = "rgba(255,255,255,0)";
+ctx.lineWidth = 20;
+
+ctx.strokeStyle = "#ffffff";
 applyFrame(
     visibleX,
     visibleY,
     visibleW,
     visibleH
 );
+   ctx.stroke();
     ctx.clip();
 
 // =====================
