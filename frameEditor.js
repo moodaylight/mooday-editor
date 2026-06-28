@@ -50,25 +50,11 @@ function drawNoFrame(){
 
 function drawWhiteFrame(w,h){
 
-    const border = 25;
-
     ctx.save();
 
-    ctx.lineWidth = border;
+    ctx.fillStyle = "red";
 
-    ctx.strokeStyle = "#ffffff";
-
-   ctx.strokeRect(
-
-    -w / 2,
-
-    -h / 2,
-
-    w,
-
-    h
-
-);
+    ctx.fillRect(-20,-20,40,40);
 
     ctx.restore();
 
