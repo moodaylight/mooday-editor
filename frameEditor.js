@@ -13,7 +13,7 @@ let frameMode = 0;
 // 5 金属
 
 function applyFrame(){
-
+console.log("applyFrame", frameMode);
     switch(frameMode){
 
         case 0:
