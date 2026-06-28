@@ -305,7 +305,11 @@ if(clarityLevel === 3){
 );
 
 }
+// =====================
+// 边框
+// =====================
 
+applyFrame();
 if(moodMode === 1){
 
     ctx.fillStyle =
