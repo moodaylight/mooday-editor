@@ -60,13 +60,13 @@ function drawWhiteFrame(){
 
     ctx.strokeRect(
 
-        -w / 2,
+        exportVisibleX,
 
-        -h / 2,
+        exportVisibleY,
 
-        w,
+        exportVisibleW,
 
-        h
+        exportVisibleH
 
     );
 
