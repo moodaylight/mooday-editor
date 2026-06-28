@@ -49,12 +49,22 @@ function drawNoFrame(){
 }
 
 function drawWhiteFrame(w,h){
-console.log("w=",w,"h=",h);
+
     ctx.save();
 
-    ctx.fillStyle = "red";
+    ctx.fillStyle = "#ff0000";
 
-    ctx.fillRect(-20,-20,40,40);
+    ctx.fillRect(
+
+        -w/2,
+
+        -h/2,
+
+        w,
+
+        20
+
+    );
 
     ctx.restore();
 
