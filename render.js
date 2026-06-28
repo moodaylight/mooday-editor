@@ -770,6 +770,8 @@ ctx.fillText(
 // 边框
 // =====================
 
+console.log("applyFrame start");
+
 applyFrame();
         ctx.restore();
 
