@@ -12,7 +12,7 @@ let frameMode = 0;
 // 4 木纹
 // 5 金属
 
-function applyFrame(w,h){
+function applyFrame(x,y,w,h){
 console.log("applyFrame", frameMode);
     switch(frameMode){
 
@@ -21,7 +21,7 @@ console.log("applyFrame", frameMode);
             break;
 
         case 1:
-            drawWhiteFrame(w,h);
+            drawWhiteFrame(x,y,w,h);
             break;
 
         case 2:
@@ -48,7 +48,7 @@ function drawNoFrame(){
 
 }
 
-function drawWhiteFrame(w,h){
+function drawWhiteFrame(x,y,w,h){
 
     const border = 20;
 
@@ -56,37 +56,37 @@ function drawWhiteFrame(w,h){
 
     ctx.fillStyle = "#ffffff";
 
-    // 上
-    ctx.fillRect(
-        0,
-        0,
-        w,
-        border
-    );
+// 上
+ctx.fillRect(
+    x,
+    y,
+    w,
+    border
+);
 
-    // 下
-    ctx.fillRect(
-        0,
-        h - border,
-        w,
-        border
-    );
+// 下
+ctx.fillRect(
+    x,
+    y + h - border,
+    w,
+    border
+);
 
-    // 左
-    ctx.fillRect(
-        0,
-        0,
-        border,
-        h
-    );
+// 左
+ctx.fillRect(
+    x,
+    y,
+    border,
+    h
+);
 
-    // 右
-    ctx.fillRect(
-        w - border,
-        0,
-        border,
-        h
-    );
+// 右
+ctx.fillRect(
+    x + w - border,
+    y,
+    border,
+    h
+);
 
     ctx.restore();
 
