@@ -58,17 +58,17 @@ function drawWhiteFrame(){
 
     ctx.strokeStyle = "#ffffff";
 
-    ctx.strokeRect(
+   ctx.strokeRect(
 
-        exportVisibleX,
+    -w / 2,
 
-        exportVisibleY,
+    -h / 2,
 
-        exportVisibleW,
+    w,
 
-        exportVisibleH
+    h
 
-    );
+);
 
     ctx.restore();
 
