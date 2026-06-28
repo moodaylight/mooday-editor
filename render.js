@@ -289,8 +289,8 @@ if(clarityLevel === 2){
 
 if(clarityLevel === 3){
 
-    ctx.filter =
-    "contrast(130%) saturate(115%) brightness(105%)";
+   ctx.filter =
+"grayscale(100%)";
 
 }
     ctx.drawImage(
