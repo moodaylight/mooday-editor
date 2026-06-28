@@ -303,7 +303,7 @@ if(clarityLevel === 3){
     h
 
 );
-
+applyFrame(w,h);
 }
 // =====================
 // 边框
@@ -770,14 +770,8 @@ ctx.fillText(
 );
 
 });
-// =====================
-// 边框
-// =====================
 
-console.log("applyFrame start");
-
-applyFrame(w,h);
-        ctx.restore();
+ctx.restore();
 
     });
 
