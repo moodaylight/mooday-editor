@@ -211,7 +211,14 @@ ctx.strokeStyle = "rgba(255,255,255,0)";
 // =====================
 // 绘制图片
 // =====================
+// =====================
+// 边框
+// =====================
 
+applyFrame(
+    exportVisibleW,
+    exportVisibleH
+);
 ctx.translate(imgX,imgY);
 
 // =====================
@@ -303,7 +310,7 @@ if(clarityLevel === 3){
     h
 
 );
-applyFrame(w,h);
+
 }
 // =====================
 // 边框
