@@ -263,7 +263,37 @@ ctx.fillRect(
     100,
     100
 );
-ctx.drawImage(
+// =====================
+// 一键增强
+// =====================
+
+if(clarityLevel === 0){
+
+    ctx.filter = "none";
+
+}
+
+if(clarityLevel === 1){
+
+    ctx.filter =
+    "contrast(110%) saturate(105%)";
+
+}
+
+if(clarityLevel === 2){
+
+    ctx.filter =
+    "contrast(120%) saturate(110%) brightness(102%)";
+
+}
+
+if(clarityLevel === 3){
+
+    ctx.filter =
+    "contrast(130%) saturate(115%) brightness(105%)";
+
+}
+    ctx.drawImage(
 
     image,
 
