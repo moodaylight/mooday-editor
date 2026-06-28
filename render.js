@@ -266,7 +266,7 @@ ctx.fillRect(
 // =====================
 // 一键增强
 // =====================
-
+console.log("clarity =", clarityLevel);
 if(clarityLevel === 0){
 
     ctx.filter = "none";
