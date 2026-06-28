@@ -13,16 +13,4 @@ const FRAMES = {
     METAL:5
 
 };
-frameBtn.onclick = ()=>{
 
-    frameMode++;
-
-    if(frameMode > FRAMES.METAL){
-
-        frameMode = FRAMES.NONE;
-
-    }
-
-    draw();
-
-};
