@@ -12,7 +12,7 @@ let frameMode = 0;
 // 4 木纹
 // 5 金属
 
-function applyFrame(){
+function applyFrame(w,h){
 console.log("applyFrame", frameMode);
     switch(frameMode){
 
@@ -21,7 +21,7 @@ console.log("applyFrame", frameMode);
             break;
 
         case 1:
-            drawWhiteFrame();
+            drawWhiteFrame(w,h);
             break;
 
         case 2:
@@ -48,7 +48,7 @@ function drawNoFrame(){
 
 }
 
-function drawWhiteFrame(){
+function drawWhiteFrame(w,h){
 
     const border = 25;
 
