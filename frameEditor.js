@@ -50,6 +50,28 @@ function drawNoFrame(){
 
 function drawWhiteFrame(){
 
+    const border = 25;
+
+    ctx.save();
+
+    ctx.lineWidth = border;
+
+    ctx.strokeStyle = "#ffffff";
+
+    ctx.strokeRect(
+
+        -w / 2,
+
+        -h / 2,
+
+        w,
+
+        h
+
+    );
+
+    ctx.restore();
+
 }
 
 function drawBlackFrame(){
