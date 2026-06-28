@@ -206,6 +206,12 @@ imgY = Math.max(
 // =====================
 
 ctx.strokeStyle = "rgba(255,255,255,0)";
+applyFrame(
+    visibleX,
+    visibleY,
+    visibleW,
+    visibleH
+);
     ctx.clip();
 
 // =====================
@@ -215,10 +221,7 @@ ctx.strokeStyle = "rgba(255,255,255,0)";
 // 边框
 // =====================
 
-applyFrame(
-    exportVisibleW,
-    exportVisibleH
-);
+
 ctx.translate(imgX,imgY);
 
 // =====================
