@@ -776,7 +776,7 @@ ctx.fillText(
 
 console.log("applyFrame start");
 
-applyFrame();
+applyFrame(w,h);
         ctx.restore();
 
     });
