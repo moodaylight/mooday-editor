@@ -50,7 +50,7 @@ function drawNoFrame(){
 
 function drawWhiteFrame(w,h){
 
-    const border = 10;
+    const border = 20;
 
     ctx.save();
 
@@ -58,32 +58,32 @@ function drawWhiteFrame(w,h){
 
     // 上
     ctx.fillRect(
-        -w/2,
-        -h/2,
+        0,
+        0,
         w,
         border
     );
 
     // 下
     ctx.fillRect(
-        -w/2,
-        h/2-border,
+        0,
+        h - border,
         w,
         border
     );
 
     // 左
     ctx.fillRect(
-        -w/2+1,
-        -h/2,
+        0,
+        0,
         border,
         h
     );
 
     // 右
     ctx.fillRect(
-        w/2-border-1,
-        -h/2,
+        w - border,
+        0,
         border,
         h
     );
