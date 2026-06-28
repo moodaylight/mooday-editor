@@ -309,7 +309,7 @@ if(clarityLevel === 3){
 // 边框
 // =====================
 
-applyFrame();
+applyFrame(w,h);
 if(moodMode === 1){
 
     ctx.fillStyle =
