@@ -57,9 +57,15 @@ else if(action === "frame"){
 
     btn.onclick = ()=>{
 
-        alert(
-            "FRAME BUTTON"
-        );
+        frameMode++;
+
+        if(frameMode > FRAMES.METAL){
+
+            frameMode = FRAMES.NONE;
+
+        }
+
+        draw();
 
     };
 
